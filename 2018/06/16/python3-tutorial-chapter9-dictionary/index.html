@@ -1062,11 +1062,12 @@
     })();
     var popAd = document.getElementById("pop_ad");
     if(popAd) {
-    	popAd.display = ”none“;
+    	popAd.style.display = ”none“;
     }   
     function closeAd() {
-	if(document.getElementById("feedAv")) {
-		document.getElementById("feedAv").display = ”none“;
+	var feedAd = document.getElementById("feedAv");
+	if(feedAd) {
+		feedAd.style.display = ”none“;
 
 	}    
     }
