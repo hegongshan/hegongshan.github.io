@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <meta name="keywords" content="机器学习,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在讲朴素贝叶斯之前，我们先来回顾一下大学二年级概率论中的相关知识． 条件概率公式： $$P(A|B) = \frac{P(AB)}{P(B)}$$  $$=&amp;gt; P(AB) = P(A|B)P(B)$$ 全概率公式： $$P(A)=\sum_{i=1}^{\infty}{P(B_i)P(A|B_i)}$$ 贝叶斯公式： $$P(B_i|A)=\frac{P(AB_i)}{P(A)}=\frac">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习之朴素贝叶斯">
+<meta property="og:url" content="https://www.hegongshan.com/2018/07/02/machine-learning-navie-bayes/index.html">
+<meta property="og:site_name" content="贺巩山的博客">
+<meta property="og:description" content="在讲朴素贝叶斯之前，我们先来回顾一下大学二年级概率论中的相关知识． 条件概率公式： $$P(A|B) = \frac{P(AB)}{P(B)}$$  $$=&amp;gt; P(AB) = P(A|B)P(B)$$ 全概率公式： $$P(A)=\sum_{i=1}^{\infty}{P(B_i)P(A|B_i)}$$ 贝叶斯公式： $$P(B_i|A)=\frac{P(AB_i)}{P(A)}=\frac">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-19T07:23:57.746Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习之朴素贝叶斯">
+<meta name="twitter:description" content="在讲朴素贝叶斯之前，我们先来回顾一下大学二年级概率论中的相关知识． 条件概率公式： $$P(A|B) = \frac{P(AB)}{P(B)}$$  $$=&amp;gt; P(AB) = P(A|B)P(B)$$ 全概率公式： $$P(A)=\sum_{i=1}^{\infty}{P(B_i)P(A|B_i)}$$ 贝叶斯公式： $$P(B_i|A)=\frac{P(AB_i)}{P(A)}=\frac">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.hegongshan.com/2018/07/02/machine-learning-navie-bayes/">
+
+
+
+
+
+  <title>机器学习之朴素贝叶斯 | 贺巩山的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<!--<a href="https://github.com/hegongshan">
+		<img style="position:absolute;top:0;right:0;border:0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
+		alt="Follow me on Github" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"/>
+	</a>-->
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">贺巩山的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">没有伞的孩子更要努力奔跑</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/booklist/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/07/02/machine-learning-navie-bayes/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p64uw9x5j.bkt.clouddn.com/image/201607032013.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">机器学习之朴素贝叶斯</h2>
+        
+
+        <div class="post-meta">
+		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-02T17:11:33+08:00">
+                2018-07-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-19T15:23:57+08:00">
+                2019-01-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2018/07/02/machine-learning-navie-bayes/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/07/02/machine-learning-navie-bayes/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.7k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在讲朴素贝叶斯之前，我们先来回顾一下大学二年级概率论中的相关知识．</p>
+<p>条件概率公式：</p>
+<p>$$P(A|B) = \frac{P(AB)}{P(B)}$$ </p>
+<p>$$=&gt; P(AB) = P(A|B)P(B)$$</p>
+<p>全概率公式：</p>
+<p>$$P(A)=\sum_{i=1}^{\infty}{P(B_i)P(A|B_i)}$$</p>
+<p>贝叶斯公式：</p>
+<p>$$P(B_i|A)=\frac{P(AB_i)}{P(A)}=\frac{P(A|B_i)P(B_i)}{\sum_{i=1}^{\infty}{P(B_i)P(A|B_i)}}$$</p>
+<a id="more"></a>
+<h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>朴素贝叶斯是贝叶斯决策理论的一部分，而贝叶斯决策理论的核心思想是<strong>选择具有最高概率的决策</strong>．</p>
+<p>举个很简单的例子，一般网站评论或者游戏聊天都会对侮辱性词汇进行屏蔽过滤．</p>
+<p>假设现在存在一条评论，如何判断它是否包含侮辱性词汇？我们用P1(w)表示评论w包含侮辱性词汇的概率，用p2(w)表示评论w不包含侮辱性词汇的概率，那么对于评论w，可以用下面的规则来判断它的类别：</p>
+<ul>
+<li>如果P1(w) &gt; P2(w) ，那么w为包含侮辱性词汇的评论．</li>
+<li>如果P2(w) &gt; P1(w)，那么w为不包含侮辱性词汇的评论．</li>
+</ul>
+<h3 id="假设前提"><a href="#假设前提" class="headerlink" title="假设前提"></a>假设前提</h3><p>朴素贝叶斯是用于文档分类的常用算法，它是基于以下假设对贝叶斯分类器的一个扩展．</p>
+<ul>
+<li>特征之间相互独立，即一个特征出现的可能性与其他特征没有关系．比如，如果文档中一个词出现的概率不依赖于文档中的其他词，那么文档中词与词之间相互独立．</li>
+<li>每个特征同等重要．</li>
+</ul>
+<p>我们知道这两个假设过于简单，这也是之所以称之为朴素（navie）贝叶斯的原因．</p>
+<h3 id="理论模型"><a href="#理论模型" class="headerlink" title="理论模型"></a>理论模型</h3><p>$$P(c|\mathbf{x})=\frac{P(c)P(\mathbf{x}|c)}{P(\mathbf{x})}$$</p>
+<p>其中，P(c)是类＂先验＂(prior)概率，$P(\mathbf{x}|c)$是样本x相对于类标记c的类条件概率，或称为＂似然＂，$P(\mathbf{x})$是用于归一化的＂证据＂因子．</p>
+<p>对于给定样本x，证据因子$P(\mathbf{x})$与类标记无关，因此估计$P(c|\mathbf{x})$的问题就转化为如何基于训练数据D来估计先验概率P(c)和条件概率$P(\mathbf{x}|c)$</p>
+<p>根据大数定律，当训练集包含充足的独立同分布样本时，P(c)可通过各类样本出现的频率来进行估计．</p>
+<p>对于条件概率$P(\mathbf{x}|c)$来说，由于假设x的各个属性相互独立，因此</p>
+<p>$$P(\mathbf{x}|c) = P(x_1x_2…x_n|c) = P(x_1|c)P(x_2|c) \cdot\cdot\cdot P(x_n|c) = \prod_{i=1}^{n}{P(x_i|c)}$$ </p>
+<p>其中，n为<strong>x</strong>的属性个数</p>
+<p>由于连乘操作易造成下溢出，即太多很小的数相乘导致结果四舍五入后得到0，通常使用对数进行处理，将连乘变为累加，从而避免下溢出．因此，</p>
+<p>令$$L = P(c)P(\mathbf{x}|c)$$</p>
+<p>则$$log L = log P(c) + log P(\mathbf{x}|c) = log P(c) + \sum_{i=1}^{n}{log P(x_i|c)}$$</p>
+<h3 id="拉普拉斯修正"><a href="#拉普拉斯修正" class="headerlink" title="拉普拉斯修正"></a>拉普拉斯修正</h3><p>为了避免其他属性（特征）携带的信息被训练集中未出现的属性值＂抹去＂，即为了避免多个条件概率相乘时某个概率值为0，导致最后的乘积为0，在估计概率值时通常要进行＂平滑＂，常用＂拉普拉斯修正＂．</p>
+<p>具体来说，令N表示训练集D中可能的类别数，$N_i$表示第i个属性可能的取值数，则</p>
+<p>$$P(c)=\frac{|D_c|+1}{|D|+N}$$</p>
+<p>$$P(w_i|c)=\frac{|D_{c,x_i}|+1}{|D_c|+N_i}$$</p>
+<h3 id="示例：文本分类"><a href="#示例：文本分类" class="headerlink" title="示例：文本分类"></a>示例：文本分类</h3><p>朴素贝叶斯分类器通常有以下两种实现方式</p>
+<ul>
+<li>词集模型：将每个词的出现与否作为一个特征，值为1表示词条出现在文档中，0表示词条未出现</li>
+<li>词袋模型：将每个词在文档中出现的次数作为一个特征</li>
+</ul>
+<p>下面我们用词集模型，来实现一个区分某一评论是否包含侮辱性词汇的朴素贝叶斯分类器．</p>
+<p>创建一个bayes.py文件，</p>
+<ul>
+<li>将训练集转化为词汇列表</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">createVocabularyList</span><span class="params">(dataset)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    从数据集中抽取不重复的词汇列表</span></span><br><span class="line"><span class="string">    dataset: 给定的数据集</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    vocabularySet = set([])　<span class="comment">#　创建一个空集合 </span></span><br><span class="line">    <span class="keyword">for</span> document <span class="keyword">in</span> dataset:</span><br><span class="line">        <span class="comment"># 操作符｜表示求两个集合的并集</span></span><br><span class="line">        vocabularySet = vocabulary | set(document)</span><br><span class="line">    <span class="keyword">return</span> list(vocabularySet)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将训练集中的某一条数据转化为向量</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">setOfWords2Vector</span><span class="params">(vocabularyList,inputSet)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    根据词汇列表，将输入的数据集转化为与词汇列表维度相同的向量</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 创建一个长度为len(vocabularyList)，所含元素都为0的向量</span></span><br><span class="line">    <span class="comment"># 等价于 </span></span><br><span class="line">    <span class="comment"># returnVector = []</span></span><br><span class="line">    <span class="comment"># for i in range(len(vocabularyList)):</span></span><br><span class="line">    <span class="comment">#     returnVector[i] = 0</span></span><br><span class="line">    returnVector = [<span class="number">0</span>]*len(vocabularyList)</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> inputSet:</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> vocabularyList:</span><br><span class="line">            returnVector[vocabularyList.index(word)] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> returnVector</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建朴素贝叶斯分类器训练函数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">trainNavieBayes</span><span class="params">(trainMatrix,trainCategory)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    贝叶斯分类器训练函数</span></span><br><span class="line"><span class="string">    trainMatrix: numpy中array类型，是由训练集转化的所有向量组成的矩阵</span></span><br><span class="line"><span class="string">    trainCategory: 由矩阵中每一向量的所属类别组成的列表</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    numTrainDocs = len(trainMatrix)</span><br><span class="line">    numWords = len(trainMatrix[<span class="number">0</span>])</span><br><span class="line">    <span class="comment"># pAbusive = sum(trainCategory)/float(numTrainDocs)</span></span><br><span class="line">    <span class="comment"># 拉普拉斯修正</span></span><br><span class="line">    pAbusive = (sum(trainCategory) + <span class="number">1</span>)/(float(numTrainDocs) + <span class="number">2</span>)</span><br><span class="line">    p0Vector = zeros(numWords);p1Vector = zeros(numWords)</span><br><span class="line">    <span class="comment"># 计算某一类别下的总词数</span></span><br><span class="line">    <span class="comment"># p0NumWords = 0.0;p1NumWords = 0.0</span></span><br><span class="line">    <span class="comment"># 使用拉普拉斯修正后</span></span><br><span class="line">    p0NumWords = <span class="number">2.0</span>;p1NumWords = <span class="number">2.0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(numTrainDocs):</span><br><span class="line">        <span class="keyword">if</span> trainCategory[i] == <span class="number">1</span>:</span><br><span class="line">            p1Vector += trainMatrix[i]</span><br><span class="line">            p1NumWords += sum(trainMatrix[i])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            p0Vector += trainMatrix[i]</span><br><span class="line">            p0NumWords += sum(trainMatrix[i])</span><br><span class="line">    <span class="comment"># 用某个类别下某个词出现的次数除以该类别下的总词数，</span></span><br><span class="line">    <span class="comment"># 即求得某一类别c在每一个属性上的概率p(ci)</span></span><br><span class="line">    <span class="comment"># p0Vector = p0Vector/p0NumWords</span></span><br><span class="line">    <span class="comment"># p1Vector = p1Vector/p1NumWords</span></span><br><span class="line">    p0Vector = log(p0Vector/p0NumWords)</span><br><span class="line">    p1Vector = log(p1Vector/p1NumWords)</span><br><span class="line">    <span class="keyword">return</span> p0Vector,p1Vector,pAbusive</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建朴素贝叶斯分类函数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classifyNavieBayes</span><span class="params">(vector2Classify,p0Vector,p1Vector,pc1)</span>:</span></span><br><span class="line">    p1 = sum(vector2Classify*p1Vector) + log(pc1)</span><br><span class="line">    p0 = sum(vector2Classify*p0Vector) + log(<span class="number">1.0</span>-pc1)</span><br><span class="line">    <span class="keyword">if</span> p1 &gt; p0:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>上面程序的第2行，就是在求</p>
+<p>$$log L = log P(c) + log P(\mathbf{x}|c) = log P(c) + \sum_{i=1}^{n}{log P(x_i|c)}$$</p>
+<p>接下来我们测试一下刚才的分类器是否有效</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">()</span>:</span></span><br><span class="line">    postingList = [[<span class="string">'my'</span>,<span class="string">'dog'</span>,<span class="string">'has'</span>,<span class="string">'flea'</span>,<span class="string">'problems'</span>,<span class="string">'help'</span>,<span class="string">'please'</span>],</span><br><span class="line">                  [<span class="string">'maybe'</span>,<span class="string">'not'</span>,<span class="string">'take'</span>,<span class="string">'him'</span>,<span class="string">'to'</span>,<span class="string">'dog'</span>,<span class="string">'park'</span>,<span class="string">'stupid'</span>],</span><br><span class="line">                  [<span class="string">'my'</span>,<span class="string">'dalmation'</span>,<span class="string">'is'</span>,<span class="string">'so'</span>,<span class="string">'cute'</span>,<span class="string">'I'</span>,<span class="string">'love'</span>,<span class="string">'him'</span>],</span><br><span class="line">                  [<span class="string">'stop'</span>,<span class="string">'posting'</span>,<span class="string">'stupid'</span>,<span class="string">'worthless'</span>,<span class="string">'garbage'</span>],</span><br><span class="line">                  [<span class="string">'mr'</span>,<span class="string">'licks'</span>,<span class="string">'ate'</span>,<span class="string">'my'</span>,<span class="string">'steak'</span>,<span class="string">'how'</span>,<span class="string">'to'</span>,<span class="string">'stop'</span>,<span class="string">'him'</span>],</span><br><span class="line">                  [<span class="string">'quit'</span>,<span class="string">'buying'</span>,<span class="string">'worthless'</span>,<span class="string">'dog'</span>,<span class="string">'food'</span>,<span class="string">'stupid'</span>]]</span><br><span class="line">    <span class="comment"># 0表示正常言论，１表示包含侮辱性词汇的评论</span></span><br><span class="line">    categoryVector = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> postingList,categoryVector</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">testNavieBayes</span><span class="params">()</span>:</span></span><br><span class="line">    listOfPosts,listClasses = loadDataSet()</span><br><span class="line">    vocabularyList = createVocabularyList(listOfPosts)</span><br><span class="line">    trainMatrix = []</span><br><span class="line">    <span class="keyword">for</span> post <span class="keyword">in</span> listOfPosts:</span><br><span class="line">        trainMatrix.append(setOfWords2Vector(vocabularyList,post))</span><br><span class="line">    p0Vector,p1Vector,pc1 = trainNavieBayes(array(trainMatrix),array(listClaasses))</span><br><span class="line">    testPost = [<span class="string">'love'</span>,<span class="string">'my'</span>,<span class="string">'dalmation'</span>]</span><br><span class="line">    testVector = array(setOfWords2Vector(vocabularyList,testPost))</span><br><span class="line">    print(str(testPost)+<span class="string">" 被分类为:"</span>+</span><br><span class="line">          classifNavieBayes(testVector,p0Vector,p1Vector,pc1))</span><br><span class="line">    </span><br><span class="line">    testPost = [<span class="string">'stupid'</span>,<span class="string">'garbage'</span>]</span><br><span class="line">    testVector = array(setOfWords2Vector(vocabularyList,testPost))</span><br><span class="line">    print(str(testPost)+<span class="string">" 被分类为:"</span>+</span><br><span class="line">          classifNavieBayes(testVector,p0Vector,p1Vector,pc1))</span><br></pre></td></tr></table></figure>
+<hr>
+
+<p>参考资料</p>
+<ul>
+<li>机器学习实战, Peter Harrington, 人民邮电出版社</li>
+<li>机器学习, 周志华, 清华大学出版社</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+    		
+	  <div>
+	    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">----------本文结束<i class="fa fa-paw"></i>感谢您的阅读----------</div>
+    
+</div>	
+	  </div>
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Gongshan He 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Gongshan He 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Gongshan He
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.hegongshan.com/2018/07/02/machine-learning-navie-bayes/" title="机器学习之朴素贝叶斯">https://www.hegongshan.com/2018/07/02/machine-learning-navie-bayes/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/30/command-scrapy-not-found/" rel="next" title="Command 'scrapy' not found">
+                <i class="fa fa-chevron-left"></i> Command 'scrapy' not found
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/10/machine-learning-logistic-regression/" rel="prev" title="机器学习之logistic回归">
+                机器学习之logistic回归 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://p64uw9x5j.bkt.clouddn.com/image/201607032013.jpg" alt="Gongshan He">
+            
+              <p class="site-author-name" itemprop="name">Gongshan He</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hegongshan" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/hegongshan" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/hegongshan" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.linkedin.com/in/gongshan-he-54688a162/" target="_blank" title="Linkedin">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:hegongshan@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block　">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.qinjiangbo.com" title="秦江波" target="_blank">秦江波</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://deyinliu.github.io" title="刘德印" target="_blank">刘德印</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.gaohangcs.com" title="高航" target="_blank">高航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.yangyang520.top" title="杨洋" target="_blank">杨洋</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.java1234.com" title="java1234" target="_blank">java1234</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法思想"><span class="nav-number">1.</span> <span class="nav-text">算法思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#假设前提"><span class="nav-number">2.</span> <span class="nav-text">假设前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#理论模型"><span class="nav-number">3.</span> <span class="nav-text">理论模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拉普拉斯修正"><span class="nav-number">4.</span> <span class="nav-text">拉普拉斯修正</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例：文本分类"><span class="nav-number">5.</span> <span class="nav-text">示例：文本分类</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gongshan He</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytwUlqjR';
+      var conf = 'prod_28a9029e61ac7000fb21d6740652193c';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
