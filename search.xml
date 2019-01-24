@@ -16,9 +16,12 @@
     <content type="text"></content>
   </entry>
   <entry>
-    <title><![CDATA[java-final]]></title>
+    <title><![CDATA[Java中的final关键字]]></title>
     <url>%2F2019%2F01%2F19%2Fjava-final%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[在Java中，final关键字可用于域、方法和类的声明。 final域使用final声明的域，在使用前必须被初始化，且一旦被初始化便无法改变。 static final 域和final域的区别当域声明为static final时，表示其在装载时已被初始化，而不是每次创建新对象时都初始化。而final域是在创建对象时才被初始化。 空白final空白final是指被声明为final但又未给定初始值的域。必须在域的定义处或者构造器中对final域进行赋值。 final参数Java允许在参数列表中以声明的方式将参数指明为final。这一特性主要用来向匿名类传递数据。 final方法使用final声明的方法，表示在子类中不允许被覆盖。 final和private 关键字类中所有的private方法都隐式地指定为是final的。可以将private方法声明为final，但这并不会给方法增加任何额外的意义。 final类当某个类用final声明时，表明这个类不允许被继承。由于final类禁止继承，所以final类中所有的方法都隐式指定为是final的，但类中的域并不会自动地成为final。在final类中可以给方法添加final修饰符，但并不会增添任何意义。]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Java中的异常处理]]></title>
