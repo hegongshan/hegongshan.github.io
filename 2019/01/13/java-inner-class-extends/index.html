@@ -60,7 +60,7 @@
 
 
 
-  <meta name="keywords" content="Hexo">
+  <meta name="keywords" content="java,">
 
 
 
@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="个人博客">
-<meta name="keywords" content="GongshanHe Java Spring Python MachineLearning DeepLearning KnowledgeGraph QuestionAnswering">
+<meta name="description" content="由于Java中的匿名内部类不能被继承，而局部内部类和静态内部类的继承，与普通类继承没有区别。故本文主要描述成员内部类的继承问题。">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java-inner-class-extends">
-<meta property="og:url" content="https://www.hegongshan.com/2019/01/23/java-inner-class-extends/index.html">
+<meta property="og:title" content="Java中的内部类继承">
+<meta property="og:url" content="https://www.hegongshan.com/2019/01/13/java-inner-class-extends/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="由于Java中的匿名内部类不能被继承，而局部内部类和静态内部类的继承，与普通类继承没有区别。故本文主要描述成员内部类的继承问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-23T10:09:54.743Z">
+<meta property="og:updated_time" content="2019-01-25T10:47:28.467Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java-inner-class-extends">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="Java中的内部类继承">
+<meta name="twitter:description" content="由于Java中的匿名内部类不能被继承，而局部内部类和静态内部类的继承，与普通类继承没有区别。故本文主要描述成员内部类的继承问题。">
 
 
 
@@ -112,13 +112,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hegongshan.com/2019/01/23/java-inner-class-extends/">
+  <link rel="canonical" href="https://www.hegongshan.com/2019/01/13/java-inner-class-extends/">
 
 
 
 
 
-  <title>java-inner-class-extends | 贺巩山的博客</title>
+  <title>Java中的内部类继承 | 贺巩山的博客</title>
   
 
 
@@ -299,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/01/23/java-inner-class-extends/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/01/13/java-inner-class-extends/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -316,7 +316,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">java-inner-class-extends</h2>
+          <h2 class="post-title" itemprop="name headline">Java中的内部类继承</h2>
         
 
         <div class="post-meta">
@@ -330,8 +330,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-23T18:09:54+08:00">
-                2019-01-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-13T18:09:54+08:00">
+                2019-01-13
               </time>
             
 
@@ -346,12 +346,34 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-23T18:09:54+08:00">
-                2019-01-23
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-25T18:47:28+08:00">
+                2019-01-25
               </time>
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -362,8 +384,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2019/01/23/java-inner-class-extends/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2019/01/23/java-inner-class-extends/" itemprop="commentsCount"></span>
+                <a href="/2019/01/13/java-inner-class-extends/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2019/01/13/java-inner-class-extends/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -390,7 +412,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  1k
                 </span>
               
 
@@ -415,7 +437,46 @@
       
 
       
-        
+        <p>由于Java中的匿名内部类不能被继承，而局部内部类和静态内部类的继承，与普通类继承没有区别。故本文主要描述成员内部类的继承问题。</p>
+<a id="more"></a>
+<p>成员内部类的继承可分为以下三种情况：</p>
+<ul>
+<li>内部类及其子类在同一个外围类中</li>
+<li>内部类及其子类在不同的外围类中</li>
+<li>内部类的子类不是内部类</li>
+</ul>
+<p>下面对这三种情况逐一分析</p>
+<h4 id="内部类及其子类在同一个外围类中"><a href="#内部类及其子类在同一个外围类中" class="headerlink" title="内部类及其子类在同一个外围类中"></a>内部类及其子类在同一个外围类中</h4><p>在这种情况下，内部类和子类都是同一个外围类的内部类，此时成员内部类的继承与普通类的继承没有区别。下面是一个简单的示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WithInner</span> </span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Inner</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			System.out.println(<span class="string">"Inner"</span>);</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">InheritInner</span> <span class="keyword">extends</span> <span class="title">Inner</span> </span>&#123;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">InheritInner</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			System.out.println(<span class="string">"InheritInner"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		WithInner wi = <span class="keyword">new</span> WithInner();</span><br><span class="line">		WithInner.InheritInner ii = wi.new InheritInner();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">输出如下：</span><br><span class="line">Inner</span><br><span class="line">InheritInner</span><br></pre></td></tr></table></figure>
+<p>上述程序编译后，生成了如下的class文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Main.class</span><br><span class="line">WithInner$InheritInner.class</span><br><span class="line">WithInner$Inner.class</span><br><span class="line">WithInner.class</span><br></pre></td></tr></table></figure>
+<p>使用<code>javap -p</code>查看<code>WithInner$InheritInner.class</code>,输出内容如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Compiled from <span class="string">"Main.java"</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WithInner</span>$<span class="title">InheritInner</span> <span class="keyword">extends</span> <span class="title">WithInner</span>$<span class="title">Inner</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> WithInner <span class="keyword">this</span>$<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">public</span> WithInner$InheritInner(WithInner);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在继承中，子类实例化时会先调用父类的相同构造方法。可以想到，编译之后<code>WithInner$InheritInner</code>的构造器应该如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> WithInner <span class="keyword">this</span>$<span class="number">0</span>;</span><br><span class="line"><span class="keyword">public</span> WithInner$InheritInner(WithInner wi) &#123;</span><br><span class="line">    <span class="keyword">super</span>(wi);</span><br><span class="line">    <span class="keyword">this</span>$<span class="number">0</span> = wi;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="内部类及其子类在不同的外围类中"><a href="#内部类及其子类在不同的外围类中" class="headerlink" title="内部类及其子类在不同的外围类中"></a>内部类及其子类在不同的外围类中</h4><p>因为内部类的构造器必须传入一个外围类对象，所以在继承内部类的时候，外围类对象必须被初始化，而在内部类的子类中，不再存在可连接的默认对象，故需要显式地传入一个父内部类的外围类对象的引用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WithInner</span> </span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">Inner</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			System.out.println(<span class="string">"Inner"</span>);</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">InheritInner</span> <span class="keyword">extends</span> <span class="title">WithInner</span>.<span class="title">Inner</span> </span>&#123;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="title">InheritInner</span><span class="params">(WithInner wi)</span> </span>&#123;</span><br><span class="line">			wi.<span class="keyword">super</span>();</span><br><span class="line">			System.out.println(<span class="string">"InheritInner"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		WithInner wi = <span class="keyword">new</span> WithInner();</span><br><span class="line">		Outer outer = <span class="keyword">new</span> Outer();</span><br><span class="line">		Outer.InheritInner ii = outer.new InheritInner(wi);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">输出如下：</span><br><span class="line">Inner</span><br><span class="line">InheritInner</span><br></pre></td></tr></table></figure>
+<p>InheritInner继承自内部类WithInner.Inner，当要生成一个构造器时，必须传入一个指向外围类对象的引用。此外，还必须在构造器内使用如下语法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enclosingClassReference.<span class="keyword">super</span>();</span><br></pre></td></tr></table></figure>
+<p>否则，将会产生如下错误：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">No enclosing instance of type WithInner is accessible to invoke the <span class="keyword">super</span> constructor. </span><br><span class="line">Must define a constructor and explicitly qualify its <span class="keyword">super</span> constructor invocation</span><br><span class="line"><span class="function">with an instance of <span class="title">WithInner</span> <span class="params">(e.g. x.<span class="keyword">super</span>()</span> where x is an instance of WithInner).</span></span><br></pre></td></tr></table></figure>
+<p>翻译过来就是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">没有外围类WithInner的实例，无法调用父类构造器。</span><br><span class="line">必须定义一个构造器，并且用WithInner的实例显式地调用父类构造器。</span><br><span class="line">（如，x.<span class="keyword">super</span>(),其中x是WithInner的一个实例）</span><br></pre></td></tr></table></figure>
+<p>上述程序编译后，生成了如下的class文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Main.class</span><br><span class="line">Outer$InheritInner.class</span><br><span class="line">Outer.class</span><br><span class="line">WithInner$Inner.class</span><br><span class="line">WithInner.class</span><br></pre></td></tr></table></figure>
+<p>使用<code>javap -p</code>查看<code>Outer$InheritInner.class</code>,输出内容如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Compiled from <span class="string">"Main.java"</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span>$<span class="title">InheritInner</span> <span class="keyword">extends</span> <span class="title">WithInner</span>$<span class="title">Inner</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> Outer <span class="keyword">this</span>$<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">public</span> Outer$InheritInner(Outer, WithInner);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样可以猜测到，编译之后的<code>Outer$InheritInner</code>应该长下面这个样子:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span>$<span class="title">InheritInner</span> <span class="keyword">extends</span> <span class="title">WithInner</span>$<span class="title">Inner</span> </span>&#123;</span><br><span class="line">	<span class="keyword">final</span> Outer <span class="keyword">this</span>$<span class="number">0</span>;</span><br><span class="line">  	<span class="keyword">public</span> Outer$InheritInner(Outer outer, WithInner wi) &#123;</span><br><span class="line">    	wi.<span class="keyword">super</span>(wi);</span><br><span class="line">     <span class="comment">//先初始化父内部类，从而初始化父内部类中的final WithInner this$0，继而通过继承得到对WithInner的引用</span></span><br><span class="line">  		<span class="keyword">this</span>$<span class="number">0</span> = outer;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="内部类的子类不是内部类"><a href="#内部类的子类不是内部类" class="headerlink" title="内部类的子类不是内部类"></a>内部类的子类不是内部类</h4><p>下面通过一个示例来说明这个问题：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WithInner</span> </span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InheritInner</span> <span class="keyword">extends</span> <span class="title">WithInner</span>.<span class="title">Inner</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">InheritInner</span><span class="params">(WithInner wi)</span> </span>&#123;</span><br><span class="line">		wi.<span class="keyword">super</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		WithInner wi = <span class="keyword">new</span> WithInner();</span><br><span class="line">		InheritInner ii = <span class="keyword">new</span> InheritInner(wi);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>InheritInner继承自内部类WithInner.Inner，当要生成一个构造器时，必须传入一个指向外围类对象的引用。此外，还必须在构造器内使用如下语法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">enclosingClassReference.<span class="keyword">super</span>();</span><br></pre></td></tr></table></figure>
+<p>否则，会产生如下错误：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">No enclosing instance of type WithInner is available due to some intermediate constructor invocation</span><br></pre></td></tr></table></figure>
+<p>翻译过来就是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于一些中间构造器的调用，没有外围类WithInner的实例可用</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -473,7 +534,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hegongshan.com/2019/01/23/java-inner-class-extends/" title="java-inner-class-extends">https://www.hegongshan.com/2019/01/23/java-inner-class-extends/</a>
+    <a href="https://www.hegongshan.com/2019/01/13/java-inner-class-extends/" title="Java中的内部类继承">https://www.hegongshan.com/2019/01/13/java-inner-class-extends/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -486,6 +547,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          
+        </div>
+      
 
       
       
@@ -495,8 +562,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/23/java-inner-class-implementation-principle/" rel="next" title="java-inner-class-implementation-principle">
-                <i class="fa fa-chevron-left"></i> java-inner-class-implementation-principle
+              <a href="/2019/01/12/java-inner-class/" rel="next" title="Java中的内部类">
+                <i class="fa fa-chevron-left"></i> Java中的内部类
               </a>
             
           </div>
@@ -504,6 +571,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/14/java-inner-class-implementation-principle/" rel="prev" title="Java中的内部类实现原理分析">
+                Java中的内部类实现原理分析 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -560,8 +631,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -687,6 +767,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#内部类及其子类在同一个外围类中"><span class="nav-number">1.</span> <span class="nav-text">内部类及其子类在同一个外围类中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内部类及其子类在不同的外围类中"><span class="nav-number">2.</span> <span class="nav-text">内部类及其子类在不同的外围类中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内部类的子类不是内部类"><span class="nav-number">3.</span> <span class="nav-text">内部类的子类不是内部类</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
