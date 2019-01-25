@@ -74,14 +74,14 @@
 <meta name="description" content="​    本文通过分析编译后的class文件，来揭秘Java中内部类的实现原理。">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java中的内部类实现原理分析">
+<meta property="og:title" content="Java内部类实现原理分析">
 <meta property="og:url" content="https://www.hegongshan.com/2019/01/14/java-inner-class-implementation-principle/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="​    本文通过分析编译后的class文件，来揭秘Java中内部类的实现原理。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-01-14T10:09:12.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java中的内部类实现原理分析">
+<meta name="twitter:title" content="Java内部类实现原理分析">
 <meta name="twitter:description" content="​    本文通过分析编译后的class文件，来揭秘Java中内部类的实现原理。">
 
 
@@ -118,7 +118,7 @@
 
 
 
-  <title>Java中的内部类实现原理分析 | 贺巩山的博客</title>
+  <title>Java内部类实现原理分析 | 贺巩山的博客</title>
   
 
 
@@ -316,7 +316,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Java中的内部类实现原理分析</h2>
+          <h2 class="post-title" itemprop="name headline">Java内部类实现原理分析</h2>
         
 
         <div class="post-meta">
@@ -412,7 +412,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  935
+                  954
                 </span>
               
 
@@ -444,7 +444,7 @@
 <p>上述程序编译之后生成了如下两个class文件：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OuterClass$InnerClass.class</span><br><span class="line">OuterClass.class</span><br></pre></td></tr></table></figure>
 <p>可以看到，编译器将内部类InnerClass翻译成了名为<code>OuterClass$InnerClass.class</code>的class文件。</p>
-<p>下面我们在命令行中使用<strong>javap</strong>命令来查看下编译之后的OuterClass$InnerClass.class文件</p>
+<p>下面我们在命令行中使用<code>javap</code>命令来查看下编译之后的OuterClass$InnerClass.class文件（关于<code>javap</code>的更多描述请参看<a href="https://www.hegongshan.com/2019/01/15/java-command-javap/">《Java中的命令行工具javap》</a>）</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在UNIX中，需要对$转义，其他系统中不需要加\</span></span><br><span class="line">javap -p OuterClass\$InnerClass.class</span><br></pre></td></tr></table></figure>
 <p>输出内容如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Compiled from <span class="string">"OuterClass.java"</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OuterClass</span>$<span class="title">InnerClass</span> </span>&#123;</span><br><span class="line">  	<span class="keyword">final</span> OuterClass <span class="keyword">this</span>$<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">public</span> OuterClass$InnerClass(OuterClass);</span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -518,7 +518,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hegongshan.com/2019/01/14/java-inner-class-implementation-principle/" title="Java中的内部类实现原理分析">https://www.hegongshan.com/2019/01/14/java-inner-class-implementation-principle/</a>
+    <a href="https://www.hegongshan.com/2019/01/14/java-inner-class-implementation-principle/" title="Java内部类实现原理分析">https://www.hegongshan.com/2019/01/14/java-inner-class-implementation-principle/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
