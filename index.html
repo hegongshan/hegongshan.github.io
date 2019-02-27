@@ -496,6 +496,240 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/02/27/leetcode-82-remove-duplicates-from-sorted-list-ii/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p64uw9x5j.bkt.clouddn.com/image/201607032013.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/27/leetcode-82-remove-duplicates-from-sorted-list-ii/" itemprop="url">LeetCode 82.删除排序链表中的重复元素 II</a></h2>
+        
+
+        <div class="post-meta">
+		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-27T17:42:40+08:00">
+                2019-02-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-27T21:22:12+08:00">
+                2019-02-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2019/02/27/leetcode-82-remove-duplicates-from-sorted-list-ii/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::https://www.hegongshan.com/2019/02/27/leetcode-82-remove-duplicates-from-sorted-list-ii/" class="cy_cmt_count" data-xid="2019/02/27/leetcode-82-remove-duplicates-from-sorted-list-ii/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  806
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个排序链表，删除所有含有重复数字的节点，只保留原始链表中 <em>没有重复出现</em> 的数字。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 1-&gt;2-&gt;3-&gt;3-&gt;4-&gt;4-&gt;5</span><br><span class="line">输出: 1-&gt;2-&gt;5</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 1-&gt;1-&gt;1-&gt;2-&gt;3</span><br><span class="line">输出: 2-&gt;3</span><br></pre></td></tr></table></figure>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="方法一：递归法"><a href="#方法一：递归法" class="headerlink" title="方法一：递归法"></a>方法一：递归法</h4><ul>
+<li>思路</li>
+</ul>
+<p>按照递归的思想，该题可以分为以下三种情况：</p>
+<p>1）待处理的排序链表为空，或者仅含有一个元素。此时，直接返回排序链表的头节点head即可。</p>
+<p>2）待处理的排序链表头部节点head的值为重复元素head.val。此时，依次遍历链表，直至找到第一个值不等于head.val的节点node，对node递归执行deleteDuplicates方法。</p>
+<p>3）第一个节点head的值不是重复元素。此时，对第二个节点递归执行deleteDuplicates方法即可，产生的新链表成为head的后继。</p>
+<ul>
+<li>算法实现</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*public class ListNode &#123;</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    ListNode next;</span></span><br><span class="line"><span class="comment">    ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">deleteDuplicates</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1.如果链表为空或者仅含一个节点</span></span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> head;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//2.如果链表的头部是重复出现的数字</span></span><br><span class="line">		<span class="keyword">if</span>(head.val == head.next.val) &#123;</span><br><span class="line">			<span class="keyword">while</span>(head.next != <span class="keyword">null</span> &amp;&amp; head.val == head.next.val) &#123;</span><br><span class="line">				head = head.next;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> deleteDuplicates(head.next);</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="comment">//3.如果链表首部节点不需要删除</span></span><br><span class="line">		head.next = deleteDuplicates(head.next);</span><br><span class="line">		<span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>复杂度分析</li>
+</ul>
+<p>设链表的长度为<em>L</em></p>
+<p>时间复杂度：<em>O</em>(<em>L</em>)，仅对链表执行一次遍历操作</p>
+<p>空间复杂度：<em>O(1)</em>，没有使用额外的变量</p>
+<ul>
+<li>算法效率</li>
+</ul>
+<p>执行用时：1ms，战胜 98.69 % 的 java 提交记录</p>
+<p>内存消耗：38.6 MB</p>
+<h4 id="方法二：非递归法"><a href="#方法二：非递归法" class="headerlink" title="方法二：非递归法"></a>方法二：非递归法</h4><ul>
+<li>思路</li>
+</ul>
+<p>首先我们仍将判断待处理的排序链表是否为空，或仅含有一个节点。</p>
+<p>然后，我们将添加一个哑结点list作为辅助，该结点位于列表头部。哑结点用来简化某些极端情况，例如，需要删除链表的头部。</p>
+<p>在遍历链表的同时，使用while循环寻找与当前节点node值不相等的第一个节点，若while循环得以成功执行，则让得到的新节点成为head的后继；否则，当前节点node与其后继节点值不相等，while循环未被执行，则该节点不需要被删除，head后移。</p>
+<ul>
+<li>算法实现</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*public class ListNode &#123;</span></span><br><span class="line"><span class="comment">    int val;</span></span><br><span class="line"><span class="comment">    ListNode next;</span></span><br><span class="line"><span class="comment">    ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">deleteDuplicates</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> head;</span><br><span class="line">		&#125;</span><br><span class="line">		ListNode list = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">		list.next = head;</span><br><span class="line">		head = list;</span><br><span class="line">		ListNode pre,node;</span><br><span class="line">		<span class="keyword">while</span>(head.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">			pre = head.next;</span><br><span class="line">			node = pre;</span><br><span class="line">			<span class="keyword">while</span>(node.next != <span class="keyword">null</span> &amp;&amp; pre.val == node.next.val) &#123;</span><br><span class="line">				node = node.next;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(node == pre) &#123;</span><br><span class="line">				head = head.next;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				head.next = node.next;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> list.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>复杂度分析</li>
+</ul>
+<p>设链表的长度为<em>L</em></p>
+<p>时间复杂度：<em>O(L)</em>，仅对链表执行一次遍历操作</p>
+<p>空间复杂度：<em>O</em>(1)，我们只用了常量级的额外空间</p>
+<ul>
+<li>算法效率</li>
+</ul>
+<p>执行用时：1ms，战胜 98.69 % 的 java 提交记录</p>
+<p>内存消耗：35.2 MB</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/02/22/leetcode-23-merge-k-sorted-lists/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -545,8 +779,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-22T12:57:16+08:00">
-                2019-02-22
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-27T21:23:54+08:00">
+                2019-02-27
               </time>
             
           </span>
@@ -2005,197 +2239,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/01/04/2018-year-end-summary/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://p64uw9x5j.bkt.clouddn.com/image/201607032013.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/04/2018-year-end-summary/" itemprop="url">2018年度总结</a></h2>
-        
-
-        <div class="post-meta">
-		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-04T16:46:40+08:00">
-                2019-01-04
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-04T16:46:40+08:00">
-                2019-01-04
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/任重而道远/" itemprop="url" rel="index">
-                    <span itemprop="name">任重而道远</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2019/01/04/2018-year-end-summary/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::https://www.hegongshan.com/2019/01/04/2018-year-end-summary/" class="cy_cmt_count" data-xid="2019/01/04/2018-year-end-summary/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  283
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>目标明确，才能不迷失方向！是时候总结下过去一年的收获了，顺便给新的一年制定下计划。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/04/2018-year-end-summary/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2248,7 +2291,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
