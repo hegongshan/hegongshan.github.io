@@ -79,7 +79,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="基于物品的协同过滤算法（item-based collaborative filtering，以下简称ItemCF）算法思想：给用户推荐那些和他们之前喜欢的物品相似的物品。 不过，ItemCF算法并不利用物品的内容属性计算物品之间的相似度，它主要通过分析用户的行为记录计算物品之间的相似度。该算法认为，物品A和物品B具有很大的相似度是因为喜欢物品A的用户大都也喜欢物品B。 基于物品的协同过滤算法可以">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-13T08:38:27.600Z">
+<meta property="og:updated_time" content="2019-03-13T09:05:51.808Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《推荐系统实践》3.基于物品的协同过滤算法">
 <meta name="twitter:description" content="基于物品的协同过滤算法（item-based collaborative filtering，以下简称ItemCF）算法思想：给用户推荐那些和他们之前喜欢的物品相似的物品。 不过，ItemCF算法并不利用物品的内容属性计算物品之间的相似度，它主要通过分析用户的行为记录计算物品之间的相似度。该算法认为，物品A和物品B具有很大的相似度是因为喜欢物品A的用户大都也喜欢物品B。 基于物品的协同过滤算法可以">
@@ -346,7 +346,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-03-13T16:38:27+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-13T17:05:51+08:00">
                 2019-03-13
               </time>
             
@@ -443,14 +443,14 @@
 <p>ItemCF算法主要分为两步。<br>(1) 计算物品之间的相似度。<br>(2) 根据物品的相似度和用户的历史行为给用户生成推荐列表。</p>
 <a id="more"></a>
 <h3 id="计算物品相似度"><a href="#计算物品相似度" class="headerlink" title="计算物品相似度"></a>计算物品相似度</h3><p>可以用下面的公式定义物品的相似度:<br>$$<br>w_{ij} = \frac {|N(i) \cap N(j)|} {|N(i)|}<br>$$<br>这里，分母|N(i)|是喜欢物品i的用户数，而分子 $|N(i) \cap N(j)|​$ 是同时喜欢物品i和物品j的用户数。因此，上述公式可以理解为<strong>喜欢物品i的用户中有多少比例的用户也喜欢物品j</strong>。</p>
-<p>如果物品j很热门，很多人都喜欢， 那么$w_{ij}$就会很大，接近1。因此，该公式会造成任何物品都会和热门的物品有很大的相似度。为了避免推荐出热门的物品，可以用下面的公式:<br>$$<br>w_{ij} = \frac{|N(i) \cap N(j)|}{\sqrt{|N(i)||N(j)|}}<br>$$<br>这个公式惩罚了物品j的权重，因此减轻了热门物品会和很多物品相似的可能性。</p>
+<p>如果物品j很热门，很多人都喜欢， 那么$w_{ij}​$就会很大，接近1。因此，该公式会造成任何物品都会和热门的物品有很大的相似度。为了避免推荐出热门的物品，可以用下面的公式:<br>$$<br>w_{ij} = \frac{|N(i) \cap N(j)|}{\sqrt{|N(i)||N(j)|}}<br>$$<br>这个公式惩罚了物品j的权重，因此减轻了热门物品会和很多物品相似的可能性。</p>
 <p>计算物品相似度时可以首先建立<strong>用户—物品倒排表</strong>(即对每个用户建立一个包含他喜欢的物品的列表)，然后对于每个用户，将他物品列表中的物品两两在共现矩阵C中加1。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">item_similarity</span><span class="params">(self, trainset)</span>:</span></span><br><span class="line">    <span class="comment"># 物品相似度矩阵</span></span><br><span class="line">    item_similarity_matrix = &#123;&#125;</span><br><span class="line">    <span class="comment"># 物品流行度</span></span><br><span class="line">    item_popularity = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> user, items <span class="keyword">in</span> trainset.items():</span><br><span class="line">        <span class="keyword">for</span> item1 <span class="keyword">in</span> items:</span><br><span class="line">            <span class="comment"># 构造物品相似度矩阵，计算物品共现次数</span></span><br><span class="line">            item_similarity_matrix.setdefault(item1, defaultdict(int))</span><br><span class="line">            <span class="keyword">for</span> item2 <span class="keyword">in</span> items:</span><br><span class="line">                <span class="keyword">if</span> item1 == item2:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                    item_similarity_matrix[item1][item2] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">                    <span class="comment"># 统计喜欢item1的用户数</span></span><br><span class="line">                    <span class="keyword">if</span> item1 <span class="keyword">not</span> <span class="keyword">in</span> item_popularity:</span><br><span class="line">                        item_popularity[item1] = <span class="number">0</span></span><br><span class="line">                        item_popularity[item1] += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">                        <span class="comment"># 计算最终的相似度矩阵</span></span><br><span class="line">                        <span class="keyword">for</span> item1, releated_items <span class="keyword">in</span> item_similarity_matrix.items():</span><br><span class="line">                            <span class="keyword">for</span> item2, count <span class="keyword">in</span> releated_items.items():</span><br><span class="line">                                self.item_similarity_matrix[item1][item2] = count / \</span><br><span class="line">                                math.sqrt(item_popularity[item1] * item_popularity[item2])</span><br><span class="line"><span class="keyword">return</span> item_similarity_matrix</span><br></pre></td></tr></table></figure>
-<h3 id="产生推荐列表"><a href="#产生推荐列表" class="headerlink" title="产生推荐列表"></a>产生推荐列表</h3><p>在得到物品之间的相似度后，ItemCF通过如下公式计算用户u对一个物品j的兴趣:<br>$$<br>Interestingness_{uj} = \sum_{i \in N(u) \cap S(j,K)} w_{ji}r_{ui}<br>$$<br>这里N(u)是用户喜欢的物品的集合，S(j,K)是和物品j最相似的K个物品的集合,$w_{ji}$是物品j和i的相似度，$r_{ui}$是用户u对物品i的兴趣(对于隐反馈数据集，如果用户u对物品i有过行为，即可令 $r_{ui}=1$。)该公式的含义是，和用户历史上感兴趣的物品越相似的物品，越有可能在用户的推荐列表中获得比较高的排名。</p>
+<h3 id="产生推荐列表"><a href="#产生推荐列表" class="headerlink" title="产生推荐列表"></a>产生推荐列表</h3><p>在得到物品之间的相似度后，ItemCF通过如下公式计算用户u对一个物品j的兴趣:<br>$$<br>Interestingness_{uj} = \sum_{i \in N(u) \cap S(j,K)} w_{ji}r_{ui}<br>$$<br>这里N(u)是用户喜欢的物品的集合，S(j,K)是和物品j最相似的K个物品的集合,$w_{ji}​$是物品j和i的相似度，$r_{ui}​$是用户u对物品i的兴趣(对于隐反馈数据集，如果用户u对物品i有过行为，即可令 $r_{ui}=1​$。)该公式的含义是，和用户历史上感兴趣的物品越相似的物品，越有可能在用户的推荐列表中获得比较高的排名。</p>
 <h3 id="关于物品相似度的一些改进"><a href="#关于物品相似度的一些改进" class="headerlink" title="关于物品相似度的一些改进"></a>关于物品相似度的一些改进</h3><ul>
 <li>用户活跃度对物品相似度的影响</li>
 </ul>
-<p>John S. Breese在论文“Empirical Analysis of Predictive Algorithms for Collaborative Filtering ”中提出了一个称为<strong>IUF(Inverse User Frequence)</strong>，即用户活跃度对数的倒数的参数，他认为<strong>活跃用户对物品相似度的贡献应该小于不活跃的用户</strong>，他提出应该增加IUF参数来修正物品相似度的计算公式：<br>$$<br>w_{ij} = \frac{\sum_{u \in N(i) \cap N(j)} \frac{1}{\log{1+|N(u)|}}}{\sqrt{|N(i)||N(j)|}}<br>$$<br>当然，上面的公式只是对活跃用户做了一种软性的惩罚，但对于很多过于活跃的用户，为了避免相似度矩阵过于稠密，我们在实际计算中一般直接忽略他的兴趣列表，而不将其纳入到相似度计算的数据集中。</p>
+<p>John S. Breese在论文“Empirical Analysis of Predictive Algorithms for Collaborative Filtering ”中提出了一个称为<strong>IUF(Inverse User Frequence)</strong>，即用户活跃度对数的倒数的参数，他认为<strong>活跃用户对物品相似度的贡献应该小于不活跃的用户</strong>，他提出应该增加IUF参数来修正物品相似度的计算公式：<br>$$<br>w_{ij} = \frac{\sum_{u \in N(i) \cap N(j)} \frac{1}{\log{(1+|N(u)|)}}}{\sqrt{|N(i)||N(j)|}}<br>$$<br>当然，上面的公式只是对活跃用户做了一种软性的惩罚，但对于很多过于活跃的用户，为了避免相似度矩阵过于稠密，我们在实际计算中一般直接忽略他的兴趣列表，而不将其纳入到相似度计算的数据集中。</p>
 <ul>
 <li>物品相似度归一化</li>
 </ul>
@@ -551,6 +551,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/03/14/recommend-system-cold-start/" rel="prev" title="《推荐系统实践》4.推荐系统冷启动问题">
+                《推荐系统实践》4.推荐系统冷启动问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -633,7 +637,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">85</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -644,7 +648,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -655,7 +659,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -718,15 +722,15 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
+                    <a href="https://www.liuchuo.net" title="柳婼" target="_blank">柳婼</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
                     <a href="http://deyinliu.github.io" title="刘德印" target="_blank">刘德印</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
                     <a href="https://www.gaohangcs.com" title="高航" target="_blank">高航</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.yangyang520.top" title="杨洋" target="_blank">杨洋</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
