@@ -1,6 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PAT乙级 1026.程序运行时间 （15 分)]]></title>
+    <url>%2F2019%2F03%2F28%2Fpat-basic-1026%2F</url>
+    <content type="text"><![CDATA[要获得一个 C 语言程序的运行时间，常用的方法是调用头文件 time.h，其中提供了 clock() 函数，可以捕捉从程序开始运行到 clock() 被调用时所耗费的时间。这个时间单位是 clock tick，即“时钟打点”。同时还有一个常数 CLK_TCK，给出了机器时钟每秒所走的时钟打点数。于是为了获得一个函数 f 的运行时间，我们只要在调用 f 之前先调用 clock()，获得一个时钟打点数 C1；在 f 执行完成后再调用 clock()，获得另一个时钟打点数 C2；两次获得的时钟打点数之差 (C2-C1) 就是 f 运行所消耗的时钟打点数，再除以常数 CLK_TCK，就得到了以秒为单位的运行时间。 这里不妨简单假设常数 CLK_TCK 为 100。现给定被测函数前后两次获得的时钟打点数，请你给出被测函数运行的时间。 输入格式：输入在一行中顺序给出 2 个整数 C1 和 C2。注意两次获得的时钟打点数肯定不相同，即 C1 &lt; C2，并且取值在 [0,10^7]。 输出格式：在一行中输出被测函数运行的时间。运行时间必须按照 hh:mm:ss（即2位的 时:分:秒）格式输出；不足 1 秒的时间四舍五入到秒。 输入样例：1123 4577973 输出样例：112:42:59 分析：由于题目要求“不足 1 秒的时间四舍五入到秒”，所以C2-C1后，先加上50，这样如果（C2-C1）/ 100的小数位大于等于0.5则会进位，小于0.5则会被舍去，从而保证四舍五入到秒。 然后再除以100，得到以秒为单位的总时间n =（C2-C1+50）/ 100。 n / 3600 得到小时数hour，n % 3600 / 60 则得到了分钟数minute ，n % 3600 % 60则得到了秒数second。 123456789101112#include &lt;cstdio&gt;int main() &#123; int c1, c2; scanf("%d %d", &amp;c1, &amp;c2); int n = (c2 - c1 + 50) / 100; int hour = n / 3600; n = n % 3600; int minute = n / 60, second = n % 60; printf("%02d:%02d:%02d\n", hour, minute, second); return 0;&#125; 另一种解法： 使用浮点数来存储以秒为单位的总时间，为最后的秒数second加上0.5，从而保证大于等于0.5的小数位能进位。 12345678910111213#include &lt;cstdio&gt;int main() &#123; int c1, c2; double CLK_TCK = 100.0; scanf("%d %d", &amp;c1, &amp;c2); double seconds = (c2 - c1) / CLK_TCK; int h = seconds / (60 * 60); int m = (seconds - h * 60 * 60) / 60; int s = seconds - h * 60 * 60 - m * 60 + 0.5; printf("%02d:%02d:%02d\n", h, m, s); return 0;&#125;]]></content>
+      <categories>
+        <category>pat乙级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PAT乙级 1016.部分A+B （15 分)]]></title>
+    <url>%2F2019%2F03%2F28%2Fpat-basic-1016%2F</url>
+    <content type="text"><![CDATA[正整数 A 的“$D_A​$（为 1 位整数）部分”定义为由 A 中所有 $D_A​$ 组成的新整数 $P_A​$。例如：给定 A=3862767，$D_A​$=6，则 A的“6 部分”$P_A​$是66，因为 A 中有 2 个 6。 现给定 A、$D_A$、B、$D_A$，请编写程序计算 $P_A+P_B$。 输入格式：输入在一行中依次给出 A、$D_A​$、B、$D_B​$，中间以空格分隔，其中 0&lt;A,B&lt;$10^{10}​$。 输出格式：在一行中输出$P_A+P_B​$ 的值。 输入样例 1：13862767 6 13530293 3 输出样例 1：1399 输入样例 2：13862767 1 13530293 8 输出样例 2：10 分析：首先以字符数组（或者字符串）的形式输入A和B， 然后遍历A和B中的每一个字符， 通过减去’0’得到字符的数字形式， 接着，判断其是否等于$D_A$、$D_B$，若等于，则进行进位累加操作。 (1)若从前往后遍历字符数组（或字符串），则累加语句为： pa = 10 * pa + da； (2)若从后往前遍历字符数组（或字符串），则累加语句为 pa += da * carray; carry *= 10;（carry表示进位，初值为1）。 循环结束后，得到$P_A$和$P_B​$ 。 需要注意的是$10^{10}$超过了int的取值范围，故应使用long long 申明$P_A$和$P_B$。 12345678910111213141516171819202122#include &lt;cstdio&gt;#include &lt;cstring&gt;long long getP(char a[], int da) &#123; long long pa = 0; long long carry = 1;//进位 for (int i = strlen(a) - 1; i &gt;= 0; i--) &#123; if ((a[i] - '0') == da) &#123; pa += da * carry; carry *= 10; &#125; &#125; return pa;&#125;int main() &#123; char a[10], b[10]; int da, db; scanf("%s %d %s %d", a, &amp;da, b, &amp;db); printf("%lld\n", getP(a, da) + getP(b, db)); return 0;&#125;]]></content>
+      <categories>
+        <category>pat乙级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PAT乙级 1011.A+B 和 C （15 分)]]></title>
+    <url>%2F2019%2F03%2F28%2Fpat-basic-1011%2F</url>
+    <content type="text"><![CDATA[给定区间 [−2^31,2^31] 内的 3 个整数 A、B 和 C，请判断 A+B 是否大于 C。 输入格式：输入第 1 行给出正整数 T (≤10)，是测试用例的个数。随后给出 T 组测试用例，每组占一行，顺序给出 A、B 和 C。整数间以空格分隔。 输出格式：对每组测试用例，在一行中输出 Case #X: true 如果 A+B&gt;C，否则输出 Case #X: false，其中 X 是测试用例的编号（从 1 开始）。 输入样例：1234541 2 32 3 42147483647 0 21474836460 -2147483648 -2147483647 输出样例：1234Case #1: falseCase #2: trueCase #3: trueCase #4: false 分析：本题有两点需要注意： 1.给定的取值范围为 [−2^31,2^31]，因此，A+B有可能会超过int的取值范围，故A、B和C应申明为long long； 2.输出时编号从1开始。 12345678910111213141516#include &lt;cstdio&gt;int main() &#123; int n; scanf("%d", &amp;n); for (int i = 1; i &lt;= n; i++) &#123; long long a, b, c; scanf("%d %d %d", &amp;a, &amp;b, &amp;c); if (a + b &gt; c) &#123; printf("Case #%d: true\n", i); &#125; else &#123; printf("Case #%d: false\n", i); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>pat乙级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PAT乙级 1001.害死人不偿命的(3n+1)猜想 （15 分)]]></title>
+    <url>%2F2019%2F03%2F28%2Fpat-basic-1001%2F</url>
+    <content type="text"><![CDATA[卡拉兹(Callatz)猜想： 对任何一个正整数 n，如果它是偶数，那么把它砍掉一半；如果它是奇数，那么把 (3n+1) 砍掉一半。这样一直反复砍下去，最后一定在某一步得到 n=1。卡拉兹在 1950 年的世界数学家大会上公布了这个猜想，传说当时耶鲁大学师生齐动员，拼命想证明这个貌似很傻很天真的命题，结果闹得学生们无心学业，一心只证 (3n+1)，以至于有人说这是一个阴谋，卡拉兹是在蓄意延缓美国数学界教学与科研的进展…… 我们今天的题目不是证明卡拉兹猜想，而是对给定的任一不超过 1000 的正整数 n，简单地数一下，需要多少步（砍几下）才能得到 n=1？ 输入格式：每个测试输入包含 1 个测试用例，即给出正整数 n 的值。 输出格式：输出从 n 计算到 1 需要的步数。 输入样例：13 输出样例：15 分析：使用count记录总的步数， 如果n为偶数，则令n=n/2； 如果n为奇数，则令n=(3*n+1)/2， 然后步数count++， 直至n==1结束循环。 12345678910111213141516#include &lt;cstdio&gt;int main() &#123; int n, count = 0; scanf("%d", &amp;n); while (n != 1) &#123; if (n % 2 == 0) &#123; n /= 2; &#125; else &#123; n = (3 * n + 1) / 2; &#125; count++; &#125; printf("%d\n", count); return 0;&#125;]]></content>
+      <categories>
+        <category>pat乙级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[algorithm-advanced-maximum-subsequence-sum]]></title>
+    <url>%2F2019%2F03%2F25%2Falgorithm-advanced-maximum-subsequence-sum%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[algorithm-maximum-subsequence-sum]]></title>
+    <url>%2F2019%2F03%2F25%2Falgorithm-maximum-subsequence-sum%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[c++中char * a="xxx"引发的警告]]></title>
+    <url>%2F2019%2F03%2F21%2Fc-or-cpp-char-pointer-string-constant-unmodified%2F</url>
+    <content type="text"><![CDATA[在c++中，当char * 指向字符常量时（以下面的程序为例） 1234567#include &lt;cstdio&gt;int main() &#123; char *a = "I love China!"; printf("%s\n",a); return 0;&#125; 编译时，将产生如下warning： 12345ProblemC.cpp:4:12: warning: conversion from string literal to 'char *' is deprecated [-Wc++11-compat-deprecated-writable-strings] char *a = "I love China!"; ^1 warning generated. 为什么会产生该warning呢？ 因为此时a中存储的是“I love China!”在内存中的首地址，而“I love China!”是字符常量，存放在只读区中。程序员有可能通过a去修改“I love China!”的值，从而导致error。 如何解决该warning呢？ 在定义a时，使用const修饰，表明a所指地址中的内容不允许被修改。示例如下： 1234567#include &lt;cstdio&gt;int main() &#123; const char *a = "I love China!"; printf("%s\n",a); return 0;&#125;]]></content>
+      <categories>
+        <category>cpp</category>
+      </categories>
+      <tags>
+        <tag>cpp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[数组元素循环右移问题]]></title>
     <url>%2F2019%2F03%2F15%2Falgorithm-array-right-move%2F</url>
     <content type="text"><![CDATA[本题是中国大学MOOC-陈越、何钦铭-数据结构-起步能力自测题 题目地址：https://pintia.cn/problem-sets/17/problems/262 一个数组A中存有N（&gt;0）个整数，在不允许使用另外数组的前提下，将每个整数循环向右移M（≥0）个位置，即将A中的数据由（$A_0 A_1⋯A_{N−1}​$）变换为（$A_{N-M}⋯A_{N−1} A_0 A_1⋯A_{N−M−1}​$）（最后M个数循环移至最前面的M个位置）。如果需要考虑程序移动数据的次数尽量少，要如何设计移动的方法？ 输入格式:每个输入包含一个测试用例，第1行输入N（1≤N≤100）和M（≥0）；第2行输入N个整数，之间用空格分隔。 输出格式:在一行中输出循环右移M位以后的整数序列，之间用空格分隔，序列结尾不能有多余空格。 输入样例:126 21 2 3 4 5 6 输出样例:15 6 1 2 3 4 解法一：直接法 算法思路：每次向右移动一位，循环执行m次 代码实现 123456789101112131415161718192021222324252627#include &lt;iostream&gt;using namespace std;int main() &#123; int n, m; cin &gt;&gt; n &gt;&gt; m; int arr[n]; for (int i = 0; i &lt; n; i++) &#123; cin &gt;&gt; arr[i]; &#125; for (int i = 0; i &lt; m; i++) &#123; //保存数组的最后一位 int temp = arr[n - 1]; //自后向前，循环后移一位 for (int j = n - 2; j &gt;= 0; j--) &#123; arr[j + 1] = arr[j]; &#125; arr[0] = temp; &#125; for (int i = 0; i &lt; n; i++) &#123; cout &lt;&lt; arr[i]; if (i != n - 1) &#123; cout &lt;&lt; " "; &#125; &#125;&#125; 时间复杂度：每次向右移动一位，需要执行n次赋值操作，这个过程循环执行m次，所以共执行nm次赋值操作，时间复杂度为O(nm) 解法二：反转法 算法思想 假设N&gt;=M（若N&lt;M，只需令M=M%N即可），数组A中的数据为$A_0 A_1⋯A_{N−1}$，现在需要将数组A循环向右移M个位置，即将$A_{N-M}⋯A_{N−1}$移到数组的前面。 我们可以将数组A中的数据分为两个部分$A_0 A_1⋯A_{N−M-1}$和$A_{N-M}⋯A_{N−1}$来看， （1）先将$A_0 A_1⋯A_{N−M-1}​$反转，得到$A_{N−M-1} ⋯A_1 A_0​$； （2）再将$A_{N-M}⋯A_{N−1}​$反转，得到$A_{N-1}⋯A_{N−M}​$ （3）经过（1）和（2）后，数组A中的数据为$A_{N−M-1} ⋯A_1 A_0 A_{N-1}⋯A_{N−M}$，将数组A中的数据反转，此时数组A中的数据顺序为$A_{N-M}⋯A_{N−1} A_0 A_1⋯A_{N−M−1}$ 代码实现 123456789101112131415161718192021222324252627282930313233343536373839#include &lt;iostream&gt;using namespace std;int main() &#123; int n, m; cin &gt;&gt; n &gt;&gt; m; int arr[n]; for (int i = 0; i &lt; n; i++) &#123; cin &gt;&gt; arr[i]; &#125; if(m &gt; n) &#123; m = m % n; &#125; int temp = 0; // 反转前n-m项 for(int i=0;i&lt;(n-m)/2;i++) &#123; temp = arr[n-m-i-1]; arr[n-m-i-1] = arr[i]; arr[i] = temp; &#125; // 反转后m项 for(int i=n-m;i&lt;n-m/2;i++) &#123; temp = arr[2*n-m-i-1]; arr[2*n-m-i-1] = arr[i]; arr[i] = temp; &#125; // 反转整个数组 for(int i=0;i&lt;n/2;i++) &#123; temp = arr[n-i-1]; arr[n-i-1] = arr[i]; arr[i] = temp; &#125; for (int i = 0; i &lt; n; i++) &#123; cout &lt;&lt; arr[i]; if (i != n - 1) &#123; cout &lt;&lt; " "; &#125; &#125;&#125; 时间复杂度 三次反转操作，共执行 $3 \times \frac{n-m}{2}+3 \times [n-\frac{m}{2}-(n-m)]+3 \times \frac{n}{2}=3n$次赋值操作，故时间复杂度为O(n)]]></content>
