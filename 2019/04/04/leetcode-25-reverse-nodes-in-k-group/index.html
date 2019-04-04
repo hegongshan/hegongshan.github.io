@@ -60,7 +60,7 @@
 
 
 
-  <meta name="keywords" content="python,">
+  <meta name="keywords" content="linked-list,">
 
 
 
@@ -71,23 +71,18 @@
 
 
 
-<meta name="description" content="字符串是一系列字符。在python中，用引号括起来的都是字符串，这里的引号可以是单引号，也可以是双引号。">
-<meta name="keywords" content="python">
+<meta name="description" content="题目描述给出一个链表，每 k 个节点一组进行翻转，并返回翻转后的链表。 k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么将最后剩余节点保持原有顺序。 示例 : 给定这个链表：1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5 当 k = 2 时，应当返回: 2-&amp;gt;1-&amp;gt;4-&amp;gt;3-&amp;gt;5 当 k = 3 时，应当返回: 3-&amp;gt;2-&amp;gt;">
+<meta name="keywords" content="linked-list">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python3教程-第4章 字符串">
-<meta property="og:url" content="https://www.hegongshan.com/2018/06/12/python3-tutorial-chapter4-string/index.html">
+<meta property="og:title" content="LeetCode 25.k个一组翻转链表">
+<meta property="og:url" content="https://www.hegongshan.com/2019/04/04/leetcode-25-reverse-nodes-in-k-group/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="字符串是一系列字符。在python中，用引号括起来的都是字符串，这里的引号可以是单引号，也可以是双引号。">
+<meta property="og:description" content="题目描述给出一个链表，每 k 个节点一组进行翻转，并返回翻转后的链表。 k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么将最后剩余节点保持原有顺序。 示例 : 给定这个链表：1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5 当 k = 2 时，应当返回: 2-&amp;gt;1-&amp;gt;4-&amp;gt;3-&amp;gt;5 当 k = 3 时，应当返回: 3-&amp;gt;2-&amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p64uw9x5j.bkt.clouddn.com/image/2018/06/23/20180623211639.png">
-<meta property="og:image" content="http://p64uw9x5j.bkt.clouddn.com/image/2018/06/23/20180623211949.png">
-<meta property="og:image" content="http://p64uw9x5j.bkt.clouddn.com/image/2018/06/23/20180623213455.png">
-<meta property="og:image" content="http://p64uw9x5j.bkt.clouddn.com/image/2018/06/23/20180623214342.png">
-<meta property="og:updated_time" content="2019-01-19T07:23:57.751Z">
+<meta property="og:updated_time" content="2019-04-04T14:00:25.555Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python3教程-第4章 字符串">
-<meta name="twitter:description" content="字符串是一系列字符。在python中，用引号括起来的都是字符串，这里的引号可以是单引号，也可以是双引号。">
-<meta name="twitter:image" content="http://p64uw9x5j.bkt.clouddn.com/image/2018/06/23/20180623211639.png">
+<meta name="twitter:title" content="LeetCode 25.k个一组翻转链表">
+<meta name="twitter:description" content="题目描述给出一个链表，每 k 个节点一组进行翻转，并返回翻转后的链表。 k 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k 的整数倍，那么将最后剩余节点保持原有顺序。 示例 : 给定这个链表：1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5 当 k = 2 时，应当返回: 2-&amp;gt;1-&amp;gt;4-&amp;gt;3-&amp;gt;5 当 k = 3 时，应当返回: 3-&amp;gt;2-&amp;gt;">
 
 
 
@@ -117,13 +112,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hegongshan.com/2018/06/12/python3-tutorial-chapter4-string/">
+  <link rel="canonical" href="https://www.hegongshan.com/2019/04/04/leetcode-25-reverse-nodes-in-k-group/">
 
 
 
 
 
-  <title>python3教程-第4章 字符串 | 贺巩山的博客</title>
+  <title>LeetCode 25.k个一组翻转链表 | 贺巩山的博客</title>
   
 
 
@@ -334,7 +329,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/06/12/python3-tutorial-chapter4-string/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/04/04/leetcode-25-reverse-nodes-in-k-group/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -351,7 +346,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">python3教程-第4章 字符串</h2>
+          <h2 class="post-title" itemprop="name headline">LeetCode 25.k个一组翻转链表</h2>
         
 
         <div class="post-meta">
@@ -365,8 +360,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T16:32:13+08:00">
-                2018-06-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-04T21:02:05+08:00">
+                2019-04-04
               </time>
             
 
@@ -381,8 +376,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-19T15:23:57+08:00">
-                2019-01-19
+              <time title="更新于" itemprop="dateModified" datetime="2019-04-04T22:00:25+08:00">
+                2019-04-04
               </time>
             
           </span>
@@ -400,8 +395,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
                   </a>
                 </span>
 
@@ -419,8 +414,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2018/06/12/python3-tutorial-chapter4-string/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/06/12/python3-tutorial-chapter4-string/" itemprop="commentsCount"></span>
+                <a href="/2019/04/04/leetcode-25-reverse-nodes-in-k-group/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2019/04/04/leetcode-25-reverse-nodes-in-k-group/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -447,7 +442,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  363
+                  620
                 </span>
               
 
@@ -472,33 +467,26 @@
       
 
       
-        <p>字符串是一系列字符。在python中，用引号括起来的都是字符串，这里的引号可以是单引号，也可以是双引号。</p>
-<a id="more"></a>
-<h3 id="修改字符串的大小写"><a href="#修改字符串的大小写" class="headerlink" title="修改字符串的大小写"></a>修改字符串的大小写</h3><p>涉及的字符串方法有upper()、isupper()、lower()、islower()</p>
-<p>示例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">"hegongshan"</span></span><br><span class="line"><span class="comment"># 判断是否为大写字符串</span></span><br><span class="line">print(name.isupper())</span><br><span class="line"><span class="comment"># 将字符串中的字母均转为大写</span></span><br><span class="line">print(name.upper())</span><br><span class="line"></span><br><span class="line">name2 = <span class="string">"heGONGshan"</span></span><br><span class="line"><span class="comment"># 判断字符串是否为小写</span></span><br><span class="line">print(name2.islower())</span><br><span class="line"><span class="comment">#　将字符串中的字母均转为小写</span></span><br><span class="line">print(name2.lower())</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<p><img src="http://p64uw9x5j.bkt.clouddn.com/image/2018/06/23/20180623211639.png" alt=""></p>
-<h3 id="拼接字符串"><a href="#拼接字符串" class="headerlink" title="拼接字符串"></a>拼接字符串</h3><p>和大多数高级编程语言一样，python使用加号（+）来拼接字符串。</p>
-<p>示例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">message = <span class="string">"I "</span> + <span class="string">"love "</span></span><br><span class="line">message = message + <span class="string">"you."</span></span><br><span class="line">print(message)</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<p><img src="http://p64uw9x5j.bkt.clouddn.com/image/2018/06/23/20180623211949.png" alt=""></p>
-<h3 id="首字母大写"><a href="#首字母大写" class="headerlink" title="首字母大写"></a>首字母大写</h3><p>涉及的方法有title()、capitalize()</p>
-<p>示例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">"he gong shan"</span></span><br><span class="line">print(name.title())</span><br><span class="line">print(name.capitalize())</span><br><span class="line"></span><br><span class="line">name2 = <span class="string">"123 hegongshan"</span></span><br><span class="line">print(name2.title())</span><br><span class="line">print(name2.capitalize())</span><br><span class="line"></span><br><span class="line">message = <span class="string">"123hgs520"</span></span><br><span class="line">print(message.title())</span><br><span class="line">print(message.capitalize())</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<p><img src="http://p64uw9x5j.bkt.clouddn.com/image/2018/06/23/20180623213455.png" alt=""></p>
-<p>从上面的结果，我们可以很容易地看出title()和capitalize()的区别：</p>
-<p>title()方法会将字符串中所有单词的首字母都转为大写，而capitalize()方法只会将字符串的首字母转为大写</p>
-<h3 id="去掉字符串中的空白字符"><a href="#去掉字符串中的空白字符" class="headerlink" title="去掉字符串中的空白字符"></a>去掉字符串中的空白字符</h3><p>涉及的方法有strip()、rstrip()和lstrip()</p>
-<p>strip()：去掉字符串<strong>左右</strong>的空白字符</p>
-<p>lstrip()：去掉字符串<strong>左边</strong>的空白字符</p>
-<p>rstrip()：去掉字符串<strong>右边</strong>的空白字符</p>
-<p>示例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">message = <span class="string">"   I love you !   "</span></span><br><span class="line">print(message.lstrip())</span><br><span class="line"></span><br><span class="line">print(message.rstrip() + <span class="string">"hhh"</span>)</span><br><span class="line"></span><br><span class="line">print(message.strip() + <span class="string">"233"</span>)</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<p><img src="http://p64uw9x5j.bkt.clouddn.com/image/2018/06/23/20180623214342.png" alt=""></p>
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给出一个链表，每 <em>k</em> 个节点一组进行翻转，并返回翻转后的链表。</p>
+<p><em>k</em> 是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 <em>k</em> 的整数倍，那么将最后剩余节点保持原有顺序。</p>
+<p><strong>示例 :</strong></p>
+<p>给定这个链表：<code>1-&gt;2-&gt;3-&gt;4-&gt;5</code></p>
+<p>当 <em>k</em> = 2 时，应当返回: <code>2-&gt;1-&gt;4-&gt;3-&gt;5</code></p>
+<p>当 <em>k</em> = 3 时，应当返回: <code>3-&gt;2-&gt;1-&gt;4-&gt;5</code></p>
+<p><strong>说明 :</strong></p>
+<ul>
+<li>你的算法只能使用常数的额外空间。</li>
+<li><strong>你不能只是单纯的改变节点内部的值</strong>，而是需要实际的进行节点交换。</li>
+</ul>
+<h3 id="算法思路"><a href="#算法思路" class="headerlink" title="算法思路"></a>算法思路</h3><p>首先，为需要返回的链表设置一个头结点list以及尾节点rear。</p>
+<p>然后，使用整数count记录链表的节点个数，每当满足条件<code>count % k == 0</code>时，翻转这k个节点组成的部分链表。使用start表示需要翻转的部分链表的第一个节点，用end表示需要翻转的部分链表的最后一个节点。设置一个头结点list2，并用头插法，翻转部分链表。翻转完毕后，start成为了该部分链表的最后一个节点。</p>
+<p>接着，让翻转后的链表成为rear的后继，即<code>rear.next = list2.next</code>，然后让<code>rear = start</code>，并将原链表的下一个节点赋给start，开启新一轮的翻转。</p>
+<p>最后，待循环执行完毕后，若链表后面还有不足k个节点，即<code>count % k != 0</code>，直接让剩余的这部分链表成为rear的后继，即<code>rear = start</code>。</p>
+<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKGroup</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        ListNode list = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        ListNode rear = list;</span><br><span class="line">        rear.next = head;</span><br><span class="line">		</span><br><span class="line">        ListNode node = list.next;</span><br><span class="line">        ListNode start = node,end;</span><br><span class="line">        <span class="keyword">while</span>(node != <span class="keyword">null</span>) &#123;</span><br><span class="line">            count++;</span><br><span class="line">            <span class="keyword">if</span>(count % k == <span class="number">0</span>) &#123;</span><br><span class="line">                end = node;</span><br><span class="line">                node = node.next;</span><br><span class="line">                </span><br><span class="line">                end.next = <span class="keyword">null</span>;</span><br><span class="line">                </span><br><span class="line">                ListNode list2 = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">                ListNode p = start, q, temp;</span><br><span class="line">                <span class="keyword">while</span>(p != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    q = p.next;</span><br><span class="line">                    </span><br><span class="line">                    p.next = list2.next;</span><br><span class="line">                    list2.next = p;</span><br><span class="line">                    </span><br><span class="line">                    p = q;</span><br><span class="line">                &#125;</span><br><span class="line">                rear.next = list2.next;</span><br><span class="line">                rear = start;</span><br><span class="line">                </span><br><span class="line">                start = node;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                node = node.next; </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(count % k != <span class="number">0</span>) &#123;</span><br><span class="line">            rear.next = start;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list.next;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p>时间复杂度：O(n)</p>
+<p>空间复杂度：O(1)</p>
+<h3 id="算法效率"><a href="#算法效率" class="headerlink" title="算法效率"></a>算法效率</h3><p>执行用时 : 2 ms, 在Reverse Nodes in k-Group的Java提交中击败了100.00% 的用户</p>
+<p>内存消耗 : 37.5 MB, 在Reverse Nodes in k-Group的Java提交中击败了0.93% 的用户</p>
 
       
     </div>
@@ -557,7 +545,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hegongshan.com/2018/06/12/python3-tutorial-chapter4-string/" title="python3教程-第4章 字符串">https://www.hegongshan.com/2018/06/12/python3-tutorial-chapter4-string/</a>
+    <a href="https://www.hegongshan.com/2019/04/04/leetcode-25-reverse-nodes-in-k-group/" title="LeetCode 25.k个一组翻转链表">https://www.hegongshan.com/2019/04/04/leetcode-25-reverse-nodes-in-k-group/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -572,7 +560,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+            <a href="/tags/linked-list/" rel="tag"><i class="fa fa-tag"></i> linked-list</a>
           
         </div>
       
@@ -585,8 +573,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/12/python3-tutorial-chapter2-input-and-print/" rel="next" title="python3教程-第2章 标准输入和输出">
-                <i class="fa fa-chevron-left"></i> python3教程-第2章 标准输入和输出
+              <a href="/2019/04/03/pat-advanced-1042/" rel="next" title="PAT甲级 1042.Shuffling Machine （20 分)">
+                <i class="fa fa-chevron-left"></i> PAT甲级 1042.Shuffling Machine （20 分)
               </a>
             
           </div>
@@ -594,10 +582,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/13/python3-tutorial-chapter5-if-else/" rel="prev" title="python3教程-第5章 条件判断">
-                python3教程-第5章 条件判断 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -800,7 +784,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改字符串的大小写"><span class="nav-number">1.</span> <span class="nav-text">修改字符串的大小写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拼接字符串"><span class="nav-number">2.</span> <span class="nav-text">拼接字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首字母大写"><span class="nav-number">3.</span> <span class="nav-text">首字母大写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去掉字符串中的空白字符"><span class="nav-number">4.</span> <span class="nav-text">去掉字符串中的空白字符</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法思路"><span class="nav-number">2.</span> <span class="nav-text">算法思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法实现"><span class="nav-number">3.</span> <span class="nav-text">算法实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度分析"><span class="nav-number">4.</span> <span class="nav-text">复杂度分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法效率"><span class="nav-number">5.</span> <span class="nav-text">算法效率</span></a></li></ol></div>
             
 
           </div>
