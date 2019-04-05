@@ -60,7 +60,7 @@
 
 
 
-  <meta name="keywords" content="ccf csp,">
+  <meta name="keywords" content="Hexo">
 
 
 
@@ -71,20 +71,18 @@
 
 
 
-<meta name="description" content="为了准备九月的CCF CSP第十四次认证，从今天起，尽量保证每天刷一道CCF CSP的题。  问题描述 　　近来，跳一跳这款小游戏风靡全国，受到不少玩家的喜爱。　　简化后的跳一跳规则如下：玩家每次从当前方块跳到下一个方块，如果没有跳到下一个方块上则游戏结束。　　如果跳到了方块上，但没有跳到方块的中心则获得1分；跳到方块中心时，若上一次的得分为1分或这是本局游戏的第一次跳跃则此次得分为2分，否则此">
-<meta name="keywords" content="ccf csp">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CCF CSP每日一练之201803-1跳一跳">
-<meta property="og:url" content="https://www.hegongshan.com/2018/06/05/ccf-csp-daily-practice-20180301-jump/index.html">
+<meta name="description" content="编号 标题 C/C++ Java 备注     201803-1 跳一跳  查看题解 简单循环   201803-2 碰撞的小球  查看题解    201803-3 URL映射  查看题解 字符串模拟">
+<meta name="keywords" content="GongshanHe Java Spring Python MachineLearning DeepLearning KnowledgeGraph QuestionAnswering">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CCF CSP">
+<meta property="og:url" content="https://www.hegongshan.com/ccf-csp/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="为了准备九月的CCF CSP第十四次认证，从今天起，尽量保证每天刷一道CCF CSP的题。  问题描述 　　近来，跳一跳这款小游戏风靡全国，受到不少玩家的喜爱。　　简化后的跳一跳规则如下：玩家每次从当前方块跳到下一个方块，如果没有跳到下一个方块上则游戏结束。　　如果跳到了方块上，但没有跳到方块的中心则获得1分；跳到方块中心时，若上一次的得分为1分或这是本局游戏的第一次跳跃则此次得分为2分，否则此">
+<meta property="og:description" content="编号 标题 C/C++ Java 备注     201803-1 跳一跳  查看题解 简单循环   201803-2 碰撞的小球  查看题解    201803-3 URL映射  查看题解 字符串模拟">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p64uw9x5j.bkt.clouddn.com/image/2018/06/05/20180605151033.png">
-<meta property="og:updated_time" content="2018-06-05T06:24:03.000Z">
+<meta property="og:updated_time" content="2019-04-05T04:07:44.183Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CCF CSP每日一练之201803-1跳一跳">
-<meta name="twitter:description" content="为了准备九月的CCF CSP第十四次认证，从今天起，尽量保证每天刷一道CCF CSP的题。  问题描述 　　近来，跳一跳这款小游戏风靡全国，受到不少玩家的喜爱。　　简化后的跳一跳规则如下：玩家每次从当前方块跳到下一个方块，如果没有跳到下一个方块上则游戏结束。　　如果跳到了方块上，但没有跳到方块的中心则获得1分；跳到方块中心时，若上一次的得分为1分或这是本局游戏的第一次跳跃则此次得分为2分，否则此">
-<meta name="twitter:image" content="http://p64uw9x5j.bkt.clouddn.com/image/2018/06/05/20180605151033.png">
+<meta name="twitter:title" content="CCF CSP">
+<meta name="twitter:description" content="编号 标题 C/C++ Java 备注     201803-1 跳一跳  查看题解 简单循环   201803-2 碰撞的小球  查看题解    201803-3 URL映射  查看题解 字符串模拟">
 
 
 
@@ -114,13 +112,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hegongshan.com/2018/06/05/ccf-csp-daily-practice-20180301-jump/">
+  <link rel="canonical" href="https://www.hegongshan.com/ccf-csp/">
 
 
 
 
 
-  <title>CCF CSP每日一练之201803-1跳一跳 | 贺巩山的博客</title>
+  <title>CCF CSP | 贺巩山的博客</title>
   
 
 
@@ -214,6 +212,16 @@
               <i class="menu-item-icon fa fa-fw fa-angellist"></i> <br>
             
             PAT乙级题解
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ccf-csp">
+          <a href="/ccf-csp/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-laptop"></i> <br>
+            
+            CCF CSP题解
           </a>
         </li>
       
@@ -319,293 +327,67 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/06/05/ccf-csp-daily-practice-20180301-jump/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://p64uw9x5j.bkt.clouddn.com/image/201607032013.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">CCF CSP每日一练之201803-1跳一跳</h2>
-        
+	<h2 class="post-title" itemprop="name headline">CCF CSP</h2>
 
-        <div class="post-meta">
-		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T14:24:03+08:00">
-                2018-06-05
-              </time>
-            
 
-            
-              <span class="post-meta-divider">|</span>
-            
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-06-05T14:24:03+08:00">
-                2018-06-05
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/ccf-csp/" itemprop="url" rel="index">
-                    <span itemprop="name">ccf csp</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2018/06/05/ccf-csp-daily-practice-20180301-jump/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2018/06/05/ccf-csp-daily-practice-20180301-jump/" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
-            </span>
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  582
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </span></div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <blockquote>
-<p>为了准备九月的CCF CSP第十四次认证，从今天起，尽量保证每天刷一道CCF CSP的题。</p>
-</blockquote>
-<p><strong>问题描述</strong></p>
-<p>　　近来，跳一跳这款小游戏风靡全国，受到不少玩家的喜爱。<br>　　简化后的跳一跳规则如下：玩家每次从当前方块跳到下一个方块，如果没有跳到下一个方块上则游戏结束。<br>　　如果跳到了方块上，但没有跳到方块的中心则获得1分；跳到方块中心时，若上一次的得分为1分或这是本局游戏的第一次跳跃则此次得分为2分，否则此次得分比上一次得分多两分（即连续跳到方块中心时，总得分将+2，+4，+6，+8…）。<br>　　现在给出一个人跳一跳的全过程，请你求出他本局游戏的得分（按照题目描述的规则）。</p>
-<a id="more"></a>
-<p><strong>输入格式</strong></p>
-<p>　　输入包含多个数字，用空格分隔，每个数字都是1，2，0之一，1表示此次跳跃跳到了方块上但是没有跳到中心，2表示此次跳跃跳到了方块上并且跳到了方块中心，0表示此次跳跃没有跳到方块上（此时游戏结束）。</p>
-<p><strong>输出格式</strong></p>
-<p>　　输出一个整数，为本局游戏的得分（在本题的规则下）。</p>
-<p><strong>样例输入</strong></p>
-<p>1 1 2 2 2 1 1 2 2 0</p>
-<p><strong>样例输出</strong></p>
-<p>22</p>
-<p><strong>数据规模和约定</strong></p>
-<p>　　对于所有评测用例，输入的数字不超过30个，保证0正好出现一次且为最后一个数字。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		String str = scan.nextLine();</span><br><span class="line">		Integer[] arr = toIntegerArray(str.split(<span class="string">"\\s+"</span>));</span><br><span class="line">		<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; arr.length ; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[i] == <span class="number">1</span>) &#123;</span><br><span class="line">				sum += <span class="number">1</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span>(arr[i] == <span class="number">2</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span>(i == <span class="number">0</span> || arr[i-<span class="number">1</span>] == <span class="number">1</span>) &#123;</span><br><span class="line">					sum += <span class="number">2</span>;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					count = count(arr,i);</span><br><span class="line">					sum += <span class="number">2</span> * count;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(sum);</span><br><span class="line">		scan.close();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//根据索引号数连续2的个数</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">count</span><span class="params">(Integer[] arr,<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = i ; j &gt;= <span class="number">0</span> ; j--) &#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[j]==<span class="number">1</span>) &#123;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			count++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> count;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Integer[] toIntegerArray(String[] sArr) &#123;</span><br><span class="line">		Integer[] intArr = <span class="keyword">new</span> Integer[sArr.length];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; sArr.length ;i++) &#123;</span><br><span class="line">			intArr[i] = Integer.valueOf(sArr[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> intArr;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试结果</p>
-<p><img src="http://p64uw9x5j.bkt.clouddn.com/image/2018/06/05/20180605151033.png" alt=""></p>
+      <div class="post-body">
+        
+        
+          <table>
+<thead>
+<tr>
+<th style="text-align:center">编号</th>
+<th style="text-align:center">标题</th>
+<th style="text-align:center">C/C++</th>
+<th style="text-align:center">Java</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">201803-1</td>
+<td style="text-align:center">跳一跳</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><a href="/2018/06/05/ccf-csp-20180301-jump/">查看题解</a></td>
+<td style="text-align:center">简单循环</td>
+</tr>
+<tr>
+<td style="text-align:center">201803-2</td>
+<td style="text-align:center">碰撞的小球</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><a href="/2018/06/06/ccf-csp-20180302-crash/">查看题解</a></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">201803-3</td>
+<td style="text-align:center">URL映射</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><a href="/2018/06/06/ccf-csp-20180303-urlmapping/">查看题解</a></td>
+<td style="text-align:center">字符串模拟</td>
+</tr>
+</tbody>
+</table>
 
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-    		
-	  <div>
-	    ﻿<div>
-    
-        <div style="text-align:center;color: #ccc;font-size:14px;">----------本文结束<i class="fa fa-paw"></i>感谢您的阅读----------</div>
-    
-</div>	
-	  </div>
-    
-
-    
-
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Gongshan He 微信支付">
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="Gongshan He 支付宝">
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
-    
-
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    Gongshan He
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://www.hegongshan.com/2018/06/05/ccf-csp-daily-practice-20180301-jump/" title="CCF CSP每日一练之201803-1跳一跳">https://www.hegongshan.com/2018/06/05/ccf-csp-daily-practice-20180301-jump/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-
-      </div>
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/ccf-csp/" rel="tag"><i class="fa fa-tag"></i> ccf csp</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/06/03/data-structure-sqlist-in-c-or-c++/" rel="next" title="数据结构(C/C++版)之动态顺序表的实现">
-                <i class="fa fa-chevron-left"></i> 数据结构(C/C++版)之动态顺序表的实现
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/06/ccf-csp-daily-practice-20180302-crash/" rel="prev" title="CCF CSP每日一练之201803-2 碰撞的小球">
-                CCF CSP每日一练之201803-2 碰撞的小球 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
@@ -661,7 +443,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-count">98</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -742,11 +524,11 @@
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://www.qinjiangbo.com" title="秦江波" target="_blank">秦江波</a>
+                    <a href="https://www.qinjiangbo.com" title="秦江波的博客" target="_blank">秦江波的博客</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://www.liuchuo.net" title="柳婼" target="_blank">柳婼</a>
+                    <a href="https://www.liuchuo.net" title="柳婼 の blog" target="_blank">柳婼 の blog</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -754,7 +536,7 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://www.gaohangcs.com" title="高航" target="_blank">高航</a>
+                    <a href="https://www.gaohangcs.com" title="高航的博客" target="_blank">高航的博客</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
