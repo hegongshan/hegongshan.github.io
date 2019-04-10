@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PAT乙级 1004.成绩排名 （20 分)]]></title>
+    <url>%2F2019%2F04%2F10%2Fpat-basic-1004%2F</url>
+    <content type="text"><![CDATA[读入 n（&gt;0）名学生的姓名、学号、成绩，分别输出成绩最高和成绩最低学生的姓名和学号。 输入格式：每个测试输入包含 1 个测试用例，格式为 12345第 1 行：正整数 n第 2 行：第 1 个学生的姓名 学号 成绩第 3 行：第 2 个学生的姓名 学号 成绩 ... ... ...第 n+1 行：第 n 个学生的姓名 学号 成绩 其中姓名和学号均为不超过 10 个字符的字符串，成绩为 0 到 100 之间的一个整数，这里保证在一组测试用例中没有两个学生的成绩是相同的。 输出格式：对每个测试用例输出 2 行，第 1 行是成绩最高学生的姓名和学号，第 2 行是成绩最低学生的姓名和学号，字符串间有 1 空格。 输入样例：12343Joe Math990112 89Mike CS991301 100Mary EE990830 95 输出样例：12Mike CS991301Joe Math990112 分析：1.定义一个结构体类型Student，存储学生的姓名name、学号no和成绩grade。 2.定义两个Student型变量maxGradeStu、minGradeStu分别表示成绩最高、最低的学生，并为maxGradeStu和minGradeStu的成绩grade初始化，分别设为101和0。 3.每读入一个学生信息，就将其成绩grade与maxGradeStu、minGradeStu的成绩比较，若高于maxGradeStu，则将该学生信息赋给maxGradeStu，若低于minGradeStu，则将该学生赋给minGradeStu。 12345678910111213141516171819202122232425262728#include &lt;cstdio&gt;struct Student &#123; char name[11]; char no[11]; int grade;&#125;;int main() &#123; int n; scanf("%d", &amp;n); Student stu[n]; Student maxGradeStu, minGradeStu; maxGradeStu.grade = 0; minGradeStu.grade = 101; for (int i = 0; i &lt; n; i++) &#123; scanf("%s %s %d", stu[i].name, stu[i].no, &amp;stu[i].grade); if (maxGradeStu.grade &lt; stu[i].grade) &#123; maxGradeStu = stu[i]; &#125; if (minGradeStu.grade &gt; stu[i].grade) &#123; minGradeStu = stu[i]; &#125; &#125; printf("%s %s\n", maxGradeStu.name, maxGradeStu.no); printf("%s %s\n", minGradeStu.name, minGradeStu.no); return 0;&#125;]]></content>
+      <categories>
+        <category>pat乙级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[PAT乙级 1041.考试座位号 （15 分)]]></title>
     <url>%2F2019%2F04%2F10%2Fpat-basic-1041%2F</url>
     <content type="text"><![CDATA[每个 PAT 考生在参加考试时都会被分配两个座位号，一个是试机座位，一个是考试座位。正常情况下，考生在入场时先得到试机座位号码，入座进入试机状态后，系统会显示该考生的考试座位号码，考试时考生需要换到考试座位就座。但有些考生迟到了，试机已经结束，他们只能拿着领到的试机座位号码求助于你，从后台查出他们的考试座位号码。 输入格式：输入第一行给出一个正整数 N（≤1000），随后 N 行，每行给出一个考生的信息：准考证号 试机座位号 考试座位号。其中准考证号由 16 位数字组成，座位从 1 到 N 编号。输入保证每个人的准考证号都不同，并且任何时候都不会把两个人分配到同一个座位上。 考生信息之后，给出一个正整数 M（≤N），随后一行中给出 M 个待查询的试机座位号码，以空格分隔。 输出格式：对应每个需要查询的试机座位号码，在一行中输出对应考生的准考证号和考试座位号码，中间用 1 个空格分隔。 输入样例：123456743310120150912233 2 43310120150912119 4 13310120150912126 1 33310120150912002 3 223 4 输出样例：123310120150912002 23310120150912119 1 分析：根据题目要求，可先定义如下的Struct类型 1234struct Student &#123; long long permitNo;//16位数字，超过了int的存储范围 int examSeatNumber;&#125;; 可以采用哈希表的思想，将输入的“试机座位号”作为Student数组的下标，以方便查找考试座位号等信息。 12345678910111213141516171819202122232425#include &lt;cstdio&gt;struct Student &#123; long long permitNo; int examSeatNumber;&#125;;int main() &#123; int n, m, testSeatNumber, examSeatNumber; long long permitNo; scanf("%d", &amp;n); Student stus[n + 1];//座位号从1到N编号，故定义数组时增加一个长度 for (int i = 0; i &lt; n; i++) &#123; scanf("%lld %d %d", &amp;permitNo, &amp;testSeatNumber, &amp;examSeatNumber); stus[testSeatNumber].permitNo = permitNo; stus[testSeatNumber].examSeatNumber = examSeatNumber; &#125; scanf("%d", &amp;m); while (m--) &#123; scanf("%d", &amp;testSeatNumber); printf("%lld %d\n", stus[testSeatNumber].permitNo, stus[testSeatNumber].examSeatNumber); &#125; return 0;&#125;]]></content>
