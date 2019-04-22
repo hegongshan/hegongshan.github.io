@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PAT甲级 1058.A+B in Hogwarts （20 分)]]></title>
+    <url>%2F2019%2F04%2F22%2Fpat-advanced-1058%2F</url>
+    <content type="text"><![CDATA[If you are a fan of Harry Potter, you would know the world of magic has its own currency system – as Hagrid explained it to Harry, “Seventeen silver Sickles to a Galleon and twenty-nine Knuts to a Sickle, it’s easy enough.” Your job is to write a program to compute A+B where A and B are given in the standard form of Galleon.Sickle.Knut (Galleon is an integer in [0,10^7], Sickle is an integer in [0, 17), and Knut is an integer in [0, 29)). Input Specification:Each input file contains one test case which occupies a line with A and B in the standard form, separated by one space. Output Specification:For each test case you should output the sum of A and B in one line, with the same format as the input. Sample Input:13.2.1 10.16.27 Sample Output:114.1.28 分析：题目大意：在一种新的货币体系下，计算货币A、B之和。 思路： （1）一种很直接的思路是将输入的货币A、B转换为Knut的形式，然后相加，最后再转换成Galleon.Sickle.Knut格式。 这种解法需要注意的是，A、B之和sum可能会超过int的取值范围，因此，需要使用long long存储数据。 （2）另一种解法是相加进位。 用g、s、k分别表示A、B之和的Galleon、Sickle、Knut。先将A、B的Knut部分加到k上，若此时k大于等于29，则k -= 29，s+=1。然后将A、B的Sickle部分加到s上，若此时s大于等于17，则s -= 17，g+=1。最后将A、B的Galleon部分加到g上即可。 这里采用第二种解法，代码如下： 123456789101112131415161718192021#include &lt;cstdio&gt;int main() &#123; int g1, s1, k1, g2, s2, k2, g, s, k; scanf("%d.%d.%d %d.%d.%d", &amp;g1, &amp;s1, &amp;k1, &amp;g2, &amp;s2, &amp;k2); g = s = k = 0; k += k1 + k2; if (k &gt;= 29) &#123; //s += k / 29; k %= 29; k -= 29; s++; &#125; s += s1 + s2; if (s &gt;= 17) &#123; s -= 17; g++; &#125; g += g1 + g2; printf("%d.%d.%d\n", g, s, k); return 0;&#125;]]></content>
+      <categories>
+        <category>pat甲级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[PAT甲级 1027.Colors in Mars （20 分)]]></title>
     <url>%2F2019%2F04%2F21%2Fpat-advanced-1027%2F</url>
     <content type="text"><![CDATA[People in Mars represent the colors in their computers in a similar way as the Earth people. That is, a color is represented by a 6-digit number, where the first 2 digits are for Red, the middle 2 digits for Green, and the last 2 digits for Blue. The only difference is that they use radix 13 (0-9 and A-C) instead of 16. Now given a color in three decimal numbers (each between 0 and 168), you are supposed to output their Mars RGB values. Input Specification:Each input file contains one test case which occupies a line containing the three decimal color values. Output Specification:For each test case you should output the Mars RGB value in the following format: first output #, then followed by a 6-digit number where all the English characters must be upper-cased. If a single color is only 1-digit long, you must print a 0 to its left. Sample Input:115 43 71 Sample Output:1#123456 分析：题目大意：给定三个十进制数，将它们转换为13进制数输出。 已知给定的十进制数x不超过168，转换成13进制后，不超过两位（13进制下CC = 168）。 针对本题，一个比较巧妙的办法如下： 设置一个字符数组radix，将其初始化为“0123456789ABC”，这样，下标0对应字符’0’，下标13对应字符‘A’…转换后的13进制数可以由radix[x / 13]和radix[x % 13]拼接而成。 1234567891011#include &lt;cstdio&gt;int main() &#123; char radix[14] = "0123456789ABC"; int r, g, b; scanf("%d %d %d", &amp;r, &amp;g, &amp;b); printf("#"); printf("%c%c", radix[r / 13], radix[r % 13]); printf("%c%c", radix[g / 13], radix[g % 13]); printf("%c%c\n", radix[b / 13], radix[b % 13]);&#125;]]></content>
