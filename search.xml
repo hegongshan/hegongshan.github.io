@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PAT乙级 1021.个位数统计 (15 分)]]></title>
+    <url>%2F2019%2F04%2F29%2Fpat-basic-1021%2F</url>
+    <content type="text"><![CDATA[给定一个 k 位整数 N=$d_{k−1} 10^{k−1}+⋯+d_1 10^1+d_0 (0≤d_i≤9, i=0,⋯,k−1, d_{k−1}&gt;0)$，请编写程序统计每种不同的个位数字出现的次数。例如：给定 N=100311，则有 2 个 0，3 个 1，和 1 个 3。 输入格式：每个输入包含 1 个测试用例，即一个不超过 1000 位的正整数 N。 输出格式：对 N 中每一种不同的个位数字，以 D:M 的格式在一行中输出该位数字 D 及其在 N 中出现的次数 M。要求按 D 的升序输出。 输入样例：1100311 输出样例：1230:21:33:1 分析：用整型数组count表示每种个位数字的出现次数，其下标表示个位数字，值表示对应数字的出现次数。 以字符串的形式读入k位整数n。遍历该字符串的每一位，将其转换为整型x，并让count[x] += 1。 最后以 个位数字:出现次数 的格式，输出数组count中值不为0的项。 1234567891011121314151617#include &lt;cstdio&gt;#include &lt;cstring&gt;int main() &#123; int count[10] = &#123; 0 &#125;; char n[1001]; scanf("%s", n); for (int i = 0; i &lt; strlen(n); i++) &#123; count[n[i] - '0'] += 1; &#125; for (int i = 0; i &lt; 10; i++) &#123; if (count[i] != 0) &#123; printf("%d:%d\n", i, count[i]); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>pat乙级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[PAT乙级 1006.换个格式输出整数 (15 分)]]></title>
     <url>%2F2019%2F04%2F29%2Fpat-basic-1006%2F</url>
     <content type="text"><![CDATA[让我们用字母 B 来表示“百”、字母 S 表示“十”，用 12...n 来表示不为零的个位数字 n（&lt;10），换个格式来输出任一个不超过 3 位的正整数。例如 234 应该被输出为 BBSSS1234，因为它有 2 个“百”、3 个“十”、以及个位的 4。 输入格式：每个测试输入包含 1 个测试用例，给出正整数 n（&lt;1000）。 输出格式：每个测试用例的输出占一行，用规定的格式输出 n。 输入样例 1：1234 输出样例 1：1BBSSS1234 输入样例 2：123 输出样例 2：1SS123 分析：给定整数data（data &lt; 1000），通过求商和取模操作，分别得到其百位数b、十位数s和个位数n。然后按照题目要求循环输出即可。 1234567891011121314151617181920#include &lt;cstdio&gt;int main() &#123; int data; scanf("%d", &amp;data); int b = data / 100; int s = data % 100 / 10; int n = data % 10; for (int i = 0; i &lt; b; i++) &#123; printf("B"); &#125; for (int i = 0; i &lt; s; i++) &#123; printf("S"); &#125; for (int i = 1; i &lt;= n; i++) &#123; printf("%d", i); &#125; printf("\n"); return 0;&#125;]]></content>
