@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PAT乙级 1006.换个格式输出整数 (15 分)]]></title>
+    <url>%2F2019%2F04%2F29%2Fpat-basic-1006%2F</url>
+    <content type="text"><![CDATA[让我们用字母 B 来表示“百”、字母 S 表示“十”，用 12...n 来表示不为零的个位数字 n（&lt;10），换个格式来输出任一个不超过 3 位的正整数。例如 234 应该被输出为 BBSSS1234，因为它有 2 个“百”、3 个“十”、以及个位的 4。 输入格式：每个测试输入包含 1 个测试用例，给出正整数 n（&lt;1000）。 输出格式：每个测试用例的输出占一行，用规定的格式输出 n。 输入样例 1：1234 输出样例 1：1BBSSS1234 输入样例 2：123 输出样例 2：1SS123 分析：给定整数data（data &lt; 1000），通过求商和取模操作，分别得到其百位数b、十位数s和个位数n。然后按照题目要求循环输出即可。 1234567891011121314151617181920#include &lt;cstdio&gt;int main() &#123; int data; scanf("%d", &amp;data); int b = data / 100; int s = data % 100 / 10; int n = data % 10; for (int i = 0; i &lt; b; i++) &#123; printf("B"); &#125; for (int i = 0; i &lt; s; i++) &#123; printf("S"); &#125; for (int i = 1; i &lt;= n; i++) &#123; printf("%d", i); &#125; printf("\n"); return 0;&#125;]]></content>
+      <categories>
+        <category>pat乙级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 148.排序链表]]></title>
+    <url>%2F2019%2F04%2F26%2Fleetcode-148-sort-list%2F</url>
+    <content type="text"><![CDATA[题目描述在 O(n log n) 时间复杂度和常数级空间复杂度下，对链表进行排序。 示例 1: 12输入: 4-&gt;2-&gt;1-&gt;3输出: 1-&gt;2-&gt;3-&gt;4 示例 2: 12输入: -1-&gt;5-&gt;3-&gt;4-&gt;0输出: -1-&gt;0-&gt;3-&gt;4-&gt;5 解决方案本题可以采用归并排序。 通过快慢指针，仅遍历一次链表就可以找到中间位置，将链表一分为二。 然后对得到的两个链表递归执行sortList方法，最后对两个有序链表进行二路归并。 算法实现123456789101112131415161718192021222324252627282930313233343536373839404142434445/*public class ListNode &#123; int val; ListNode next; ListNode(int x) &#123; val = x; &#125;&#125;*/class Solution &#123; // 合并两个有序链表 public ListNode merge(ListNode p,ListNode q) &#123; ListNode head = new ListNode(-1); ListNode r = head; while(p != null &amp;&amp; q != null) &#123; if(p.val &lt; q.val) &#123; r.next = p; r = p; p = p.next; &#125; else &#123; r.next = q; r = q; q = q.next; &#125; &#125; if(p != null) &#123; r.next = p; &#125; if(q != null) &#123; r.next = q; &#125; return head.next; &#125; public ListNode sortList(ListNode head) &#123; if(head == null || head.next == null) &#123; return head; &#125; // 通过快慢指针，寻找中间位置，将链表一分为二 ListNode p = head,q=head,pre=head; while(q != null &amp;&amp; q.next != null) &#123; pre = p; p = p.next; q = q.next.next; &#125; pre.next = null; return merge(sortList(head),sortList(p)); &#125;&#125; 复杂度分析设链表的长度为n 时间复杂度：O(n log n) 空间复杂度：O(n) 算法效率执行用时 : 12 ms, 在Sort List的Java提交中击败了37.49% 的用户 内存消耗 : 44.2 MB, 在Sort List的Java提交中击败了63.30% 的用户]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>linked-list</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[PAT乙级 1009.说反话 （20 分)]]></title>
     <url>%2F2019%2F04%2F24%2Fpat-basic-1009%2F</url>
     <content type="text"><![CDATA[给定一句英语，要求你编写程序，将句中所有单词的顺序颠倒输出。 输入格式：测试输入包含一个测试用例，在一行内给出总长度不超过 80 的字符串。字符串由若干单词和若干空格组成，其中单词是由英文字母（大小写有区分）组成的字符串，单词之间用 1 个空格分开，输入保证句子末尾没有多余的空格。 输出格式：每个测试用例的输出占一行，输出倒序后的句子。 输入样例：1Hello World Here I Come 输出样例：1Come I Here World Hello 分析：本题有一种很直接的思路：顺序存储每个单词，然后逆序输出即可。 1234567891011121314151617#include &lt;cstdio&gt;int main() &#123; char str[81][81]; int index = 0; while (scanf("%s", str[index]) != EOF) &#123; index++; &#125; for (int i = index - 1; i &gt;= 0; i--) &#123; printf("%s", str[i]); if(i &gt; 0) &#123; printf(" "); &#125; &#125; printf("\n"); return 0;&#125; 另一种思路是先获取输入的字符串，然后从后往前，每碰到空格或者当下标为0时，输出一个单词。 123456789101112131415161718192021222324252627#include &lt;cstdio&gt;int main() &#123; char str[81]; char c; int index = 0; // PAT的编译器不支持gets() while((c = getchar()) != '\n' &amp;&amp; c != EOF) &#123; str[index++] = c; &#125; int end = index; for (int i = index - 1; i &gt;= 0; i--) &#123; if (i == 0 || str[i] == ' ') &#123; int start = i == 0 ? i : i + 1; // 输出一个单词 for (int j = start; j &lt; end; j++) &#123; printf("%c", str[j]); &#125; if (i &gt; 0) &#123; printf(" "); &#125; end = i; &#125; &#125; printf("\n"); return 0;&#125;]]></content>
