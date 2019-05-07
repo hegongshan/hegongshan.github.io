@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PAT甲级 1001.A+B Format (20 分)]]></title>
+    <url>%2F2019%2F05%2F07%2Fpat-advanced-1001%2F</url>
+    <content type="text"><![CDATA[Calculate a+b and output the sum in standard format – that is, the digits must be separated into groups of three by commas (unless there are less than four digits). Input Specification:Each input file contains one test case. Each case contains a pair of integers a and b where −10^6≤a,b≤10^6. The numbers are separated by a space. Output Specification:For each test case, you should output the sum of a and b in one line. The sum must be written in the standard format. Sample Input:1-1000000 9 Sample Output:1-999,991 分析：题目要求：计算a+b，然后以每三位加一个逗号,的格式输出。 123456789101112131415161718192021222324252627282930#include &lt;cstdio&gt;int main() &#123; int a, b, sum, index = 0; scanf("%d %d", &amp;a, &amp;b); sum = a + b; char s[30]; if (sum &lt; 0) &#123; printf("-"); sum = -sum; &#125; int count = 0; // 采用do...while，避免当sum = 0时，字符数组s为空 do &#123; count++; // 倒序存储sum s[index++] = sum % 10 + '0'; sum /= 10; // 每三位添加一个逗号 if (count % 3 == 0 &amp;&amp; sum != 0) &#123; count = 0; s[index++] = ','; &#125; &#125; while (sum != 0); for (int i = index - 1; i &gt;= 0; i--) &#123; printf("%c", s[i]); &#125; printf("\n"); return 0;&#125;]]></content>
+      <categories>
+        <category>pat甲级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PAT乙级 1048.数字加密 (20 分)]]></title>
+    <url>%2F2019%2F05%2F07%2Fpat-basic-1048%2F</url>
+    <content type="text"><![CDATA[本题要求实现一种数字加密方法。首先固定一个加密用正整数 A，对任一正整数 B，将其每 1 位数字与 A 的对应位置上的数字进行以下运算：对奇数位，对应位的数字相加后对 13 取余——这里用 J 代表 10、Q 代表 11、K 代表 12；对偶数位，用 B 的数字减去 A 的数字，若结果为负数，则再加 10。这里令个位为第 1 位。 输入格式：输入在一行中依次给出 A 和 B，均为不超过 100 位的正整数，其间以空格分隔。 输出格式：在一行中输出加密后的结果。 输入样例：11234567 368782971 输出样例：13695Q8118 分析：题目已知个位为第1位，因此可以考虑先将A、B反转，然后分奇偶位进行相应的操作。 需要注意的是：当正整数B的长度小于A时，B前面的空缺位置，依然需要执行加密操作。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354#include &lt;cstdio&gt;#include &lt;cstring&gt;void reverse(char s[]) &#123; int len = strlen(s); int temp = 0; for (int i = 0; i &lt; len / 2; i++) &#123; temp = s[i]; s[i] = s[len - i - 1]; s[len - i - 1] = temp; &#125;&#125;int main() &#123; char a[101], b[101], c[101]; scanf("%s %s", a, b); reverse(a); reverse(b); int lenB = strlen(b); int lenA = strlen(a); int len = lenA &gt; lenB ? lenA : lenB; for (int i = 1; i &lt;= len; i++) &#123; int numA = i &lt;= lenA ? a[i - 1] - '0' : 0; int numB = i &lt;= lenB ? b[i - 1] - '0' : 0; // 若为奇数 if (i % 2 != 0) &#123; int result = (numA + numB) % 13; if (result &lt; 10) &#123; c[i - 1] = result + '0'; &#125; else &#123; if (result == 10) &#123; c[i - 1] = 'J'; &#125; else if (result == 11) &#123; c[i - 1] = 'Q'; &#125; else &#123; c[i - 1] = 'K'; &#125; &#125; &#125; else &#123; int result = numB - numA; if (result &lt; 0) &#123; c[i - 1] = result + 10 + '0'; &#125; else &#123; c[i - 1] = result + '0'; &#125; &#125; &#125; for (int i = strlen(c) - 1; i &gt;= 0; i--) &#123; printf("%c", c[i]); &#125; printf("\n"); return 0;&#125;]]></content>
+      <categories>
+        <category>pat乙级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PAT乙级 1024.科学计数法/PAT甲级 1073.Scientific Notation (20 分)]]></title>
+    <url>%2F2019%2F05%2F05%2Fpat-basic-1024%2F</url>
+    <content type="text"><![CDATA[科学计数法是科学家用来表示很大或很小的数字的一种方便的方法，其满足正则表达式 [+-][1-9].[0-9]+E[+-][0-9]+，即数字的整数部分只有 1 位，小数部分至少有 1 位，该数字及其指数部分的正负号即使对正数也必定明确给出。 现以科学计数法的格式给出实数 A，请编写程序按普通数字表示法输出 A，并保证所有有效位都被保留。 输入格式：每个输入包含 1 个测试用例，即一个以科学计数法表示的实数 A。该数字的存储长度不超过 9999 字节，且其指数的绝对值不超过 9999。 输出格式：对每个测试用例，在一行中按普通数字表示法输出 A，并保证所有有效位都被保留，包括末尾的 0。 输入样例 1：1+1.23400E-03 输出样例 1：10.00123400 输入样例 2：1-1.2E+10 输出样例 2：1-12000000000 分析：本题的关键是，找到E的位置dot，E前面为数字部分，后面为指数。 本题需要分以下三种情况考虑： （1）输入的指数部分e为负数。首先输出0.，然后输出e-1个0，最后将输入的数字部分（不带小数点）原样输出即可。 （2）输入的指数部分e为正数，且小数位count小于指数e。首先将输入的数字部分（不带小数点）原样输出，然后再输出e-count个0即可。 （3）输入的指数部分e为正数，且小数位count大于等于指数e。首先将小数点前的数字部分输出，然后将小数点后e位输出。接着，判断count是否大于e。若大于，先输出小数点，然后将数字部分剩下的count-e位依次输出。 最后，需要注意的是：若输入为正数，则输出时不带符号。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748#include &lt;iostream&gt;#include &lt;string&gt;using namespace std;int main() &#123; string s, e, n, result; cin &gt;&gt; s; int index = s.find("E"); // 数字部分 n = s.substr(1, index - 1); // 指数部分 e = s.substr(index + 2, s.size() - index - 2); // 若为负数 if (s[0] == '-') &#123; result = s[0]; &#125; int x = stoi(e); int dot = n.find("."); // 若指数为负 if (s[index + 1] == '-') &#123; result += "0."; for (int i = 0; i &lt; x - 1; i++) &#123; result += "0"; &#125; result += n.substr(0, dot) + n.substr(dot + 1, n.size() - dot - 1); &#125; else &#123; int count = n.size() - n.find(".") - 1; // 若指数大于小数位数 if (count &lt; x) &#123; result += n.substr(0, dot) + n.substr(dot + 1, n.size() - dot - 1); for (int i = 0; i &lt; x - count; i++) &#123; result += "0"; &#125; &#125; else &#123; result += n.substr(0, dot) + n.substr(dot + 1, x); // 若指数小于小数位数 if (x &lt; count) &#123; result += "." + n.substr(dot + x + 1, n.size() - dot - x - 1); &#125; &#125; &#125; cout &lt;&lt; result &lt;&lt; endl; return 0;&#125;]]></content>
+      <categories>
+        <category>pat乙级</category>
+        <category>pat甲级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 264.丑数 II]]></title>
     <url>%2F2019%2F05%2F03%2Fleetcode-264-ugly-number-ii%2F</url>
     <content type="text"><![CDATA[题目描述编写一个程序，找出第 n 个丑数。 丑数就是只包含质因数 2, 3, 5 的正整数。 示例: 123输入: n = 10输出: 12解释: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 是前 10 个丑数。 说明: 1 是丑数。 n 不超过1690。 解决方案三指针法：使用数组ugly存储所有的丑数，ugly[0] = 1。下一个丑数ugly[i]定义为丑数数组中的值乘以权重2、3和5，所得到的最小值。 （1）使用三个指针idx2、idx3、idx5，分别表示2应该乘以ugly[idx2]，3应该乘以ugly[idx3]，5应该乘以ugly[idx5]。 （2）在计算下一个丑数时，若某指针指向的丑数乘以对应的权重所得积最小，则该指针向后移动一位。 （3）应该使用三个并列的if让指针后移，而不能采用if-else。例如，丑数6，可以由丑数2乘以权重3得到，亦可以由丑数3乘以权重2得到，此时，权重2、3的指针都需要向后移一位。 123456789101112131415161718192021222324252627class Solution &#123; public int nthUglyNumber(int n) &#123; int[] ugly = new int[n]; ugly[0] = 1; int idx2,idx3,idx5,a,b,c,temp; idx2 = idx3 = idx5 = 0; for(int i=1;i&lt;n;i++) &#123; a = 2 * ugly[idx2]; b = 3 * ugly[idx3]; c = 5 * ugly[idx5]; temp = Math.min(Math.min(a,b),c); if(temp == a) &#123; idx2++; &#125; if(temp == b) &#123; idx3++; &#125; if(temp == c) &#123; idx5++; &#125; ugly[i] = temp; &#125; return ugly[n-1]; &#125;&#125;]]></content>

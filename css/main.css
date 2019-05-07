@@ -1867,12 +1867,12 @@ pre .javascript .function {
   margin: 0 auto;
   padding: 2px;
   max-width: 120px;
-  height: auto;
+  height: 120px;
   border: 1px solid #eee;
-  border-radius: 80px;
-  -webkit-border-radius: 80px;
+  border-radius: 50%;
+/*-webkit-border-radius: 80px;
   -moz-border-radius: 80px;
-  box-shadow: inset 0 -1px 0 #333 sf;
+  box-shadow: inset 0 -1px 0 #333sf;*/
 }
 .site-author-name {
   margin: 0;
@@ -1954,7 +1954,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #1749dd;
+  background: #ffb466;
 }
 .links-of-blogroll {
   font-size: 13px;
