@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode 110.平衡二叉树]]></title>
+    <url>%2F2019%2F05%2F20%2Fleetcode-110-balanced-binary-tree%2F</url>
+    <content type="text"><![CDATA[给定一个二叉树，判断它是否是高度平衡的二叉树。 本题中，一棵高度平衡二叉树定义为： 一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过1。 示例 1: 给定二叉树 [3,9,20,null,null,15,7] 12345 3 / \9 20 / \ 15 7 返回 true 。 示例 2: 给定二叉树 [1,2,2,3,3,null,null,4,4] 1234567 1 / \ 2 2 / \ 3 3 / \4 4 返回 false 。 解决方案本题可以采用递归法，递归表达式如下所示：$$isBalanced(root)=\begin{cases}true, &amp; root为空 \\isBalanced(root.left) \cap isBalanced(root.right), &amp; root节点是平衡的 \\\end{cases}$$ 1234567891011121314151617181920212223242526/* public class TreeNode &#123; int val; TreeNode left; TreeNode right; TreeNode(int x) &#123; val = x; &#125; &#125; */class Solution &#123; public boolean isBalanced(TreeNode root) &#123; if(root == null) &#123; return true; &#125; if(Math.abs(getHeight(root.left) - getHeight(root.right)) &lt;= 1) &#123; return isBalanced(root.left) &amp;&amp; isBalanced(root.right); &#125; return false; &#125; //求树的高度 public int getHeight(TreeNode root) &#123; if(root == null) &#123; return 0; &#125; return Math.max(getHeight(root.left), getHeight(root.right)) + 1; &#125;&#125;]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>binary-tree</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2019 CCF CCSP分区赛折戟而归]]></title>
     <url>%2F2019%2F05%2F18%2F2019-ccf-ccsp-division-series%2F</url>
     <content type="text"><![CDATA[竞赛安排今年，CCF决定举办首届CCF CCSP分区赛。CCF官方对其的定位为：分赛区竞赛以CSP认证为初赛，是CCSP总决赛前的复赛。 全国被分成了七个赛区，分别由七所高校承办： 东北： 哈尔滨工业大学 华北：北京邮电大学 华中：湖南大学 华东：南京航空航天大学 华南：深圳大学 西北：西安电子科技大学 西南：四川大学 不同的赛区对参赛资格的要求各不相同。以我所在的华中赛区为例，要求CSP成绩不低于200分（近四次认证中的任一次）。 竞赛题目本次竞赛总共三道题，总分300分，时间为6个小时，不限语言（C++/Java/Python），通过一个测试点即可得到该测试点的分数。 与往常CCF CSP不同的地方是，本次比赛采用OJ的形式，可以看到提交的代码通过了哪些测试点，以及其他人的AC情况。 第一题 统计CCSP子图个数第一题是关于数据结构中图的应用。题目大意是：给定一个图，求该图中满足某些性质的子图个数。 一直以来，图就是我的知识盲区，所以一上来我就蒙了。翻开数据结构书，边敲边想，花了大概一个多小时，看到很多人已经AC了，最终无奈放弃了。 最后还剩一个小时的时候，我发现本题其实是可以骗分的。 第一个测试点（14分）不满足题目中给定子图的要求，直接输出0即可，这14分相当于是白送给我们的。 第二个测试点（34分）刚好满足给定子图的基本要求（4个顶点4条边），因此只涉及到创建图、判断该图是否连通以及图中是否存在回路。最后还剩不到十分钟时，我成功通过了第二个测试点，又骗到了34分。 因此，第一题我几乎没费什么时间就拿到了48分。当然，虽然骗到了将近一半的分数，但其实离真正AC还差得远呢！ 第二题 强化的RAID5第二题是一道字符串模拟题。题目内容与2019年3月第十六次CCF CSP的第三题几乎一样。由于本题题目实在太长，我直接就跳过了。 需要吐槽的是，同样是由于题目冗长，第十六次CSP第三题我直接没做，最终只AC前两道送分题，得了200分。 第三题 简化的MapReduce第三题要求实现一个简化版的MapReduce。本题只支持C++和Java两种语言，得分的方式也略有不同，程序的正确性只占30%，性能占70%。 题目给定了一个接口，要求我们实现该接口中的若干方法。主要考查了函数式编程及多线程的知识。 在C++版中，CCF官方直接给了一个简单的实现，而Java则需要自己实现。 Java版的实现，主要是基于Java8的Stream API。老实讲，我对Stream API并不太熟悉，幸好题目给了一个统计文件中字母a开头的各单词个数的例子，半猜半看，大致弄懂了每个方法要做什么。午饭前后，我大致完成了本题，结果一提交，只通过了第一个测试点，后面的测试点要么报TLE，要么说格式不正确，最终仅得到了2.92分。 后来，我发现题目中明确告诉我们，C++版给了一个简单的实现，遂直接将官方的实现提交了，结果直接通过了前两个测试点，得分为20.92分。 赛况统计华中赛区总共有105人参赛，参赛选手来自武大（包括我在内总计三人）、华科、国防科大、中南、湖南大学、长沙理工等15所高校。我的最终得分为68.92分，大致排在90左名。 金、银、铜奖总计62个，几乎被长沙四校（国防科大、中南、湖大以及长沙理工）包揽了。 赛后感受折腾一次就够了，真的太烧钱啦！ 为了参加本次竞赛，我前前后后总共花费了906元。其中，报名费400元，住宿一晚177元，高铁往返164.5×2=329元（本来想坐普通火车回来的，主要是心神消耗过大，加上特快要4个多小时，到武汉得晚上12点左右）。]]></content>
