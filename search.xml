@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2019年“锐捷网络杯”华中区高校研究生程序设计大赛K.A good game]]></title>
+    <url>%2F2019%2F06%2F02%2Fhbppc-2019-problem-k-a-good-game%2F</url>
+    <content type="text"><![CDATA[Bigbrother is a cute boy who likes to play cards. One day, he gets N cards and every of them has a number $V_i$. Now, he wants to play a game with you. He has M operations. In the k-th operation, the sum of $V_i$ between intervals [L,R] is S, k×S is the k-th score. You can sort the M operations and get the maximum sum of scores. InputThere are multiple tests. The first line contains integer T(1≤T≤10). The second line contains integer N, M(1 ≤ N,M ≤ 100000) The next line contain N numbers $V_i$ (1 ≤$V_i$ ≤ 1000) . The following $M​$ lines, each line contains two numbers, L,R(1 ≤ L,R ≤ N). OutputThere are T lines. In every line print a single integer — the answer to the problem. Sample Input12345614 31 2 3 41 22 41 4 Sample Output151 分析题目大意：给定N张牌，每张牌的权值为$V_i$，对这些牌进行M次操作，第k次操作的得分为$k \times S$，其中$S = \sum_{i=L}^{R}V_i$，L和R由输入给出。对M次操作的先后顺序进行调换，使得总得分最高，输出最高总得分。 思路：前缀和 加 贪心。输入$V_i$时，计算每张牌到第1张牌之间的权值和S。然后对得到的权值进行升序排列，使得较大的S位于序列的后面，从而使得总得分最高。 123456789101112131415161718192021222324252627282930313233343536373839404142434445#include &lt;cstdio&gt;#include &lt;algorithm&gt;using namespace std;int main() &#123; int t; scanf("%d", &amp;t); while (t--) &#123; int n, m; scanf("%d %d", &amp;n, &amp;m); int arr[n]; // span[i]存储第i+1张牌到第1张牌之间的权值和 int span[n]; for (int i = 0; i &lt; n; i++) &#123; scanf("%d", &amp;arr[i]); if (i == 0) &#123; span[i] = arr[i]; &#125; else &#123; // 前缀和 span[i] = span[i - 1] + arr[i]; &#125; &#125; int left, right; // 存储单个操作的得分S long long scores[m]; for (int i = 0; i &lt; m; i++) &#123; scanf("%d %d", &amp;left, &amp;right); if (left == 1) &#123; scores[i] = span[right - 1]; &#125; else &#123; scores[i] = span[right - 1] - span[left - 2]; &#125; &#125; // 对所有的S进行升序排列 sort(scores, scores + m); // 最大总得分 long long sum = 0; for (int i = 0; i &lt; m; i++) &#123; sum += (i + 1) * scores[i]; &#125; printf("%lld\n", sum); &#125; return 0;&#125; 本题需要注意的几个地方：$$\max(S) = \max(V_i) \times \max(N) = 10^5 \times 10^3 = 10^8$$ $$max(sum) = max(S) \times (1+2+\dots+\max(N)) = 10^8 \times \frac{10^5 \times (10^5 + 1)}{2} ≈ 5\times 10^{17}$$ 因此，总得分sum必须用long long存储。 又因为$\max(k \times S) = 10^5 \times 10^8 = 10^{13}$，因此S必须采用long long存储，否则，$N \times S$可能会溢出。]]></content>
+      <categories>
+        <category>程序设计</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 946.验证栈序列]]></title>
     <url>%2F2019%2F06%2F01%2Fleetcode-946-validate-stack-sequences%2F</url>
     <content type="text"><![CDATA[给定 pushed 和 popped 两个序列，只有当它们可能是在最初空栈上进行的推入 push 和弹出 pop 操作序列的结果时，返回 true；否则，返回 false 。 示例 1： 12345输入：pushed = [1,2,3,4,5], popped = [4,5,3,2,1]输出：true解释：我们可以按以下顺序执行：push(1), push(2), push(3), push(4), pop() -&gt; 4,push(5), pop() -&gt; 5, pop() -&gt; 3, pop() -&gt; 2, pop() -&gt; 1 示例 2： 123输入：pushed = [1,2,3,4,5], popped = [4,3,5,1,2]输出：false解释：1 不能在 2 之前弹出。 提示： 0 &lt;= pushed.length == popped.length &lt;= 1000 0 &lt;= pushed[i], popped[i] &lt; 1000 pushed 是 popped 的排列。 解决方案 思路：模拟进出栈操作。 对pushed中的每一个元素执行如下操作： 1.将该元素进栈； 2.当栈不为空时，判断栈顶元素与popped中的当前元素popped[j]是否相等。若相等，则执行出栈操作，且j++。循环执行该操作，直到条件不满足为止。 待上述操作执行完后，判断栈是否为空。若栈空，则表示给定的栈序列是合法的；否则，则不合法。 12345678910111213141516171819class Solution &#123; public boolean validateStackSequences(int[] pushed, int[] popped) &#123; // 用一个数组模拟栈的操作 int[] stack = new int[pushed.length]; // 栈的实际长度 int len = 0; for (int i = 0, j = 0; i &lt; pushed.length; i++) &#123; // 1.进栈 stack[len++] = pushed[i]; // 2.栈不为空时，循环判断栈顶元素与popped的当前元素是否相等 while(len != 0 &amp;&amp; stack[len-1] == popped[j]) &#123; // 出栈 len--; j++; &#125; &#125; return len == 0; &#125;&#125;]]></content>
@@ -1726,8 +1734,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>随笔</tag>
         <tag>生活</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
