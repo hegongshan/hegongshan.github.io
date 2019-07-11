@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PAT乙级 1047.编程团体赛 (20 分)]]></title>
+    <url>%2F2019%2F07%2F11%2Fpat-basic-1047%2F</url>
+    <content type="text"><![CDATA[编程团体赛的规则为：每个参赛队由若干队员组成；所有队员独立比赛；参赛队的成绩为所有队员的成绩和；成绩最高的队获胜。 现给定所有队员的比赛成绩，请你编写程序找出冠军队。 输入格式：输入第一行给出一个正整数 N（≤10^4），即所有参赛队员总数。随后 N 行，每行给出一位队员的成绩，格式为：队伍编号-队员编号 成绩，其中队伍编号为 1 到 1000 的正整数，队员编号为 1 到 10 的正整数，成绩为 0 到 100 的整数。 输出格式：在一行中输出冠军队的编号和总成绩，其间以一个空格分隔。注意：题目保证冠军队是唯一的。 输入样例：123456763-10 9911-5 87102-1 0102-3 10011-9 893-2 61 输出样例：111 176 分析：本题考察的是哈希表的应用。 用数组hash表示哈希表，其下标表示队伍编号，对应的值为该队伍的比赛成绩，初始值为0。 遍历输入的N个参赛队员及其成绩score，将该成绩累加到该队员所在队伍的比赛成绩中。 然后，遍历数组hash，寻找其中比赛成绩最高的队伍，输出其队伍编号和总成绩。 12345678910111213141516171819#include &lt;cstdio&gt;int main() &#123; int n, teamNo, peopleNo, score; scanf("%d", &amp;n); int hash[1001] = &#123; 0 &#125;; for (int i = 0; i &lt; n; i++) &#123; scanf("%d-%d %d", &amp;teamNo, &amp;peopleNo, &amp;score); hash[teamNo] += score; &#125; int maxIndex = 0; for (int i = 0; i &lt; 1001; i++) &#123; if (hash[i] &gt; hash[maxIndex]) &#123; maxIndex = i; &#125; &#125; printf("%d %d\n", maxIndex, hash[maxIndex]); return 0;&#125;]]></content>
+      <categories>
+        <category>pat乙级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PAT乙级 1043.输出PATest (20 分)]]></title>
+    <url>%2F2019%2F07%2F11%2Fpat-basic-1043%2F</url>
+    <content type="text"><![CDATA[给定一个长度不超过 10^4 的、仅由英文字母构成的字符串。请将字符重新调整顺序，按 PATestPATest.... 这样的顺序输出，并忽略其它字符。当然，六种字符的个数不一定是一样多的，若某种字符已经输出完，则余下的字符仍按 PATest 的顺序打印，直到所有字符都被输出。 输入格式：输入在一行中给出一个长度不超过 10^4 的、仅由英文字母构成的非空字符串。 输出格式：在一行中按题目要求输出排序后的字符串。题目保证输出非空。 输入样例：1redlesPayBestPATTopTeePHPereatitAPPT 输出样例：1PATestPATestPTetPTePePee 分析：本题考察哈希表的简单运用。 用数组hash表示哈希表，其下标表示字母，对应的值表示该字母的出现次数。 设置一个bool型变量flag，标记是否还需要输出，默认为true。 然后，循环执行如下操作： 按照PATest的顺序，输出对应的字母，并减少其在hash中的值。若某种字符已经输出完，则余下的字符仍按 PATest 的顺序打印，直到所有字符都被输出。 当PATest这六个字母在数组hash中的值全为0时，表示不再需要输出，flag设置为false，循环结束。 12345678910111213141516171819202122232425262728293031#include &lt;cstdio&gt;int main() &#123; char temp; int hash[123] = &#123; 0 &#125;; while ((temp = getchar()) != '\n') &#123; hash[temp]++; &#125; char arr[7] = &#123; 'P', 'A', 'T', 'e', 's', 't' &#125;; // flag表示是否还有字符可以输出 bool flag = true; while (flag) &#123; for (int i = 0; i &lt; 6; i++) &#123; if (hash[arr[i]] != 0) &#123; printf("%c", arr[i]); hash[arr[i]]--; &#125; &#125; // 判断是否所有的字符都已被输出 flag = false; for (int i = 0; i &lt; 6; i++) &#123; if (hash[arr[i]] != 0) &#123; flag = true; &#125; &#125; &#125; printf("\n"); return 0;&#125;]]></content>
+      <categories>
+        <category>pat乙级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PAT乙级 1042.字符统计 (20 分)]]></title>
+    <url>%2F2019%2F07%2F11%2Fpat-basic-1042%2F</url>
+    <content type="text"><![CDATA[请编写程序，找出一段给定文字中出现最频繁的那个英文字母。 输入格式：输入在一行中给出一个长度不超过 1000 的字符串。字符串由 ASCII 码表中任意可见字符及空格组成，至少包含 1 个英文字母，以回车结束（回车不算在内）。 输出格式：在一行中输出出现频率最高的那个英文字母及其出现次数，其间以空格分隔。如果有并列，则输出按字母序最小的那个字母。统计时不区分大小写，输出小写字母。 输入样例：1This is a simple TEST. There ARE numbers and other symbols 1&amp;2&amp;3........... 输出样例：1e 7 分析：本题考察哈希表的应用。 用数组hash表示哈希表，其下标表示字母，对应值为该字母出现的次数，初始值为0。 遍历输入字符串中的每一个字符，当该字符为小写字母时，其在hash中的值加一；若为大写字母，则其小写形式的hash值加一。 最后，遍历数组hash，输出其中的最大值及其对应的最小下标（字母序最小的那个字母）。 1234567891011121314151617181920212223#include &lt;cstdio&gt;int main() &#123; char temp; // 'z' = 122 char hash[123] = &#123; 0 &#125;; while ((temp = getchar()) != '\n') &#123; if ('A' &lt;= temp &amp;&amp; temp &lt;= 'Z') &#123; hash[temp + 32]++; &#125; else if ('a' &lt;= temp &amp;&amp; temp &lt;= 'z') &#123; hash[(int) temp]++; &#125; &#125; int count = 0; for (int i = 97; i &lt; 123; i++) &#123; if (hash[i] &gt; count) &#123; temp = i; count = hash[i]; &#125; &#125; printf("%c %d\n", temp, count); return 0;&#125;]]></content>
+      <categories>
+        <category>pat乙级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF CSP 201903-1 小中大]]></title>
+    <url>%2F2019%2F07%2F09%2Fccf-csp-20190301%2F</url>
+    <content type="text"><![CDATA[123456789101112131415161718192021222324252627282930313233343536#include &lt;cstdio&gt;int main() &#123; int n; scanf("%d", &amp;n); int arr[n]; for (int i = 0; i &lt; n; i++) &#123; scanf("%d", &amp;arr[i]); &#125; // 输入的数据是否为升序 bool asc = true; // 最大值 if (arr[n - 1] &gt; arr[0]) &#123; printf("%d ", arr[n - 1]); &#125; else &#123; asc = false; printf("%d ", arr[0]); &#125; // 中位数 if (n % 2 == 0) &#123; if ((arr[n / 2 - 1] + arr[n / 2]) % 2 == 0) &#123; printf("%d ", (arr[n / 2 - 1] + arr[n / 2]) / 2); &#125; else &#123; printf("%.1f ", (arr[n / 2 - 1] + arr[n / 2]) / 2.0); &#125; &#125; else &#123; printf("%d ", arr[n / 2]); &#125; // 最小值 if (asc) &#123; printf("%d\n", arr[0]); &#125; else &#123; printf("%d\n", arr[n - 1]); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ccf csp</category>
+      </categories>
+      <tags>
+        <tag>ccf csp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[PAT乙级 1039.到底买不买 (20 分)]]></title>
     <url>%2F2019%2F07%2F07%2Fpat-basic-1039%2F</url>
     <content type="text"><![CDATA[小红想买些珠子做一串自己喜欢的珠串。卖珠子的摊主有很多串五颜六色的珠串，但是不肯把任何一串拆散了卖。于是小红要你帮忙判断一下，某串珠子里是否包含了全部自己想要的珠子？如果是，那么告诉她有多少多余的珠子；如果不是，那么告诉她缺了多少珠子。 为方便起见，我们用[0-9]、[a-z]、[A-Z]范围内的字符来表示颜色。例如在图1中，第3串是小红想做的珠串；那么第1串可以买，因为包含了全部她想要的珠子，还多了8颗不需要的珠子；第2串不能买，因为没有黑色珠子，并且少了一颗红色的珠子。 图 1 输入格式：每个输入包含 1 个测试用例。每个测试用例分别在 2 行中先后给出摊主的珠串和小红想做的珠串，两串都不超过 1000 个珠子。 输出格式：如果可以买，则在一行中输出 Yes 以及有多少多余的珠子；如果不可以买，则在一行中输出 No 以及缺了多少珠子。其间以 1 个空格分隔。 输入样例 1：12ppRYYGrrYBR2258YrR8RrY 输出样例 1：1Yes 8 输入样例 2：12ppRYYGrrYB225YrR8RrY 输出样例 2：1No 2 分析：本题考察的是哈希表的使用。 变量设置 使用数组hash表示哈希表，其下标表示某字符，值表示该字符出现的次数。 bool型变量absent，表示是否缺少珠子，初始化为false。 int型变量count，表示缺少或多出的珠子的个数，初始化为0。 思路 首先，使用数组hash统计出摊主的珠串中各字符出现的次数。 然后，遍历小红想做的珠串，判断每个字符（这里用temp表示）在hash中的值， 若hash[temp]==0，则表示缺少该字符，count自增，absent设置为true；否则，hash[temp]--。 最后，判断absent是否为true，若absent == true，则输出No和缺少的珠子个数count； 否则，输出Yes和多出的珠子个数。此时数组hash中所有值之和，即为多出的珠子个数。 1234567891011121314151617181920212223242526272829303132333435#include &lt;cstdio&gt;int main() &#123; char temp; // 'z' = 122 int hash[123] = &#123; 0 &#125;; while ((temp = getchar()) != '\n') &#123; hash[temp]++; &#125; // 是否缺少珠子 bool absent = false; // 统计多出或者缺少的珠子个数 int count = 0; while ((temp = getchar()) != '\n') &#123; // 没有某颗珠子 if (hash[temp] == 0) &#123; // 统计缺少珠子的个数 count++; absent = true; &#125; else &#123; hash[temp]--; &#125; &#125; if (absent) &#123; printf("No "); &#125; else &#123; printf("Yes "); // 计算多余珠子的个数 for (int i = 0; i &lt; 123; i++) &#123; count += hash[i]; &#125; &#125; printf("%d\n", count); return 0;&#125;]]></content>
@@ -1735,8 +1779,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>随笔</tag>
         <tag>生活</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
