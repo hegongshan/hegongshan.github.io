@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[PAT甲级 1050.String Subtraction (20 分)]]></title>
+    <url>%2F2019%2F07%2F14%2Fpat-advanced-1050%2F</url>
+    <content type="text"><![CDATA[Given two strings S1 and S2, S=S1−S2 is defined to be the remaining string after taking all the characters in S2 from S1. Your task is simply to calculate S1−S2 for any given strings. However, it might not be that simple to do it fast. Input Specification:Each input file contains one test case. Each case consists of two lines which gives S1 and S2, respectively. The string lengths of both strings are no more than 10^4. It is guaranteed that all the characters are visible ASCII codes and white space, and a new line character signals the end of a string. Output Specification:For each test case, print S1−S2 in one line. Sample Input:12They are students.aeiou Sample Output:1Thy r stdnts. 分析：本题考察哈希表的运用。 用int型数组hash表示哈希表，下标表示字符，对应的值表示该字符是否在S1中出现，默认为0，表示没有出现。 首先，遍历S1，将S1中每个字符的hash值设置为1。 然后，遍历S2中的每个字符，将其在数组hash中的值重置为0，表示在S1中减去该字符。 最后，遍历S1中的每个字符，若该字符在数组hash中的值为1，则输出该字符；否则，不输出。 1234567891011121314151617181920212223242526272829#include &lt;cstdio&gt;int main() &#123; // 'z' = 122 int hash[123] = &#123; 0 &#125;; char temp; char s1[10001]; int index = 0; // 输入s1,将s1中每个字符的hash值均设置为1 while ((temp = getchar()) != '\n') &#123; s1[index++] = temp; hash[(int) temp] = 1; &#125; s1[index] = '\0'; // 凡是s2中出现的字符，其hash值均重置为0 while ((temp = getchar()) != '\n') &#123; hash[(int) temp] = 0; &#125; for (int i = 0; i &lt; index; i++) &#123; if (hash[(int) s1[i]] == 1) &#123; printf("%c", s1[i]); &#125; &#125; printf("\n"); return 0;&#125;]]></content>
+      <categories>
+        <category>pat甲级</category>
+      </categories>
+      <tags>
+        <tag>pat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CCF CSP 201703-1.分蛋糕]]></title>
+    <url>%2F2019%2F07%2F14%2Fccf-csp-20170301%2F</url>
+    <content type="text"><![CDATA[问题描述 小明今天生日，他有n块蛋糕要分给朋友们吃，这n块蛋糕（编号为1到n）的重量分别为a1, a2, …, an。小明想分给每个朋友至少重量为k的蛋糕。小明的朋友们已经排好队准备领蛋糕，对于每个朋友，小明总是先将自己手中编号最小的蛋糕分给他，当这个朋友所分得蛋糕的重量不到k时，再继续将剩下的蛋糕中编号最小的给他，直到小明的蛋糕分完或者这个朋友分到的蛋糕的总重量大于等于k。 请问当小明的蛋糕分完时，总共有多少个朋友分到了蛋糕。 输入格式 输入的第一行包含了两个整数n, k，意义如上所述。 第二行包含n个正整数，依次表示a1, a2, …, an。 输出格式 输出一个整数，表示有多少个朋友分到了蛋糕。 样例输入 6 92 6 5 6 3 5 样例输出 3 样例说明 第一个朋友分到了前3块蛋糕，第二个朋友分到了第4、5块蛋糕，第三个朋友分到了最后一块蛋糕。 评测用例规模与约定 对于所有评测用例，1 ≤ n ≤ 1000，1 ≤ k ≤ 10000，1 ≤ ai ≤ 1000。 分析： 用count表示分到蛋糕的朋友个数，weight表示分给某个朋友的蛋糕总质量，两者均初始化为0。 遍历每一块蛋糕，将重量累加到weight中， 当weight大于等于k，或者当前蛋糕是最后一块蛋糕时，count自增，weight重置为0，继续下一次循环。 1234567891011121314151617181920212223#include &lt;cstdio&gt;int main() &#123; int n, k; scanf("%d %d", &amp;n, &amp;k); int arr[n]; // 分到蛋糕的朋友个数 int count = 0; int weight = 0; for (int i = 0; i &lt; n; i++) &#123; scanf("%d", &amp;arr[i]); weight += arr[i]; // 若分得蛋糕的总重量大于等于k，或者当前蛋糕是最后一块蛋糕 if (weight &gt;= k || i == n - 1) &#123; count++; weight = 0; &#125; &#125; printf("%d\n", count); return 0;&#125;]]></content>
+      <categories>
+        <category>ccf csp</category>
+      </categories>
+      <tags>
+        <tag>ccf csp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CCF CSP 201709-1.打酱油]]></title>
     <url>%2F2019%2F07%2F14%2Fccf-csp-20170901%2F</url>
     <content type="text"><![CDATA[问题描述 小明带着N元钱去买酱油。酱油10块钱一瓶，商家进行促销，每买3瓶送1瓶，或者每买5瓶送2瓶。请问小明最多可以得到多少瓶酱油。 输入格式 输入的第一行包含一个整数N，表示小明可用于买酱油的钱数。N是10的整数倍，N不超过300。 输出格式 输出一个整数，表示小明最多可以得到多少瓶酱油。 样例输入 40 样例输出 5 样例说明 把40元分成30元和10元，分别买3瓶和1瓶，其中3瓶送1瓶，共得到5瓶。 样例输入 80 样例输出 11 样例说明 把80元分成30元和50元，分别买3瓶和5瓶，其中3瓶送1瓶，5瓶送2瓶，共得到11瓶。 分析： 买5送2，比买3送1划算。因此，尽可能把钱花在买5送2的活动上，剩下的钱继续买3送1的活动，最后才单买。 123456789101112131415161718192021222324#include &lt;cstdio&gt;int main() &#123; int n; scanf("%d", &amp;n); int count = 0; // 每买5瓶送2瓶 if (n &gt;= 50) &#123; count += (n / 50) * 7; n %= 50; &#125; // 每买3瓶送1瓶 if (n &gt;= 30) &#123; count += (n / 30) * 4; n %= 30; &#125; if (n &gt;= 10) &#123; count += n / 10; &#125; printf("%d\n", count); return 0;&#125;]]></content>
