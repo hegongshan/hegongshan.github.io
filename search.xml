@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>CCF CSP 201712-2.游戏</title>
+      <link href="/2019/07/25/ccf-csp-20171202/"/>
+      <url>/2019/07/25/ccf-csp-20171202/</url>
+      
+        <content type="html"><![CDATA[<p><strong>问题描述</strong></p><p>　　有<em>n</em>个小朋友围成一圈玩游戏，小朋友从1至<em>n</em>编号，2号小朋友坐在1号小朋友的顺时针方向，3号小朋友坐在2号小朋友的顺时针方向，……，1号小朋友坐在<em>n</em>号小朋友的顺时针方向。<br>　　游戏开始，从1号小朋友开始顺时针报数，接下来每个小朋友的报数是上一个小朋友报的数加1。若一个小朋友报的数为<em>k</em>的倍数或其末位数（即数的个位）为<em>k</em>，则该小朋友被淘汰出局，不再参加以后的报数。当游戏中只剩下一个小朋友时，该小朋友获胜。<br>　　例如，当n=5, k=2时：<br>　　1号小朋友报数1；<br>　　2号小朋友报数2淘汰；<br>　　3号小朋友报数3；<br>　　4号小朋友报数4淘汰；<br>　　5号小朋友报数5；<br>　　1号小朋友报数6淘汰；<br>　　3号小朋友报数7；<br>　　5号小朋友报数8淘汰；<br>　　3号小朋友获胜。</p><p>　　给定<em>n</em>和<em>k</em>，请问最后获胜的小朋友编号为多少？</p><a id="more"></a><p><strong>输入格式</strong></p><p>　　输入一行，包括两个整数<em>n</em>和<em>k</em>，意义如题目所述。</p><p><strong>输出格式</strong></p><p>　　输出一行，包含一个整数，表示获胜的小朋友编号。</p><p><strong>样例输入</strong></p><p>5 2</p><p><strong>样例输出</strong></p><p>3</p><p><strong>样例输入</strong></p><p>7 3</p><p><strong>样例输出</strong></p><p>4</p><p><strong>数据规模和约定</strong></p><p>　　对于所有评测用例，1 ≤ <em>n</em> ≤ 1000，1 ≤ <em>k</em> ≤ 9。</p><hr><p><strong>分析：</strong></p><p>本题考察<strong>队列</strong>的应用。</p><p>先将所有小朋友的编号入队，在队列的长度大于1时，执行如下循环：</p><p>若当前报数<code>num % k == 0 || num % 10 == k</code>，则将其出队；否则，让其先出队，再入队。</p><p>当队列中只剩下一个小朋友的编号时，这个人就是获胜者。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> n, k;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;k);</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; qu;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">qu.push(i + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> num = <span class="number">0</span>, temp;</span><br><span class="line"><span class="keyword">while</span> (qu.size() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">num++;</span><br><span class="line"><span class="keyword">if</span> (num % k == <span class="number">0</span> || num % <span class="number">10</span> == k) &#123;</span><br><span class="line">qu.pop();</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">temp = qu.front();</span><br><span class="line">qu.pop();</span><br><span class="line">qu.push(temp);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, qu.front());</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> ccf csp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ccf csp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CCF CSP 201809-2.买菜</title>
       <link href="/2019/07/20/ccf-csp-20180902/"/>
       <url>/2019/07/20/ccf-csp-20180902/</url>
@@ -29,11 +54,11 @@
     
     
     <entry>
-      <title>关于《球状闪电》这篇小说</title>
+      <title>关于《球状闪电》这本小说</title>
       <link href="/2019/07/19/reading-note-ball-lightning/"/>
       <url>/2019/07/19/reading-note-ball-lightning/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>《球状闪电》是我这个暑期看的第二本小说，前后大概花了一个星期的时间。</p><a id="more"></a><p>小说结尾时，量子态的林云和其父亲林峰将军长篇幅的两人对话，确实有点无聊。但瑕不掩瑜，《球状闪电》仍是一本很不错的小说。</p><p>作为主角的陈博士，大刘没有明说他毕业于哪个学校。但是，根据主角的学校所在地——南京，主角的专业——大气科学，另个一个主角林云的身份——国防科技大学防空武器系统博士，以及2017年的第四轮学科评估，我猜测，应该是南京大学。</p><p>下面是我比较喜欢的一些句子：</p><p>1.投入全部身心钻研，只问耕耘不问收获，不知不觉的专注中，一辈子也就过去了。</p><p>2.美妙人生的关键在于你能迷上什么东西。</p><p>3.我现在的人生好比一颗疾飞的炮弹，除了对到达目标时那一声爆炸的渴望之外什么都没有。</p><p>4.我和它，像两个要用一生时间准备一场决斗的骑士，当我没准备好的时候，既不去见它也不去想它。</p><p>5.窗外的每一片树叶，都使人类的科学显得那么幼稚无力。</p><p>6.像我们这样的人，全部身心长期被某种东西占据着以致最后这种东西成了你的一部分，生活中的其他事，再怎么看也是第二位的。</p><p>7.恒星这东西，如果不是其确实存在，本来可以很容易证明它不可能存在的。</p><p>8.当你渴望某样东西时，道德的约束是多么无力。</p><p>9.以前对我来说万分珍贵的时间，现在变得用之不竭了。</p><p>10.真正值得关注的是现在和未来。</p><p>11.从量子力学的角度来讲，人的死亡过程就是由一个强观察者变为弱观察者再变为非观察者的过程。</p>]]></content>
       
       
       <categories>
@@ -4617,9 +4642,9 @@
       
         <tags>
             
-            <tag> 随笔 </tag>
-            
             <tag> 生活 </tag>
+            
+            <tag> 随笔 </tag>
             
         </tags>
       
