@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CCF CSP 201703-2.学生排队]]></title>
+    <url>%2F2019%2F07%2F26%2Fccf-csp-20170302%2F</url>
+    <content type="text"><![CDATA[问题描述 体育老师小明要将自己班上的学生按顺序排队。他首先让学生按学号从小到大的顺序排成一排，学号小的排在前面，然后进行多次调整。一次调整小明可能让一位同学出队，向前或者向后移动一段距离后再插入队列。 例如，下面给出了一组移动的例子，例子中学生的人数为8人。 0）初始队列中学生的学号依次为1, 2, 3, 4, 5, 6, 7, 8； 1）第一次调整，命令为“3号同学向后移动2”，表示3号同学出队，向后移动2名同学的距离，再插入到队列中，新队列中学生的学号依次为1, 2, 4, 5, 3, 6, 7, 8； 2）第二次调整，命令为“8号同学向前移动3”，表示8号同学出队，向前移动3名同学的距离，再插入到队列中，新队列中学生的学号依次为1, 2, 4, 5, 8, 3, 6, 7； 3）第三次调整，命令为“3号同学向前移动2”，表示3号同学出队，向前移动2名同学的距离，再插入到队列中，新队列中学生的学号依次为1, 2, 4, 3, 5, 8, 6, 7。 小明记录了所有调整的过程，请问，最终从前向后所有学生的学号依次是多少？ 请特别注意，上述移动过程中所涉及的号码指的是学号，而不是在队伍中的位置。在向后移动时，移动的距离不超过对应同学后面的人数，如果向后移动的距离正好等于对应同学后面的人数则该同学会移动到队列的最后面。在向前移动时，移动的距离不超过对应同学前面的人数，如果向前移动的距离正好等于对应同学前面的人数则该同学会移动到队列的最前面。 输入格式 输入的第一行包含一个整数n，表示学生的数量，学生的学号由1到n编号。 第二行包含一个整数m，表示调整的次数。 接下来m行，每行两个整数p, q，如果q为正，表示学号为p的同学向后移动q，如果q为负，表示学号为p的同学向前移动-q。 输出格式 输出一行，包含n个整数，相邻两个整数之间由一个空格分隔，表示最终从前向后所有学生的学号。 样例输入 833 28 -33 -2 样例输出 1 2 4 3 5 8 6 7 评测用例规模与约定 对于所有评测用例，1 ≤ n ≤ 1000，1 ≤ m ≤ 1000，所有移动均合法。 分析： 本题考察链表的应用。 首先，寻找待移动元素在链表中的位置，并将其删除。然后，寻找需要插入的位置，插入该元素。 C++版 1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;cstdio&gt;#include &lt;list&gt;using namespace std;int main() &#123; int n, m; scanf("%d %d", &amp;n, &amp;m); // 初始化 list&lt;int&gt; ls; for (int i = 0; i &lt; n; i++) &#123; ls.push_back(i + 1); &#125; int num, step; while (m--) &#123; scanf("%d %d", &amp;num, &amp;step); list&lt;int&gt;::iterator iter = ls.begin(); // 查找待删除元素的位置 while (*iter != num) &#123; iter++; &#125; // 寻找插入位置 iter = ls.erase(iter); while (step &lt; 0) &#123; iter--; step++; &#125; while (step &gt; 0) &#123; iter++; step--; &#125; // 插入该元素 ls.insert(iter, num); &#125; for (list&lt;int&gt;::iterator iter = ls.begin(); iter != ls.end(); iter++) &#123; if (iter != ls.begin()) &#123; printf(" "); &#125; printf("%d", *iter); &#125; printf("\n"); return 0;&#125; Java版 1234567891011121314151617181920212223242526272829303132import java.util.LinkedList;import java.util.Scanner;public class Main &#123; public static void main(String[] args) &#123; Scanner scan = new Scanner(System.in); int n = scan.nextInt(); int m = scan.nextInt(); // 1.初始化 LinkedList&lt;Integer&gt; list = new LinkedList&lt;&gt;(); for (int i = 0; i &lt; n; i++) &#123; list.add(i + 1); &#125; // 2.查找待移动的元素并删除，然后在待插入的位置，插入该元素 for (int i = 0; i &lt; m; i++) &#123; int num = scan.nextInt(); int step = scan.nextInt(); int index = list.indexOf(num); list.remove(index); list.add(index + step, num); &#125; scan.close(); // 3.输出 StringBuilder sb = new StringBuilder(2 * n); for (int num : list) &#123; sb.append(num).append(' '); &#125; sb.deleteCharAt(sb.length() - 1); System.out.println(sb.toString()); &#125;&#125;]]></content>
+      <categories>
+        <category>ccf csp</category>
+      </categories>
+      <tags>
+        <tag>ccf csp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[pip常用命令总结]]></title>
+    <url>%2F2019%2F07%2F26%2Fpip-introduction%2F</url>
+    <content type="text"><![CDATA[pip，全称package installer for Python，是python的包管理工具。这里总结下pip中常用的一些命令。 查看pip版本12# 注意在-V中，V是大写字母pip --version 或者 pip -V 安装包 安装最新版本 1pip install 包名 安装指定版本 12# 必须写两个等号pip install 包名==版本号 升级包1pip install --upgrade 包名 查看已安装的包1pip list 卸载包1pip uninstall 包名 帮助信息如果记不住这些命令，没有关系，使用--help或者-h参数，可以打印帮助信息。 1pip --help 或者 pip -h]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[常见的激活函数]]></title>
+    <url>%2F2019%2F07%2F26%2Factivation-function%2F</url>
+    <content type="text"><![CDATA[常见的激活函数有sigmoid函数、tanh函数和ReLU函数，这里记录下这三者的数学表达式。 sigmoid函数$$\sigma(x) = \frac{1}{1+e^{-x}} \tag{1}$$ tanh函数$$tanh(x) = \frac{sinhx}{coshx} = \frac{e^x-e^{-x}}{e^x+e^{-x}} \tag{2}$$ ReLU函数$$f(x) = max(x,0) \tag{3}$$]]></content>
+      <categories>
+        <category>deep learning</category>
+      </categories>
+      <tags>
+        <tag>deep learning</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CCF CSP 201709-2.公共钥匙盒]]></title>
     <url>%2F2019%2F07%2F26%2Fccf-csp-20170902%2F</url>
     <content type="text"><![CDATA[问题描述 有一个学校的老师共用N个教室，按照规定，所有的钥匙都必须放在公共钥匙盒里，老师不能带钥匙回家。每次老师上课前，都从公共钥匙盒里找到自己上课的教室的钥匙去开门，上完课后，再将钥匙放回到钥匙盒中。 钥匙盒一共有N个挂钩，从左到右排成一排，用来挂N个教室的钥匙。一串钥匙没有固定的悬挂位置，但钥匙上有标识，所以老师们不会弄混钥匙。 每次取钥匙的时候，老师们都会找到自己所需要的钥匙将其取走，而不会移动其他钥匙。每次还钥匙的时候，还钥匙的老师会找到最左边的空的挂钩，将钥匙挂在这个挂钩上。如果有多位老师还钥匙，则他们按钥匙编号从小到大的顺序还。如果同一时刻既有老师还钥匙又有老师取钥匙，则老师们会先将钥匙全还回去再取出。 今天开始的时候钥匙是按编号从小到大的顺序放在钥匙盒里的。有K位老师要上课，给出每位老师所需要的钥匙、开始上课的时间和上课的时长，假设下课时间就是还钥匙时间，请问最终钥匙盒里面钥匙的顺序是怎样的？ 输入格式 输入的第一行包含两个整数N, K。 接下来K行，每行三个整数w, s, c，分别表示一位老师要使用的钥匙编号、开始上课的时间和上课的时长。可能有多位老师使用同一把钥匙，但是老师使用钥匙的时间不会重叠。 保证输入数据满足输入格式，你不用检查数据合法性。 输出格式 输出一行，包含N个整数，相邻整数间用一个空格分隔，依次表示每个挂钩上挂的钥匙编号。 样例输入 5 24 3 32 2 7 样例输出 1 4 3 2 5 样例说明 第一位老师从时刻3开始使用4号教室的钥匙，使用3单位时间，所以在时刻6还钥匙。第二位老师从时刻2开始使用钥匙，使用7单位时间，所以在时刻9还钥匙。 每个关键时刻后的钥匙状态如下（X表示空）： 时刻2后为1X345； 时刻3后为1X3X5； 时刻6后为143X5； 时刻9后为14325。 样例输入 5 71 1 143 3 121 15 122 7 203 18 124 21 195 30 9 样例输出 1 2 3 5 4 评测用例规模与约定 对于30%的评测用例，1 ≤ N, K ≤ 10, 1 ≤ w ≤ N, 1 ≤ s, c ≤ 30； 对于60%的评测用例，1 ≤ N, K ≤ 50，1 ≤ w ≤ N，1 ≤ s ≤ 300，1 ≤ c ≤ 50； 对于所有评测用例，1 ≤ N, K ≤ 1000，1 ≤ w ≤ N，1 ≤ s ≤ 10000，1 ≤ c ≤ 100。 分析： 首先，定义结构体Key，包含钥匙的编号num、当前动作的开始时间start以及借还状态borrow。 定义vector&lt;key&gt;类型的变量list，长度为n的int型数组arr，其值表示钥匙编号，初始化为1到n。 遍历输入的借还记录，将借和还分别加入到list中。 然后，对list进行排序，排序规则为：按照时间从大到小的顺序排列；若时间相同，则按照先借后还的顺序排列；若借还状态相同，则按照钥匙的编号从大到小排列。 当list不为空时，执行如下循环：将最后一个元素出列，若其borrow == true，则找到对应的钥匙编号，将其设置为-1，表示已借出；否则，寻找arr中第一个值为-1的位置，将钥匙还入该位置。 最后，顺序输出数组arr中的值即可。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;vector&gt;using namespace std;typedef struct Node &#123; // 钥匙编号 int num; // 开始时间 int start; // 借钥匙还是还钥匙 bool borrow; Node(int _num, int _start, bool _borrow) &#123; num = _num; start = _start; borrow = _borrow; &#125;&#125; Key;bool cmp(Key a, Key b) &#123; // 时间早的在后面，先出列 if (a.start != b.start) &#123; return a.start &gt; b.start; &#125; // 先借后还，还的先出列 if (a.borrow != b.borrow) &#123; return a.borrow &amp;&amp; !b.borrow; &#125; // 按照编号从大到小排列，小的先出列 return a.num &gt; b.num;&#125;int main() &#123; int n, k; scanf("%d %d", &amp;n, &amp;k); int arr[n]; for (int i = 0; i &lt; n; i++) &#123; arr[i] = i + 1; &#125; vector&lt;Key&gt; list; int w, s, c; for (int i = 0; i &lt; k; i++) &#123; scanf("%d %d %d", &amp;w, &amp;s, &amp;c); list.push_back(Key(w, s, true)); list.push_back(Key(w, s + c, false)); &#125; sort(list.begin(), list.end(), cmp); while (!list.empty()) &#123; Key key = list.back(); list.pop_back(); if (key.borrow) &#123; for (int i = 0; i &lt; n; i++) &#123; if (arr[i] == key.num) &#123; // 表示该钥匙已被借出 arr[i] = -1; break; &#125; &#125; &#125; else &#123; for (int i = 0; i &lt; n; i++) &#123; if (arr[i] == -1) &#123; arr[i] = key.num; break; &#125; &#125; &#125; &#125; for (int i = 0; i &lt; n; i++) &#123; printf("%d", arr[i]); if (i &lt; n - 1) &#123; printf(" "); &#125; else &#123; printf("\n"); &#125; &#125; return 0;&#125;]]></content>
