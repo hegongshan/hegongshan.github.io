@@ -1954,7 +1954,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #32d2f5;
+  background: #41fb59;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2339,14 +2339,6 @@ pre .javascript .function {
 .theme-next .this_ua.browser.QQBrowser {
   background-color: #78ace9 !important;
   border-color: #4cae4c !important;
-}
-.gt-header a,
-.gt-comments a,
-.gt-popup a {
-  border-bottom: none;
-}
-.gt-container .gt-popup .gt-action.is--active:before {
-  top: 0.7em;
 }
 .post-spread {
   margin-top: 20px;
@@ -3317,4 +3309,10 @@ pre .javascript .function {
 }
 .text-center {
   text-align: center;
+}
+@font-face {
+  font-family: "Monaco";
+  src: url("../../fonts/Monaco.ttf");
+  font-weight: normal;
+  font-style: normal;
 }
