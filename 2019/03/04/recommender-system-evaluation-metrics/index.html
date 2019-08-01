@@ -60,7 +60,7 @@
 
 
 
-  <meta name="keywords" content="Hexo">
+  <meta name="keywords" content="recommender system,">
 
 
 
@@ -71,17 +71,18 @@
 
 
 
-<meta name="description" content="个人博客">
-<meta name="keywords" content="GongshanHe Java Spring Python MachineLearning DeepLearning KnowledgeGraph QuestionAnswering">
-<meta property="og:type" content="website">
-<meta property="og:title" content="贺巩山的博客">
-<meta property="og:url" content="https://www.hegongshan.com/tags/recommend-system/index.html">
+<meta name="description" content="推荐系统实验方法在推荐系统中，主要有3种评测推荐效果的实验方法，即离线实验(offline experiment)、用户调查(user study) 和在线实验(online experiment)。 离线实验离线实验的方法一般由如下几个步骤构成: (1) 通过日志系统获得用户行为数据，并按照一定格式生成一个标准的数据集;  (2) 将数据集按照一定的规则分成训练集和测试集;  (3) 在训练集上">
+<meta name="keywords" content="recommender system">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《推荐系统实践》1.推荐系统评测">
+<meta property="og:url" content="https://www.hegongshan.com/2019/03/04/recommender-system-evaluation-metrics/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="推荐系统实验方法在推荐系统中，主要有3种评测推荐效果的实验方法，即离线实验(offline experiment)、用户调查(user study) 和在线实验(online experiment)。 离线实验离线实验的方法一般由如下几个步骤构成: (1) 通过日志系统获得用户行为数据，并按照一定格式生成一个标准的数据集;  (2) 将数据集按照一定的规则分成训练集和测试集;  (3) 在训练集上">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-01T12:49:34.113Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="贺巩山的博客">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="《推荐系统实践》1.推荐系统评测">
+<meta name="twitter:description" content="推荐系统实验方法在推荐系统中，主要有3种评测推荐效果的实验方法，即离线实验(offline experiment)、用户调查(user study) 和在线实验(online experiment)。 离线实验离线实验的方法一般由如下几个步骤构成: (1) 通过日志系统获得用户行为数据，并按照一定格式生成一个标准的数据集;  (2) 将数据集按照一定的规则分成训练集和测试集;  (3) 在训练集上">
 
 
 
@@ -111,13 +112,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hegongshan.com/tags/recommend-system/">
+  <link rel="canonical" href="https://www.hegongshan.com/2019/03/04/recommender-system-evaluation-metrics/">
 
 
 
 
 
-  <title>标签: recommend system | 贺巩山的博客</title>
+  <title>《推荐系统实践》1.推荐系统评测 | 贺巩山的博客</title>
   
 
 
@@ -136,7 +137,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 	<!--<a href="https://github.com/hegongshan">
 		<img style="position:absolute;top:0;right:0;border:0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
@@ -344,104 +345,341 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>recommend system<small>标签</small>
-        </h2>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/03/04/recommender-system-evaluation-metrics/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/03/14/recommend-system-cold-start/" itemprop="url">
-              
-                <span itemprop="name">《推荐系统实践》4.推荐系统冷启动问题</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">《推荐系统实践》1.推荐系统评测</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-14T11:43:54+08:00" content="2019-03-14">
-          03-14
-        </time>
-      </div>
+        <div class="post-meta">
+		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-04T16:01:27+08:00">
+                2019-03-04
+              </time>
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-08-01T20:49:34+08:00">
+                2019-08-01
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/recommender-system/" itemprop="url" rel="index">
+                    <span itemprop="name">recommender system</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.9k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/13/recommend-system-item-based-collaborative-filtering/" itemprop="url">
-              
-                <span itemprop="name">《推荐系统实践》3.基于物品的协同过滤算法</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-13T11:31:32+08:00" content="2019-03-13">
-          03-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/04/recommend-system-evaluation-metrics/" itemprop="url">
-              
-                <span itemprop="name">《推荐系统实践》1.推荐系统评测</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-04T16:01:27+08:00" content="2019-03-04">
-          03-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h3 id="推荐系统实验方法"><a href="#推荐系统实验方法" class="headerlink" title="推荐系统实验方法"></a>推荐系统实验方法</h3><p>在推荐系统中，主要有3种评测推荐效果的实验方法，即离线实验(offline experiment)、用户调查(user study) 和在线实验(online experiment)。</p>
+<h4 id="离线实验"><a href="#离线实验" class="headerlink" title="离线实验"></a>离线实验</h4><p>离线实验的方法一般由如下几个步骤构成:</p>
+<p>(1) 通过日志系统获得用户行为数据，并按照一定格式生成一个标准的数据集; </p>
+<p>(2) 将数据集按照一定的规则分成训练集和测试集; </p>
+<p>(3) 在训练集上训练用户兴趣模型，在测试集上进行预测; </p>
+<p>(4) 通过事先定义的离线指标评测算法在测试集上的预测结果。</p>
+<p><strong>好处</strong>：不需要真实用户参与，可以直接快速地计算出来，从而方便、快速地测试大量不同的算法  </p>
+<p><strong>缺点</strong>：无法获得很多商业上关注的指标，如点击率、转化率等</p>
+<h4 id="用户调查"><a href="#用户调查" class="headerlink" title="用户调查"></a>用户调查</h4><p>用户调查需要有一些真实用户，让他们在需要测试的推荐系统上完成一些任务。在他们完成任务时，我们需要观察和记录他们的行为，并让他们回答一些问题。最后，我们需要通过分析他们的行为和答案了解测试系统的性能。</p>
+<p><strong>优点</strong>：可以获得很多体现用户主观感受的指标，相对在线实验风险很低，出现错误后很容易弥补</p>
+<p><strong>缺点</strong>：招募测试用户代价较大，很难组织大规模的测试用户，因此会使测试结果的统计意义不足。</p>
+<h4 id="在线实验"><a href="#在线实验" class="headerlink" title="在线实验"></a>在线实验</h4><p>在完成离线实验和必要的用户调查后，可以将推荐系统上线做AB测试，将它和旧的算法进行比较。</p>
+<p>AB测试是一种很常用的在线评测算法的实验方法。它通过一定的规则将用户随机分成几组，并对不同组的用户采用不同的算法，然后通过统计不同组用户的各种不同的评测指标比较不同算法，比如可以统计不同组用户的点击率，通过点击率比较不同算法的性能。</p>
+<p><strong>AB测试的优点</strong>：可以公平获得不同算法实际在线时的性能指标，包括商业上关注的指标。<br><strong>AB测试的缺点</strong>：周期比较长，必须进行长期的实验才能得到可靠的结果。</p>
+<p>因此一般不会用AB测试测试所有的算法，而只是用它测试那些在离线实验和用户调查中表现很好的算法。</p>
+<h3 id="评测指标"><a href="#评测指标" class="headerlink" title="评测指标"></a>评测指标</h3><p>在《推荐系统实践》中，作者列举了用户满意度、预测准确度、覆盖率、多样性、新颖性、惊喜度、信任度、实时性、健壮性和商业目标共十种推荐系统的评测指标，这里，我只选取了一部分。</p>
+<h4 id="用户满意度"><a href="#用户满意度" class="headerlink" title="用户满意度"></a>用户满意度</h4><p>用户作为推荐系统的重要参与者，其满意度是评测推荐系统的最重要指标。但是，用户满意度没有办法离线计算，只能通过用户调查或者在线实验获得。</p>
+<ul>
+<li><p>用户调查获得用户满意度主要是通过<em>调查问卷</em>的形式。</p>
+</li>
+<li><p>在在线系统中，用户满意度主要通过一些对用户行为的统计得到。比如在电子商务网站中，用户如果购买了推荐的商品，就表示他们在一定程度上满意。因此，我们可以利用购买率度量用户的满意度。此外，有些网站会通过设计一些用户反馈界面收集用户满意度。 更一般的情况下，我们可以用点击率、用户停留时间和转化率等指标度量用户的满意度。</p>
+</li>
+</ul>
+<h4 id="预测准确度"><a href="#预测准确度" class="headerlink" title="预测准确度"></a>预测准确度</h4><p>预测准确度度量一个推荐系统或者推荐算法预测用户行为的能力。</p>
+<p>在计算该指标时需要有一个离线的数据集，该数据集包含用户的历史行为记录。然后，将该数据集通过时间分成训练集和测试集。最后，通过在训练集上建立用户的行为和兴趣模型预测用户在测试集上的行为，并计算预测行为和测试集上实际行为的重合度作为预测准确度。</p>
+<p>由于离线的推荐算法有不同的研究方向，因此下面将针对不同的研究方向介绍它们的预测准确度指标。 </p>
+<ul>
+<li>评分预测</li>
+</ul>
+<p>预测用户对物品评分的行为称为评分预测（rating prediction）。</p>
+<p>评分预测的预测准确度一般通过<strong>均方根误差(Root Mean Squared Error，简称RMSE)和平均绝对误差(Mean Absolute Error，简称MAE)</strong>计算。对于测试集中的一个用户u和物品i ，令$r_{ui}$是用户对物品i的实际评分，而$\hat{r}_{ui}$是推荐算法给出的预测评分，那么RMSE的定义为</p>
+<p>$$<br>RMSE = \frac {\sqrt{\sum_{u,i\in Test}{(r_{ui}-\hat{r}_{ui})^2}}} {|Test|}<br>$$</p>
+<p>MAE采用绝对值计算预测误差，它的定义为:</p>
+<p>$$<br>MAE = \frac {\sum_{u,i\in Test}{|r_{ui}-\hat{r}_{ui}|}} {|Test|}<br>$$</p>
+<p>假设我们用一个列表records存放用户评分数据，令<em>records[i] = [u,i,rui,pui]</em>，其中rui是用户u对物品i的实际评分，pui是算法预测出来的用户u对物品i的评分，那么下面的代码分别实现了RMSE和MAE的计算过程。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">RMSE</span><span class="params">(records)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> math.sqrt(sum([pow(rui-pui,<span class="number">2</span>) <span class="keyword">for</span> u,i,rui,pui <span class="keyword">in</span> records])) \</span><br><span class="line">        / float(len(records))</span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">MAE</span><span class="params">(records)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> sum([abs(rui-pui) <span class="keyword">for</span> u,i,rui,pui <span class="keyword">in</span> records]) \</span><br><span class="line">        / float(len(records))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>TopN推荐</li>
+</ul>
+<p>网站在提供推荐服务时，一般是给用户一个个性化的推荐列表，这种推荐叫做TopN推荐。 </p>
+<p>TopN推荐的预测准确率一般通过准确率(precision)/召回率(recall)度量。 </p>
+<p>令R(u)是根据用户在训练集上的行为给用户作出的推荐列表，而T(u)是用户在测试集上的行为列表。那么，推荐结果的召回率定义为:<br>$$<br>Recall = \frac {\sum_{u \in U}|R(u) \cap T(u)|} {\sum_{u \in U}|T(u)|}<br>$$<br>推荐结果的准确率定义为：<br>$$<br>Precision = \frac {\sum_{u \in U}|R(u) \cap T(u)|} {\sum_{u \in U}|R(u)|}<br>$$<br>下面用代码同时计算一个推荐算法的准确率和召回率：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">PrecisionRecall</span><span class="params">(test,N)</span>:</span></span><br><span class="line">    hit = <span class="number">0</span></span><br><span class="line">    n_recall = <span class="number">0</span></span><br><span class="line">    n_precision = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> user,items <span class="keyword">in</span> test.items():</span><br><span class="line">        rank = Recommend(user,N)</span><br><span class="line">        <span class="comment"># &amp;按位与，表示取两个集合的交集</span></span><br><span class="line">        hit += len(rank &amp; items)</span><br><span class="line">        n_recall += len(items)</span><br><span class="line">        n_precision += N</span><br><span class="line">    <span class="keyword">return</span> [hit / (<span class="number">1.0</span> * n_recall), hit / (<span class="number">1.0</span> * n_precision)</span><br></pre></td></tr></table></figure>
+<h4 id="信任度"><a href="#信任度" class="headerlink" title="信任度"></a>信任度</h4><p>度量推荐系统的信任度只能通过<strong>问卷调查</strong>的方式，询问用户是否信任推荐系统的推荐结果。</p>
+<p>提高推荐系统的信任度主要有两种方法。</p>
+<p>1.首先需要增加推荐系统的<strong>透明度(transparency)</strong>，而增加推荐系统透明度的主要办法是提供推荐解释。只有让用户了解推荐系统的运行机制，让用户认同推荐系统的运行机制，才会提高用户对推荐系统的信任度。</p>
+<p>2.其次是考虑用户的社交网络信息，<strong>利用用户的好友信息给用户做推荐</strong>，并且用好友进行推荐解释。这是因为用户对他们的好友一般都比较信任，因此如果推荐的商品是好友购买过的，那么他们对推荐结果就会相对比较信任。</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>《推荐系统实践》，项亮</p>
 
       
     </div>
+    
+    
+    
+    		
+	  <div>
+	    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">----------本文结束<i class="fa fa-paw"></i>感谢您的阅读----------</div>
+    
+</div>	
+	  </div>
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Gongshan He 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Gongshan He 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Gongshan He
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.hegongshan.com/2019/03/04/recommender-system-evaluation-metrics/" title="《推荐系统实践》1.推荐系统评测">https://www.hegongshan.com/2019/03/04/recommender-system-evaluation-metrics/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/recommender-system/" rel="tag"><i class="fa fa-tag"></i> recommender system</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/27/leetcode-82-remove-duplicates-from-sorted-list-ii/" rel="next" title="LeetCode 82.删除排序链表中的重复元素 II">
+                <i class="fa fa-chevron-left"></i> LeetCode 82.删除排序链表中的重复元素 II
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/13/recommender-system-item-based-collaborative-filtering/" rel="prev" title="《推荐系统实践》3.基于物品的协同过滤算法">
+                《推荐系统实践》3.基于物品的协同过滤算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -449,6 +687,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+        <div id="gitalk-container"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -469,8 +716,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -487,7 +743,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">196</span>
+                  <span class="site-state-item-count">200</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -498,7 +754,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -509,7 +765,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -596,6 +852,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐系统实验方法"><span class="nav-number">1.</span> <span class="nav-text">推荐系统实验方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#离线实验"><span class="nav-number">1.1.</span> <span class="nav-text">离线实验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户调查"><span class="nav-number">1.2.</span> <span class="nav-text">用户调查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在线实验"><span class="nav-number">1.3.</span> <span class="nav-text">在线实验</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评测指标"><span class="nav-number">2.</span> <span class="nav-text">评测指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用户满意度"><span class="nav-number">2.1.</span> <span class="nav-text">用户满意度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预测准确度"><span class="nav-number">2.2.</span> <span class="nav-text">预测准确度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信任度"><span class="nav-number">2.3.</span> <span class="nav-text">信任度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -756,6 +1028,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -794,6 +1070,21 @@
 
 
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'e80ff2e43cf29f9de422',
+          clientSecret: '462fb57a98f6ec42f83ed23b0fc4c3e973483a5f',
+          repo: 'hegongshan.github.io',
+          owner: 'hegongshan',
+          admin: ['hegongshan'],
+          id: location.pathname,
+          distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
 
 
 
