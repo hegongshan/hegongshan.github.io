@@ -1954,7 +1954,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #41fb59;
+  background: #657ae4;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3312,7 +3312,7 @@ pre .javascript .function {
 }
 @font-face {
   font-family: "Monaco";
-  src: url("../../fonts/Monaco.ttf");
+  src: url("../fonts/Monaco.ttf");
   font-weight: normal;
   font-style: normal;
 }
