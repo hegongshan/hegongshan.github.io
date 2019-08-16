@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CCF CSP 201409-3.字符串匹配]]></title>
+    <url>%2F2019%2F08%2F16%2Fccf-csp-20140903%2F</url>
+    <content type="text"><![CDATA[问题描述 给出一个字符串和多行文字，在这些文字中找到字符串出现的那些行。你的程序还需支持大小写敏感选项：当选项打开时，表示同一个字母的大写和小写看作不同的字符；当选项关闭时，表示同一个字母的大写和小写看作相同的字符。 输入格式 输入的第一行包含一个字符串S，由大小写英文字母组成。 第二行包含一个数字，表示大小写敏感的选项，当数字为0时表示大小写不敏感，当数字为1时表示大小写敏感。 第三行包含一个整数n，表示给出的文字的行数。 接下来n行，每行包含一个字符串，字符串由大小写英文字母组成，不含空格和其他字符。 输出格式 输出多行，每行包含一个字符串，按出现的顺序依次给出那些包含了字符串S的行。 样例输入 Hello15HelloWorldHiHiHelloHiHiGrepIsAGreatToolHELLOHELLOisNOTHello 样例输出 HelloWorldHiHiHelloHiHiHELLOisNOTHello 样例说明 在上面的样例中，第四个字符串虽然也是Hello，但是大小写不正确。如果将输入的第二行改为0，则第四个字符串应该输出。 评测用例规模与约定 1&lt;=n&lt;=100，每个字符串的长度不超过100。 分析： 这是一道简单的字符串模拟题。 当大小写敏感时，本题变为判断字符串是否包含某一子串； 当大小写不敏感时，可以先将字符串和子串都转换为小写（或者大写）形式，接下来的操作，与大小写敏感时一致。 在C/C++中，判断字符串是否包含某一子串，可以使用strstr()或者字符串的find()；在Java中，可以使用字符串的contains()。 C++版 1234567891011121314151617181920212223242526272829303132333435363738394041#include &lt;cstdio&gt;#include &lt;cstring&gt;// 将source转换为小写字符串resultvoid to_lower_case(char source[], char result[]) &#123; int size = strlen(source); for (int i = 0; i &lt; size; i++) &#123; if ('A' &lt;= source[i] &amp;&amp; source[i] &lt;= 'Z') &#123; result[i] = source[i] + 32; &#125; else &#123; result[i] = source[i]; &#125; &#125; result[size] = '\0';&#125;int main() &#123; char pattern[101], str[101]; scanf("%s", pattern); int ignore, n; scanf("%d %d", &amp;ignore, &amp;n); char * position; char pattern2[101], str2[101]; for (int i = 0; i &lt; n; i++) &#123; scanf("%s", str); if (ignore == 0) &#123; to_lower_case(pattern, pattern2); to_lower_case(str, str2); position = strstr(str2, pattern2); &#125; else &#123; position = strstr(str, pattern); &#125; if (position != NULL) &#123; printf("%s\n", str); &#125; &#125; return 0;&#125; Java版 12345678910111213141516171819202122232425import java.util.Scanner;public class Main &#123; public static void main(String[] args) &#123; // 1.输入 Scanner scan = new Scanner(System.in); String pattern = scan.nextLine(); boolean ignoreCase = Integer.parseInt(scan.nextLine().trim()) == 0 ? true : false; int line = Integer.parseInt(scan.nextLine().trim()); // 2.处理并输出 StringBuilder sb = new StringBuilder(); for (int i = 0; i &lt; line; i++) &#123; String str = scan.nextLine(); if ((ignoreCase &amp;&amp; str.toLowerCase().contains(pattern.toLowerCase())) || (!ignoreCase &amp;&amp; str.contains(pattern))) &#123; sb.append(str).append("\n"); &#125; &#125; scan.close(); System.out.println(sb.toString()); &#125;&#125;]]></content>
+      <categories>
+        <category>ccf csp</category>
+      </categories>
+      <tags>
+        <tag>ccf csp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CCF CSP 201509-4.高速公路]]></title>
     <url>%2F2019%2F08%2F15%2Fccf-csp-20150904%2F</url>
     <content type="text"><![CDATA[问题描述 某国有n个城市，为了使得城市间的交通更便利，该国国王打算在城市之间修一些高速公路，由于经费限制，国王打算第一阶段先在部分城市之间修一些单向的高速公路。 现在，大臣们帮国王拟了一个修高速公路的计划。看了计划后，国王发现，有些城市之间可以通过高速公路直接（不经过其他城市）或间接（经过一个或多个其他城市）到达，而有的却不能。如果城市A可以通过高速公路到达城市B，而且城市B也可以通过高速公路到达城市A，则这两个城市被称为便利城市对。 国王想知道，在大臣们给他的计划中，有多少个便利城市对。 输入格式 输入的第一行包含两个整数n, m，分别表示城市和单向高速公路的数量。 接下来m行，每行两个整数a, b，表示城市a有一条单向的高速公路连向城市b。 输出格式 输出一行，包含一个整数，表示便利城市对的数量。 样例输入 5 51 22 33 44 23 5 样例输出 3 样例说明 城市间的连接如图所示。有3个便利城市对，它们分别是(2, 3), (2, 4), (3, 4)，请注意(2, 3)和(3, 2)看成同一个便利城市对。 评测用例规模与约定 前30%的评测用例满足1 ≤ n ≤ 100, 1 ≤ m ≤ 1000； 前60%的评测用例满足1 ≤ n ≤ 1000, 1 ≤ m ≤ 10000； 所有评测用例满足1 ≤ n ≤ 10000, 1 ≤ m ≤ 100000。 分析： 本题考察图的强连通分量。 我们只需要统计出在n个城市组成的图中，有多少个强连通分量，每个强连通分量有多少个城市，然后使用高中数学的组合公式，就能够计算出便利城市对的数量。$$C_n^2 = \frac{n \times (n-1)}{2 \times 1}$$求解有向图中的强连通分量，可以采用tarjan（塔扬）算法。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;cstdio&gt;#include &lt;stack&gt;#include &lt;vector&gt;#include &lt;algorithm&gt;using namespace std;const int MAX = 10001;int deep = 0, result = 0;int low[MAX], dfn[MAX];bool visited[MAX];stack&lt;int&gt; st;vector&lt;int&gt; graph[MAX];void tarjan(int u) &#123; low[u] = dfn[u] = ++deep; visited[u] = true; st.push(u); for (int i = 0; i &lt; graph[u].size(); i++) &#123; int v = graph[u][i]; // v未访问 if (dfn[v] == 0) &#123; tarjan(v); low[u] = min(low[u], low[v]); &#125; else if (visited[v]) &#123; // v已被访问，且尚在栈中 low[u] = min(low[u], dfn[v]); &#125; &#125; if (dfn[u] == low[u]) &#123; int x, count = 0; do &#123; x = st.top(); st.pop(); count++; visited[x] = false; &#125; while (u != x); result += count * (count - 1) / 2; &#125;&#125;int main() &#123; int n, m, a, b; scanf("%d %d", &amp;n, &amp;m); while (m--) &#123; scanf("%d %d", &amp;a, &amp;b); graph[a].push_back(b); &#125; fill(low, low + n + 1, 0); fill(dfn, dfn + n + 1, 0); fill(visited, visited + n + 1, false); for (int i = 1; i &lt;= n; i++) &#123; if (dfn[i] == 0) &#123; tarjan(i); &#125; &#125; printf("%d\n", result); return 0;&#125;]]></content>
@@ -2285,8 +2296,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>随笔</tag>
         <tag>生活</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
