@@ -60,7 +60,7 @@
 
 
 
-  <meta name="keywords" content="python,matplotlib,">
+  <meta name="keywords" content="python,">
 
 
 
@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="matplotlib 折线图1234import matplotlib.pyplot as plty = [1,4,9,16]plt.plot(y)plt.show() 修改标签文字和线条粗细 12345678910import matplotlib.pyplot as plty = [1,4,9,16,25]plt.plot(y,linewidth=5)# plt.title(&apos;Squares">
-<meta name="keywords" content="python,matplotlib">
+<meta name="description" content="Matplotlib是一个Python的2D绘图库。 1import matplotlib.pyplot as plt 设置图片标题1plt.title(&apos;title&apos;) 设置x/y轴文字12plt.xlabel(&apos;xlabel&apos;)plt.ylabel(&apos;ylabel&apos;) 显示图片1plt.show() 使用中文Matplotlib默认是不支持中文的。因此，如果要显示中文，可以导入本地的中文字体库">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python数据分析之matplotlib">
+<meta property="og:title" content="Matplotlib入门">
 <meta property="og:url" content="https://www.hegongshan.com/2018/06/26/python-matplotlib/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="matplotlib 折线图1234import matplotlib.pyplot as plty = [1,4,9,16]plt.plot(y)plt.show() 修改标签文字和线条粗细 12345678910import matplotlib.pyplot as plty = [1,4,9,16,25]plt.plot(y,linewidth=5)# plt.title(&apos;Squares">
+<meta property="og:description" content="Matplotlib是一个Python的2D绘图库。 1import matplotlib.pyplot as plt 设置图片标题1plt.title(&apos;title&apos;) 设置x/y轴文字12plt.xlabel(&apos;xlabel&apos;)plt.ylabel(&apos;ylabel&apos;) 显示图片1plt.show() 使用中文Matplotlib默认是不支持中文的。因此，如果要显示中文，可以导入本地的中文字体库">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-19T07:23:57.749Z">
+<meta property="og:updated_time" content="2019-09-10T14:08:06.641Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python数据分析之matplotlib">
-<meta name="twitter:description" content="matplotlib 折线图1234import matplotlib.pyplot as plty = [1,4,9,16]plt.plot(y)plt.show() 修改标签文字和线条粗细 12345678910import matplotlib.pyplot as plty = [1,4,9,16,25]plt.plot(y,linewidth=5)# plt.title(&apos;Squares">
+<meta name="twitter:title" content="Matplotlib入门">
+<meta name="twitter:description" content="Matplotlib是一个Python的2D绘图库。 1import matplotlib.pyplot as plt 设置图片标题1plt.title(&apos;title&apos;) 设置x/y轴文字12plt.xlabel(&apos;xlabel&apos;)plt.ylabel(&apos;ylabel&apos;) 显示图片1plt.show() 使用中文Matplotlib默认是不支持中文的。因此，如果要显示中文，可以导入本地的中文字体库">
 
 
 
@@ -118,7 +118,7 @@
 
 
 
-  <title>python数据分析之matplotlib | 贺巩山的博客</title>
+  <title>Matplotlib入门 | 贺巩山的博客</title>
   
 
 
@@ -376,7 +376,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">python数据分析之matplotlib</h2>
+          <h2 class="post-title" itemprop="name headline">Matplotlib入门</h2>
         
 
         <div class="post-meta">
@@ -406,8 +406,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-19T15:23:57+08:00">
-                2019-01-19
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-10T22:08:06+08:00">
+                2019-09-10
               </time>
             
           </span>
@@ -461,7 +461,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  131
+                  375
                 </span>
               
 
@@ -486,13 +486,24 @@
       
 
       
-        <p>matplotlib</p>
-<h3 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">y = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>]</span><br><span class="line">plt.plot(y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+        <p>Matplotlib是一个Python的2D绘图库。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+<h3 id="设置图片标题"><a href="#设置图片标题" class="headerlink" title="设置图片标题"></a>设置图片标题</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.title(<span class="string">'title'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="设置x-y轴文字"><a href="#设置x-y轴文字" class="headerlink" title="设置x/y轴文字"></a>设置x/y轴文字</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.xlabel(<span class="string">'xlabel'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'ylabel'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="显示图片"><a href="#显示图片" class="headerlink" title="显示图片"></a>显示图片</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="使用中文"><a href="#使用中文" class="headerlink" title="使用中文"></a>使用中文</h3><p>Matplotlib默认是不支持中文的。因此，如果要显示中文，可以导入本地的中文字体库。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.font_manager <span class="keyword">import</span> FontProperties</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置字体，fname为本地字体库的所在路径</span></span><br><span class="line">font = FontProperties(fname=<span class="string">'/System/Library/Fonts/Hiragino Sans GB.ttc'</span>,size=<span class="number">14</span>)</span><br><span class="line"><span class="comment"># 在用到中文的地方，设置fontproperties</span></span><br><span class="line">plt.title(<span class="string">"出行时段分布"</span>,fontproperties=font)</span><br></pre></td></tr></table></figure>
+<h3 id="线条图"><a href="#线条图" class="headerlink" title="线条图"></a>线条图</h3><p>绘制线条图，需要使用matplotlib.pyplot中的<strong>plot</strong>方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">y = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>]</span><br><span class="line">plt.plot(y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <p>修改标签文字和线条粗细</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">y = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">25</span>]</span><br><span class="line">plt.plot(y,linewidth=<span class="number">5</span>)</span><br><span class="line"><span class="comment"># </span></span><br><span class="line">plt.title(<span class="string">'Squares Numbers'</span>,fontsize=<span class="number">24</span>)</span><br><span class="line">plt.xlabel(<span class="string">'value'</span>,fontsize=<span class="number">14</span>)</span><br><span class="line">plt.ylabel(<span class="string">'square of value'</span>,fontsize=<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line">plt.tick_params(axis=<span class="string">'both'</span>,labelsize=<span class="number">14</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <p>校正图形</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">y = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> x]</span><br><span class="line">plt.plot(x,y,linewidth=<span class="number">5</span>)</span><br><span class="line"><span class="comment"># </span></span><br><span class="line">plt.title(<span class="string">'Squares Numbers'</span>,fontsize=<span class="number">24</span>)</span><br><span class="line">plt.xlabel(<span class="string">'value'</span>,fontsize=<span class="number">14</span>)</span><br><span class="line">plt.ylabel(<span class="string">'square of value'</span>,fontsize=<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line">plt.tick_params(axis=<span class="string">'both'</span>,labelsize=<span class="number">14</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<h3 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h3><h3 id="画分段函数"><a href="#画分段函数" class="headerlink" title="画分段函数"></a>画分段函数</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">y = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> x]</span><br><span class="line">plt.plot(x,y,linewidth=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Squares Numbers'</span>,fontsize=<span class="number">24</span>)</span><br><span class="line">plt.xlabel(<span class="string">'value'</span>,fontsize=<span class="number">14</span>)</span><br><span class="line">plt.ylabel(<span class="string">'square of value'</span>,fontsize=<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line">plt.tick_params(axis=<span class="string">'both'</span>,labelsize=<span class="number">14</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h3><p>绘制散点图，需要使用matplotlib.pyplot中的<strong>scatter</strong>方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">y = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> x]</span><br><span class="line">plt.scatter(x,y,linewidth=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Squares Numbers'</span>,fontsize=<span class="number">24</span>)</span><br><span class="line">plt.xlabel(<span class="string">'value'</span>,fontsize=<span class="number">14</span>)</span><br><span class="line">plt.ylabel(<span class="string">'square of value'</span>,fontsize=<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line">plt.tick_params(axis=<span class="string">'both'</span>,labelsize=<span class="number">14</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="保存图片"><a href="#保存图片" class="headerlink" title="保存图片"></a>保存图片</h3><p>保存图片，需要使用matplotlib.pyplot中的savefig方法。值得注意的是，<strong>savefig必须在show方法之前执行</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.savefig(<span class="string">'./test.eps'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -550,7 +561,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hegongshan.com/2018/06/26/python-matplotlib/" title="python数据分析之matplotlib">https://www.hegongshan.com/2018/06/26/python-matplotlib/</a>
+    <a href="https://www.hegongshan.com/2018/06/26/python-matplotlib/" title="Matplotlib入门">https://www.hegongshan.com/2018/06/26/python-matplotlib/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -566,8 +577,6 @@
         <div class="post-tags">
           
             <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
-          
-            <a href="/tags/matplotlib/" rel="tag"><i class="fa fa-tag"></i> matplotlib</a>
           
         </div>
       
@@ -703,7 +712,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">219</span>
+                  <span class="site-state-item-count">221</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -725,7 +734,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -818,7 +827,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#折线图"><span class="nav-number">1.</span> <span class="nav-text">折线图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图"><span class="nav-number">2.</span> <span class="nav-text">散点图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#画分段函数"><span class="nav-number">3.</span> <span class="nav-text">画分段函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置图片标题"><span class="nav-number">1.</span> <span class="nav-text">设置图片标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴文字"><span class="nav-number">2.</span> <span class="nav-text">设置x/y轴文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示图片"><span class="nav-number">3.</span> <span class="nav-text">显示图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用中文"><span class="nav-number">4.</span> <span class="nav-text">使用中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线条图"><span class="nav-number">5.</span> <span class="nav-text">线条图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图"><span class="nav-number">6.</span> <span class="nav-text">散点图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存图片"><span class="nav-number">7.</span> <span class="nav-text">保存图片</span></a></li></ol></div>
             
 
           </div>
