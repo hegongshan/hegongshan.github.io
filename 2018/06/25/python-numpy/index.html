@@ -79,7 +79,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="NumPy（Numerical Python）是高性能科学计算和数据分析的基础包。 按照标准约定，我们在使用NumPy时，最好遵循如下格式： 1import numpy as np">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-12T15:02:07.284Z">
+<meta property="og:updated_time" content="2019-09-18T11:29:31.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NumPy入门">
 <meta name="twitter:description" content="NumPy（Numerical Python）是高性能科学计算和数据分析的基础包。 按照标准约定，我们在使用NumPy时，最好遵循如下格式： 1import numpy as np">
@@ -406,8 +406,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-12T23:02:07+08:00">
-                2019-09-12
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-18T19:29:31+08:00">
+                2019-09-18
               </time>
             
           </span>
@@ -461,7 +461,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  936
+                  989
                 </span>
               
 
@@ -524,6 +524,17 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">print(np.shape([[<span class="number">1</span>, <span class="number">2</span>]]))</span><br><span class="line">print(np.shape([<span class="number">0</span>]))</span><br><span class="line">data = np.array([[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]],</span><br><span class="line">                [[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]]])</span><br><span class="line">print(np.shape(data))</span><br><span class="line"></span><br><span class="line">print(data.shape)</span><br></pre></td></tr></table></figure>
 <p>输出：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">(<span class="number">1</span>,)</span><br><span class="line">(<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">(<span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="full"><a href="#full" class="headerlink" title="full"></a>full</h3><p>函数原型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">full(shape, fill_value, dtype=<span class="keyword">None</span>, order=<span class="string">'C'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>shape：数组的维度</li>
+<li>fill_value：填充的值</li>
+<li>dtype：指定的数据类型</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">print(np.full((<span class="number">2</span>,<span class="number">2</span>),<span class="number">1.</span>))</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="number">1.</span> <span class="number">1.</span>]</span><br><span class="line"> [<span class="number">1.</span> <span class="number">1.</span>]]</span><br></pre></td></tr></table></figure>
 <h3 id="eye"><a href="#eye" class="headerlink" title="eye"></a>eye</h3><p>eye()函数用于创建一个指定大小的单位数组(类似于线性代数中的单位矩阵)。</p>
 <p>接受参数：一个表示维度大小的整数</p>
 <p>示例：</p>
@@ -538,7 +549,7 @@
 <h3 id="random"><a href="#random" class="headerlink" title="random"></a>random</h3><h4 id="seed"><a href="#seed" class="headerlink" title="seed"></a>seed</h4><p>设置随机数生成器种子。保证每次运行，生成的随机数相同。</p>
 <h4 id="randint"><a href="#randint" class="headerlink" title="randint"></a>randint</h4><p>函数原型：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.random.randint(low, high=<span class="keyword">None</span>, size=<span class="keyword">None</span>, dtype=<span class="string">'l'</span>)</span><br></pre></td></tr></table></figure>
-<p>返回一个随机整数，范围从低（包括）到高（不包括），即[low, high)。如果没有写参数high的值，则返回[0,low)的值。</p>
+<p>返回一个或者多个随机整数，范围从低（包括）到高（不包括），即[low, high)。如果没有写参数high的值，则返回[0,low)的值。</p>
 <h4 id="shuffle"><a href="#shuffle" class="headerlink" title="shuffle"></a>shuffle</h4><p>打乱ndarray中数据的顺序。</p>
 <h3 id="保存-加载NumPy对象"><a href="#保存-加载NumPy对象" class="headerlink" title="保存/加载NumPy对象"></a>保存/加载NumPy对象</h3><p>要想保存NumPy对象，可以使用numpy.save()方法</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">np.save(np.ones((<span class="number">1</span>,)),<span class="string">'./test.npy'</span>)</span><br></pre></td></tr></table></figure>
@@ -753,7 +764,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">225</span>
+                  <span class="site-state-item-count">227</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -868,7 +879,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ndarray"><span class="nav-number">1.</span> <span class="nav-text">ndarray</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算术运算"><span class="nav-number">1.1.</span> <span class="nav-text">算术运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将NumPy中的ndarray转换为Python中的list"><span class="nav-number">1.2.</span> <span class="nav-text">将NumPy中的ndarray转换为Python中的list</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zeros-ones"><span class="nav-number">2.</span> <span class="nav-text">zeros, ones</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shape"><span class="nav-number">3.</span> <span class="nav-text">shape</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eye"><span class="nav-number">4.</span> <span class="nav-text">eye</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arange"><span class="nav-number">5.</span> <span class="nav-text">arange</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mat"><span class="nav-number">6.</span> <span class="nav-text">mat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#random"><span class="nav-number">7.</span> <span class="nav-text">random</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#seed"><span class="nav-number">7.1.</span> <span class="nav-text">seed</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#randint"><span class="nav-number">7.2.</span> <span class="nav-text">randint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shuffle"><span class="nav-number">7.3.</span> <span class="nav-text">shuffle</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存-加载NumPy对象"><span class="nav-number">8.</span> <span class="nav-text">保存/加载NumPy对象</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ndarray"><span class="nav-number">1.</span> <span class="nav-text">ndarray</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算术运算"><span class="nav-number">1.1.</span> <span class="nav-text">算术运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将NumPy中的ndarray转换为Python中的list"><span class="nav-number">1.2.</span> <span class="nav-text">将NumPy中的ndarray转换为Python中的list</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zeros-ones"><span class="nav-number">2.</span> <span class="nav-text">zeros, ones</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shape"><span class="nav-number">3.</span> <span class="nav-text">shape</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#full"><span class="nav-number">4.</span> <span class="nav-text">full</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eye"><span class="nav-number">5.</span> <span class="nav-text">eye</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arange"><span class="nav-number">6.</span> <span class="nav-text">arange</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mat"><span class="nav-number">7.</span> <span class="nav-text">mat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#random"><span class="nav-number">8.</span> <span class="nav-text">random</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#seed"><span class="nav-number">8.1.</span> <span class="nav-text">seed</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#randint"><span class="nav-number">8.2.</span> <span class="nav-text">randint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#shuffle"><span class="nav-number">8.3.</span> <span class="nav-text">shuffle</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存-加载NumPy对象"><span class="nav-number">9.</span> <span class="nav-text">保存/加载NumPy对象</span></a></li></ol></div>
             
 
           </div>

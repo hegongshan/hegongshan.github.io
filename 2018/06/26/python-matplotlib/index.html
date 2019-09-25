@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="Matplotlib是一个Python的2D绘图库。 1import matplotlib.pyplot as plt 设置图片标题1plt.title(&apos;title&apos;) 设置x/y轴文字12plt.xlabel(&apos;xlabel&apos;)plt.ylabel(&apos;ylabel&apos;) 显示图片1plt.show() 使用中文Matplotlib默认是不支持中文的。因此，如果要显示中文，可以导入本地的中文字体库">
+<meta name="description" content="Matplotlib是一个Python的2D绘图库。 1import matplotlib.pyplot as plt 设置图片标题1plt.title(&apos;title&apos;) 设置x/y轴文字12plt.xlabel(&apos;xlabel&apos;)plt.ylabel(&apos;ylabel&apos;) 设置x/y轴的刻度范围默认情况下，matplotlib的坐标轴刻度并不会从0开始。通过xlim()和ylim()方法，设置x/">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Matplotlib入门">
 <meta property="og:url" content="https://www.hegongshan.com/2018/06/26/python-matplotlib/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="Matplotlib是一个Python的2D绘图库。 1import matplotlib.pyplot as plt 设置图片标题1plt.title(&apos;title&apos;) 设置x/y轴文字12plt.xlabel(&apos;xlabel&apos;)plt.ylabel(&apos;ylabel&apos;) 显示图片1plt.show() 使用中文Matplotlib默认是不支持中文的。因此，如果要显示中文，可以导入本地的中文字体库">
+<meta property="og:description" content="Matplotlib是一个Python的2D绘图库。 1import matplotlib.pyplot as plt 设置图片标题1plt.title(&apos;title&apos;) 设置x/y轴文字12plt.xlabel(&apos;xlabel&apos;)plt.ylabel(&apos;ylabel&apos;) 设置x/y轴的刻度范围默认情况下，matplotlib的坐标轴刻度并不会从0开始。通过xlim()和ylim()方法，设置x/">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-10T14:08:06.641Z">
+<meta property="og:updated_time" content="2019-09-20T16:11:52.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Matplotlib入门">
-<meta name="twitter:description" content="Matplotlib是一个Python的2D绘图库。 1import matplotlib.pyplot as plt 设置图片标题1plt.title(&apos;title&apos;) 设置x/y轴文字12plt.xlabel(&apos;xlabel&apos;)plt.ylabel(&apos;ylabel&apos;) 显示图片1plt.show() 使用中文Matplotlib默认是不支持中文的。因此，如果要显示中文，可以导入本地的中文字体库">
+<meta name="twitter:description" content="Matplotlib是一个Python的2D绘图库。 1import matplotlib.pyplot as plt 设置图片标题1plt.title(&apos;title&apos;) 设置x/y轴文字12plt.xlabel(&apos;xlabel&apos;)plt.ylabel(&apos;ylabel&apos;) 设置x/y轴的刻度范围默认情况下，matplotlib的坐标轴刻度并不会从0开始。通过xlim()和ylim()方法，设置x/">
 
 
 
@@ -406,8 +406,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-10T22:08:06+08:00">
-                2019-09-10
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-21T00:11:52+08:00">
+                2019-09-21
               </time>
             
           </span>
@@ -461,7 +461,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  375
+                  515
                 </span>
               
 
@@ -490,6 +490,14 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
 <h3 id="设置图片标题"><a href="#设置图片标题" class="headerlink" title="设置图片标题"></a>设置图片标题</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.title(<span class="string">'title'</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="设置x-y轴文字"><a href="#设置x-y轴文字" class="headerlink" title="设置x/y轴文字"></a>设置x/y轴文字</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.xlabel(<span class="string">'xlabel'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'ylabel'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="设置x-y轴的刻度范围"><a href="#设置x-y轴的刻度范围" class="headerlink" title="设置x/y轴的刻度范围"></a>设置x/y轴的刻度范围</h3><p>默认情况下，matplotlib的坐标轴刻度并不会从0开始。通过xlim()和ylim()方法，设置x/y轴的刻度范围，可以让x/y轴的刻度从0开始。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.xlim(xmin,xmax)</span><br><span class="line">plt.ylim(ymin,ymax)</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.xlim(xmin=<span class="number">0</span>, xmax=<span class="number">1000</span>)</span><br><span class="line">plt.ylim(ymin=<span class="number">0</span>, ymax=<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="设置x-y轴的刻度"><a href="#设置x-y轴的刻度" class="headerlink" title="设置x/y轴的刻度"></a>设置x/y轴的刻度</h3><p>可以使用xticks()和yticks()方法，设置x/y轴需要显示的所有刻度值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.xticks()</span><br><span class="line">plt.yticks()</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以50为步长，x轴的刻度为0,50,100,150,...,900,950</span></span><br><span class="line">plt.xticks(np.arange(<span class="number">0</span>, <span class="number">950</span>, step=<span class="number">50</span>))</span><br></pre></td></tr></table></figure>
 <h3 id="显示图片"><a href="#显示图片" class="headerlink" title="显示图片"></a>显示图片</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <h3 id="使用中文"><a href="#使用中文" class="headerlink" title="使用中文"></a>使用中文</h3><p>Matplotlib默认是不支持中文的。因此，如果要显示中文，可以导入本地的中文字体库。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.font_manager <span class="keyword">import</span> FontProperties</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置字体，fname为本地字体库的所在路径</span></span><br><span class="line">font = FontProperties(fname=<span class="string">'/System/Library/Fonts/Hiragino Sans GB.ttc'</span>,size=<span class="number">14</span>)</span><br><span class="line"><span class="comment"># 在用到中文的地方，设置fontproperties</span></span><br><span class="line">plt.title(<span class="string">"出行时段分布"</span>,fontproperties=font)</span><br></pre></td></tr></table></figure>
@@ -712,7 +720,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">225</span>
+                  <span class="site-state-item-count">227</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -827,7 +835,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置图片标题"><span class="nav-number">1.</span> <span class="nav-text">设置图片标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴文字"><span class="nav-number">2.</span> <span class="nav-text">设置x/y轴文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示图片"><span class="nav-number">3.</span> <span class="nav-text">显示图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用中文"><span class="nav-number">4.</span> <span class="nav-text">使用中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线条图"><span class="nav-number">5.</span> <span class="nav-text">线条图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图"><span class="nav-number">6.</span> <span class="nav-text">散点图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存图片"><span class="nav-number">7.</span> <span class="nav-text">保存图片</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置图片标题"><span class="nav-number">1.</span> <span class="nav-text">设置图片标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴文字"><span class="nav-number">2.</span> <span class="nav-text">设置x/y轴文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴的刻度范围"><span class="nav-number">3.</span> <span class="nav-text">设置x/y轴的刻度范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴的刻度"><span class="nav-number">4.</span> <span class="nav-text">设置x/y轴的刻度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示图片"><span class="nav-number">5.</span> <span class="nav-text">显示图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用中文"><span class="nav-number">6.</span> <span class="nav-text">使用中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线条图"><span class="nav-number">7.</span> <span class="nav-text">线条图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图"><span class="nav-number">8.</span> <span class="nav-text">散点图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存图片"><span class="nav-number">9.</span> <span class="nav-text">保存图片</span></a></li></ol></div>
             
 
           </div>

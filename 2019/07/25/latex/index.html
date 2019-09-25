@@ -79,7 +79,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="LaTex文档的基本格式: 12345\documentclass[option]&amp;#123;article&amp;#125;\begin&amp;#123;document&amp;#125;	% 所有的其他内容均放在这里	content...\end&amp;#123;document&amp;#125;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-10T12:51:49.797Z">
+<meta property="og:updated_time" content="2019-09-17T14:30:38.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LaTex总结">
 <meta name="twitter:description" content="LaTex文档的基本格式: 12345\documentclass[option]&amp;#123;article&amp;#125;\begin&amp;#123;document&amp;#125;	% 所有的其他内容均放在这里	content...\end&amp;#123;document&amp;#125;">
@@ -406,8 +406,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-10T20:51:49+08:00">
-                2019-09-10
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-17T22:30:38+08:00">
+                2019-09-17
               </time>
             
           </span>
@@ -461,7 +461,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  464
+                  878
                 </span>
               
 
@@ -499,7 +499,9 @@
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">iffalse</span></span></span><br><span class="line">Hello <span class="tag">\<span class="name">LaTex</span></span></span><br><span class="line">Why I like it.</span><br><span class="line"><span class="tag">\<span class="name">fi</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="使用中文"><a href="#使用中文" class="headerlink" title="使用中文"></a>使用中文</h3><p>LaTex默认不支持中文，如果要在文档中显示中文，需要引入<code>ctex</code>包</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;ctex&#125;</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="文章标题"><a href="#文章标题" class="headerlink" title="文章标题"></a>文章标题</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">title</span><span class="string">&#123;your title&#125;</span></span></span><br><span class="line">...</span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line">	...</span><br><span class="line">    <span class="comment">% 必须加\maketitle，否则，不能显示标题</span></span><br><span class="line">    <span class="tag">\<span class="name">maketitle</span></span> </span><br><span class="line">	content...</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="文章标题"><a href="#文章标题" class="headerlink" title="文章标题"></a>文章标题</h3><p>在导言区使用<code>\title</code>命令，指定文章的标题。</p>
+<p>示例：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">title</span><span class="string">&#123;your title&#125;</span></span></span><br><span class="line">...</span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line">	...</span><br><span class="line">    <span class="comment">% 必须加\maketitle，否则，不能显示标题</span></span><br><span class="line">    <span class="tag">\<span class="name">maketitle</span></span> </span><br><span class="line">	content...</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="作者"><a href="#作者" class="headerlink" title="作者"></a>作者</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">author</span><span class="string">&#123;author name&#125;</span></span></span><br><span class="line"><span class="comment">% 比如\author&#123;Gongshan He&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line">	content...</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;abstract&#125;</span></span></span><br><span class="line">	content...</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;abstract&#125;</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><p>在文档合适的地方，加入如下命令即可。</p>
@@ -516,6 +518,16 @@
 <ul>
 <li>在正文中使用命令切换。\twocolumn进入双栏模式，\onecolumn进入单栏模式，两个命令都会先使用\clearpage换页，并不产生一页之内单双栏混合的效果。</li>
 </ul>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>可以使用BIBTEX处理参考文献。</p>
+<p>将所有可能会引用的文献放到以.bib结尾的文本文件中。</p>
+<p>使用<code>\bibliographystyle</code>设定参考文献的格式，这通常在导言区完成。</p>
+<p>使用<code>\bibliography</code>打印出参考文献列表。</p>
+<p>例如，当前目录下有一个名为reference.bib的文献数据库，内容如下：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">@inproceedings&#123;He:2017:NCF:3038912.3052569,</span><br><span class="line"> author = &#123;He, Xiangnan and Liao, Lizi and Zhang, Hanwang and Nie, Liqiang and Hu, Xia and Chua, Tat-Seng&#125;,</span><br><span class="line"> title = &#123;Neural Collaborative Filtering&#125;,</span><br><span class="line"> booktitle = &#123;Proceedings of the 26th International Conference on World Wide Web&#125;,</span><br><span class="line"> series = &#123;WWW '17&#125;,</span><br><span class="line"> year = &#123;2017&#125;,</span><br><span class="line"> isbn = &#123;978-1-4503-4913-0&#125;,</span><br><span class="line"> location = &#123;Perth, Australia&#125;,</span><br><span class="line"> pages = &#123;173--182&#125;,</span><br><span class="line"> numpages = &#123;10&#125;,</span><br><span class="line"> url = &#123;https://doi.org/10.1145/3038912.3052569&#125;,</span><br><span class="line"> doi = &#123;10.1145/3038912.3052569&#125;,</span><br><span class="line"> acmid = &#123;3052569&#125;,</span><br><span class="line"> publisher = &#123;International World Wide Web Conferences Steering Committee&#125;,</span><br><span class="line"> address = &#123;Republic and Canton of Geneva, Switzerland&#125;,</span><br><span class="line"> keywords = &#123;collaborative filtering, deep learning, implicit feedback, matrix factorization, neural networks&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>指定数据库文件时，不带bib后缀。可以同时从多个文献数据库中提取文献，文件名用逗号分隔开即可。</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="comment">% 从文献数据库reference.bib中获取文献信息，打印参考文献列表</span></span><br><span class="line"><span class="tag">\<span class="name">bibliography</span><span class="string">&#123;reference&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p>在正文中，使用<code>\cite</code>命令引用需要的文献，<code>\cite</code>命令引用的位置会出现文献的编号，同时将提示LATEX列出所引用的文献</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line">...</span><br><span class="line">ncf<span class="tag">\<span class="name">cite</span><span class="string">&#123;He:2017:NCF:3038912.3052569&#125;</span></span></span><br><span class="line"><span class="comment">% 从文献数据库reference.bib中获取文献信息，打印参考文献列表</span></span><br><span class="line"><span class="tag">\<span class="name">bibliography</span><span class="string">&#123;reference&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h3><p>参看<a href="/2018/07/16/mathjax-tutorial/">MathJax语法</a></p>
 
       
@@ -726,7 +738,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">225</span>
+                  <span class="site-state-item-count">227</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -841,7 +853,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">1.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用中文"><span class="nav-number">2.</span> <span class="nav-text">使用中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章标题"><span class="nav-number">3.</span> <span class="nav-text">文章标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作者"><span class="nav-number">4.</span> <span class="nav-text">作者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">5.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录"><span class="nav-number">6.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页"><span class="nav-number">7.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入图片"><span class="nav-number">8.</span> <span class="nav-text">插入图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入表格"><span class="nav-number">9.</span> <span class="nav-text">插入表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分栏"><span class="nav-number">10.</span> <span class="nav-text">分栏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学公式"><span class="nav-number">11.</span> <span class="nav-text">数学公式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">1.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用中文"><span class="nav-number">2.</span> <span class="nav-text">使用中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章标题"><span class="nav-number">3.</span> <span class="nav-text">文章标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作者"><span class="nav-number">4.</span> <span class="nav-text">作者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">5.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录"><span class="nav-number">6.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页"><span class="nav-number">7.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入图片"><span class="nav-number">8.</span> <span class="nav-text">插入图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入表格"><span class="nav-number">9.</span> <span class="nav-text">插入表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分栏"><span class="nav-number">10.</span> <span class="nav-text">分栏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">11.</span> <span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学公式"><span class="nav-number">12.</span> <span class="nav-text">数学公式</span></a></li></ol></div>
             
 
           </div>
