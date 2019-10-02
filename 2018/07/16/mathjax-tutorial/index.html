@@ -79,7 +79,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="如何在网页中便捷地输入数学公式呢？MathJax就是一个不错的选择。 使用$或者$$来标明需要MathJax解析的公式。$表示行内公式，而$$表示的数学公式会独占一行，如 $y=ax+b$： $y=ax+b$ $$y=ax+b$$：$$y=ax+b$$">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-18T14:11:59.422Z">
+<meta property="og:updated_time" content="2019-09-30T12:54:31.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MathJax语法">
 <meta name="twitter:description" content="如何在网页中便捷地输入数学公式呢？MathJax就是一个不错的选择。 使用$或者$$来标明需要MathJax解析的公式。$表示行内公式，而$$表示的数学公式会独占一行，如 $y=ax+b$： $y=ax+b$ $$y=ax+b$$：$$y=ax+b$$">
@@ -406,8 +406,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-18T22:11:59+08:00">
-                2019-09-18
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-30T20:54:31+08:00">
+                2019-09-30
               </time>
             
           </span>
@@ -461,7 +461,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  810
+                  931
                 </span>
               
 
@@ -504,8 +504,8 @@
 <li>常用对数：<code>$\lg 100$</code> =&gt; $\lg 100$\</li>
 </ul>
 <h4 id="累加、累乘"><a href="#累加、累乘" class="headerlink" title="累加、累乘"></a>累加、累乘</h4><ul>
-<li>累加：<code>$\sum_{i=1}^{n}{I^2+1}$</code>　=&gt; $\sum_{i=1}^n{(i^2+2i+1)}​$</li>
-<li>累乘：<code>$\prod_{i=1}^n{\frac{1}{i^2}}$</code> =&gt; $\prod_{i=1}^n{\frac{1}{i^2}}$</li>
+<li>累加：<code>$\sum_{i=1}^n (i^2+2i+1)$</code>　=&gt; $\sum_{i=1}^n (i^2+2i+1)$</li>
+<li>累乘：<code>$\prod_{i=1}^n \frac{1}{i^2}$</code> =&gt; $\prod_{i=1}^n \frac{1}{i^2}$</li>
 </ul>
 <h4 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h4><p>示例：<code>$\vec x$</code> =&gt; $\vec x$</p>
 <h4 id="积分"><a href="#积分" class="headerlink" title="积分"></a>积分</h4><p>示例：<code>$\int_a^b sinx dx$</code> =&gt; $\int_a^b sinx dx$</p>
@@ -628,7 +628,7 @@
 <li><code>$x \odot y$</code> =&gt; $x \odot y$</li>
 <li><code>$x \otimes y$</code> =&gt; $x \otimes y$</li>
 </ul>
-<h4 id="关系运算法"><a href="#关系运算法" class="headerlink" title="关系运算法"></a>关系运算法</h4><table>
+<h4 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h4><table>
 <thead>
 <tr>
 <th style="text-align:center">关系运算</th>
@@ -667,31 +667,83 @@
 <td style="text-align:center"><code>\forall</code></td>
 </tr>
 <tr>
+<td style="text-align:center">$\exists$</td>
+<td style="text-align:center"><code>\exists</code></td>
+</tr>
+<tr>
+<td style="text-align:center">$\land$</td>
+<td style="text-align:center"><code>\land</code></td>
+</tr>
+<tr>
+<td style="text-align:center">$\lor$</td>
+<td style="text-align:center"><code>\lor</code></td>
+</tr>
+<tr>
+<td style="text-align:center">$\lnot$</td>
+<td style="text-align:center"><code>\lnot</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="集合运算符"><a href="#集合运算符" class="headerlink" title="集合运算符"></a>集合运算符</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">集合运算</th>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">集合运算</th>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">集合运算</th>
+<th style="text-align:center">符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td style="text-align:center">$\cup$</td>
 <td style="text-align:center"><code>\cup</code></td>
-</tr>
-<tr>
-<td style="text-align:center">$\cap$</td>
-<td style="text-align:center"><code>\cap</code></td>
-</tr>
-<tr>
+<td style="text-align:center">$\subseteq$</td>
+<td style="text-align:center"><code>\subseteq</code></td>
 <td style="text-align:center">$\in$</td>
 <td style="text-align:center"><code>\in</code></td>
 </tr>
 <tr>
+<td style="text-align:center">$\cap$</td>
+<td style="text-align:center"><code>\cap</code></td>
+<td style="text-align:center">$\subseteqq$</td>
+<td style="text-align:center"><code>\subseteqq</code></td>
 <td style="text-align:center">$\notin$</td>
 <td style="text-align:center"><code>\notin</code></td>
 </tr>
 <tr>
+<td style="text-align:center">$\subset$</td>
+<td style="text-align:center"><code>\subset</code></td>
+<td style="text-align:center">$\subsetneq$</td>
+<td style="text-align:center"><code>\subsetneq</code></td>
 <td style="text-align:center">$\varnothing$</td>
 <td style="text-align:center"><code>\varnothing</code></td>
+</tr>
+<tr>
+<td style="text-align:center">$\supset$</td>
+<td style="text-align:center"><code>\supset</code></td>
+<td style="text-align:center">$\subsetneqq$</td>
+<td style="text-align:center"><code>\subsetneqq</code></td>
+<td style="text-align:center">$\emptyset$</td>
+<td style="text-align:center"><code>\emptyset</code></td>
+</tr>
+<tr>
+<td style="text-align:center">集合相减 $\setminus$</td>
+<td style="text-align:center"><code>\setminus</code></td>
+<td style="text-align:center">$\supseteq$</td>
+<td style="text-align:center"><code>\supseteq</code></td>
+<td style="text-align:center">$\supsetneqq$</td>
+<td style="text-align:center"><code>\supsetneqq</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h4><table>
 <thead>
 <tr>
-<th style="text-align:center">字母</th>
+<th style="text-align:center">小写字母</th>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">大写字母</th>
 <th style="text-align:center">符号</th>
 </tr>
 </thead>
@@ -699,42 +751,98 @@
 <tr>
 <td style="text-align:center">$\alpha$</td>
 <td style="text-align:center"><code>\alpha</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
 <td style="text-align:center">$\beta$</td>
 <td style="text-align:center"><code>\beta</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
 <td style="text-align:center">$\gamma$</td>
 <td style="text-align:center"><code>\gamma</code></td>
+<td style="text-align:center">$\Gamma$</td>
+<td style="text-align:center"><code>\Gamma</code></td>
+</tr>
+<tr>
+<td style="text-align:center">$\delta$</td>
+<td style="text-align:center"><code>\delta</code></td>
+<td style="text-align:center">$\Delta$</td>
+<td style="text-align:center"><code>Delta</code></td>
 </tr>
 <tr>
 <td style="text-align:center">$\lambda$</td>
 <td style="text-align:center"><code>\lambda</code></td>
+<td style="text-align:center">$\Lambda$</td>
+<td style="text-align:center"><code>\Lambda</code></td>
 </tr>
 <tr>
 <td style="text-align:center">$\eta$</td>
 <td style="text-align:center"><code>\eta</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
 </tr>
 <tr>
 <td style="text-align:center">$\epsilon$</td>
 <td style="text-align:center"><code>\epsilon</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">$\zeta$</td>
+<td style="text-align:center"><code>\zeta</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">$\xi$</td>
+<td style="text-align:center"><code>\xi</code></td>
+<td style="text-align:center">$\Xi$</td>
+<td style="text-align:center"><code>\Xi</code></td>
+</tr>
+<tr>
+<td style="text-align:center">$\pi$</td>
+<td style="text-align:center"><code>\pi</code></td>
+<td style="text-align:center">$\Pi$</td>
+<td style="text-align:center"><code>\Pi</code></td>
 </tr>
 <tr>
 <td style="text-align:center">$\theta$</td>
 <td style="text-align:center"><code>\theta</code></td>
+<td style="text-align:center">$\Theta$</td>
+<td style="text-align:center"><code>\Theta</code></td>
 </tr>
 <tr>
 <td style="text-align:center">$ \sigma $</td>
 <td style="text-align:center"><code>\sigma</code></td>
+<td style="text-align:center">$\Sigma$</td>
+<td style="text-align:center"><code>\Sigma</code></td>
 </tr>
 <tr>
 <td style="text-align:center">$\phi$</td>
 <td style="text-align:center"><code>\phi</code></td>
+<td style="text-align:center">$\Phi$</td>
+<td style="text-align:center"><code>\Phi</code></td>
 </tr>
 <tr>
-<td style="text-align:center">$\Sigma$</td>
-<td style="text-align:center"><code>\Sigma</code></td>
+<td style="text-align:center">$\psi$</td>
+<td style="text-align:center"><code>\psi</code></td>
+<td style="text-align:center">$\Psi$</td>
+<td style="text-align:center"><code>\Psi</code></td>
+</tr>
+<tr>
+<td style="text-align:center">$\mu$</td>
+<td style="text-align:center"><code>\mu</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">$\omega$</td>
+<td style="text-align:center"><code>\omega</code></td>
+<td style="text-align:center">$\Omega$</td>
+<td style="text-align:center"><code>\Omega</code></td>
 </tr>
 </tbody>
 </table>
@@ -746,6 +854,28 @@
 <li><p>空心字母：<code>\mathbb{X}</code> =&gt; $\mathbb{X} $</p>
 </li>
 </ul>
+<h4 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">特殊符号</th>
+<th style="text-align:center">代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">反斜杠$\backslash$</td>
+<td style="text-align:center"><code>\backslash</code></td>
+</tr>
+<tr>
+<td style="text-align:center">波浪号$\sim$</td>
+<td style="text-align:center"><code>\sim</code></td>
+</tr>
+<tr>
+<td style="text-align:center">正比于$\propto$</td>
+<td style="text-align:center"><code>\propto</code></td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -955,7 +1085,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">230</span>
+                  <span class="site-state-item-count">232</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1040,15 +1170,23 @@
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://deyinliu.github.io" title="刘德印" target="_blank">刘德印</a>
+                    <a href="https://www.qinjiangbo.com" title="心灵港" target="_blank">心灵港</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lumingdong.cn" title="卢明冬的博客" target="_blank">卢明冬的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lipixun.me" title="lipixun" target="_blank">lipixun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://deyinliu.github.io" title="Liudeyin" target="_blank">Liudeyin</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
                     <a href="https://www.gaohangcs.com" title="高航的博客" target="_blank">高航的博客</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://blog.java1234.com" title="java1234" target="_blank">java1234</a>
                   </li>
                 
               </ul>
@@ -1070,7 +1208,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入分数"><span class="nav-number">1.</span> <span class="nav-text">输入分数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开根号"><span class="nav-number">2.</span> <span class="nav-text">开根号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上下标"><span class="nav-number">3.</span> <span class="nav-text">上下标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对数"><span class="nav-number">4.</span> <span class="nav-text">对数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#累加、累乘"><span class="nav-number">5.</span> <span class="nav-text">累加、累乘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向量"><span class="nav-number">6.</span> <span class="nav-text">向量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#积分"><span class="nav-number">7.</span> <span class="nav-text">积分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无穷"><span class="nav-number">8.</span> <span class="nav-text">无穷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#偏导数"><span class="nav-number">9.</span> <span class="nav-text">偏导数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标签"><span class="nav-number">10.</span> <span class="nav-text">标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最大、最小"><span class="nav-number">11.</span> <span class="nav-text">最大、最小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计估计"><span class="nav-number">12.</span> <span class="nav-text">统计估计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向上（下）取整"><span class="nav-number">13.</span> <span class="nav-text">向上（下）取整</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空格"><span class="nav-number">14.</span> <span class="nav-text">空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绝对值、范数"><span class="nav-number">15.</span> <span class="nav-text">绝对值、范数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加粗"><span class="nav-number">16.</span> <span class="nav-text">加粗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对齐"><span class="nav-number">17.</span> <span class="nav-text">对齐</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分段函数"><span class="nav-number">18.</span> <span class="nav-text">分段函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵"><span class="nav-number">19.</span> <span class="nav-text">矩阵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#括号"><span class="nav-number">20.</span> <span class="nav-text">括号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#箭头"><span class="nav-number">21.</span> <span class="nav-text">箭头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四则运算"><span class="nav-number">22.</span> <span class="nav-text">四则运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊乘法"><span class="nav-number">23.</span> <span class="nav-text">特殊乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关系运算法"><span class="nav-number">24.</span> <span class="nav-text">关系运算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">25.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#希腊字母"><span class="nav-number">26.</span> <span class="nav-text">希腊字母</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#花体字母"><span class="nav-number">27.</span> <span class="nav-text">花体字母</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入分数"><span class="nav-number">1.</span> <span class="nav-text">输入分数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开根号"><span class="nav-number">2.</span> <span class="nav-text">开根号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#上下标"><span class="nav-number">3.</span> <span class="nav-text">上下标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对数"><span class="nav-number">4.</span> <span class="nav-text">对数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#累加、累乘"><span class="nav-number">5.</span> <span class="nav-text">累加、累乘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向量"><span class="nav-number">6.</span> <span class="nav-text">向量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#积分"><span class="nav-number">7.</span> <span class="nav-text">积分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无穷"><span class="nav-number">8.</span> <span class="nav-text">无穷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#偏导数"><span class="nav-number">9.</span> <span class="nav-text">偏导数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标签"><span class="nav-number">10.</span> <span class="nav-text">标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最大、最小"><span class="nav-number">11.</span> <span class="nav-text">最大、最小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计估计"><span class="nav-number">12.</span> <span class="nav-text">统计估计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#向上（下）取整"><span class="nav-number">13.</span> <span class="nav-text">向上（下）取整</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空格"><span class="nav-number">14.</span> <span class="nav-text">空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绝对值、范数"><span class="nav-number">15.</span> <span class="nav-text">绝对值、范数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加粗"><span class="nav-number">16.</span> <span class="nav-text">加粗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对齐"><span class="nav-number">17.</span> <span class="nav-text">对齐</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分段函数"><span class="nav-number">18.</span> <span class="nav-text">分段函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵"><span class="nav-number">19.</span> <span class="nav-text">矩阵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#括号"><span class="nav-number">20.</span> <span class="nav-text">括号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#箭头"><span class="nav-number">21.</span> <span class="nav-text">箭头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四则运算"><span class="nav-number">22.</span> <span class="nav-text">四则运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊乘法"><span class="nav-number">23.</span> <span class="nav-text">特殊乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关系运算符"><span class="nav-number">24.</span> <span class="nav-text">关系运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">25.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集合运算符"><span class="nav-number">26.</span> <span class="nav-text">集合运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#希腊字母"><span class="nav-number">27.</span> <span class="nav-text">希腊字母</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#花体字母"><span class="nav-number">28.</span> <span class="nav-text">花体字母</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特殊符号"><span class="nav-number">29.</span> <span class="nav-text">特殊符号</span></a></li></ol></div>
             
 
           </div>
