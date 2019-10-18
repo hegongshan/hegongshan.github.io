@@ -83,7 +83,7 @@
 <meta property="og:image" content="https://www.hegongshan.com/static/images/ncf-gmf.png">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/ncf-mlp.png">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/ncf-neumf.png">
-<meta property="og:updated_time" content="2019-09-25T13:10:50.157Z">
+<meta property="og:updated_time" content="2019-10-15T09:22:09.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读 Neural Collaborative Filtering">
 <meta name="twitter:description" content="Neural Collaborative Filtering提出了一种融合模型，将深度学习运用到推荐系统中，在隐式反馈问题上获得了state-of-the-art。">
@@ -411,8 +411,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-25T21:10:50+08:00">
-                2019-09-25
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-15T17:22:09+08:00">
+                2019-10-15
               </time>
             
           </span>
@@ -466,7 +466,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  874
+                  894
                 </span>
               
 
@@ -513,6 +513,7 @@
 <p>为每个用户计算这两个指标，最后分别求平均值。</p>
 <p><strong>参数设置</strong>：使用高斯分布（均值为0，标准差为0.01）随机初始化模型参数，使用小批量的Adam优化模型。</p>
 <p>使用三层的MLP，GMF和MLP的权衡超参数$\alpha$设置为0.5。（个人认为<strong>$\alpha$应该也是可以优化的</strong>，但是作者没有对$\alpha$的不同取值进行对比实验）</p>
+<p>在训练集中，为每个正样本随机选择四个负样本。</p>
 <h3 id="相关资源"><a href="#相关资源" class="headerlink" title="相关资源"></a>相关资源</h3><p>Xiangnan He, Lizi Liao, Hanwang Zhang, Liqiang Nie, Xia Hu and Tat-Seng Chua (2017). <a href="http://dl.acm.org/citation.cfm?id=3052569" target="_blank" rel="noopener">Neural Collaborative Filtering.</a> In Proceedings of WWW ‘17, Perth, Australia, April 03-07, 2017.</p>
 <p>论文原文：<a href="http://staff.ustc.edu.cn/~hexn/papers/www17-ncf.pdf" target="_blank" rel="noopener">http://staff.ustc.edu.cn/~hexn/papers/www17-ncf.pdf</a></p>
 <p>论文代码：<a href="https://github.com/hexiangnan/neural_collaborative_filtering" target="_blank" rel="noopener">https://github.com/hexiangnan/neural_collaborative_filtering</a></p>
@@ -727,7 +728,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">234</span>
+                  <span class="site-state-item-count">235</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

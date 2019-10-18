@@ -359,6 +359,190 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/07/28/machine-learning-svm-smo/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/28/machine-learning-svm-smo/" itemprop="url">序列最小最优化算法SMO</a></h2>
+        
+
+        <div class="post-meta">
+		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-28T19:33:13+08:00">
+                2018-07-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-19T15:23:57+08:00">
+                2019-01-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>如何高效地实现支持向量机学习呢？常用的是1998年Platt提出的序列最小最优化算法(Sequential minimal optimization，SMO)算法。</p>
+<p>SMO算法要解的是如下的一个最优化问题：<br>$$<br>\min_{\alpha} \left( \frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j K(x_i,x_j) - \sum_{i=1}^N \alpha_i\right) \tag{1}<br>$$</p>
+<p>$$<br>subject \; to \sum_{i=1}^N \alpha_i y_i = 0, \tag{2}<br>$$</p>
+<p>$$<br>0 \leq \alpha_i \leq C, \forall i \tag{3}<br>$$</p>
+<p>整个SMO算法包括两个部分：求解两个变量二次规划的解析方法和选择变量的启发式方法。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/28/machine-learning-svm-smo/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/07/16/mathjax-tutorial/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -408,8 +592,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-10T22:27:57+08:00">
-                2019-10-10
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-16T20:43:55+08:00">
+                2019-10-16
               </time>
             
           </span>
@@ -458,7 +642,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  939
+                  1k
                 </span>
               
 
@@ -1513,8 +1697,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-21T00:11:52+08:00">
-                2019-09-21
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-16T21:39:01+08:00">
+                2019-10-16
               </time>
             
           </span>
@@ -1563,7 +1747,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  515
+                  859
                 </span>
               
 
@@ -1615,6 +1799,16 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">y = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> x]</span><br><span class="line">plt.scatter(x,y,linewidth=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Squares Numbers'</span>,fontsize=<span class="number">24</span>)</span><br><span class="line">plt.xlabel(<span class="string">'value'</span>,fontsize=<span class="number">14</span>)</span><br><span class="line">plt.ylabel(<span class="string">'square of value'</span>,fontsize=<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line">plt.tick_params(axis=<span class="string">'both'</span>,labelsize=<span class="number">14</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <h3 id="保存图片"><a href="#保存图片" class="headerlink" title="保存图片"></a>保存图片</h3><p>保存图片，需要使用matplotlib.pyplot中的savefig方法。值得注意的是，<strong>savefig必须在show方法之前执行</strong>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.savefig(<span class="string">'./test.eps'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="添加水平-垂直线"><a href="#添加水平-垂直线" class="headerlink" title="添加水平/垂直线"></a>添加水平/垂直线</h3><p>可以使用hlines()和vlines()方法分别绘制水平、垂直线段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.vlines(x=0, ymin=0, ymax=1, linestyles=&apos;dashed&apos;)</span><br><span class="line">plt.hlines(y=0.5, xmin=-10, xmax=10, linestyles=&apos;dashed&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="显示图例"><a href="#显示图例" class="headerlink" title="显示图例"></a>显示图例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
+<h3 id="更改坐标轴的位置"><a href="#更改坐标轴的位置" class="headerlink" title="更改坐标轴的位置"></a>更改坐标轴的位置</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gcg，get current axis</span></span><br><span class="line">ax = plt.gca()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 隐藏右边和顶部的线条</span></span><br><span class="line">ax.spines[<span class="string">'right'</span>].set_color(<span class="string">'none'</span>)</span><br><span class="line">ax.spines[<span class="string">'top'</span>].set_color(<span class="string">'none'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置x轴和y轴所在的位置</span></span><br><span class="line">ax.xaxis.set_ticks_position(<span class="string">'bottom'</span>)</span><br><span class="line">ax.yaxis.set_ticks_position(<span class="string">'left'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置x轴和y轴的交点为(0,0)</span></span><br><span class="line">ax.spines[<span class="string">'bottom'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br><span class="line">ax.spines[<span class="string">'left'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="对LaTex的支持"><a href="#对LaTex的支持" class="headerlink" title="对LaTex的支持"></a>对LaTex的支持</h3><p>在需要输入LaTex公式的地方，使用一对美元符$$包裹起来，就像这样<code>r&#39;sigmoid(x)=$\frac{1}{1+e^{-x}}$&#39;</code>，不要忘记前面的字母r（告诉编译器后面的字符串是个raw string，不需要对反斜杠进行转义）。</p>
+<p>示例：</p>
+<p>绘制Sigmoid函数，并在图例中显示sigmoid的数学表达式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">x = np.arange(start=<span class="number">-10</span>, stop=<span class="number">10</span>, step=<span class="number">0.1</span>)</span><br><span class="line">y = <span class="number">1</span> / (<span class="number">1</span> + math.e ** (-x))</span><br><span class="line">plt.plot(x, y, linewidth=<span class="number">3</span>, label=<span class="string">r'sigmoid(x)=$\frac&#123;1&#125;&#123;1+e^&#123;-x&#125;&#125;$'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'x'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line">plt.ylabel(<span class="string">'sigmoid(x)'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line">plt.xticks(np.arange(<span class="number">-10</span>, <span class="number">11</span>, step=<span class="number">1</span>))</span><br><span class="line">plt.yticks(np.arange(<span class="number">0</span>, <span class="number">1.1</span>, step=<span class="number">0.1</span>))</span><br><span class="line">plt.ylim(ymin=<span class="number">0</span>, ymax=<span class="number">1</span>)</span><br><span class="line">plt.xlim(xmin=<span class="number">-10</span>, xmax=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">plt.vlines(x=<span class="number">0</span>, ymin=<span class="number">0</span>, ymax=<span class="number">1</span>, linestyles=<span class="string">'dashed'</span>)</span><br><span class="line">plt.hlines(y=<span class="number">0.5</span>, xmin=<span class="number">-10</span>, xmax=<span class="number">10</span>, linestyles=<span class="string">'dashed'</span>)</span><br><span class="line"></span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<p><img src="/static/images/sigmoid-legend.png" alt=""></p>
 
           
         
@@ -2017,187 +2211,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/06/10/java-binary-octal-decimal-hexadecimal/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/10/java-binary-octal-decimal-hexadecimal/" itemprop="url">Java中的进制表示</a></h2>
-        
-
-        <div class="post-meta">
-		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-10T16:25:39+08:00">
-                2018-06-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-19T15:23:57+08:00">
-                2019-01-19
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  258
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>平时做题也好，写程序或算法也罢，我们经常会见到诸如0Xfff、0b1000等数据，那么它们到底是什么意思呢？</p>
-<p>其实0x、0b等是不同进制的前缀，旨在告诉编译器后面的数字是几进制的数据，而非默认的十进制数据。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/10/java-binary-octal-decimal-hexadecimal/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2250,7 +2263,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">234</span>
+                  <span class="site-state-item-count">235</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -79,10 +79,12 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="Matplotlib是一个Python的2D绘图库。 1import matplotlib.pyplot as plt 设置图片标题1plt.title(&apos;title&apos;) 设置x/y轴文字12plt.xlabel(&apos;xlabel&apos;)plt.ylabel(&apos;ylabel&apos;) 设置x/y轴的刻度范围默认情况下，matplotlib的坐标轴刻度并不会从0开始。通过xlim()和ylim()方法，设置x/">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-20T16:11:52.599Z">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/sigmoid-legend.png">
+<meta property="og:updated_time" content="2019-10-16T13:39:01.404Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Matplotlib入门">
 <meta name="twitter:description" content="Matplotlib是一个Python的2D绘图库。 1import matplotlib.pyplot as plt 设置图片标题1plt.title(&apos;title&apos;) 设置x/y轴文字12plt.xlabel(&apos;xlabel&apos;)plt.ylabel(&apos;ylabel&apos;) 设置x/y轴的刻度范围默认情况下，matplotlib的坐标轴刻度并不会从0开始。通过xlim()和ylim()方法，设置x/">
+<meta name="twitter:image" content="https://www.hegongshan.com/static/images/sigmoid-legend.png">
 
 
 
@@ -406,8 +408,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-09-21T00:11:52+08:00">
-                2019-09-21
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-16T21:39:01+08:00">
+                2019-10-16
               </time>
             
           </span>
@@ -461,7 +463,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  515
+                  859
                 </span>
               
 
@@ -511,6 +513,16 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">y = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> x]</span><br><span class="line">plt.scatter(x,y,linewidth=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Squares Numbers'</span>,fontsize=<span class="number">24</span>)</span><br><span class="line">plt.xlabel(<span class="string">'value'</span>,fontsize=<span class="number">14</span>)</span><br><span class="line">plt.ylabel(<span class="string">'square of value'</span>,fontsize=<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line">plt.tick_params(axis=<span class="string">'both'</span>,labelsize=<span class="number">14</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 <h3 id="保存图片"><a href="#保存图片" class="headerlink" title="保存图片"></a>保存图片</h3><p>保存图片，需要使用matplotlib.pyplot中的savefig方法。值得注意的是，<strong>savefig必须在show方法之前执行</strong>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.savefig(<span class="string">'./test.eps'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="添加水平-垂直线"><a href="#添加水平-垂直线" class="headerlink" title="添加水平/垂直线"></a>添加水平/垂直线</h3><p>可以使用hlines()和vlines()方法分别绘制水平、垂直线段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.vlines(x=0, ymin=0, ymax=1, linestyles=&apos;dashed&apos;)</span><br><span class="line">plt.hlines(y=0.5, xmin=-10, xmax=10, linestyles=&apos;dashed&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="显示图例"><a href="#显示图例" class="headerlink" title="显示图例"></a>显示图例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
+<h3 id="更改坐标轴的位置"><a href="#更改坐标轴的位置" class="headerlink" title="更改坐标轴的位置"></a>更改坐标轴的位置</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gcg，get current axis</span></span><br><span class="line">ax = plt.gca()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 隐藏右边和顶部的线条</span></span><br><span class="line">ax.spines[<span class="string">'right'</span>].set_color(<span class="string">'none'</span>)</span><br><span class="line">ax.spines[<span class="string">'top'</span>].set_color(<span class="string">'none'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置x轴和y轴所在的位置</span></span><br><span class="line">ax.xaxis.set_ticks_position(<span class="string">'bottom'</span>)</span><br><span class="line">ax.yaxis.set_ticks_position(<span class="string">'left'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置x轴和y轴的交点为(0,0)</span></span><br><span class="line">ax.spines[<span class="string">'bottom'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br><span class="line">ax.spines[<span class="string">'left'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="对LaTex的支持"><a href="#对LaTex的支持" class="headerlink" title="对LaTex的支持"></a>对LaTex的支持</h3><p>在需要输入LaTex公式的地方，使用一对美元符$$包裹起来，就像这样<code>r&#39;sigmoid(x)=$\frac{1}{1+e^{-x}}$&#39;</code>，不要忘记前面的字母r（告诉编译器后面的字符串是个raw string，不需要对反斜杠进行转义）。</p>
+<p>示例：</p>
+<p>绘制Sigmoid函数，并在图例中显示sigmoid的数学表达式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">x = np.arange(start=<span class="number">-10</span>, stop=<span class="number">10</span>, step=<span class="number">0.1</span>)</span><br><span class="line">y = <span class="number">1</span> / (<span class="number">1</span> + math.e ** (-x))</span><br><span class="line">plt.plot(x, y, linewidth=<span class="number">3</span>, label=<span class="string">r'sigmoid(x)=$\frac&#123;1&#125;&#123;1+e^&#123;-x&#125;&#125;$'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'x'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line">plt.ylabel(<span class="string">'sigmoid(x)'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line">plt.xticks(np.arange(<span class="number">-10</span>, <span class="number">11</span>, step=<span class="number">1</span>))</span><br><span class="line">plt.yticks(np.arange(<span class="number">0</span>, <span class="number">1.1</span>, step=<span class="number">0.1</span>))</span><br><span class="line">plt.ylim(ymin=<span class="number">0</span>, ymax=<span class="number">1</span>)</span><br><span class="line">plt.xlim(xmin=<span class="number">-10</span>, xmax=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">plt.vlines(x=<span class="number">0</span>, ymin=<span class="number">0</span>, ymax=<span class="number">1</span>, linestyles=<span class="string">'dashed'</span>)</span><br><span class="line">plt.hlines(y=<span class="number">0.5</span>, xmin=<span class="number">-10</span>, xmax=<span class="number">10</span>, linestyles=<span class="string">'dashed'</span>)</span><br><span class="line"></span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<p><img src="/static/images/sigmoid-legend.png" alt=""></p>
 
       
     </div>
@@ -720,7 +732,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">234</span>
+                  <span class="site-state-item-count">235</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -843,7 +855,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置图片标题"><span class="nav-number">1.</span> <span class="nav-text">设置图片标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴文字"><span class="nav-number">2.</span> <span class="nav-text">设置x/y轴文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴的刻度范围"><span class="nav-number">3.</span> <span class="nav-text">设置x/y轴的刻度范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴的刻度"><span class="nav-number">4.</span> <span class="nav-text">设置x/y轴的刻度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示图片"><span class="nav-number">5.</span> <span class="nav-text">显示图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用中文"><span class="nav-number">6.</span> <span class="nav-text">使用中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线条图"><span class="nav-number">7.</span> <span class="nav-text">线条图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图"><span class="nav-number">8.</span> <span class="nav-text">散点图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存图片"><span class="nav-number">9.</span> <span class="nav-text">保存图片</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置图片标题"><span class="nav-number">1.</span> <span class="nav-text">设置图片标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴文字"><span class="nav-number">2.</span> <span class="nav-text">设置x/y轴文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴的刻度范围"><span class="nav-number">3.</span> <span class="nav-text">设置x/y轴的刻度范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴的刻度"><span class="nav-number">4.</span> <span class="nav-text">设置x/y轴的刻度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示图片"><span class="nav-number">5.</span> <span class="nav-text">显示图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用中文"><span class="nav-number">6.</span> <span class="nav-text">使用中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线条图"><span class="nav-number">7.</span> <span class="nav-text">线条图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图"><span class="nav-number">8.</span> <span class="nav-text">散点图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存图片"><span class="nav-number">9.</span> <span class="nav-text">保存图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加水平-垂直线"><span class="nav-number">10.</span> <span class="nav-text">添加水平/垂直线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示图例"><span class="nav-number">11.</span> <span class="nav-text">显示图例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改坐标轴的位置"><span class="nav-number">12.</span> <span class="nav-text">更改坐标轴的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对LaTex的支持"><span class="nav-number">13.</span> <span class="nav-text">对LaTex的支持</span></a></li></ol></div>
             
 
           </div>
