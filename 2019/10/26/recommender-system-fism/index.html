@@ -60,7 +60,7 @@
 
 
 
-  <meta name="keywords" content="Hexo">
+  <meta name="keywords" content="recommender systems,">
 
 
 
@@ -71,17 +71,21 @@
 
 
 
-<meta name="description" content="个人博客">
-<meta name="keywords" content="GongshanHe Java Spring Python MachineLearning DeepLearning KnowledgeGraph QuestionAnswering">
-<meta property="og:type" content="website">
-<meta property="og:title" content="贺巩山的博客">
-<meta property="og:url" content="https://www.hegongshan.com/categories/recommender-system/index.html">
+<meta name="description" content="针对Top-N推荐问题，作者提出了一种叫作FISM（Factored Item Similarity Models）的推荐算法，用两个低维隐因子矩阵的乘积来表示物品相似度矩阵。">
+<meta name="keywords" content="recommender systems">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文阅读 FISM&amp;#58 Factored Item Similarity Models for Top-N Recommender Systems">
+<meta property="og:url" content="https://www.hegongshan.com/2019/10/26/recommender-system-fism/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="针对Top-N推荐问题，作者提出了一种叫作FISM（Factored Item Similarity Models）的推荐算法，用两个低维隐因子矩阵的乘积来表示物品相似度矩阵。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/fism-rmse-algorithm.png">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/fism-auc-algorithm.png">
+<meta property="og:updated_time" content="2019-10-30T11:53:22.693Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="贺巩山的博客">
-<meta name="twitter:description" content="个人博客">
+<meta name="twitter:title" content="论文阅读 FISM&amp;#58 Factored Item Similarity Models for Top-N Recommender Systems">
+<meta name="twitter:description" content="针对Top-N推荐问题，作者提出了一种叫作FISM（Factored Item Similarity Models）的推荐算法，用两个低维隐因子矩阵的乘积来表示物品相似度矩阵。">
+<meta name="twitter:image" content="https://www.hegongshan.com/static/images/fism-rmse-algorithm.png">
 
 
 
@@ -111,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hegongshan.com/categories/recommender-system/">
+  <link rel="canonical" href="https://www.hegongshan.com/2019/10/26/recommender-system-fism/">
 
 
 
 
 
-  <title>分类: recommender system | 贺巩山的博客</title>
+  <title>论文阅读 FISM&#58 Factored Item Similarity Models for Top-N Recommender Systems | 贺巩山的博客</title>
   
 
 
@@ -136,7 +140,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 	<!--<a href="https://github.com/hegongshan">
 		<img style="position:absolute;top:0;right:0;border:0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
@@ -225,8 +229,8 @@
         </li>
       
         
-        <li class="menu-item menu-item-recommender-system">
-          <a href="/recommender-system/" rel="section">
+        <li class="menu-item menu-item-recommender-systems">
+          <a href="/recommender-systems/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-university"></i> <br>
             
@@ -344,235 +348,325 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block category">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>recommender system<small>分类</small>
-        </h2>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/10/26/recommender-system-fism/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/10/21/recommender-system-nais/" itemprop="url">
-              
-                <span itemprop="name">论文阅读 NAIS&#58 Neural Attentive Item Similarity Model for Recommendation</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">论文阅读 FISM&#58 Factored Item Similarity Models for Top-N Recommender Systems</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-21T19:22:36+08:00" content="2019-10-21">
-          10-21
-        </time>
-      </div>
+        <div class="post-meta">
+		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-26T19:40:30+08:00">
+                2019-10-26
+              </time>
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-30T19:53:22+08:00">
+                2019-10-30
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/recommender-systems/" itemprop="url" rel="index">
+                    <span itemprop="name">recommender systems</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/14/recommender-system-jncf/" itemprop="url">
-              
-                <span itemprop="name">论文阅读 Joint Neural Collaborative Filtering for Recommender Systems</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-14T21:38:16+08:00" content="2019-10-14">
-          10-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/04/recommender-system-dmf/" itemprop="url">
-              
-                <span itemprop="name">论文阅读 Deep Matrix Factorization Models for Recommender Systems</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-04T12:04:54+08:00" content="2019-10-04">
-          10-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/30/recommender-system-bpr/" itemprop="url">
-              
-                <span itemprop="name">论文阅读 BPR&#58 Bayesian Personalized Ranking from Implict Feedback</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-30T11:15:56+08:00" content="2019-09-30">
-          09-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/17/recommender-system-neural-collaborative-filtering/" itemprop="url">
-              
-                <span itemprop="name">论文阅读 Neural Collaborative Filtering</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-17T16:48:49+08:00" content="2019-09-17">
-          09-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/14/recommender-system-cold-start/" itemprop="url">
-              
-                <span itemprop="name">《推荐系统实践》4.推荐系统冷启动问题</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-14T11:43:54+08:00" content="2019-03-14">
-          03-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/13/recommender-system-item-based-collaborative-filtering/" itemprop="url">
-              
-                <span itemprop="name">《推荐系统实践》3.基于物品的协同过滤算法</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-13T11:31:32+08:00" content="2019-03-13">
-          03-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/04/recommender-system-evaluation-metrics/" itemprop="url">
-              
-                <span itemprop="name">《推荐系统实践》1.推荐系统评测</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-04T16:01:27+08:00" content="2019-03-04">
-          03-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <p>针对Top-N推荐问题，作者提出了一种叫作FISM（Factored Item Similarity Models）的推荐算法，用两个低维隐因子矩阵的乘积来表示物品相似度矩阵。</p>
+<a id="more"></a>
+<h3 id="符号说明"><a href="#符号说明" class="headerlink" title="符号说明"></a>符号说明</h3><p>1.所有的向量使用<strong>粗体小写字母</strong>表示，例如$\mathbf{p,q}​$。</p>
+<p>2.所有的矩阵使用<strong>粗体大写字母</strong>表示，例如$\mathbf{R}$。此外，$\mathbf{p_j}$表示矩阵$\mathbf{P}$的第j行。</p>
+<p>3.评估时的预测值，在字母上方加波浪号，如$\tilde r_{ui}$；训练时的估计值，在字母上方加估计符号，如$\hat r_{ui}$。</p>
+<p>4.$\mathcal{C}$和$\mathcal{D}$分别表示用户和物品集合，$\vert \mathcal{C} \vert=n$，$\vert \mathcal{D} \vert=m$。</p>
+<p>5.$\mathbf{R}​$表示用户-物品隐式反馈矩阵；$\mathcal{R}_u^+​$表示用户u评分过的物品集合；$\mathcal{R}_u^-​$表示用户u未评分过的物品集合。</p>
+<p>6.$\vert \mathcal{R}_u^+ \vert = n_u^+ $</p>
+<h3 id="SLIM"><a href="#SLIM" class="headerlink" title="SLIM"></a>SLIM</h3><p><em>Sparse LInear Method</em> (SLIM)的预测模型：<br>$$<br>\mathbf{\tilde r}_u = \mathbf{r_u S} \tag{1}<br>$$<br>其中，$\mathbf{r_u}$表示用户u对所有物品的评分组成的向量；$\mathbf{S} \in \mathbb{R}^{m \times m}$表示物品相似度矩阵。</p>
+<p>目标函数：<br>$$<br>L= \min_{\mathbf{S}} \frac{1}{2} \sum_{(u,i) \in \mathbf{R}}  \left \Vert r_{ui} - \hat r_{ui} \right \Vert_F^2 + \frac{\beta}{2} \left \Vert \mathbf{S} \right \Vert_F^2 + \lambda \left \Vert \mathbf{S} \right \Vert_1 \\<br>subject\ to\ \mathbf{S} \geq 0, diag(\mathbf{S}) = 0 \tag{2}<br>$$<br>其中，$\left \Vert \mathbf{S} \right \Vert_F$是矩阵$\mathbf{S}$的Frobenius范数（参见补充知识）；$\beta$和$\lambda$是正则化参数。</p>
+<p><strong>SLIM的不足之处在于</strong>：无法捕捉物品之间的传递关系。</p>
+<p>如果物品i和j未被任何用户同时评分过，则$s_{ij} = 0$。</p>
+<p>但是，物品i和j可能均和第三个物品k相似，从而使得物品i和j彼此相似。</p>
+<h3 id="NSVD"><a href="#NSVD" class="headerlink" title="NSVD"></a>NSVD</h3><p>NSVD用两个低秩矩阵$\mathbf{P} \in \mathbb{R}^{m \times k}$和$\mathbf{Q} \in \mathbb{R}^{m \times k}$（$k \ll m $）的乘积来表示物品相似度。</p>
+<p>给定物品i和j，二者的相似度$sim(i,j) = \mathbf{p}_i \cdot \mathbf{q}_j^T$。</p>
+<p>预测模型：<br>$$<br>\hat r_{ui} = \tilde r_{ui} = b_u + b_i + \sum_{j \in \mathcal{R}_u^+} \mathbf{p}_j \mathbf{q}_i^T \tag{3}<br>$$<br>目标函数：<br>$$<br>\min_{\mathbf{P,Q}} \frac{1}{2} \sum_{u \in \mathcal{C}} \sum_{i \in \mathcal{R}_u^+} \left \Vert r_{ui} - \hat r_{ui} \right \Vert_F^2 + \frac{\beta}{2} (\left \Vert \mathbf{P} \right \Vert_F^2 + \left \Vert \mathbf{Q} \right \Vert_F^2) \tag{4}<br>$$<br><strong>NSVD的不足之处在于</strong>：在估计评分时，没有排除物品自己对自己的影响。</p>
+<p>例如，在训练时，要估计用户u对物品i的评分$\hat r_{ui}​$，且$i \in \mathcal{R}_u^+​$</p>
+<p>根据公式(3)可以得到：<br>$$<br>\hat r_{ui} = b_u + b_i + \mathbf{p}_i \mathbf{q}_i^T  + \sum_{j \in \mathcal{R}_u^+ \setminus \{i\}} \mathbf{p}_j \mathbf{q}_i^T \tag{5}<br>$$</p>
+<h3 id="FISM"><a href="#FISM" class="headerlink" title="FISM"></a>FISM</h3><p>预测模型：<br>$$<br>\tilde r_{ui} = b_u + b_i + \left \vert R_u^+ \right \vert^{- \alpha} \sum_{j \in \mathcal{R_u^+}} \mathbf{p}_j \mathbf{q}_i^T \tag{6}<br>$$</p>
+<p>作者提出了两种版本的FISM模型，它们使用不同的损失函数。</p>
+<h4 id="FISMrmse"><a href="#FISMrmse" class="headerlink" title="FISMrmse"></a>FISMrmse</h4><p>平方误差损失函数：<br>$$<br>\mathcal{L(\cdot)} = \sum_{i \in \mathcal{D}} \sum_{u \in \mathcal{C}} (r_{ui} - \hat r_{ui})^2 \tag{7}<br>$$<br>估计值$\hat r_{ui}$的计算方法如下：<br>$$<br>\hat r_{ui} = b_u + b_i + (\left \vert R_u^+ \right \vert - 1)^{- \alpha} \sum_{j \in \mathcal{R_u^+ \setminus \ \{i\}}} \mathbf{p}_j \mathbf{q}_i^T \tag{8}<br>$$<br>由于FISM只关注隐式反馈，$\forall j \in \mathcal{R}_u^+$，$r_{uj} = 1$，因此，在公式(7)中省略了$r_{uj}$。</p>
+<p>目标函数：<br>$$<br>L = \min_{\mathbf{P,Q}} \frac{1}{2} \sum_{(u,i) \in R} \left \Vert r_{ui} - \hat r_{ui} \right \Vert_F^2 + \frac{\beta}{2} (\left \Vert \mathbf{P} \right \Vert_F^2 + \left \Vert \mathbf{Q} \right \Vert_F^2) + \frac{\lambda}{2} \left \Vert \mathbf{b_u} \right \Vert_2^2 + \frac{\gamma}{2} \left \Vert \mathbf{b_i} \right \Vert_2^2 \tag{9}<br>$$<br>其中，$\mathbf{b_u}$和$\mathbf{b_i}$分别是用户和物品的偏置向量。</p>
+<p>使用用户-物品交互矩阵$\mathbf{R}$中的所有元素来计算损失函数是非常耗时的，因此，作者提出对$\mathbf{R}$中的零元素（负样本）进行采样。每次迭代时，随机选择$\rho \cdot nnz(R)$个零元素。</p>
+<p>其中，$\rho$是采样因子（sample factor），$nnz(R)$是$\mathbf{R}$中非零项（non-zero entries）的个数。</p>
+<p>实验表明，当采样比$\rho \in [3,15]​$时，足够产生最佳的模型。</p>
+<p>训练算法：</p>
+<p><img src="/static/images/fism-rmse-algorithm.png" alt=""></p>
+<h4 id="FISMauc"><a href="#FISMauc" class="headerlink" title="FISMauc"></a>FISMauc</h4><p>基于Bayesian Personalized Ranking（BPR）的排序损失函数：<br>$$<br>\mathcal{L(\cdot)} = \sum_{u \in \mathcal{C}} \sum_{i \in \mathcal{R}_u^+,\ j \in \mathcal{R}_u^-} ( (r_{ui} - r_{uj}) - (\hat r_{ui} - \hat r_{uj}) )^2 \tag{10}<br>$$<br>其中，$R_u^+$表示用户评分过的物品，$R_u^-$表示用户未评分过的物品。</p>
+<p>目标函数：<br>$$<br>\min_{\mathbf{P,Q}} \frac{1}{2} \sum_{u \in \mathcal{C}} \sum_{i \in \mathcal{R}_u^+,\ j \in \mathcal{R}_u^-} \left \Vert (r_{ui} - r_{uj}) - (\hat r_{ui} - \hat r_{uj}) \right \Vert_F^2 + \frac{\beta}{2} (\left \Vert \mathbf{P} \right \Vert_F^2 + \left \Vert \mathbf{Q} \right \Vert_F^2) + \frac{\gamma}{2} \left \Vert \mathbf{b_i} \right \Vert_2^2 \tag{11}<br>$$<br>注意：由于$\hat r_{ui} - \hat r_{uj}$时，$b_u$被消掉了，因此，目标函数的正则项中没有$\mathbf{b}_u$。</p>
+<p>此外，FISMauc的采样方式与FISMrmse相似。</p>
+<p>训练算法：</p>
+<p><img src="/static/images/fism-auc-algorithm.png" alt=""></p>
+<h3 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h3><p>1.矩阵$\mathbf{A} \in \mathbb{R}^{m \times n}$的Frobenius范数$\left \Vert \mathbf{A} \right \Vert_F$定义为：<br>$$<br>\left \Vert \mathbf{A} \right \Vert_F = \sqrt{tr(\mathbf{A}^T \mathbf{A})} = \sqrt {\sum_{i=1}^m \sum_{j=1}^n A_{ij}^2} \tag{12}<br>$$<br>2.对于矩阵$\mathbf{A}​$<br>$$<br>\frac{\partial \left \Vert \mathbf{A} \right \Vert_F^2}{\partial \mathbf{A}} = 2 \mathbf{A} \tag{13}<br>$$<br>对于向量$\mathbf{x}​$<br>$$<br>\frac{\partial \left \Vert \mathbf{x} \right \Vert_2^2}{\partial \mathbf{x}} = 2 \mathbf{x} \tag{14}<br>$$</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>1.S. Kabbur, X. Ning, and G. Karypis, “FISM: Factored item similar- ity models for top-n recommender systems,” in Proc. 19th ACM SIGKDD Conf. Knowl. Discovery Data Mining, 2013, pp. 659–667.</p>
+<p>2.<a href="https://github.com/guoguibing/librec/blob/3.0.0/core/src/main/java/net/librec/recommender/cf/ranking/FISMrmseRecommender.java" target="_blank" rel="noopener">https://github.com/guoguibing/librec/blob/3.0.0/core/src/main/java/net/librec/recommender/cf/ranking/FISMrmseRecommender.java</a></p>
+<p>3.<a href="https://github.com/guoguibing/librec/blob/3.0.0/core/src/main/java/net/librec/recommender/cf/ranking/FISMaucRecommender.java" target="_blank" rel="noopener">https://github.com/guoguibing/librec/blob/3.0.0/core/src/main/java/net/librec/recommender/cf/ranking/FISMaucRecommender.java</a></p>
 
       
     </div>
+    
+    
+    
+    		
+	  <div>
+	    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">----------本文结束<i class="fa fa-paw"></i>感谢您的阅读----------</div>
+    
+</div>	
+	  </div>
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Gongshan He 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Gongshan He 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Gongshan He
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.hegongshan.com/2019/10/26/recommender-system-fism/" title="论文阅读 FISM&#58 Factored Item Similarity Models for Top-N Recommender Systems">https://www.hegongshan.com/2019/10/26/recommender-system-fism/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/recommender-systems/" rel="tag"><i class="fa fa-tag"></i> recommender systems</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/21/recommender-system-nais/" rel="next" title="论文阅读 NAIS&#58 Neural Attentive Item Similarity Model for Recommendation">
+                <i class="fa fa-chevron-left"></i> 论文阅读 NAIS&#58 Neural Attentive Item Similarity Model for Recommendation
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -580,6 +674,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+        <div id="gitalk-container"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -600,8 +703,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -618,7 +730,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">236</span>
+                  <span class="site-state-item-count">237</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -629,7 +741,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -640,7 +752,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -731,6 +843,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#符号说明"><span class="nav-number">1.</span> <span class="nav-text">符号说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SLIM"><span class="nav-number">2.</span> <span class="nav-text">SLIM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSVD"><span class="nav-number">3.</span> <span class="nav-text">NSVD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FISM"><span class="nav-number">4.</span> <span class="nav-text">FISM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FISMrmse"><span class="nav-number">4.1.</span> <span class="nav-text">FISMrmse</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FISMauc"><span class="nav-number">4.2.</span> <span class="nav-text">FISMauc</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充知识"><span class="nav-number">5.</span> <span class="nav-text">补充知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">6.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -891,6 +1019,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -929,6 +1061,21 @@
 
 
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'e80ff2e43cf29f9de422',
+          clientSecret: '462fb57a98f6ec42f83ed23b0fc4c3e973483a5f',
+          repo: 'hegongshan.github.io',
+          owner: 'hegongshan',
+          admin: ['hegongshan'],
+          id: location.pathname,
+          distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
 
 
 

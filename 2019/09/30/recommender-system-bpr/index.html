@@ -60,7 +60,7 @@
 
 
 
-  <meta name="keywords" content="recommender system,">
+  <meta name="keywords" content="recommender systems,">
 
 
 
@@ -72,14 +72,14 @@
 
 
 <meta name="description" content="贝叶斯个性化排序（Bayesian Personalized Ranking，BPR）是一种基于pairwise的排序算法，主要利用用户的隐式反馈（如点击、浏览、购买等行为），通过最大化后验概率来对物品进行个性化排序。">
-<meta name="keywords" content="recommender system">
+<meta name="keywords" content="recommender systems">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文阅读 BPR&amp;#58 Bayesian Personalized Ranking from Implict Feedback">
 <meta property="og:url" content="https://www.hegongshan.com/2019/09/30/recommender-system-bpr/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="贝叶斯个性化排序（Bayesian Personalized Ranking，BPR）是一种基于pairwise的排序算法，主要利用用户的隐式反馈（如点击、浏览、购买等行为），通过最大化后验概率来对物品进行个性化排序。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-16T12:34:38.450Z">
+<meta property="og:updated_time" content="2019-10-30T11:41:07.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读 BPR&amp;#58 Bayesian Personalized Ranking from Implict Feedback">
 <meta name="twitter:description" content="贝叶斯个性化排序（Bayesian Personalized Ranking，BPR）是一种基于pairwise的排序算法，主要利用用户的隐式反馈（如点击、浏览、购买等行为），通过最大化后验概率来对物品进行个性化排序。">
@@ -226,8 +226,8 @@
         </li>
       
         
-        <li class="menu-item menu-item-recommender-system">
-          <a href="/recommender-system/" rel="section">
+        <li class="menu-item menu-item-recommender-systems">
+          <a href="/recommender-systems/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-university"></i> <br>
             
@@ -406,8 +406,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-16T20:34:38+08:00">
-                2019-10-16
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-30T19:41:07+08:00">
+                2019-10-30
               </time>
             
           </span>
@@ -425,8 +425,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/recommender-system/" itemprop="url" rel="index">
-                    <span itemprop="name">recommender system</span>
+                  <a href="/categories/recommender-systems/" itemprop="url" rel="index">
+                    <span itemprop="name">recommender systems</span>
                   </a>
                 </span>
 
@@ -515,7 +515,7 @@
 <p>为了简化计算，作者将其定义为<br>$$<br>\hat x_{uij} := \hat x_{ui} - \hat x_{uj} \tag{15}<br>$$<br>最大化BPR-OPT，等价于最小化下式<br>$$<br>Loss = \sum_{(u,i,j) \in D_s} -\ln \sigma(\hat x_{ui} - \hat x_{uj}) + \lambda_\Theta \lVert \Theta \rVert^2 \tag{16}<br>$$</p>
 <h4 id="矩阵分解"><a href="#矩阵分解" class="headerlink" title="矩阵分解"></a>矩阵分解</h4><p>预测$\hat x_{ui}$，可以看作是估计矩阵X：$U \times I$。目标矩阵X可以用两个低秩矩阵W：$\lvert U \rvert \times k$和H：$\lvert I \rvert \times k$的乘积来估计。<br>$$<br>\hat x := W H^T \tag{17}<br>$$<br>W中的每一行$w_u$是描述用户u的特征向量，H中的每一行$h_i$是描述物品i的特征向量。<br>$$<br>\hat x_{ui} = w_u \cdot h_i^T = \sum_{f=1}^k w_{uf} h_{if} \tag{18}<br>$$<br>从而：<br>$$<br>\hat x_{uij} = \sum_{f=1}^k w_{uf} (h_{if} - h_{jf}) \tag{19}<br>$$<br>矩阵分解的模型参数$\Theta=(W,H)​$<br>$$<br>\frac{\partial}{\partial \theta} \hat x_{uij} =<br>\begin{cases}<br>(h_{if} - h_{jf}) &amp; if\ \theta = w_{uf}, \\<br>w_{uf} &amp; if\ \theta = h_{if}, \\<br>-w_{uf} &amp; if\ \theta = h_{jf}, \\<br>0 &amp; else<br>\end{cases} \tag{20}<br>$$</p>
 <p>此时，损失函数为：<br>$$<br>Loss = \sum_{(u,i,j) \in D_s} -\ln \sigma(\hat x_{ui} - \hat x_{uj}) + \lambda_W \cdot w_{uf}^2 + \lambda_{H^+} \cdot h_{if}^2 + \lambda_{H^-} \cdot h_{jf}^2 \tag{21}<br>$$<br>其中，$\lambda_W、\lambda_{H^+}、\lambda_{H^-}​$分别为用户特征W、正样本$h_{if}​$、负样本$h_{jf}​$的正则化参数。</p>
-<p>模型迭代公式如下：<br>$$<br>w_{uf} = w_{uf} + \alpha \left(\frac{1}{e^x + 1} \cdot (h_{if} - h_{jf}) - \lambda_W \cdot w_{uf} \right) \\<br>h_{if} = h_{if} + \alpha (\frac{1}{e^x + 1} \cdot w_{uf} - \lambda_{H^+} \cdot h_{if}) \\<br>h_{jf} = h_{jf} + \alpha \left(\frac{1}{e^x + 1} \cdot (-w_{uf}) - \lambda_{H^-} \cdot h_{jf}\right)<br>$$</p>
+<p>模型迭代公式如下：<br>$$<br>w_{uf} \leftarrow w_{uf} + \alpha \left(\frac{1}{e^x + 1} \cdot (h_{if} - h_{jf}) - \lambda_W \cdot w_{uf} \right) \\<br>h_{if} \leftarrow h_{if} + \alpha \left(\frac{1}{e^x + 1} \cdot w_{uf} - \lambda_{H^+} \cdot h_{if} \right) \\<br>h_{jf} \leftarrow h_{jf} + \alpha \left(\frac{1}{e^x + 1} \cdot (-w_{uf}) - \lambda_{H^-} \cdot h_{jf}\right)<br>$$</p>
 <h3 id="写在最后的话"><a href="#写在最后的话" class="headerlink" title="写在最后的话"></a>写在最后的话</h3><p>1.对于式(3)，论文中的原始表述为<br>$$<br>\prod_{u \in U} p(&gt;_u | \Theta) = \prod_{(u,i,j) \in U \times I \times I} p(i &gt;_u j | \Theta)^{\delta ( \ (u,i,j)\ \in\ D_s\ )} \cdot (1 - p(i &gt;_u j | \Theta))^{\delta ( \ (u,j,i)\ \notin\ D_s\ )}<br>$$<br>笔者认为后一项的指数应该是$\delta ( \ (u,i,j)\ \notin\ D_s\ )$ ，表示 $i &gt;_u j$ 不成立。</p>
 <p>2.对于式(12)，论文中的原始表述为<br>$$<br>\begin{align}<br>\frac{\partial BPR-OPT}{\partial \Theta}<br>&amp;= \sum_{(u,i,j) \in D_s} \frac{\partial}{\partial \Theta} \ln \sigma(\hat x_{uij}) - \lambda_\Theta \frac{\partial}{\partial \Theta}\lVert \Theta \rVert^2 \\<br>&amp;\propto \sum_{(u,i,j) \in D_s} \frac{-e^{-\hat x_{uij}}}{1 + e^{-\hat x_{uij}}} \frac{\partial}{\partial \Theta}\hat x_{uij} - \lambda_\Theta \Theta<br>\end{align}<br>$$<br>根据式(14)，第一项的求导结果应该是不带负号的，即$\frac{e^{-\hat x_{uij}}}{1 + e^{-\hat x_{uij}}} \frac{\partial}{\partial \Theta}\hat x_{uij}$，个人认为是作者写错了。</p>
 <p>对于上述两个问题，如果是我理解错了，希望大伙不吝赐教。</p>
@@ -594,7 +594,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/recommender-system/" rel="tag"><i class="fa fa-tag"></i> recommender system</a>
+            <a href="/tags/recommender-systems/" rel="tag"><i class="fa fa-tag"></i> recommender systems</a>
           
         </div>
       
@@ -730,7 +730,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">236</span>
+                  <span class="site-state-item-count">237</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -741,7 +741,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -752,7 +752,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

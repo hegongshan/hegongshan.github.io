@@ -60,7 +60,7 @@
 
 
 
-  <meta name="keywords" content="recommender system,">
+  <meta name="keywords" content="recommender systems,">
 
 
 
@@ -72,7 +72,7 @@
 
 
 <meta name="description" content="作者使用一个联合神经网络将用户和物品的深度特征学习、用户与物品之间的深度交互建模整合在一起。此外，作者综合考虑了显式反馈和隐式反馈、pointwise和pairwise损失，提出了一种新的损失函数。">
-<meta name="keywords" content="recommender system">
+<meta name="keywords" content="recommender systems">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文阅读 Joint Neural Collaborative Filtering for Recommender Systems">
 <meta property="og:url" content="https://www.hegongshan.com/2019/10/14/recommender-system-jncf/index.html">
@@ -81,7 +81,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/jncf.png">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/jncf-training-algorithm.png">
-<meta property="og:updated_time" content="2019-10-18T14:31:39.027Z">
+<meta property="og:updated_time" content="2019-10-26T11:55:44.395Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读 Joint Neural Collaborative Filtering for Recommender Systems">
 <meta name="twitter:description" content="作者使用一个联合神经网络将用户和物品的深度特征学习、用户与物品之间的深度交互建模整合在一起。此外，作者综合考虑了显式反馈和隐式反馈、pointwise和pairwise损失，提出了一种新的损失函数。">
@@ -229,8 +229,8 @@
         </li>
       
         
-        <li class="menu-item menu-item-recommender-system">
-          <a href="/recommender-system/" rel="section">
+        <li class="menu-item menu-item-recommender-systems">
+          <a href="/recommender-systems/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-university"></i> <br>
             
@@ -409,8 +409,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-18T22:31:39+08:00">
-                2019-10-18
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-26T19:55:44+08:00">
+                2019-10-26
               </time>
             
           </span>
@@ -428,8 +428,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/recommender-system/" itemprop="url" rel="index">
-                    <span itemprop="name">recommender system</span>
+                  <a href="/categories/recommender-systems/" itemprop="url" rel="index">
+                    <span itemprop="name">recommender systems</span>
                   </a>
                 </span>
 
@@ -497,9 +497,9 @@
 <p>$Net_{user}$和$Net_{item}$分别以用户的评分向量$\mathbf{v_u} = &lt;y_{u1},\cdots,y_{uN}&gt;$和物品的评分向量$\mathbf{v_i} = &lt;y_{1i},\cdots,y_{Mi}&gt;$作为输​入。<br>$$<br>y_{ui} =<br>\begin{cases}<br>0, &amp; \mathrm{for\ unknown\ ratings}, \\<br>R_{ui}, &amp; \mathrm{when\ explicit\ feedback\ is\ available}<br>\end{cases} \tag{3}<br>$$<br>其中，$R_{ui}$是用户u对物品i的评分。</p>
 <p>可以看到，对于用户物品交互矩阵，作者遵循了DMF中的做法，综合考虑了显式反馈和隐式反馈。</p>
 <p>在DF网络中，作者使用MLP将用户和物品的高维评分向量映射为更低维度的向量。</p>
-<p>由于$Net_{user}$和$Net_{item}$只有输入不同，因此，下面仅描述$Net_{user}$的流程。<br>$$<br>\mathbf{z_u^1} = f_u^1(\mathbf{W_u^1 v_u + b_u^1}) \\<br>\mathbf{z_u^2} = f_u^2(\mathbf{W_u^2 z_u^1 + b_u^2}) \\<br>\vdots \\<br>\mathbf{z_u} = f_u^X(\mathbf{W_u^X z_u^{X-1} + b_u^X}) \tag{4}<br>$$<br>其中，$\mathbf{W_{u}^x}$、$\mathbf{b_{u}^x}$、$f_{u}^x$分别表示DF网络中第x层的权重矩阵、偏差向量和激活函数；X表示DF网络的层数。</p>
+<p>由于$Net_{user}$和$Net_{item}$只有输入不同，因此，下面仅描述$Net_{user}$的流程。<br>$$<br>\mathbf{z_u^1} = f_u^1(\mathbf{W_u^1 v_u + b_u^1}) \\<br>\mathbf{z_u^2} = f_u^2(\mathbf{W_u^2 z_u^1 + b_u^2}) \\<br>\vdots \\<br>\mathbf{z_u} = f_u^X(\mathbf{W_u^X z_u^{X-1} + b_u^X}) \tag{4}<br>$$<br>其中，$\mathbf{W_{u}^x}$、$\mathbf{b_{u}^x}$、$f_{u}^x$分别表示DF网络中第x层的权重矩阵、偏置向量和激活函数；X表示DF网络的层数。</p>
 <p>在DF网络中，作者采用ReLU作为激活函数。</p>
-<p>为了研究非线性函数和线性函数在对用户和物品之间的交互进行建模的差异，作者提出使用以下两种方式来得到用户和物品的融合特征向量$a_{ui}$，并将其作为DI网络的输入：<br>$$<br>a_{ui} =<br>\begin{cases}<br>\begin{bmatrix}<br>z_u \\<br>z_i<br>\end{bmatrix},<br> &amp; \mathrm{concatenation,\ or} \\<br> z_u \odot z_i, &amp; \mathrm{multiplication}<br>\end{cases} \tag{5}<br>$$<br>DI网络的处理流程如下：<br>$$<br>z_{ui}^1 = f_{ui}^1(\mathbf{W_{ui}^1} a_{ui} + \mathbf{b_{ui}^1}) \\<br>z_{ui}^2 = f_{ui}^2(\mathbf{W_{ui}^2} z_{ui}^1 + \mathbf{b_{ui}^2}) \\<br>\vdots \\<br>z_{ui}^Y = f_{ui}^Y(\mathbf{W_{ui}^Y} z_{ui}^{Y-1} + \mathbf{b_{ui}^Y}) \tag{6}<br>$$<br>其中，$\mathbf{W_{ui}^y}$、$\mathbf{b_{ui}^y}$、$f_{ui}^y$分别表示DI网络中第y层的权重矩阵、偏差向量和激活函数；Y表示DI网络的层数。</p>
+<p>为了研究非线性函数和线性函数在对用户和物品之间的交互进行建模的差异，作者提出使用以下两种方式来得到用户和物品的融合特征向量$a_{ui}​$，并将其作为DI网络的输入：<br>$$<br>a_{ui} =<br>\begin{cases}<br>\begin{bmatrix}<br>z_u \\<br>z_i<br>\end{bmatrix},<br> &amp; \mathrm{concatenation,\ or} \\<br> z_u \odot z_i, &amp; \mathrm{multiplication}<br>\end{cases} \tag{5}<br>$$<br>DI网络的处理流程如下：<br>$$<br>z_{ui}^1 = f_{ui}^1(\mathbf{W_{ui}^1} a_{ui} + \mathbf{b_{ui}^1}) \\<br>z_{ui}^2 = f_{ui}^2(\mathbf{W_{ui}^2} z_{ui}^1 + \mathbf{b_{ui}^2}) \\<br>\vdots \\<br>z_{ui}^Y = f_{ui}^Y(\mathbf{W_{ui}^Y} z_{ui}^{Y-1} + \mathbf{b_{ui}^Y}) \tag{6}<br>$$<br>其中，$\mathbf{W_{ui}^y}$、$\mathbf{b_{ui}^y}$、$f_{ui}^y$分别表示DI网络中第y层的权重矩阵、偏差向量和激活函数；Y表示DI网络的层数。</p>
 <p>在DI网络中，作者亦采用ReLU作为激活函数。</p>
 <p>DI网络的输出是用户u和物品i之间交互的预测分数$\hat y_{ui}$:<br>$$<br>\hat y_{ui} = \sigma(\mathbf{h^T}z_{ui}) \tag{7}<br>$$<br>其中，$\sigma$是sigmoid函数，它将输出限制在区间(0,1)中；$\mathbf{h}$为DI网络输出层的权重向量。</p>
 <h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><p>NCF和DMF均采用了基于pointwise的对数损失函数<br>$$<br>\ell_{log} = - \sum_{u \in U} \sum_{i \in I} y_{ui} \log \hat y_{ui} + (1-y_{ui}) \log(1-\hat y_{ui}) \tag{10}<br>$$<br>常见的基于pairwise的损失函数有：TOP1、BPR-max以及TOP1-max。<br>$$<br>\ell_{TOP1} = \frac{1}{\left \vert N_S \right \vert} \sum_{j \in N_S} \sigma(\hat y_{uj} - \hat y_{ui}) + \sigma(\hat y_{uj}^2) \tag{11}<br>$$<br>其中，$\hat y_{uj}$和$\hat y_{ui}$分别为负样本j和正样本i的预测分数；$N_S$为负样本集合。</p>
@@ -592,7 +592,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/recommender-system/" rel="tag"><i class="fa fa-tag"></i> recommender system</a>
+            <a href="/tags/recommender-systems/" rel="tag"><i class="fa fa-tag"></i> recommender systems</a>
           
         </div>
       
@@ -728,7 +728,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">236</span>
+                  <span class="site-state-item-count">237</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -739,7 +739,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -750,7 +750,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
