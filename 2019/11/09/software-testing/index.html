@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+
+
+  <meta name="keywords" content="software testing,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今天参加了软件评测师考试，趁着热乎劲，总结下软件测试的相关知识。">
+<meta name="keywords" content="software testing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件测试基础知识">
+<meta property="og:url" content="https://www.hegongshan.com/2019/11/09/software-testing/index.html">
+<meta property="og:site_name" content="贺巩山的博客">
+<meta property="og:description" content="今天参加了软件评测师考试，趁着热乎劲，总结下软件测试的相关知识。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-09T13:22:13.198Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件测试基础知识">
+<meta name="twitter:description" content="今天参加了软件评测师考试，趁着热乎劲，总结下软件测试的相关知识。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.hegongshan.com/2019/11/09/software-testing/">
+
+
+
+
+
+  <title>软件测试基础知识 | 贺巩山的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<!--<a href="https://github.com/hegongshan">
+		<img style="position:absolute;top:0;right:0;border:0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
+		alt="Follow me on Github" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"/>
+	</a>-->
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">贺巩山的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">没有伞的孩子更要努力奔跑</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-leetcode">
+          <a href="/leetcode/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br>
+            
+            LeetCode题解
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-pat-advanced">
+          <a href="/pat-advanced/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-terminal"></i> <br>
+            
+            PAT甲级题解
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-pat-basic">
+          <a href="/pat-basic/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-angellist"></i> <br>
+            
+            PAT乙级题解
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ccf-csp">
+          <a href="/ccf-csp/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-laptop"></i> <br>
+            
+            CCF CSP题解
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-recommender-systems">
+          <a href="/recommender-systems/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-university"></i> <br>
+            
+            推荐系统
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-java">
+          <a href="/java/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pagelines"></i> <br>
+            
+            Java攻城狮
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/booklist/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/11/09/software-testing/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">软件测试基础知识</h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-09T19:10:09+08:00">
+                2019-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/software-testing/" itemprop="url" rel="index">
+                    <span itemprop="name">software testing</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>今天参加了<a href="http://www.ruankao.org.cn" target="_blank" rel="noopener">软件评测师</a>考试，趁着热乎劲，总结下软件测试的相关知识。</p>
+<a id="more"></a>
+<h3 id="软件测试原则"><a href="#软件测试原则" class="headerlink" title="软件测试原则"></a>软件测试原则</h3><p>1.所有的软件测试都应追溯到用户需求。</p>
+<p>2.应当把“尽早地和不断地进行软件测试”作为软件测试者的座右铭。</p>
+<p>3.完全测试是不可能的，测试需要终止。</p>
+<p>4.测试无法显示软件潜在的缺陷。</p>
+<p>5.充分注意测试中的群集现象。</p>
+<p>6.程序员应避免检查自己的程序。</p>
+<p>7.尽量避免测试的随意性。</p>
+<h3 id="软件测试对象"><a href="#软件测试对象" class="headerlink" title="软件测试对象"></a>软件测试对象</h3><p>根据软件的定义，软件包括程序、数据和文档。</p>
+<p>所以，软件测试并不仅仅是程序测试，还应包括相应文档和数据的测试。</p>
+<h3 id="软件测试分类"><a href="#软件测试分类" class="headerlink" title="软件测试分类"></a>软件测试分类</h3><ul>
+<li>按照开发阶段划分：单元测试、集成测试、系统测试、确认测试以及验收测试。</li>
+</ul>
+<p>常见的单元测试工具：Java JUnit、Python unittest</p>
+<ul>
+<li>按照测试技术划分：白盒测试（white-box testing）、黑盒测试（black-box testing）以及灰盒测试（gray-box testing）。</li>
+<li>根据是否需要执行被测试代码划分：静态测试（static testing）和动态测试（dynamic testing）。</li>
+</ul>
+<p>静态测试指不运行被测程序本身，仅通过分析或检查源程序的文法、结构、过程、接口等来检查程序的正确性。</p>
+<p>动态测试是指通过运行软件来检验软件的动态行为和运行结果的正确性，主要是对软件的逻辑、功能等方面进行评估。</p>
+<h3 id="测试停止准则"><a href="#测试停止准则" class="headerlink" title="测试停止准则"></a>测试停止准则</h3><p>1.测试用例全部执行结束</p>
+<p>2.测试覆盖率达到要求</p>
+<p>3.测试超出了预定时间</p>
+<p>4.查出了预定数目的故障</p>
+<p>5.执行了预定的测试方案</p>
+<h3 id="白盒测试"><a href="#白盒测试" class="headerlink" title="白盒测试"></a>白盒测试</h3><p>用于确认程序结构逻辑的正确性。</p>
+<h4 id="逻辑覆盖法"><a href="#逻辑覆盖法" class="headerlink" title="逻辑覆盖法"></a>逻辑覆盖法</h4><h5 id="语句覆盖"><a href="#语句覆盖" class="headerlink" title="语句覆盖"></a>语句覆盖</h5><p>语句覆盖（Statement Coverage，SC）：选择足够多的测试数据，使被测程序中每条语句至少执行一次。</p>
+<h5 id="判定覆盖"><a href="#判定覆盖" class="headerlink" title="判定覆盖"></a>判定覆盖</h5><p>判定覆盖（Decision Coverage，DC）：设计足够的测试用例，使得被测程序中的每个判定表达式至少获得一次“真值”或“假值”，从而使程序的每一个分支至少都通过一次。</p>
+<h5 id="条件覆盖"><a href="#条件覆盖" class="headerlink" title="条件覆盖"></a>条件覆盖</h5><p>条件覆盖（Condition Coverage，CC）：构造一组测试用例，使得每一判定语句中每个逻辑条件的可能值至少满足一次。</p>
+<h5 id="条件-判定覆盖"><a href="#条件-判定覆盖" class="headerlink" title="条件/判定覆盖"></a>条件/判定覆盖</h5><p>条件/判定覆盖（Condition/ Decision Coverage，CDC）：设计足够的测试用例，使得判定中每个条件的所有可能（真/假）至少出现一次，并且每个判定本身的判定结果（真/假）也至少出现一次。</p>
+<h5 id="条件组合覆盖"><a href="#条件组合覆盖" class="headerlink" title="条件组合覆盖"></a>条件组合覆盖</h5><p>多条件覆盖，也称条件组合覆盖（Multiple Condition Coverage，MCC）：选择足够的测试用例，使得每个判定中条件的各种可能组合都至少出现一次。</p>
+<h5 id="修正条件-判定覆盖"><a href="#修正条件-判定覆盖" class="headerlink" title="修正条件/判定覆盖"></a>修正条件/判定覆盖</h5><p>修正条件/判定覆盖（Modified Condition/ Decision Coverage，MC/DC）：设计适当数量的测试用例，保证在一个程序中每一种输入输出至少得出现一次，在程序中的每一个条件必须产生所有可能的输出结果至少一次，并且每个判断中的每个条件必须能够独立影响一个判断的输出，即在其他条件不变的前提下仅改变这个条件的值，而使判断结果改变。</p>
+<h4 id="基本路径测试"><a href="#基本路径测试" class="headerlink" title="基本路径测试"></a>基本路径测试</h4><p>在程序控制流图的基础上，通过分析控制构造的环路复杂度，导出基本可执行路径集合，从而设计测试用例的方法。</p>
+<p><strong>程序的环路复杂度</strong>是程序中每个可执行语句至少执行一次所需要的测试用例数目的上限。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">程序的环路复杂度V(G)=边数-节点数+2</span><br><span class="line">             	 =控制流图中判定节点数+1</span><br><span class="line">             	 =控制流图的区域数</span><br></pre></td></tr></table></figure>
+<h3 id="黑盒测试（功能测试）"><a href="#黑盒测试（功能测试）" class="headerlink" title="黑盒测试（功能测试）"></a>黑盒测试（功能测试）</h3><p>用于确认软件功能的正确性和可操作性。</p>
+<h4 id="等价类划分法"><a href="#等价类划分法" class="headerlink" title="等价类划分法"></a>等价类划分法</h4><ul>
+<li>确定等价类的原则：</li>
+</ul>
+<p>1.如果规定了输入数据的<strong>取值范围或值的个数</strong>，可以确定一个有效等价类和两个无效等价类。</p>
+<p>例如，如果规定输入值a的取值范围为1~99，那么可以得到一个有效等价类{a|1&lt;=a&lt;=99}和两个无效等价类{a|a&lt;1}、{a|a&gt;99}</p>
+<p>2.如果输入条件<strong>规定了输入值的集合或者规定了“必须如何”的条件</strong>，则可以确定一个有效等价类和一个无效等价类（该集合有效值之外）。</p>
+<p>例如，如果规定输入值b为奇数，那么可以得到一个有效等价类{b|b是奇数}和一个无效等价类{b|b不是奇数}。</p>
+<p>3.如果<strong>规定了一组输入数据</strong>（假设包括n个输入值），并且程序要对每一个输入值分别进行处理，可以确定n个有效等价类和一个无效等价类。</p>
+<p>例如，如果规定输入值x的取值为1，2，3三个数之一，那么可以得到3个有效等价类{x|x=1}、{x|x=2}、{x|x=3}和一个无效等价类{x|x≠1,2,3}。</p>
+<p>4.如果<strong>规定了输入数据必须遵守的规则或限制条件</strong>，可以确定一个有效等价类（符合规则）和若干个无效等价类（从不同角度违反规则）。</p>
+<p>例如，如果规定输入值A是最多保留两位小数的正浮点数，那么可以得到一个有效等价类{A|A是最多保留两位小数的正浮点数}和三个无效等价类{A|A不是浮点数}、{A|A不是正浮点数}以及{A|A是多于两位小数的正浮点数}。</p>
+<ul>
+<li>编写测试用例</li>
+</ul>
+<p>如果输入全部都来自有效等价类，则从每个有效等价类选取一个代表元素作为输入；</p>
+<p>如果要考虑无效等价类，则每次只选取一个无效等价类，其余输入都从有效等价类中选取。</p>
+<h4 id="边界值分析"><a href="#边界值分析" class="headerlink" title="边界值分析"></a>边界值分析</h4><p>边界值分析法是对输入或输出的边界值进行测试的一种黑盒测试方法。</p>
+<p>通常边界值分析法是作为对等价类划分法的补充，这种情况下，其测试用例来自等价类的边界。</p>
+<p>长期的测试工作经验告诉我们，大量的错误是发生在输入或输出范围的边界上，而不是发生在输入输出范围的内容。</p>
+<p>用边界值测试方法设计测试用例，首先应确定边界情况。</p>
+<p>通常输入和输出等价类的边界，就是应着重测试的边界情况。</p>
+<p>应当选取<strong>正好等于，刚刚大于或刚刚小于边界</strong>的值作为测试数据，而不是选取等价类中的典型值或任意值作为测试数据。</p>
+<h3 id="负载压力测试"><a href="#负载压力测试" class="headerlink" title="负载压力测试"></a>负载压力测试</h3><p>负载压力测试是指在一定约束条件下测试系统所能承受的并发用户量、运行时间、数据量，以确定系统所能承受的最大负载压力。负载压力测试包括负载测试、压力测试、并发性能测试、疲劳强度测试、大数据量测试等内容。</p>
+<p>常用工具：Apache JMeter、LoadRunner</p>
+<h4 id="负载测试"><a href="#负载测试" class="headerlink" title="负载测试"></a>负载测试</h4><p>负载测试是通过逐步增加系统负载，测试系统性能的变化，并最终确定在满足性能指标的情况下，系统所能承受的最大负载量的测试。</p>
+<h4 id="压力测试"><a href="#压力测试" class="headerlink" title="压力测试"></a>压力测试</h4><p>压力测试是通过逐步增加系统负载，测试系统性能的变化，并最终确定在什么负载条件下，系统性能处于失效状态，以此来获得系统能提供的最大服务级别的测试。</p>
+<p>通俗地讲，压力测试是为了发现在什么条件下系统的性能会变得不可接受。</p>
+<p>可见，压力测试是一种特定类型的负载测试。</p>
+<h4 id="并发性能测试"><a href="#并发性能测试" class="headerlink" title="并发性能测试"></a>并发性能测试</h4><p>逐渐增加并发用户数负载，直到系统的瓶颈或者不能接收的性能点，通过综合分析交易执行指标、资源监控指标等来确定系统并发性能的过程。</p>
+<h4 id="疲劳强度测试"><a href="#疲劳强度测试" class="headerlink" title="疲劳强度测试"></a>疲劳强度测试</h4><p>通常是采用系统稳定运行情况下能够支持的最大并发用户数，或者日常运行用户数，持续执行一段时间业务，保证达到系统疲劳强度需求的业务量，通过综合分析交易执行指标和资源监控指标，来确定系统处理最大工作量强度性能的过程。</p>
+<h4 id="大数据量测试"><a href="#大数据量测试" class="headerlink" title="大数据量测试"></a>大数据量测试</h4><p>大数据量测试包括独立的数据量测试和综合数据量测试。</p>
+<p>独立数据量测试是指针对系统存储、传输、统计、查询等业务进行的大数据量测试；</p>
+<p>综合数据量测试是指和压力测试、负载测试、疲劳强度测试相结合的综合测试。</p>
+<h3 id="Web应用测试"><a href="#Web应用测试" class="headerlink" title="Web应用测试"></a>Web应用测试</h3><h4 id="页面设计测试"><a href="#页面设计测试" class="headerlink" title="页面设计测试"></a>页面设计测试</h4><p>页面测试可以从以下几个方面进行：</p>
+<p>1.页面的一致性如何；</p>
+<p>2.在每个页面上是否设计友好的用户界面和直观的导航系统；</p>
+<p>3.是否考虑多种浏览器的需要；</p>
+<p>4.是否建立了页面文件的命名体系；</p>
+<p>5.是否充分考虑了合适的页面布局技术，如层叠样式表、表格和帧结构等。</p>
+<h4 id="链接测试"><a href="#链接测试" class="headerlink" title="链接测试"></a>链接测试</h4><p>首先，测试所有链接是否按指示的那样确实连接到了该链接的页面；</p>
+<p>其次，测试所链接的页面是否存在；</p>
+<p>最后，保证Web应用系统上没有孤立的页面。所谓孤立页面是指没有链接指向该页面，只有知道正确的URL地址才能访问。</p>
+<h4 id="图形测试"><a href="#图形测试" class="headerlink" title="图形测试"></a>图形测试</h4><p>主要检查点如下：</p>
+<p>1.颜色饱和度和对比度是否合适；</p>
+<p>2.需要突出的链接的颜色是否容易识别；</p>
+<p>3.是否正确加载所有的图形。</p>
+<h4 id="表单测试"><a href="#表单测试" class="headerlink" title="表单测试"></a>表单测试</h4><p>1.检查每个字段的所有验证；</p>
+<p>2.检查字段的缺省值；</p>
+<p>3.检查表单中的错误输入，是否有错误提示；</p>
+<p>4.提交操作的完整性。</p>
+<h4 id="兼容性测试"><a href="#兼容性测试" class="headerlink" title="兼容性测试"></a>兼容性测试</h4><p>平台兼容性和浏览器兼容性</p>
+<p>测试浏览器的兼容性可以与操作系统的兼容性结合起来，最有效的方法是创建一个<strong>兼容性测试矩阵</strong>。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">平台\浏览器</th>
+<th style="text-align:center">IE(7,8,9,10)</th>
+<th style="text-align:center">Chrome</th>
+<th style="text-align:center">Firefox</th>
+<th style="text-align:center">Safari</th>
+<th style="text-align:center">…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>Windows (XP,7,8,10)</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Mac</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Linux</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>…</strong></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="安全性测试"><a href="#安全性测试" class="headerlink" title="安全性测试"></a>安全性测试</h3><h4 id="功能验证"><a href="#功能验证" class="headerlink" title="功能验证"></a>功能验证</h4><p>采用软件测试中的黑盒测试方法，对涉及安全的软件功能进行测试，验证所提供的功能是否有效。</p>
+<h4 id="漏洞扫描"><a href="#漏洞扫描" class="headerlink" title="漏洞扫描"></a>漏洞扫描</h4><p>借助于特定的漏洞扫描工具，在安全漏洞造成严重危害前，发现漏洞并加以防范。</p>
+<h4 id="模拟攻击试验"><a href="#模拟攻击试验" class="headerlink" title="模拟攻击试验"></a>模拟攻击试验</h4><p>模拟攻击试验是一组特殊的黑盒测试案例，通过模拟典型的安全攻击来验证软件或信息系统的安全防护能力。</p>
+<h4 id="侦听测试"><a href="#侦听测试" class="headerlink" title="侦听测试"></a>侦听测试</h4><p>通过典型的网络数据包获取技术，在系统数据通信或数据交互的过程中，对数据进行截取分析，从而发现系统在防止敏感数据被窃取方面的安全防护能力。</p>
+
+      
+    </div>
+    
+    
+    
+    		
+	  <div>
+	    ﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">----------本文结束<i class="fa fa-paw"></i>感谢您的阅读----------</div>
+    
+</div>	
+	  </div>
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Gongshan He 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Gongshan He 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Gongshan He
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.hegongshan.com/2019/11/09/software-testing/" title="软件测试基础知识">https://www.hegongshan.com/2019/11/09/software-testing/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/software-testing/" rel="tag"><i class="fa fa-tag"></i> software testing</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/08/search-engine-technique/" rel="next" title="搜索引擎常用技巧">
+                <i class="fa fa-chevron-left"></i> 搜索引擎常用技巧
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/09/tensorflow-tensor/" rel="prev" title="TensorFlow2张量操作">
+                TensorFlow2张量操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+        <div id="gitalk-container"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Gongshan He">
+            
+              <p class="site-author-name" itemprop="name">Gongshan He</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">262</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hegongshan" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/hegongshan" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/hegongshan" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.linkedin.com/in/gongshan-he-54688a162/" target="_blank" title="Linkedin">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i>Linkedin</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:hegongshan@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block　">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liuchuo.net" title="柳婼 の blog" target="_blank">柳婼 の blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.qinjiangbo.com" title="心灵港" target="_blank">心灵港</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lumingdong.cn" title="卢明冬的博客" target="_blank">卢明冬的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://lipixun.me" title="lipixun" target="_blank">lipixun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://deyinliu.github.io" title="Liudeyin" target="_blank">Liudeyin</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.gaohangcs.com" title="高航的博客" target="_blank">高航的博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件测试原则"><span class="nav-number">1.</span> <span class="nav-text">软件测试原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件测试对象"><span class="nav-number">2.</span> <span class="nav-text">软件测试对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件测试分类"><span class="nav-number">3.</span> <span class="nav-text">软件测试分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试停止准则"><span class="nav-number">4.</span> <span class="nav-text">测试停止准则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#白盒测试"><span class="nav-number">5.</span> <span class="nav-text">白盒测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑覆盖法"><span class="nav-number">5.1.</span> <span class="nav-text">逻辑覆盖法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#语句覆盖"><span class="nav-number">5.1.1.</span> <span class="nav-text">语句覆盖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#判定覆盖"><span class="nav-number">5.1.2.</span> <span class="nav-text">判定覆盖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#条件覆盖"><span class="nav-number">5.1.3.</span> <span class="nav-text">条件覆盖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#条件-判定覆盖"><span class="nav-number">5.1.4.</span> <span class="nav-text">条件/判定覆盖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#条件组合覆盖"><span class="nav-number">5.1.5.</span> <span class="nav-text">条件组合覆盖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修正条件-判定覆盖"><span class="nav-number">5.1.6.</span> <span class="nav-text">修正条件/判定覆盖</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本路径测试"><span class="nav-number">5.2.</span> <span class="nav-text">基本路径测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#黑盒测试（功能测试）"><span class="nav-number">6.</span> <span class="nav-text">黑盒测试（功能测试）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#等价类划分法"><span class="nav-number">6.1.</span> <span class="nav-text">等价类划分法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#边界值分析"><span class="nav-number">6.2.</span> <span class="nav-text">边界值分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#负载压力测试"><span class="nav-number">7.</span> <span class="nav-text">负载压力测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#负载测试"><span class="nav-number">7.1.</span> <span class="nav-text">负载测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#压力测试"><span class="nav-number">7.2.</span> <span class="nav-text">压力测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发性能测试"><span class="nav-number">7.3.</span> <span class="nav-text">并发性能测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#疲劳强度测试"><span class="nav-number">7.4.</span> <span class="nav-text">疲劳强度测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大数据量测试"><span class="nav-number">7.5.</span> <span class="nav-text">大数据量测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web应用测试"><span class="nav-number">8.</span> <span class="nav-text">Web应用测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#页面设计测试"><span class="nav-number">8.1.</span> <span class="nav-text">页面设计测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链接测试"><span class="nav-number">8.2.</span> <span class="nav-text">链接测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图形测试"><span class="nav-number">8.3.</span> <span class="nav-text">图形测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表单测试"><span class="nav-number">8.4.</span> <span class="nav-text">表单测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#兼容性测试"><span class="nav-number">8.5.</span> <span class="nav-text">兼容性测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全性测试"><span class="nav-number">9.</span> <span class="nav-text">安全性测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#功能验证"><span class="nav-number">9.1.</span> <span class="nav-text">功能验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#漏洞扫描"><span class="nav-number">9.2.</span> <span class="nav-text">漏洞扫描</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟攻击试验"><span class="nav-number">9.3.</span> <span class="nav-text">模拟攻击试验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#侦听测试"><span class="nav-number">9.4.</span> <span class="nav-text">侦听测试</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" style="color:red;">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gongshan He</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'e80ff2e43cf29f9de422',
+          clientSecret: '462fb57a98f6ec42f83ed23b0fc4c3e973483a5f',
+          repo: 'hegongshan.github.io',
+          owner: 'hegongshan',
+          admin: ['hegongshan'],
+          id: location.pathname,
+          distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+    <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+
+        if(result)$(this).text('复制成功')
+        else $(this).text('复制失败')
+
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+  
+
+  
+    <script src="/js/cursor/love.min.js"></script>
+  
+
+</body>
+</html>

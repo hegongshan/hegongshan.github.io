@@ -79,7 +79,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="算法效率的度量是对算法所需要的时间和空间进行估算，分别称为时间复杂度和空间复杂度。 时间复杂度算法的时间效率称为算法的时间复杂度，它是问题规模n的某个函数，记作：T(n) = O(f(n))。 其中问题规模n是指输入量的多少，一般可以从问题描述中得到。如，数组元素的个数、矩阵的阶数等。f(n) 是问题规模n的某个函数。这里的O是Order的简写，意指数量级，表示随问题规模n的增大，算法执行时间的增">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-19T07:23:57.754Z">
+<meta property="og:updated_time" content="2019-11-24T03:15:34.218Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法的时间复杂度和空间复杂度">
 <meta name="twitter:description" content="算法效率的度量是对算法所需要的时间和空间进行估算，分别称为时间复杂度和空间复杂度。 时间复杂度算法的时间效率称为算法的时间复杂度，它是问题规模n的某个函数，记作：T(n) = O(f(n))。 其中问题规模n是指输入量的多少，一般可以从问题描述中得到。如，数组元素的个数、矩阵的阶数等。f(n) 是问题规模n的某个函数。这里的O是Order的简写，意指数量级，表示随问题规模n的增大，算法执行时间的增">
@@ -373,14 +373,12 @@
 
     
       <header class="post-header">
-
         
         
           <h2 class="post-title" itemprop="name headline">算法的时间复杂度和空间复杂度</h2>
         
 
-        <div class="post-meta">
-		 
+        <div class="post-meta">		 
 		
           <span class="post-time">
             
@@ -396,19 +394,7 @@
             
 
             
-              <span class="post-meta-divider">|</span>
-            
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-19T15:23:57+08:00">
-                2019-01-19
-              </time>
             
           </span>
 
@@ -528,7 +514,7 @@
 <p>则，</p>
 <p>T(n)=T(n,0)=n+T(n,1)=n+(n-1)+T(n,2)=…=n+(n-1)+…+2+T(n,n-1)</p>
 <p>=$\frac{(n+2)(n-1)}{2}+n=\frac{n^2}{2}+\frac{3n}{2}-1=O(n^2)$</p>
-<h3 id="最好、最坏及平均时间复杂度"><a href="#最好、最坏及平均时间复杂度" class="headerlink" title="最好、最坏及平均时间复杂度"></a>最好、最坏及平均时间复杂度</h3><p>实际上，算法效率不仅仅依赖于问题的规模n，还与问题的初始输入有关。例如:</p>
+<h4 id="最好、最坏及平均时间复杂度"><a href="#最好、最坏及平均时间复杂度" class="headerlink" title="最好、最坏及平均时间复杂度"></a>最好、最坏及平均时间复杂度</h4><p>实际上，算法效率不仅仅依赖于问题的规模n，还与问题的初始输入有关。例如:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> n,<span class="keyword">int</span> k)</span> </span>&#123;<span class="comment">//该算法用于在给定的数组a[]中查找k</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; n ; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i] == k) &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>循环体的执行次数，不仅与问题规模n有关，还与输入实例中a的各元素取值以及k的取值有关。在最坏的情况下，a中没有与k相等的元素，则循环体执行n次；在最好的情况下，a中的第一个元素a[0]等于K，则循环体执行1次。</p>
 <p>故，该算法的最好时间复杂度为O(1)，最坏时间复杂度为O(n)。在这种情况下，可用最坏情况下的时间复杂度作为算法的时间复杂度，因为<strong><em>最坏情况下的时间复杂度是在任何输入实例上运行时间的上界</em></strong>。</p>
@@ -549,7 +535,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergesort</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m;</span><br><span class="line">    <span class="keyword">if</span>(i != j) &#123;</span><br><span class="line">        m = (i+j)/<span class="number">2</span>;</span><br><span class="line">        mergesort(a,i,m);</span><br><span class="line">        mergesort(a,m+<span class="number">1</span>,j);</span><br><span class="line">        merge(a,i,j,m);<span class="comment">//假定merge是一个非递归函数，其内部只定义了一个辅助变量</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如何求mergesort(a，0，n-1)的空间复杂度呢？</p>
 <p>对于该算法，设mergesort(a，0，n-1)的临时空间大小为S(n)，其中定义了一个辅助变量m，</p>
-<p>$$S(n)=\begin{cases} O(1) , &amp; \text{n=1} \  2·S(\frac{n}{2})+1 , &amp; \text{n&gt;1} \end{cases}$$</p>
+<p>$$S(n)=\begin{cases} O(1) , &amp; \text{n=1} \\  2·S(\frac{n}{2})+1 , &amp; \text{n&gt;1} \end{cases}$$</p>
 <p>当n &gt; 1 时，S(n) = 2·S($\frac{n}{2}$) + 1 = 2 ( 2·S($\frac{n}{2^2}$) + 1) + 1=$2^2S(\frac{n}{4})$ + 1 + 2=$2^3S(\frac{n}{8})+1+2+2^2$</p>
 <p>=…=$2^kS(\frac{n}{2^k})+\sum_{i=1}^{k}2^{i-1}$=$2^kO(1)+2^k-1$</p>
 <p>由于$\frac{n}{2^k}$ -&gt; 1，则k=$\log_{2}n$</p>
@@ -763,7 +749,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">237</span>
+                  <span class="site-state-item-count">262</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -774,7 +760,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -785,7 +771,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -886,7 +872,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度"><span class="nav-number">1.</span> <span class="nav-text">时间复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度的计算"><span class="nav-number">1.1.</span> <span class="nav-text">时间复杂度的计算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最好、最坏及平均时间复杂度"><span class="nav-number">2.</span> <span class="nav-text">最好、最坏及平均时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空间复杂度"><span class="nav-number">3.</span> <span class="nav-text">空间复杂度</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度"><span class="nav-number">1.</span> <span class="nav-text">时间复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度的计算"><span class="nav-number">1.1.</span> <span class="nav-text">时间复杂度的计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最好、最坏及平均时间复杂度"><span class="nav-number">1.2.</span> <span class="nav-text">最好、最坏及平均时间复杂度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空间复杂度"><span class="nav-number">2.</span> <span class="nav-text">空间复杂度</span></a></li></ol></div>
             
 
           </div>
@@ -907,7 +893,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
+  <span class="with-love" style="color:red;">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Gongshan He</span>
@@ -1557,6 +1543,12 @@
       }).append(e)
     })
   </script>
+
+  
+
+  
+    <script src="/js/cursor/love.min.js"></script>
+  
 
 </body>
 </html>
