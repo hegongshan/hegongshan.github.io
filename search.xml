@@ -4,6 +4,131 @@
   
     
     <entry>
+      <title>论文阅读 Deep Interest Network for Click-Through Rate Prediction</title>
+      <link href="/2019/12/25/recommender-system-din/"/>
+      <url>/2019/12/25/recommender-system-din/</url>
+      
+        <content type="html"><![CDATA[<p>Deep Interest Network（DIN）使用attention机制，从历史行为中自适应地学习用户兴趣的表示，该表示向量会随着广告的不同而发生变化，极大地改进了模型的表达能力。</p><a id="more"></a><h3 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h3><p>在Embedding&amp;MLP范式中，各种各样的用户兴趣被压缩到同一个长度固定的向量中，这限制了Embedding&amp;MLP方法的表达能力。此外，将某一用户的全部兴趣压缩到同一个向量中是没有必要的，因为当预测候选广告时，只有部分兴趣会影响他的行为。</p><h3 id="Feature-Representation"><a href="#Feature-Representation" class="headerlink" title="Feature Representation"></a>Feature Representation</h3><p><img src="/static/images/din-feature.png" alt=""></p><h3 id="Base-Model"><a href="#Base-Model" class="headerlink" title="Base Model"></a>Base Model</h3><p><img src="/static/images/din-base-model.png" alt=""></p><p>损失函数使用negative log-likelihood function：<br>$$<br>L = -\frac{1}{N}<br>\sum_{(\mathbf{x}, y) \in \mathbf{S}}<br>\left( y \log p(\mathbf{x}) + (1 - y) \log (1 - p(\mathbf{x})) \right) \tag{1}<br>$$<br>其中，S是大小为N的训练集，$\mathbf{x}$是模型的输入，$y \in \{ 0, 1 \}$是类别，$p(\mathbf{x})$是模型的输出。</p><h3 id="Deep-Interest-Network"><a href="#Deep-Interest-Network" class="headerlink" title="Deep Interest Network"></a>Deep Interest Network</h3><p><img src="/static/images/din.png" alt=""></p><p>$\mathcal{V}_U$为用户表示向量，A为候选广告：<br>$$<br>\mathcal{V}_U(A) = f(\mathcal{V}_A, \mathbf{e}_1, \mathbf{e}_2, \cdots, \mathbf{e}_H) = \sum_{j=1}^H a(\mathbf{e}_j, \mathcal{V}_A) \mathbf{e}_j = \sum_{j=1}^H \mathbf{w}_j \mathbf{e}_j \tag{2}<br>$$<br>其中，$\{\mathbf{e}_1, \mathbf{e}_2, \cdots, \mathbf{e}_H\}$是用户U历史行为的embedding向量构成的集合，$\mathcal{V}_A$表示广告A的embedding向量，$a(\mathbf{e}_j, \mathcal{V}_A)$是attention网络。</p><p>如上图所示，在attention网络中，除了用户和物品（广告）embedding向量外，它们的叉积也被喂进之后的网络中。</p><p>注意：在传统的attention方法中，$\sum_j \mathbf{w}_j = 1$。</p><p>为了保留用户兴趣的强度，这种约束被抛弃了，$a(\cdot)$没有使用softmax。</p><p>$\sum_j \mathbf{w}_j$可以看作被激活的用户兴趣强度的估计值。</p><h3 id="正则项"><a href="#正则项" class="headerlink" title="正则项"></a>正则项</h3><p>小批量敏感（mini-batch aware）的正则<br>$$<br>L_2(W) \approx \sum_{j=1}^K \sum_{m=1}^B \frac{\alpha_{mj}}{n_j}<br>\left \Vert \mathbf{w}_j \right \Vert_2^2<br>$$</p><h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><p>PReLU：<br>$$<br>f(s) =<br>\begin{cases}<br>s &amp; \mathrm{if\ s &gt; 0} \\<br>\alpha s &amp; \mathrm{if\ s \le 0}<br>\end{cases}<br>= p(s) \cdot s + (1 - p(s)) \cdot \alpha s<br>$$<br>其中，$p(s) = I(s &gt; 0)$是指示函数，$\alpha$是一个可学习的参数。</p><p>由于PReLU采用了硬整流点（0），当每层的输入服从不同的分布时，可能不太适用。</p><p>作者提出了Dice<br>$$<br>f(s) = p(s) \cdot s + (1 - p(s)) \cdot \alpha s \\<br>p(s) = \frac{1}{<br>    1 + e^{- \frac{<br>        s - E[s]<br>    }{<br>        \sqrt{Var[s] + \epsilon}<br>    }}<br>}<br>$$<br>其中，$\epsilon$是一个很小的常量，作者将其设置为$10^{-8}$。</p><p>在训练阶段，E[s]和Var[s]是每个小批量输入的均值和方差；</p><p>在测试阶段，E[s]和Var[s]是通过在数据上移动E[s]和Var[s]的平均值来计算。</p><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>Guorui Zhou, Xiaoqiang Zhu, Chenru Song, Ying Fan, Han Zhu, Xiao Ma, Yanghui Yan, Junqi Jin, Han Li, and Kun Gai. 2018. Deep Interest Network for Click-Through Rate Prediction. In <em>Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining</em> (KDD ‘18). ACM, New York, NY, USA, 1059-1068. DOI: <a href="https://doi.org/10.1145/3219819.3219823" target="_blank" rel="noopener">https://doi.org/10.1145/3219819.3219823</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> recommender systems </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> recommender systems </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python切片操作</title>
+      <link href="/2019/12/22/python-slicing/"/>
+      <url>/2019/12/22/python-slicing/</url>
+      
+        <content type="html"><![CDATA[<p>为了访问由序列中的某些元素所构成的子集，Python提供了一种简单的语法——切片，用于。常见的序列类型有list和str等。</p><a id="more"></a><h3 id="切片语法"><a href="#切片语法" class="headerlink" title="切片语法"></a>切片语法</h3><h4 id="普通切片"><a href="#普通切片" class="headerlink" title="普通切片"></a>普通切片</h4><p>切片操作的基本写法是somelist[start:end]，取值范围[start,end)，不包括end。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = list(range(<span class="number">10</span>))</span><br><span class="line">print(a[<span class="number">2</span>:<span class="number">4</span>])</span><br></pre></td></tr></table></figure><p>如果从开头获取切片，则可以不写start，将其留空。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(a[:<span class="number">4</span>])</span><br><span class="line"><span class="comment"># a[0:4]等同于a[:4]</span></span><br><span class="line"><span class="keyword">assert</span> a[<span class="number">0</span>:<span class="number">4</span>] == a[:<span class="number">4</span>]</span><br></pre></td></tr></table></figure><p>同样地，如果切片要取到末尾，则可以不写end，将其留空。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(a[<span class="number">4</span>:])</span><br><span class="line"><span class="comment"># a[4:len(a)]等同于a[4:]</span></span><br><span class="line">print(a[<span class="number">4</span>:len(a)] == a[<span class="number">4</span>:])</span><br></pre></td></tr></table></figure><p>如果start和end都被省略，则表示原对象的一份拷贝。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(a[:])</span><br><span class="line">print(a[:] == a)</span><br><span class="line">print(a[:] <span class="keyword">is</span> a)</span><br></pre></td></tr></table></figure><p>负数索引</p><p>对序列进行切片时，即使start或end索引越界也不会出问题。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(a[:])</span><br><span class="line">print(a[:] == a)</span><br><span class="line">print(a[:] <span class="keyword">is</span> a)</span><br></pre></td></tr></table></figure><h4 id="带间隔的切片"><a href="#带间隔的切片" class="headerlink" title="带间隔的切片"></a>带间隔的切片</h4><p>somelist[start:end:step]</p><h3 id="给切片赋值"><a href="#给切片赋值" class="headerlink" title="给切片赋值"></a>给切片赋值</h3><p>未完待续…</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python函数注解</title>
+      <link href="/2019/12/20/python-function-annotations/"/>
+      <url>/2019/12/20/python-function-annotations/</url>
+      
+        <content type="html"><![CDATA[<p>作为弱类型语言，python在运行时才知道变量及返回值的类型。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span><span class="params">(a, b)</span>:</span></span><br><span class="line">  <span class="keyword">return</span> a + b</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span><span class="params">(a: int, b: int)</span> -&gt; int:</span></span><br><span class="line">  <span class="keyword">return</span> a + b</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span><span class="params">(a: int, b: int = <span class="number">4</span>)</span> -&gt; int:</span></span><br><span class="line">  <span class="keyword">return</span> a + b</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span><span class="params">(a: int, b: <span class="string">'int &gt; 0'</span> = <span class="number">4</span>)</span> -&gt; int:</span></span><br><span class="line">  <span class="keyword">return</span> a + b</span><br></pre></td></tr></table></figure><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(sum.__annotations__)</span><br><span class="line">&#123;'a': &lt;class 'int'&gt;, 'b': &lt;class 'int'&gt;, 'return': &lt;class 'int'&gt;&#125;</span><br></pre></td></tr></table></figure><p><a href="https://www.python.org/dev/peps/pep-3107/" target="_blank" rel="noopener">https://www.python.org/dev/peps/pep-3107/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>论文阅读 Neural Factorization Machine</title>
+      <link href="/2019/12/18/recommender-system-nfm/"/>
+      <url>/2019/12/18/recommender-system-nfm/</url>
+      
+        <content type="html"><![CDATA[<h3 id="FM"><a href="#FM" class="headerlink" title="FM"></a>FM</h3><p>$$<br>\hat y_{FM}(\mathbf{x}) = w_0 + \sum_{i=1}^n w_i x_i + \sum_{i=1}^n \sum_{j=i+1}^n \mathbf{v}_i^T \mathbf{v}_j \cdot x_i x_j<br>$$</p><h3 id="NFM"><a href="#NFM" class="headerlink" title="NFM"></a>NFM</h3><p>$$<br>f_{BI}(\mathcal{V}_x)<br>= \sum_{i=1}^n \sum_{j=i+1}^n x_i \mathbf{v}_i \odot x_j \mathbf{v}_j<br>= \sum_{i=1}^n \sum_{j=1}^{i-1} x_i \mathbf{v}_i \odot x_j \mathbf{v}_j<br>$$</p><p>$$<br>2 f_{BI}(\mathcal{V}_x)<br>= \sum_{i=1}^n (\sum_{j=1}^n x_i \mathbf{v}_i \odot x_j \mathbf{v}_j - x_i \mathbf{v}_i \odot x_i \mathbf{v}_i)<br>= (\sum_{i=1}^n x_i \mathbf{v}_i)^2 - \sum_{i=1}^n (x_i \mathbf{v}_i)^2<br>$$</p><p>$$<br>\Rightarrow f_{BI}(\mathcal{V}_x) = \frac{1}{2}<br>\left [(\sum_{i=1}^n x_i \mathbf{v}_i)^2 - \sum_{i=1}^n (x_i \mathbf{v}_i)^2 \right]<br>$$</p><p>未完待续…</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> recommender systems </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> recommender systems </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>论文阅读 Bayesian Probabilistic Matrix Factorization using Markov Chain Monte Carlo</title>
+      <link href="/2019/12/18/recommender-system-bpmf/"/>
+      <url>/2019/12/18/recommender-system-bpmf/</url>
+      
+        <content type="html"><![CDATA[<p>占坑，有空补上…</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> recommender systems </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> recommender systems </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>LeetCode 965.单值二叉树</title>
       <link href="/2019/12/17/leetcode-965-univalued-binary-tree/"/>
       <url>/2019/12/17/leetcode-965-univalued-binary-tree/</url>
@@ -408,7 +533,7 @@
       <link href="/2019/11/21/recommender-system-resource/"/>
       <url>/2019/11/21/recommender-system-resource/</url>
       
-        <content type="html"><![CDATA[<p>SIGIR 2020-01-15</p><p>IJCAI 2020-01-15</p><p>ICWE 2020-01-19</p><p>ICML 截稿时间 2020-01-31</p><p>KDD 截稿时间 2020-02-13</p><p>ECML-PKDD 2020-03-19</p><a id="more"></a><h3 id="相关会议"><a href="#相关会议" class="headerlink" title="相关会议"></a>相关会议</h3><h4 id="推荐系统专会"><a href="#推荐系统专会" class="headerlink" title="推荐系统专会"></a>推荐系统专会</h4><p><a href="https://recsys.acm.org/" target="_blank" rel="noopener">RecSys</a> - ACM Conference on Recommender Systems**</p><h4 id="数据挖掘"><a href="#数据挖掘" class="headerlink" title="数据挖掘"></a>数据挖掘</h4><p>CCF A</p><ol><li><p><strong>SIGKDD</strong> -  ACM Knowledge Discovery and Data Mining <a href="http://dblp.uni-trier.de/db/conf/kdd/" target="_blank" rel="noopener">dblp</a></p></li><li><p><strong>ICDE</strong>  - IEEE International Conference on Data Engineering <a href="http://dblp.uni-trier.de/db/conf/icde/" target="_blank" rel="noopener">dblp</a></p></li><li><p><strong>SIGIR</strong> - International Conference on Research on Development in Information Retrieval <a href="http://dblp.uni-trier.de/db/conf/sigir/" target="_blank" rel="noopener">dblp</a></p></li></ol><p>CCF B</p><ol><li><p><strong>CIKM</strong> - ACM International Conference on Information and Knowledge Management <a href="http://dblp.uni-trier.de/db/conf/cikm/" target="_blank" rel="noopener">dblp</a></p></li><li><p><strong>WSDM</strong> - ACM International Conference on Web Search and Data Mining <a href="http://dblp.uni-trier.de/db/conf/wsdm/" target="_blank" rel="noopener">dblp</a></p></li><li><strong>ICDM</strong> - International Conference on Data Mining <a href="http://dblp.uni-trier.de/db/conf/icdm/" target="_blank" rel="noopener">dblp</a></li><li><strong>SDM</strong> - SIAM International Conference on Data Mining <a href="http://dblp.uni-trier.de/db/conf/sdm/" target="_blank" rel="noopener">dblp</a></li></ol><h4 id="人工智能"><a href="#人工智能" class="headerlink" title="人工智能"></a>人工智能</h4><p>CCF A</p><ol><li><strong>AAAI</strong> - AAAI Conference on Artificial Intelligence <a href="http://dblp.uni-trier.de/db/conf/aaai/" target="_blank" rel="noopener">dblp</a></li><li><strong>NeurIPS</strong> - Annual Conference on Neural Information Processing Systems <a href="http://dblp.uni-trier.de/db/conf/nips/" target="_blank" rel="noopener">dblp</a></li><li><strong>IJCAI</strong> - International Joint Conference on Artificial Intelligence <a href="http://dblp.uni-trier.de/db/conf/ijcai/" target="_blank" rel="noopener">dblp</a></li></ol><p>CCF B</p><ol><li><strong>UAI</strong> - International Conference on Uncertainty in Artificial Intelligence <a href="http://dblp.uni-trier.de/db/conf/uai/" target="_blank" rel="noopener">dblp</a></li></ol><h4 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h4><p>CCF A</p><ol><li><strong>WWW</strong> - International World Wide Web Conferences <a href="http://dblp.uni-trier.de/db/conf/www/" target="_blank" rel="noopener">dblp</a></li></ol><h3 id="相关期刊"><a href="#相关期刊" class="headerlink" title="相关期刊"></a>相关期刊</h3><h4 id="数据挖掘-1"><a href="#数据挖掘-1" class="headerlink" title="数据挖掘"></a>数据挖掘</h4><p>CCF A</p><ol><li><strong>TOIS</strong> - ACM Transactions on Information Systems <a href="http://dblp.uni-trier.de/db/journals/tois/" target="_blank" rel="noopener">dblp</a></li><li><strong>TKDE</strong> - IEEE Transactions on Knowledge and Data Engineering <a href="http://dblp.uni-trier.de/db/journals/tkde/" target="_blank" rel="noopener">dblp</a></li></ol><h3 id="会议时间"><a href="#会议时间" class="headerlink" title="会议时间"></a>会议时间</h3><p>Conference Partner (会伴) </p><p>CCF会议 <a href="https://www.myhuiban.com/conferences/ccf" target="_blank" rel="noopener">https://www.myhuiban.com/conferences/ccf</a></p><p>在线查看各个会议的截稿时间</p><h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><ul><li>MovieLens <a href="https://grouplens.org/datasets/movielens/" target="_blank" rel="noopener">https://grouplens.org/datasets/movielens/</a></li><li>Pinterest <a href="https://sites.google.com/site/xueatalphabeta/academic-projects" target="_blank" rel="noopener">https://sites.google.com/site/xueatalphabeta/academic-projects</a></li><li>Amazon <a href="http://jmcauley.ucsd.edu/data/amazon/" target="_blank" rel="noopener">http://jmcauley.ucsd.edu/data/amazon/</a></li><li>Netflix <a href="https://www.kaggle.com/netflix-inc/netflix-prize-data" target="_blank" rel="noopener">https://www.kaggle.com/netflix-inc/netflix-prize-data</a></li></ul><h3 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h3><ul><li><a href="https://github.com/guoguibing/librec" target="_blank" rel="noopener">LibRec</a>: A Leading Java Library for Recommender Systems </li></ul>]]></content>
+        <content type="html"><![CDATA[<p>SIGIR 2020-01-15</p><p>IJCAI 2020-01-15</p><p>ICWE 2020-01-19</p><p>ICML 截稿时间 2020-01-31</p><p>KDD 截稿时间 2020-02-13</p><p>ECML-PKDD 2020-03-19</p><a id="more"></a><h3 id="相关会议"><a href="#相关会议" class="headerlink" title="相关会议"></a>相关会议</h3><h4 id="推荐系统专会"><a href="#推荐系统专会" class="headerlink" title="推荐系统专会"></a>推荐系统专会</h4><p><a href="https://recsys.acm.org/" target="_blank" rel="noopener">RecSys</a> - ACM Conference on Recommender Systems</p><h4 id="数据挖掘"><a href="#数据挖掘" class="headerlink" title="数据挖掘"></a>数据挖掘</h4><p>CCF A</p><ol><li><p><strong>SIGKDD</strong> -  ACM Knowledge Discovery and Data Mining <a href="http://dblp.uni-trier.de/db/conf/kdd/" target="_blank" rel="noopener">dblp</a></p></li><li><p><strong>ICDE</strong>  - IEEE International Conference on Data Engineering <a href="http://dblp.uni-trier.de/db/conf/icde/" target="_blank" rel="noopener">dblp</a></p></li><li><p><strong>SIGIR</strong> - International Conference on Research on Development in Information Retrieval <a href="http://dblp.uni-trier.de/db/conf/sigir/" target="_blank" rel="noopener">dblp</a></p></li></ol><p>CCF B</p><ol><li><p><strong>CIKM</strong> - ACM International Conference on Information and Knowledge Management <a href="http://dblp.uni-trier.de/db/conf/cikm/" target="_blank" rel="noopener">dblp</a></p></li><li><p><strong>WSDM</strong> - ACM International Conference on Web Search and Data Mining <a href="http://dblp.uni-trier.de/db/conf/wsdm/" target="_blank" rel="noopener">dblp</a></p></li><li><strong>ICDM</strong> - International Conference on Data Mining <a href="http://dblp.uni-trier.de/db/conf/icdm/" target="_blank" rel="noopener">dblp</a></li><li><strong>SDM</strong> - SIAM International Conference on Data Mining <a href="http://dblp.uni-trier.de/db/conf/sdm/" target="_blank" rel="noopener">dblp</a></li></ol><h4 id="人工智能"><a href="#人工智能" class="headerlink" title="人工智能"></a>人工智能</h4><p>CCF A</p><ol><li><strong>AAAI</strong> - AAAI Conference on Artificial Intelligence <a href="http://dblp.uni-trier.de/db/conf/aaai/" target="_blank" rel="noopener">dblp</a></li><li><strong>NeurIPS</strong> - Annual Conference on Neural Information Processing Systems <a href="http://dblp.uni-trier.de/db/conf/nips/" target="_blank" rel="noopener">dblp</a></li><li><strong>IJCAI</strong> - International Joint Conference on Artificial Intelligence <a href="http://dblp.uni-trier.de/db/conf/ijcai/" target="_blank" rel="noopener">dblp</a></li></ol><p>CCF B</p><ol><li><strong>UAI</strong> - International Conference on Uncertainty in Artificial Intelligence <a href="http://dblp.uni-trier.de/db/conf/uai/" target="_blank" rel="noopener">dblp</a></li></ol><h4 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h4><p>CCF A</p><ol><li><strong>WWW</strong> - International World Wide Web Conferences <a href="http://dblp.uni-trier.de/db/conf/www/" target="_blank" rel="noopener">dblp</a></li></ol><h3 id="相关期刊"><a href="#相关期刊" class="headerlink" title="相关期刊"></a>相关期刊</h3><h4 id="数据挖掘-1"><a href="#数据挖掘-1" class="headerlink" title="数据挖掘"></a>数据挖掘</h4><p>CCF A</p><ol><li><strong>TOIS</strong> - ACM Transactions on Information Systems <a href="http://dblp.uni-trier.de/db/journals/tois/" target="_blank" rel="noopener">dblp</a></li><li><strong>TKDE</strong> - IEEE Transactions on Knowledge and Data Engineering <a href="http://dblp.uni-trier.de/db/journals/tkde/" target="_blank" rel="noopener">dblp</a></li></ol><h3 id="会议时间"><a href="#会议时间" class="headerlink" title="会议时间"></a>会议时间</h3><p>Conference Partner (会伴) </p><p>CCF会议 <a href="https://www.myhuiban.com/conferences/ccf" target="_blank" rel="noopener">https://www.myhuiban.com/conferences/ccf</a></p><p>在线查看各个会议的截稿时间</p><h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><ul><li>MovieLens <a href="https://grouplens.org/datasets/movielens/" target="_blank" rel="noopener">https://grouplens.org/datasets/movielens/</a></li><li>Pinterest <a href="https://sites.google.com/site/xueatalphabeta/academic-projects" target="_blank" rel="noopener">https://sites.google.com/site/xueatalphabeta/academic-projects</a></li><li>Amazon <a href="http://jmcauley.ucsd.edu/data/amazon/" target="_blank" rel="noopener">http://jmcauley.ucsd.edu/data/amazon/</a></li><li>Netflix <a href="https://www.kaggle.com/netflix-inc/netflix-prize-data" target="_blank" rel="noopener">https://www.kaggle.com/netflix-inc/netflix-prize-data</a></li></ul><h3 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h3><ul><li><a href="https://github.com/guoguibing/librec" target="_blank" rel="noopener">LibRec</a>: A Leading Java Library for Recommender Systems </li></ul>]]></content>
       
       
       <categories>
@@ -533,7 +658,7 @@
       <link href="/2019/11/11/paper-phrase/"/>
       <url>/2019/11/11/paper-phrase/</url>
       
-        <content type="html"><![CDATA[<p>日积月累，以备写作之需。</p><a id="more"></a><p>1.without special mention / unless stated differently / unless specified / unless otherwise stated / without additional explanation</p><p>2.符号表示</p><p>denote A by B，用B表示A</p><p>set A to B，将A设置为B</p><p>refer to A as B 将A称为B</p><p>to be specific</p><p>leave…as future work</p><p>other than</p><p>take … into consideration/account</p><p>account for</p><p>provide A with B</p><p>distinguish A from B</p><p>associate A with B</p><p>relate A to B</p><p>combine A with B</p><p>be limited by</p><p>notably 显著地；尤其</p><p>rely on</p><p>in addition</p><p>as a consequence 因此</p><p>to this end</p><p>notably / noticeably 显著地</p><p>namely</p><p>to our best knowledge / to the best of our knowledge 据我们所知</p><p>be prone to doing</p>]]></content>
+        <content type="html"><![CDATA[<p>日积月累，以备写作之需。</p><a id="more"></a><p>1.without special mention / unless stated differently / unless specified / unless otherwise stated / without additional explanation / without special declaration</p><p>2.符号表示</p><p>denote A by B，用B表示A</p><p>set A to B，将A设置为B</p><p>refer to A as B 将A称为B</p><p>to be specific / specifically</p><p>leave … as future work</p><p>other than</p><p>take … into consideration/account</p><p>account for</p><p>provide A with B</p><p>distinguish A from B</p><p>associate A with B</p><p>relate A to B</p><p>combine A with B</p><p>be limited by</p><p>notably 显著地；尤其</p><p>rely on</p><p>in addition</p><p>as a consequence 因此</p><p>to this end</p><p>notably / noticeably 显著地</p><p>namely </p><p>to our best knowledge / to the best of our knowledge 据我们所知</p><p>be prone to doing</p><p>It is worth pointing out that …</p><p>prevent … from …</p><p>as such / as a result  因此</p><p>take … as an example.</p>]]></content>
       
       
       <categories>
