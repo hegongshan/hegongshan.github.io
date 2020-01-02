@@ -71,19 +71,19 @@
 
 
 
-<meta name="description" content="作者在分解机中引入了attention机制，为不同的特征交互赋予不同的权重。">
+<meta name="description" content="Attentional Factorization Machines（AFM）一文发表在IJCAI 2017上，作者在分解机中引入了attention机制，为不同的特征交互赋予不同的权重。">
 <meta name="keywords" content="recommender systems">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文阅读 Attentional Factorization Machines&amp;#58 Learning the Weight of Feature Interactions via Attention Networks">
 <meta property="og:url" content="https://www.hegongshan.com/2019/12/26/recommender-system-afm/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="作者在分解机中引入了attention机制，为不同的特征交互赋予不同的权重。">
+<meta property="og:description" content="Attentional Factorization Machines（AFM）一文发表在IJCAI 2017上，作者在分解机中引入了attention机制，为不同的特征交互赋予不同的权重。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/afm.png">
-<meta property="og:updated_time" content="2019-12-28T14:05:12.089Z">
+<meta property="og:updated_time" content="2020-01-02T14:23:11.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读 Attentional Factorization Machines&amp;#58 Learning the Weight of Feature Interactions via Attention Networks">
-<meta name="twitter:description" content="作者在分解机中引入了attention机制，为不同的特征交互赋予不同的权重。">
+<meta name="twitter:description" content="Attentional Factorization Machines（AFM）一文发表在IJCAI 2017上，作者在分解机中引入了attention机制，为不同的特征交互赋予不同的权重。">
 <meta name="twitter:image" content="https://www.hegongshan.com/static/images/afm.png">
 
 
@@ -406,8 +406,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-28T22:05:12+08:00">
-                2019-12-28
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-02T22:23:11+08:00">
+                2020-01-02
               </time>
             
           </span>
@@ -461,7 +461,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  34
+                  734
                 </span>
               
 
@@ -486,10 +486,37 @@
       
 
       
-        <p>作者在分解机中引入了attention机制，为不同的特征交互赋予不同的权重。</p>
+        <p>Attentional Factorization Machines（AFM）一文发表在IJCAI 2017上，作者在分解机中引入了attention机制，为不同的特征交互赋予不同的权重。</p>
 <a id="more"></a>
-<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p><img src="/static/images/afm.png" alt=""></p>
-<p>未完待续…</p>
+<h3 id="分解机"><a href="#分解机" class="headerlink" title="分解机"></a>分解机</h3><p>$$<br>\hat y_{FM} (\mathbf{x}) =<br>\underset{<br>    \mathrm{linear\ regression}<br>}{<br>    \underbrace{w_0 + \sum_{i=1}^n w_i x_i}<br>} + \underset{<br>    \mathrm{pair-wise\ feature\ interactions}<br>}{<br>    \underbrace{\sum_{i=1}^n \sum_{j=i+1}^n \hat w_{ij} x_i x_j}<br>} \tag{1}<br>$$</p>
+<p>其中，$w_0$表示全局偏置，$w_i$表示第i个特征的权重，$\hat w_{ij} = \mathbf{v}_i^T \mathbf{v}_j$表示交叉特征$x_i x_j$的权重。</p>
+<p>$\mathbf{v}_i = \mathbb{R}^k$表示特征i的embedding向量，k表示embedding向量的大小。</p>
+<p>缺点：并非所有的特征都与预测相关，而分解机对所有的特征交互使用了相同的权重。</p>
+<h3 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h3><p><img src="/static/images/afm.png" alt=""></p>
+<p>图中省略了线性回归部分。</p>
+<h4 id="逐对交互层"><a href="#逐对交互层" class="headerlink" title="逐对交互层"></a>逐对交互层</h4>
+
+令$\mathcal{X}$为特征向量$\mathbf{x}$中的非零特征集合，embedding层的输出为$\varepsilon = \{ \mathbf{v}_i x_i \}_{i \in \mathcal{x} }$。因此，逐对交互层（Pair-wise Interaction Layer）的输出为：
+$$
+f_{PI}(\varepsilon) = \{ (\mathbf{v}_i \odot \mathbf{v}_j) x_i x_j \}_{(i,j) \in \mathcal{R}_x} \tag{2}
+$$
+其中，$\odot$表示逐元素相乘， $\mathcal{R}_x = \{ (i,j) \}_{i \in \mathcal{X}, j \in \mathcal{X}, j > i}$。
+
+
+<p>使用sum pooling将$f_{PI}(\varepsilon)$压缩成一个向量，然后用一个全连接层将其变为预测分数<br>$$<br>\hat y = \mathbf{p}^T \sum_{(i,j) \in \mathcal{R}_x} (\mathbf{v}_i \odot \mathbf{v}_j) x_i x_j + b \tag{3}<br>$$<br>其中，$\mathbf{p} \in \mathbb{R}^k$和$b \in \mathbb{R}$表示预测层的权重和偏置。</p>
+<p>当$\mathbf{p} \equiv [1,1,\dots,1]$和$b \equiv 0$时，上式将退化为FM。</p>
+<h4 id="Attention池化层"><a href="#Attention池化层" class="headerlink" title="Attention池化层"></a>Attention池化层</h4><p>该层的输出为：<br>$$<br>f_{Att}(f_{PI}(\varepsilon)) =<br>\sum_{(i,j) \in \mathcal{R}_x} a_{ij} (\mathbf{v}_i \odot \mathbf{v}_j) x_i x_j \tag{4}<br>$$<br>作者使用一层的MLP当作attention网络：<br>$$<br>a_{ij}^\prime = \mathbf{h}^T \mathrm{ReLU}(\mathbf{W} (\mathbf{v}_i \odot \mathbf{v}_j) x_i x_j + \mathbf{b}) \\<br>a_{ij} = \frac{<br>    \mathrm{exp(a_{ij}^\prime)}<br>}{<br>    \sum_{(i,j) \in \mathcal{R}_x} \mathrm{exp(a_{ij}^\prime)}<br>} \tag{5}<br>$$<br>其中，$\mathbf{W} \in \mathbb{R}^{t \times k}$，$\mathbf{b} \in \mathbb{R}^t$，$\mathbf{h} \in \mathbb{R}^t$。</p>
+<p>这里的t表示attention网络中隐含层的大小，作者称之为<strong>attention factor</strong>。</p>
+<h3 id="模型表达式"><a href="#模型表达式" class="headerlink" title="模型表达式"></a>模型表达式</h3><p>$$<br>\hat y_{AFM} (\mathbf{x}) =<br>w_0 + \sum_{i=1}^n w_i x_i + \mathbf{p}^T \sum_{i=1}^n \sum_{j=i+1}^n a_{ij} (\mathbf{v}_i \odot \mathbf{v}_j) x_i x_j \tag{6}<br>$$</p>
+
+
+模型的参数$\Theta = \{w_0, \{ w_i \}_{i=1}^n, \{ \mathbf{v}_i \}_{i=1}^n, \mathbf{p, W, b, h} \}$。
+
+
+<h3 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h3><p>论文将AFM用于回归任务，因此，作者采用了平方损失：<br>$$<br>L = \sum_{x \in \tau} (\hat y_{AFM}(\mathbf{x}) - y(\mathbf{x}))^2 \tag{7}<br>$$<br>其中，$\tau$表示训练集。</p>
+<p>为了防止过拟合，作者对逐对交互层使用了丢弃法（dropout），对attention网络使用了L2正则项。</p>
+<p>因此，实际的目标函数如下：<br>$$<br>L = \sum_{x \in \tau} (\hat y_{AFM}(\mathbf{x}) - y(\mathbf{x}))^2 + \lambda \left \Vert \mathbf{W} \right \Vert^2 \tag{8}<br>$$<br>论文地址：<a href="https://www.ijcai.org/proceedings/2017/0435.pdf" target="_blank" rel="noopener">https://www.ijcai.org/proceedings/2017/0435.pdf</a></p>
+<p>实验代码：<a href="https://github.com/hexiangnan/attentional_factorization_machine" target="_blank" rel="noopener">https://github.com/hexiangnan/attentional_factorization_machine</a></p>
 
       
     </div>
@@ -822,7 +849,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型"><span class="nav-number">1.</span> <span class="nav-text">模型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分解机"><span class="nav-number">1.</span> <span class="nav-text">分解机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型结构"><span class="nav-number">2.</span> <span class="nav-text">模型结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#逐对交互层"><span class="nav-number">2.1.</span> <span class="nav-text">逐对交互层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Attention池化层"><span class="nav-number">2.2.</span> <span class="nav-text">Attention池化层</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型表达式"><span class="nav-number">3.</span> <span class="nav-text">模型表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数"><span class="nav-number">4.</span> <span class="nav-text">目标函数</span></a></li></ol></div>
             
 
           </div>
