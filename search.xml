@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>论文阅读 A Neural Collaborative Filtering Model with Interaction-based Neighborhood</title>
+      <link href="/2020/01/06/recommender-system-nncf/"/>
+      <url>/2020/01/06/recommender-system-nncf/</url>
+      
+        <content type="html"><![CDATA[<p>Neighborhood-based Neural Collaborative Filtering（NNCF）一文发表在CIKM 2017上，作者在Neural Collaborative Filtering的基础上，加入了邻域信息。</p><a id="more"></a><h3 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h3><p><img src="/static/images/nncf.png" alt="NNCF"></p><h3 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h3><p>给定训练集$\tau = { &lt; u, i, y_{ui}&gt;  }$，作者采用二元交叉熵作为损失函数：<br>$$<br>\mathcal{L} = - \sum_{&lt; u, i, y_{u, i}&gt; \in \tau} \left( y_{ui} \log \hat p_{ui} + (1 - y_{ui}) \log (1 - \hat p_{ui}) \right)<br>$$</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> recommender systems </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> recommender systems </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2019年终总结</title>
       <link href="/2019/12/31/2019-year-end-summary/"/>
       <url>/2019/12/31/2019-year-end-summary/</url>
@@ -2080,8 +2105,8 @@
     
     <entry>
       <title>常见的激活函数</title>
-      <link href="/2019/07/26/activation-function/"/>
-      <url>/2019/07/26/activation-function/</url>
+      <link href="/2019/07/26/deep-learning-activation-function/"/>
+      <url>/2019/07/26/deep-learning-activation-function/</url>
       
         <content type="html"><![CDATA[<p>常见的激活函数有sigmoid函数、tanh函数和ReLU函数，本文对这三者进行了分析和比较。</p><a id="more"></a><h3 id="sigmoid函数"><a href="#sigmoid函数" class="headerlink" title="sigmoid函数"></a>sigmoid函数</h3><p>$$<br>\sigma(x) = \frac{1}{1+e^{-x}} \tag{1}<br>$$</p><p><img src="/static/images/sigmoid.png" alt=""></p><p>sigmoid函数的导数为<br>$$<br>\begin{align}<br>\sigma^\prime (x)<br>&amp;= \frac{-e^{-x}}{(1+e^{-x})^2} \\<br>&amp;= \frac{1}{1+e^{-x}} \times \left( 1-\frac{1}{1+e^{-x}} \right) \\<br>&amp;= \sigma(x) (1-\sigma(x))<br>\end{align} \tag{2}<br>$$</p><h3 id="tanh函数"><a href="#tanh函数" class="headerlink" title="tanh函数"></a>tanh函数</h3><p>$$<br>tanh(x) = \frac{sinhx}{coshx} = \frac{e^x-e^{-x}}{e^x+e^{-x}} \tag{3}<br>$$</p><p><img src="/static/images/tanh.png" alt=""></p><p>tanh函数的导数为<br>$$<br>\begin{align}<br>tanh^\prime(x)<br>&amp;= \frac{(e^x + e^{-x})(e^x + e^{-x}) - (e^x - e^{-x})(e^x - e^{-x})}{(e^x + e^{-x})^2} \\<br>&amp;= 1 - tanh^2 (x)<br>\end{align} \tag{4}<br>$$</p><h3 id="ReLU函数"><a href="#ReLU函数" class="headerlink" title="ReLU函数"></a>ReLU函数</h3><p>线性整流函数（Rectified Linear Unit, ReLU），其数学表达式为<br>$$<br>f(x) = max(0,x) \tag{5}<br>$$</p><p><img src="/static/images/relu.png" alt=""></p><p>ReLU的导数为<br>$$<br>f^\prime (x) =<br>\begin{cases}<br>0, &amp; x \leq 0 \\<br>1, &amp; x &gt; 0<br>\end{cases} \tag{6}<br>$$</p><h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p>（1）sigmoid函数将值限制在区间(0,1)中，这可能会限制模型的性能。当值趋近于0或者1时，曲线趋于饱和。</p><p>（2）由于<br>$$<br>\begin{align}<br>tanh(\frac{x}{2}) &amp;= \frac{e^{\frac{x}{2}}-e^{-\frac{x}{2}}}{e^{\frac{x}{2}}+e^{-\frac{x}{2}}} \\<br>&amp;= \frac{1 - e^{-x}}{1 + e^{-x}} \\<br>&amp;= \frac{2 - (1 + e^{-x})}{1 + e^{-x}} \\<br>&amp;= 2 \sigma(x) - 1<br>\end{align} \tag{7}<br>$$<br>因此，tanh函数也只是在一定程度上缓解了sigmoid函数的问题。</p><p>（3）ReLU函数并不会产生饱和问题，能够很好地适应稀疏数据。</p><h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>Xiangnan He, Lizi Liao, Hanwang Zhang, Liqiang Nie, Xia Hu and Tat-Seng Chua (2017). <a href="http://dl.acm.org/citation.cfm?id=3052569" target="_blank" rel="noopener">Neural Collaborative Filtering.</a> In Proceedings of WWW ‘17, Perth, Australia, April 03-07, 2017.</p>]]></content>
       
