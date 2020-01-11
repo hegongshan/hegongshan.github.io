@@ -74,14 +74,14 @@
 <meta name="description" content="pip，全称package installer for Python，是python的包管理工具。这里总结下pip中常用的一些命令。">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pip常用命令总结">
-<meta property="og:url" content="https://www.hegongshan.com/2019/07/26/pip-introduction/index.html">
+<meta property="og:title" content="Python包管理器——pip">
+<meta property="og:url" content="https://www.hegongshan.com/2019/07/26/python-pip/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="pip，全称package installer for Python，是python的包管理工具。这里总结下pip中常用的一些命令。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-26T12:17:38.476Z">
+<meta property="og:updated_time" content="2020-01-11T13:00:19.682Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pip常用命令总结">
+<meta name="twitter:title" content="Python包管理器——pip">
 <meta name="twitter:description" content="pip，全称package installer for Python，是python的包管理工具。这里总结下pip中常用的一些命令。">
 
 
@@ -112,13 +112,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hegongshan.com/2019/07/26/pip-introduction/">
+  <link rel="canonical" href="https://www.hegongshan.com/2019/07/26/python-pip/">
 
 
 
 
 
-  <title>pip常用命令总结 | 贺巩山的博客</title>
+  <title>Python包管理器——pip | 贺巩山的博客</title>
   
 
 
@@ -359,7 +359,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/07/26/pip-introduction/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/07/26/python-pip/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -375,7 +375,7 @@
       <header class="post-header">
         
         
-          <h2 class="post-title" itemprop="name headline">pip常用命令总结</h2>
+          <h2 class="post-title" itemprop="name headline">Python包管理器——pip</h2>
         
 
         <div class="post-meta">		 
@@ -404,8 +404,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-07-26T20:17:38+08:00">
-                2019-07-26
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-11T21:00:19+08:00">
+                2020-01-11
               </time>
             
           </span>
@@ -459,7 +459,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  147
+                  479
                 </span>
               
 
@@ -486,21 +486,58 @@
       
         <p>pip，全称package installer for Python，是python的包管理工具。这里总结下pip中常用的一些命令。</p>
 <a id="more"></a>
-<h3 id="查看pip版本"><a href="#查看pip版本" class="headerlink" title="查看pip版本"></a>查看pip版本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注意在-V中，V是大写字母</span></span><br><span class="line">pip --version 或者 pip -V</span><br></pre></td></tr></table></figure>
+<h3 id="查看版本信息"><a href="#查看版本信息" class="headerlink" title="查看版本信息"></a>查看版本信息</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注意在-V中，V是大写字母</span></span><br><span class="line">pip --version 或者 pip -V</span><br></pre></td></tr></table></figure>
 <h3 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h3><ul>
 <li>安装最新版本</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install 包名</span><br></pre></td></tr></table></figure>
 <ul>
-<li>安装指定版本</li>
+<li>指定某个版本</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 必须写两个等号</span></span><br><span class="line">pip install 包名==版本号</span><br></pre></td></tr></table></figure>
-<h3 id="升级包"><a href="#升级包" class="headerlink" title="升级包"></a>升级包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade 包名</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 必须写两个等号，且等号左右不能有空格</span></span><br><span class="line">pip install 包名==版本号</span><br></pre></td></tr></table></figure>
+<ul>
+<li>指定版本的范围</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip install 包名&gt;=版本号</span><br><span class="line">pip install 包名&lt;=版本号</span><br><span class="line">pip install 包名&gt;版本号</span><br><span class="line">pip install 包名&lt;版本号</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装依赖文件中列出的所有包</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -r &lt;requirements file&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="更改源"><a href="#更改源" class="headerlink" title="更改源"></a>更改源</h3><h4 id="临时使用"><a href="#临时使用" class="headerlink" title="临时使用"></a>临时使用</h4><p>在安装包时，可以使用<code>-i &lt;url&gt;</code>或者<code>--index-url &lt;url&gt;</code>指定临时的Python Package Index（PyPI）源地址（默认为<a href="https://pypi.org/simple）。" target="_blank" rel="noopener">https://pypi.org/simple）。</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install some-package -i 源</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>PyPI 国内源</p>
+<p>清华大学 <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a></p>
+<p>阿里云 <a href="http://mirrors.aliyun.com/pypi/simple" target="_blank" rel="noopener">http://mirrors.aliyun.com/pypi/simple</a></p>
+</blockquote>
+<p>例如，使用清华大学的PyPI镜像来安装NumPy</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy -i https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<h4 id="设为默认"><a href="#设为默认" class="headerlink" title="设为默认"></a>设为默认</h4><p>还是以清华大学的PyPI镜像为例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip config set <span class="keyword">global</span>.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<p>上述操作将在当前用户的主目录下，生成.config/pip/pip.conf，文件内容如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">global</span>]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<p>如果想要恢复默认的PyPI源，可以使用如下的命令：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip config unset <span class="keyword">global</span>.index-url</span><br></pre></td></tr></table></figure>
+<h3 id="升级包"><a href="#升级包" class="headerlink" title="升级包"></a>升级包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install --upgrade 包名</span><br><span class="line">pip install -U 包名</span><br></pre></td></tr></table></figure>
 <h3 id="查看已安装的包"><a href="#查看已安装的包" class="headerlink" title="查看已安装的包"></a>查看已安装的包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip list</span><br></pre></td></tr></table></figure>
-<h3 id="卸载包"><a href="#卸载包" class="headerlink" title="卸载包"></a>卸载包</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall 包名</span><br></pre></td></tr></table></figure>
-<h3 id="帮助信息"><a href="#帮助信息" class="headerlink" title="帮助信息"></a>帮助信息</h3><p>如果记不住这些命令，没有关系，使用<code>--help</code>或者<code>-h</code>参数，可以打印帮助信息。</p>
+<h3 id="搜索包"><a href="#搜索包" class="headerlink" title="搜索包"></a>搜索包</h3><p>使用search命令可以从PyPI中搜索需要的包。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip search 包名</span><br></pre></td></tr></table></figure>
+<h3 id="卸载包"><a href="#卸载包" class="headerlink" title="卸载包"></a>卸载包</h3><ul>
+<li>卸载某个包</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall 包名</span><br></pre></td></tr></table></figure>
+<ul>
+<li>卸载依赖文件中列出的所有包</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall -r &lt;requirements file&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="帮助信息"><a href="#帮助信息" class="headerlink" title="帮助信息"></a>帮助信息</h3><ul>
+<li>如果记不住这些命令，没有关系，使用<code>--help</code>或者<code>-h</code>参数，可以打印帮助信息。</li>
+</ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip --help 或者 pip -h</span><br></pre></td></tr></table></figure>
-
+<ul>
+<li>使用help查看命令详情。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip help 命令</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -558,7 +595,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hegongshan.com/2019/07/26/pip-introduction/" title="pip常用命令总结">https://www.hegongshan.com/2019/07/26/pip-introduction/</a>
+    <a href="https://www.hegongshan.com/2019/07/26/python-pip/" title="Python包管理器——pip">https://www.hegongshan.com/2019/07/26/python-pip/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -731,7 +768,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -832,7 +869,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看pip版本"><span class="nav-number">1.</span> <span class="nav-text">查看pip版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装包"><span class="nav-number">2.</span> <span class="nav-text">安装包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#升级包"><span class="nav-number">3.</span> <span class="nav-text">升级包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看已安装的包"><span class="nav-number">4.</span> <span class="nav-text">查看已安装的包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载包"><span class="nav-number">5.</span> <span class="nav-text">卸载包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#帮助信息"><span class="nav-number">6.</span> <span class="nav-text">帮助信息</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看版本信息"><span class="nav-number">1.</span> <span class="nav-text">查看版本信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装包"><span class="nav-number">2.</span> <span class="nav-text">安装包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改源"><span class="nav-number">3.</span> <span class="nav-text">更改源</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#临时使用"><span class="nav-number">3.1.</span> <span class="nav-text">临时使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设为默认"><span class="nav-number">3.2.</span> <span class="nav-text">设为默认</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#升级包"><span class="nav-number">4.</span> <span class="nav-text">升级包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看已安装的包"><span class="nav-number">5.</span> <span class="nav-text">查看已安装的包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索包"><span class="nav-number">6.</span> <span class="nav-text">搜索包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载包"><span class="nav-number">7.</span> <span class="nav-text">卸载包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#帮助信息"><span class="nav-number">8.</span> <span class="nav-text">帮助信息</span></a></li></ol></div>
             
 
           </div>
