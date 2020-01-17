@@ -79,7 +79,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="编写一个程序，找到两个单链表相交的起始节点。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-16T08:17:10.895Z">
+<meta property="og:updated_time" content="2020-01-17T13:17:18.410Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode 160.相交链表">
 <meta name="twitter:description" content="编写一个程序，找到两个单链表相交的起始节点。">
@@ -404,8 +404,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-16T16:17:10+08:00">
-                2020-01-16
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-17T21:17:18+08:00">
+                2020-01-17
               </time>
             
           </span>
@@ -504,7 +504,7 @@
 <li>程序尽量满足 O(n) 时间复杂度，且仅用 O(1) 内存。</li>
 </ul>
 <h3 id="方法一：跳过多余节点"><a href="#方法一：跳过多余节点" class="headerlink" title="方法一：跳过多余节点"></a>方法一：跳过多余节点</h3><p>$$<br>\begin{align}<br>A: \overset{x}{\overbrace{a_1 \rightarrow a_2 \rightarrow \cdots \rightarrow a_x}} &amp;\\<br>                        &amp;\searrow \\<br>                        &amp; \quad \underset{z}{\underbrace{c_1 \rightarrow \cdots \rightarrow c_z}} \\<br>                        &amp;\nearrow \\<br>B: \underset{y}{\underbrace{b_1 \rightarrow b_2 \rightarrow \cdots \rightarrow b_y}}<br>\end{align}<br>$$</p>
-<p>假设链表A的长度大于B（即x &gt; y），那么，只需要跳过链表A的前x - y个节点，然后再同时遍历链表A和B，当遇到两个链表的当前节点相同时，该节点即为链表A和B相交的起始节点$c_1$。</p>
+<p>假设链表A的长度大于B（即x &gt; y），那么，只需要跳过链表A的前x - y个节点，然后再同时遍历链表A和B。当两个链表的当前节点相同时，该节点即为链表A和B相交的起始节点$c_1$。</p>
 <p>时间复杂度：O(n)</p>
 <p>空间复杂度：O(1)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getIntersectionNode</span><span class="params">(self, headA: ListNode, headB: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> headA <span class="keyword">or</span> <span class="keyword">not</span> headB:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        </span><br><span class="line">        length1 = <span class="number">0</span></span><br><span class="line">        length2 = <span class="number">0</span></span><br><span class="line">        node1 = headA</span><br><span class="line">        node2 = headB</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取链表的长度</span></span><br><span class="line">        <span class="keyword">while</span> node1:</span><br><span class="line">            node1 = node1.next</span><br><span class="line">            length1 += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> node2:</span><br><span class="line">            node2 = node2.next</span><br><span class="line">            length2 += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 跳过多余的节点</span></span><br><span class="line">        node1 = headA</span><br><span class="line">        node2 = headB</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(abs(length1-length2)):</span><br><span class="line">            <span class="keyword">if</span> length1 &gt; length2:</span><br><span class="line">                node1 = node1.next</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                node2 = node2.next</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> node1:</span><br><span class="line">            <span class="keyword">if</span> node1 == node2:</span><br><span class="line">                <span class="keyword">return</span> node1</span><br><span class="line">            node1 = node1.next</span><br><span class="line">            node2 = node2.next</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">None</span></span><br></pre></td></tr></table></figure>
@@ -610,6 +610,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/17/leetcode-114-flatten-binary-tree-to-linked-list/" rel="prev" title="LeetCode 114.二叉树展开为链表">
+                LeetCode 114.二叉树展开为链表 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -720,7 +724,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">279</span>
+                  <span class="site-state-item-count">280</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
