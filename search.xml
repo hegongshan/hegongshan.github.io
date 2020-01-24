@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode 138.复制带随机指针的链表]]></title>
+    <url>%2F2020%2F01%2F24%2Fleetcode-138-copy-list-with-random-pointer%2F</url>
+    <content type="text"><![CDATA[给定一个链表，每个节点包含一个额外增加的随机指针，该指针可以指向链表中的任何节点或空节点。 要求返回这个链表的 深拷贝。 我们用一个由 n 个节点组成的链表来表示输入/输出中的链表。每个节点用一个 [val, random_index] 表示： val：一个表示 Node.val 的整数。 random_index：随机指针指向的节点索引（范围从 0 到 n-1）；如果不指向任何节点，则为 null 。 示例 1： 12输入：head = [[7,null],[13,0],[11,4],[10,2],[1,0]]输出：[[7,null],[13,0],[11,4],[10,2],[1,0]] 示例 2： 12输入：head = [[1,1],[2,1]]输出：[[1,1],[2,1]] 示例 3： 12输入：head = [[3,null],[3,0],[3,null]]输出：[[3,null],[3,0],[3,null]] 示例 4： 123输入：head = []输出：[]解释：给定的链表为空（空指针），因此返回 null。 方法一：哈希表时间复杂度：O(n) 空间复杂度：O(n) 12345678910111213141516171819202122232425262728"""# Definition for a Node.class Node: def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None): self.val = int(x) self.next = next self.random = random"""class Solution: def copyRandomList(self, head: 'Node') -&gt; 'Node': if head is None: return None hash_table = &#123;&#125; node = head # 1.新建节点，并存储哈希表中 while node: new_node = Node(node.val, None, None) hash_table[node] = new_node node = node.next # 2.复制链表 node = head while node: hash_table[node].next = hash_table.get(node.next) hash_table[node].random = hash_table.get(node.random) node = node.next return hash_table[head] 方法二：原地复制步骤： 1.遍历原链表，依次复制每个节点，并将复制得到的新节点插入到原节点后面。 假如原链表为$A \rightarrow B \rightarrow C$，遍历结束后，得到的新链表为$A \rightarrow A^\prime \rightarrow B \rightarrow B^\prime \rightarrow C \rightarrow C^\prime$ 2.复制random指针，例如$\mathrm{A^\prime.random = A.random.next}$； 3.遍历新链表，分离出原链表的深拷贝。 时间复杂度：O(n) 空间复杂度：O(1) 12345678910111213141516171819202122232425262728293031323334353637"""# Definition for a Node.class Node: def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None): self.val = int(x) self.next = next self.random = random"""class Solution: def copyRandomList(self, head: 'Node') -&gt; 'Node': if head is None: return None # 1.复制节点 cur = head while cur: node = Node(cur.val, None, None) node.next = cur.next cur.next = node cur = cur.next.next # 2.复制random指针 cur = head while cur: if cur.random: cur.next.random = cur.random.next cur = cur.next.next # 3.分离链表 cur = head root = tail = head.next while cur: cur.next = cur.next.next tail.next = tail.next.next if tail.next else None cur = cur.next tail = tail.next return root]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>linked-list</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 143.重排链表]]></title>
     <url>%2F2020%2F01%2F19%2Fleetcode-143-reorder-list%2F</url>
     <content type="text"><![CDATA[给定一个单链表 L：L0→L1→…→Ln-1→Ln ，将其重新排列后变为： L0→Ln→L1→Ln-1→L2→Ln-2→… 你不能只是单纯的改变节点内部的值，而是需要实际的进行节点交换。 示例 1: 1给定链表 1-&gt;2-&gt;3-&gt;4, 重新排列为 1-&gt;4-&gt;2-&gt;3. 示例 2: 1给定链表 1-&gt;2-&gt;3-&gt;4-&gt;5, 重新排列为 1-&gt;5-&gt;2-&gt;4-&gt;3. 思路 首先，将单链表分割为前后两个部分； 然后，使用头插法反转后半部分； 最后，将后半部分节点依次插入到前半部分中。 方法一：快慢指针1234567891011121314151617181920212223242526272829303132333435363738394041424344# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def reorderList(self, head: ListNode) -&gt; None: """ Do not return anything, modify head in-place instead. """ # 若单链表为空，或者仅有一个节点，或者仅有两个节点 if not head or not head.next or not head.next.next: return # 将单链表分割为前后两个部分 slow = fast = head while fast.next and fast.next.next: slow = slow.next fast = fast.next.next mid = slow.next slow.next = None # 采用头插法，反转后半部分 fast = None while mid: temp = mid.next mid.next = fast fast = mid mid = temp # 重排链表 slow = head while slow and fast: temp1 = slow.next temp2 = fast.next fast.next = slow.next slow.next = fast slow = temp1 fast = temp2]]></content>
@@ -2767,18 +2778,6 @@
       </categories>
       <tags>
         <tag>机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Command 'scrapy' not found]]></title>
-    <url>%2F2018%2F06%2F30%2Fcommand-scrapy-not-found%2F</url>
-    <content type="text"><![CDATA[问题描述在ubuntu中执行 1pip3 install scrapy 成功安装scrapy，且在python命令行交互模式中成功执行 1import scrapy 但是在终端中执行scrapy startproject xxx时，出现＂Command ‘scrapy’ not found＂ 解决办法找到python的主目录，我的是 1/home/hegongshan/.local/lib/python3.6 在上面lib的同级目录bin下有一个scrapy文件，我的是/home/hegongshan/.local/bin 为该目录下的scrapy文件在/usr/bin目录下建立一个软链接 1sudo ln -s /home/hegongshan/.local/bin/scrapy /usr/bin 然后在终端下执行scrapy，可以看到，]]></content>
-      <categories>
-        <category>scrapy</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>scrapy</tag>
       </tags>
   </entry>
   <entry>

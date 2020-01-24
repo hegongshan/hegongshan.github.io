@@ -1954,7 +1954,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffff95;
+  background: #79a682;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3315,4 +3315,9 @@ pre .javascript .function {
   src: url("../fonts/Monaco.ttf");
   font-weight: normal;
   font-style: normal;
+}
+.tag-cloud a {
+  border: 0px;
+  padding: 0px 10px;
+  border-radius: 10px;
 }
