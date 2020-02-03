@@ -359,6 +359,601 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/06/26/python-matplotlib/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/26/python-matplotlib/" itemprop="url">Matplotlib入门</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-26T20:36:44+08:00">
+                2018-06-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-08T15:14:34+08:00">
+                2020-01-08
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Matplotlib是一个Python的2D绘图库。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+<h3 id="设置图片标题"><a href="#设置图片标题" class="headerlink" title="设置图片标题"></a>设置图片标题</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.title(<span class="string">'title'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="设置x-y轴文字"><a href="#设置x-y轴文字" class="headerlink" title="设置x/y轴文字"></a>设置x/y轴文字</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.xlabel(<span class="string">'xlabel'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'ylabel'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="设置x-y轴的刻度范围"><a href="#设置x-y轴的刻度范围" class="headerlink" title="设置x/y轴的刻度范围"></a>设置x/y轴的刻度范围</h3><p>默认情况下，matplotlib的坐标轴刻度并不会从0开始。通过xlim()和ylim()方法，设置x/y轴的刻度范围，可以让x/y轴的刻度从0开始。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.xlim(xmin,xmax)</span><br><span class="line">plt.ylim(ymin,ymax)</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.xlim(xmin=<span class="number">0</span>, xmax=<span class="number">1000</span>)</span><br><span class="line">plt.ylim(ymin=<span class="number">0</span>, ymax=<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="设置x-y轴的刻度"><a href="#设置x-y轴的刻度" class="headerlink" title="设置x/y轴的刻度"></a>设置x/y轴的刻度</h3><p>可以使用xticks()和yticks()方法，设置x/y轴需要显示的所有刻度值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.xticks(ticks=<span class="keyword">None</span>, labels=<span class="keyword">None</span>, **kwargs)</span><br><span class="line">plt.yticks(ticks=<span class="keyword">None</span>, labels=<span class="keyword">None</span>, **kwargs)</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以50为步长，x轴的刻度为0,50,100,150,...,900,950</span></span><br><span class="line">plt.xticks(np.arange(<span class="number">0</span>, <span class="number">950</span>, step=<span class="number">50</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="显示图片"><a href="#显示图片" class="headerlink" title="显示图片"></a>显示图片</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="使用中文"><a href="#使用中文" class="headerlink" title="使用中文"></a>使用中文</h3><p>Matplotlib默认是不支持中文的。因此，如果要显示中文，可以导入本地的中文字体库。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.font_manager <span class="keyword">import</span> FontProperties</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置字体，fname为本地字体库的所在路径</span></span><br><span class="line">font = FontProperties(fname=<span class="string">'/System/Library/Fonts/Hiragino Sans GB.ttc'</span>,size=<span class="number">14</span>)</span><br><span class="line"><span class="comment"># 在用到中文的地方，设置fontproperties</span></span><br><span class="line">plt.title(<span class="string">"出行时段分布"</span>,fontproperties=font)</span><br></pre></td></tr></table></figure>
+<h3 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h3><p>绘制折线图，需要使用matplotlib.pyplot中的<strong>plot</strong>方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plot([x], y, [fmt], *, data=<span class="keyword">None</span>, **kwargs)</span><br><span class="line">plot([x], y, [fmt], [x2], y2, [fmt2], ..., **kwargs)</span><br></pre></td></tr></table></figure>
+<h4 id="线条样式及颜色"><a href="#线条样式及颜色" class="headerlink" title="线条样式及颜色"></a>线条样式及颜色</h4><p>fmt由标记（marker）、线条样式（linestyle）以及颜色（color）组成。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># marker、line以及color均为可选</span></span><br><span class="line">fmt = <span class="string">'[marker][line][color]'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Markers</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">符号	描述</span><br><span class="line">--------------</span><br><span class="line"> o	圆形</span><br><span class="line"> v	下三角</span><br><span class="line"> ^	上三角</span><br><span class="line"> s	正方形</span><br><span class="line"> *	星号</span><br><span class="line"> +	加号</span><br><span class="line"> x	X</span><br><span class="line"> D	等边菱形</span><br><span class="line"> d	不等边菱形</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Line Styles</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">符号	描述</span><br><span class="line">--------------</span><br><span class="line"> -	实线</span><br><span class="line"> --	虚线</span><br><span class="line"> -.	点划线</span><br><span class="line"> :	点线</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Colors</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">符号	描述</span><br><span class="line">--------------</span><br><span class="line"> b	blue</span><br><span class="line"> g	green</span><br><span class="line"> r	red</span><br><span class="line"> c	cyan 蓝绿色</span><br><span class="line"> m	magenta 洋红色</span><br><span class="line"> y	yellow</span><br><span class="line"> k	black</span><br><span class="line"> w	white</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">y = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>]</span><br><span class="line"><span class="comment"># 带圆形标记的红色实线</span></span><br><span class="line">plt.plot(y, <span class="string">'o-r'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h4 id="常用关键字参数"><a href="#常用关键字参数" class="headerlink" title="常用关键字参数"></a>常用关键字参数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">符号			描述</span><br><span class="line">--------------------------------</span><br><span class="line">color <span class="keyword">or</span> c		color</span><br><span class="line">linestyle <span class="keyword">or</span> ls		float</span><br><span class="line">linewidth <span class="keyword">or</span> lw		float</span><br><span class="line">marker			marker style</span><br><span class="line">markersize <span class="keyword">or</span> ms	float</span><br><span class="line">label			线条的名字</span><br></pre></td></tr></table></figure>
+<h3 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h3><p>绘制散点图，需要使用matplotlib.pyplot中的<strong>scatter</strong>方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">y = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> x]</span><br><span class="line">plt.scatter(x,y,linewidth=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">'Squares Numbers'</span>,fontsize=<span class="number">24</span>)</span><br><span class="line">plt.xlabel(<span class="string">'value'</span>,fontsize=<span class="number">14</span>)</span><br><span class="line">plt.ylabel(<span class="string">'square of value'</span>,fontsize=<span class="number">14</span>)</span><br><span class="line"></span><br><span class="line">plt.tick_params(axis=<span class="string">'both'</span>,labelsize=<span class="number">14</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h3><p>绘制柱状图，需要使用matplotlib.pyplot中的<strong>bar</strong>方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bar(x, height, width=<span class="number">0.8</span>, bottom=<span class="keyword">None</span>, *, align=<span class="string">'center'</span>, data=<span class="keyword">None</span>, **kwargs)</span><br></pre></td></tr></table></figure>
+<h3 id="饼状图"><a href="#饼状图" class="headerlink" title="饼状图"></a>饼状图</h3><p>绘制饼状图，需要使用matplotlib.pyplot中的<strong>pie</strong>方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pie(x, explode=<span class="keyword">None</span>, labels=<span class="keyword">None</span>, colors=<span class="keyword">None</span>, autopct=<span class="keyword">None</span>,</span><br><span class="line">        pctdistance=<span class="number">0.6</span>, shadow=<span class="keyword">False</span>, labeldistance=<span class="number">1.1</span>, startangle=<span class="keyword">None</span>,</span><br><span class="line">        radius=<span class="keyword">None</span>, counterclock=<span class="keyword">True</span>, wedgeprops=<span class="keyword">None</span>, textprops=<span class="keyword">None</span>,</span><br><span class="line">        center=(<span class="number">0</span>, <span class="number">0</span>), frame=<span class="keyword">False</span>, rotatelabels=<span class="keyword">False</span>, hold=<span class="keyword">None</span>, data=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="保存图片"><a href="#保存图片" class="headerlink" title="保存图片"></a>保存图片</h3><p>保存图片，需要使用matplotlib.pyplot中的savefig方法。</p>
+<p>需要注意的是：<strong>savefig必须在show方法之前执行</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.savefig(<span class="string">'./test.eps'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="添加水平-垂直线"><a href="#添加水平-垂直线" class="headerlink" title="添加水平/垂直线"></a>添加水平/垂直线</h3><p>可以使用hlines()和vlines()方法分别绘制水平、垂直线段。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plt.vlines(x=0, ymin=0, ymax=1, linestyles=&apos;dashed&apos;)</span><br><span class="line">plt.hlines(y=0.5, xmin=-10, xmax=10, linestyles=&apos;dashed&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="显示图例"><a href="#显示图例" class="headerlink" title="显示图例"></a>显示图例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.legend()</span><br></pre></td></tr></table></figure>
+<h3 id="显示网格"><a href="#显示网格" class="headerlink" title="显示网格"></a>显示网格</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.grid(b=<span class="keyword">None</span>, which=<span class="string">'major'</span>, axis=<span class="string">'both'</span>, **kwargs)</span><br></pre></td></tr></table></figure>
+<p>b：是否显示网格</p>
+<p>which：在哪些刻度上画网格线（主刻度|小刻度），可选的值有{‘major’, ‘minor’, ‘both’}</p>
+<p>axis：在哪个轴上画网格线，可选的值有{‘both’, ‘x’, ‘y’}</p>
+<p>其他关键字参数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">符号			描述</span><br><span class="line">----------------------------------</span><br><span class="line">color <span class="keyword">or</span> c		网格线的颜色</span><br><span class="line">linestyle <span class="keyword">or</span> ls 	网格线的样式</span><br><span class="line">linewidth <span class="keyword">or</span> lw 	线的宽度</span><br></pre></td></tr></table></figure>
+<h3 id="更改坐标轴的位置"><a href="#更改坐标轴的位置" class="headerlink" title="更改坐标轴的位置"></a>更改坐标轴的位置</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gca，get current axis</span></span><br><span class="line">ax = plt.gca()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 隐藏右边和顶部的线条</span></span><br><span class="line">ax.spines[<span class="string">'right'</span>].set_color(<span class="string">'none'</span>)</span><br><span class="line">ax.spines[<span class="string">'top'</span>].set_color(<span class="string">'none'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置x轴和y轴所在的位置</span></span><br><span class="line">ax.xaxis.set_ticks_position(<span class="string">'bottom'</span>)</span><br><span class="line">ax.yaxis.set_ticks_position(<span class="string">'left'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置x轴和y轴的交点为(0,0)</span></span><br><span class="line">ax.spines[<span class="string">'bottom'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br><span class="line">ax.spines[<span class="string">'left'</span>].set_position((<span class="string">'data'</span>, <span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="对LaTex的支持"><a href="#对LaTex的支持" class="headerlink" title="对LaTex的支持"></a>对LaTex的支持</h3><p>在需要输入LaTex公式的地方，使用一对美元符$$包裹起来，就像这样<code>r&#39;sigmoid(x)=$\frac{1}{1+e^{-x}}$&#39;</code>，不要忘记前面的字母r（告诉编译器后面的字符串是个raw string，不需要对反斜杠进行转义）。</p>
+<p>示例：</p>
+<p>绘制Sigmoid函数，并在图例中显示sigmoid的数学表达式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">x = np.arange(start=<span class="number">-10</span>, stop=<span class="number">10</span>, step=<span class="number">0.1</span>)</span><br><span class="line">y = <span class="number">1</span> / (<span class="number">1</span> + math.e ** (-x))</span><br><span class="line">plt.plot(x, y, linewidth=<span class="number">3</span>, label=<span class="string">r'sigmoid(x)=$\frac&#123;1&#125;&#123;1+e^&#123;-x&#125;&#125;$'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'x'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line">plt.ylabel(<span class="string">'sigmoid(x)'</span>, fontsize=<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line">plt.xticks(np.arange(<span class="number">-10</span>, <span class="number">11</span>, step=<span class="number">1</span>))</span><br><span class="line">plt.yticks(np.arange(<span class="number">0</span>, <span class="number">1.1</span>, step=<span class="number">0.1</span>))</span><br><span class="line">plt.ylim(ymin=<span class="number">0</span>, ymax=<span class="number">1</span>)</span><br><span class="line">plt.xlim(xmin=<span class="number">-10</span>, xmax=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">plt.vlines(x=<span class="number">0</span>, ymin=<span class="number">0</span>, ymax=<span class="number">1</span>, linestyles=<span class="string">'dashed'</span>)</span><br><span class="line">plt.hlines(y=<span class="number">0.5</span>, xmin=<span class="number">-10</span>, xmax=<span class="number">10</span>, linestyles=<span class="string">'dashed'</span>)</span><br><span class="line"></span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<p><img src="/static/images/sigmoid-legend.png" alt=""></p>
+<p>更多信息，参看<a href="https://matplotlib.org/api/pyplot_summary.html" target="_blank" rel="noopener">https://matplotlib.org/api/pyplot_summary.html</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/06/25/python-numpy/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/25/python-numpy/" itemprop="url">NumPy入门</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-25T22:12:48+08:00">
+                2018-06-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-11-23T18:30:26+08:00">
+                2019-11-23
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>NumPy（Numerical Python）是高性能科学计算和数据分析的基础包。</p>
+<p>按照标准约定，我们在使用NumPy时，最好遵循如下格式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/25/python-numpy/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/06/16/java-bitwise-operation/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/16/java-bitwise-operation/" itemprop="url">Java位运算符</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-16T16:04:26+08:00">
+                2018-06-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-02T19:36:04+08:00">
+                2020-01-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在讲位运算符之前，我们先来回顾下本科时学过的一些计算机基础知识。</p>
+<p>所谓原码就是二进制定点表示法，即最高位为符号位，正数为0，负数为1，其余位表示数值的大小。</p>
+<p>反码：正数的反码与其原码相同，负数的反码是其原码逐位求反（符号位除外）。</p>
+<p>补码：正数的补码与其原码相同，负数的补码为其反码加1。</p>
+<p>整数在内存中是以补码的形式存储的。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/16/java-bitwise-operation/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/06/10/java-binary-octal-decimal-hexadecimal/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1602,549 +2197,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/05/31/time-and-space-complexity/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/31/time-and-space-complexity/" itemprop="url">算法的时间复杂度和空间复杂度</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T17:18:23+08:00">
-                2018-05-31
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-24T11:15:34+08:00">
-                2019-11-24
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.9k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>算法效率的度量是对算法所需要的时间和空间进行估算，分别称为时间复杂度和空间复杂度。</p>
-<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>算法的时间效率称为算法的时间复杂度，它是问题规模n的某个函数，记作：T(n) = O(f(n))。</p>
-<p>其中问题规模n是指输入量的多少，一般可以从问题描述中得到。如，数组元素的个数、矩阵的阶数等。f(n) 是问题规模n的某个函数。这里的O是Order的简写，意指数量级，表示随问题规模n的增大，算法执行时间的增长率和 f(n) 的增长率相同。</p>
-<p>一个没有循环的算法基本运算次数与问题规模无关，记作O(1)，也称为常数阶。</p>
-<p>常见的算法时间复杂度由小到大排列如下：</p>
-<p>O(1) &lt; O($\log_{2}n$) &lt; O(n) &lt; O($n\log_{2}n$) &lt; O($n^2$) &lt; O($n^3$) &lt; … &lt; O($c^n$) &lt; O(n!)</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/31/time-and-space-complexity/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/05/31/c-struct/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/31/c-struct/" itemprop="url">C语言结构体</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-31T12:04:44+08:00">
-                2018-05-31
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-31T12:04:44+08:00">
-                2018-05-31
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index">
-                    <span itemprop="name">c</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.8k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>C语言允许用户自己建立由不同类型数据组成的组合型的数据结构，它称为结构体。（类似于Java中的类）</p>
-<h3 id="定义结构体类型"><a href="#定义结构体类型" class="headerlink" title="定义结构体类型"></a>定义结构体类型</h3><p>声明一个结构体类型的一般形式：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> 结构体名 &#123;</span></span><br><span class="line">	成员列表  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>对结构体中各成员都应进行类型声明，即</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">类型名	成员名;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/31/c-struct/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/05/27/data-structure-and-algorithm-analysis-homework-doublelinkedlist-in-java/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/27/data-structure-and-algorithm-analysis-homework-doublelinkedlist-in-java/" itemprop="url">数据结构与算法分析作业之自己实现Java双链表</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-27T17:30:16+08:00">
-                2018-05-27
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-27T17:30:16+08:00">
-                2018-05-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构与算法分析-Java语言描述/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构与算法分析:Java语言描述</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  795
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p class="text-center">自己实现的Java双链表</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/27/data-structure-and-algorithm-analysis-homework-doublelinkedlist-in-java/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2197,7 +2249,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">285</span>
+                  <span class="site-state-item-count">288</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2208,7 +2260,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

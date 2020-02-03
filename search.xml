@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode 206./《剑指offer》15.反转链表]]></title>
+    <url>%2F2020%2F02%2F03%2Fleetcode-206-reverse-linked-list%2F</url>
+    <content type="text"><![CDATA[反转一个单链表。 示例: 12输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL 进阶:你可以迭代或递归地反转链表。你能否用两种方法解决这道题？ 方法一：迭代思路：头插法。 12345678910111213141516171819# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def reverseList(self, head: ListNode) -&gt; ListNode: if head is None or head.next is None: return head cur = head pre = None while cur: temp = cur.next cur.next = pre pre = cur cur = temp return pre 复杂度分析：时间复杂度为O(n)，空间复杂度为O(1)。其中，n为链表中结点的个数。 方法二：递归12345678910111213# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def reverseList(self, head: ListNode) -&gt; ListNode: if head is None or head.next is None: return head pre = self.reverseList(head.next) head.next.next = head head.next = None return pre 复杂度分析：时间复杂度为O(n)，空间复杂度为O(n)。其中，n为链表中结点的个数。]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>linked-list</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[《剑指offer》14.链表中倒数第k个结点]]></title>
+    <url>%2F2020%2F02%2F03%2Fsword-pointing-to-offer-14-find-kth-to-tail%2F</url>
+    <content type="text"><![CDATA[输入一个链表，输出该链表中倒数第k个结点。 方法一：使用数组思路：设n为链表中结点的个数。 遍历链表，将当前结点存入数组ls中。遍历结束后，若数组ls不为空，且给定的k值合法（1&lt;=k&lt;=n），则返回数组ls的第n-k-1个元素；否则，返回空。 123456789101112131415# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def FindKthToTail(self, head, k): ls = [] node = head while node: ls.append(node) node = node.next if ls and 1 &lt;= k &lt;= len(ls): return ls[-k] return None 复杂度分析：时间复杂度为O(n)，空间复杂度为O(n)。 方法二：快慢指针思路：设n为链表中结点的个数。 首先，设置两个指针slow和fast，均指向链表的第一个结点。 然后，让fast先走k步，指向链表中第k+1个结点。 若fast无法走完k步，则表示链表为空或者k不合法（k &lt; 1或者k &gt; n）。此时，直接返回空。 最后，同时遍历slow和fast，当fast为空时，slow指向的结点即为倒数第k个结点。 12345678910111213141516# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def FindKthToTail(self, head, k): slow = fast = head for i in range(k): if fast is None: return None fast = fast.next while fast: slow = slow.next fast = fast.next return slow 复杂度分析：时间复杂度为O(n)，空间复杂度为O(1)。]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>linked-list</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[《剑指offer》6.从尾到头打印链表]]></title>
+    <url>%2F2020%2F02%2F03%2Fsword-pointing-to-offer-6-print-list-from-tail-to-head%2F</url>
+    <content type="text"><![CDATA[输入一个链表，按链表从尾到头的顺序返回一个ArrayList。 方法一：迭代思路：遍历链表，将当前节点的值加入到列表中。遍历结束后，翻转该列表。 1234567891011121314# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: # 返回从尾部到头部的列表值序列，例如[1,2,3] def printListFromTailToHead(self, listNode): result = [] node = listNode while node: result.append(node.val) node = node.next return result[::-1] 方法二：递归1234567891011121314151617# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: # 返回从尾部到头部的列表值序列，例如[1,2,3] def printListFromTailToHead(self, listNode): result = [] self.__printList(listNode, result) return result def __printList(self, listNode, result): if listNode is None: return self.__printList(listNode.next, result) result.append(listNode.val)]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>linked-list</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 993.二叉树的堂兄弟节点]]></title>
     <url>%2F2020%2F01%2F31%2Fleetcode-993-cousins-in-binary-tree%2F</url>
     <content type="text"><![CDATA[在二叉树中，根节点位于深度 0 处，每个深度为 k 的节点的子节点位于深度 k+1 处。 如果二叉树的两个节点深度相同，但父节点不同，则它们是一对堂兄弟节点。 我们给出了具有唯一值的二叉树的根节点 root，以及树中两个不同节点的值 x 和 y。 只有与值 x 和 y 对应的节点是堂兄弟节点时，才返回 true。否则，返回 false。 示例 1： 1234567 1 / \ 2 3 / 4输入：root = [1,2,3,4], x = 4, y = 3输出：false 示例 2： 1234567 1 / \ 2 3 \ \ 4 5输入：root = [1,2,3,null,4,null,5], x = 5, y = 4输出：true 示例 3： 1234567 1 / \ 2 3 \ 4输入：root = [1,2,3,null,4], x = 2, y = 3输出：false 提示： 二叉树的节点数介于 2 到 100 之间。 每个节点的值都是唯一的、范围为 1 到 100 的整数。 方法一：递归12345678910111213141516171819202122232425262728293031323334353637# Definition for a binary tree node.# class TreeNode:# def __init__(self, x):# self.val = x# self.left = None# self.right = Noneclass Solution: def isCousins(self, root: TreeNode, x: int, y: int) -&gt; bool: if self.getDepth(root,x) == self.getDepth(root,y) and not self.isBrother(root,x,y): return True return False def getDepth(self, root: TreeNode, x: int) -&gt; int: if root is None: return None if root.val == x: return 0 # 若位于左子树中 left = self.getDepth(root.left, x) if left is not None: return left + 1 # 若位于右子树中 right = self.getDepth(root.right, x) if right is not None: return right + 1 return None def isBrother(self, root: TreeNode, x: int, y: int) -&gt; bool: if root is None: return False if root.left and root.right: if root.left.val == x and root.right.val == y: return True if root.left.val == y and root.right.val == x: return True return self.isBrother(root.left, x, y) or self.isBrother(root.right, x, y) 时间复杂度：O(n)，n为二叉树中节点的个数。 空间复杂度：O(n)]]></content>
@@ -3141,8 +3174,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>随笔</tag>
         <tag>生活</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
