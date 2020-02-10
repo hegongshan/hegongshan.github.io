@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="输入一个链表，输出该链表中倒数第k个结点。">
+<meta name="description" content="输入一个链表，按链表从尾到头的顺序返回一个ArrayList。">
 <meta name="keywords" content="linked-list">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《剑指offer》14.链表中倒数第k个结点">
-<meta property="og:url" content="https://www.hegongshan.com/2020/02/03/sword-pointing-to-offer-14-find-kth-to-tail/index.html">
+<meta property="og:title" content="《剑指offer》6.从尾到头打印链表">
+<meta property="og:url" content="https://www.hegongshan.com/2020/02/03/coding-interview-6-print-list-from-tail-to-head/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="输入一个链表，输出该链表中倒数第k个结点。">
+<meta property="og:description" content="输入一个链表，按链表从尾到头的顺序返回一个ArrayList。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-03T09:32:55.735Z">
+<meta property="og:updated_time" content="2020-02-03T10:04:41.925Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《剑指offer》14.链表中倒数第k个结点">
-<meta name="twitter:description" content="输入一个链表，输出该链表中倒数第k个结点。">
+<meta name="twitter:title" content="《剑指offer》6.从尾到头打印链表">
+<meta name="twitter:description" content="输入一个链表，按链表从尾到头的顺序返回一个ArrayList。">
 
 
 
@@ -112,13 +112,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hegongshan.com/2020/02/03/sword-pointing-to-offer-14-find-kth-to-tail/">
+  <link rel="canonical" href="https://www.hegongshan.com/2020/02/03/coding-interview-6-print-list-from-tail-to-head/">
 
 
 
 
 
-  <title>《剑指offer》14.链表中倒数第k个结点 | 贺巩山的博客</title>
+  <title>《剑指offer》6.从尾到头打印链表 | 贺巩山的博客</title>
   
 
 
@@ -359,7 +359,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2020/02/03/sword-pointing-to-offer-14-find-kth-to-tail/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2020/02/03/coding-interview-6-print-list-from-tail-to-head/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -375,7 +375,7 @@
       <header class="post-header">
         
         
-          <h2 class="post-title" itemprop="name headline">《剑指offer》14.链表中倒数第k个结点</h2>
+          <h2 class="post-title" itemprop="name headline">《剑指offer》6.从尾到头打印链表</h2>
         
 
         <div class="post-meta">		 
@@ -388,7 +388,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-03T17:01:45+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-03T15:40:29+08:00">
                 2020-02-03
               </time>
             
@@ -404,7 +404,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-03T17:32:55+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-03T18:04:41+08:00">
                 2020-02-03
               </time>
             
@@ -459,7 +459,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  349
+                  175
                 </span>
               
 
@@ -484,19 +484,11 @@
       
 
       
-        <p>输入一个链表，输出该链表中倒数第k个结点。</p>
+        <p>输入一个链表，按链表从尾到头的顺序返回一个ArrayList。</p>
 <a id="more"></a>
-<h3 id="方法一：使用数组"><a href="#方法一：使用数组" class="headerlink" title="方法一：使用数组"></a>方法一：使用数组</h3><p>思路：设n为链表中结点的个数。</p>
-<p>遍历链表，将当前结点存入数组ls中。遍历结束后，若数组ls不为空，且给定的k值合法（1&lt;=k&lt;=n），则返回数组ls的第n-k-1个元素；否则，返回空。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">FindKthToTail</span><span class="params">(self, head, k)</span>:</span></span><br><span class="line">        ls = []</span><br><span class="line">        node = head</span><br><span class="line">        <span class="keyword">while</span> node:</span><br><span class="line">            ls.append(node)</span><br><span class="line">            node = node.next</span><br><span class="line">        <span class="keyword">if</span> ls <span class="keyword">and</span> <span class="number">1</span> &lt;= k &lt;= len(ls):</span><br><span class="line">            <span class="keyword">return</span> ls[-k]</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">None</span></span><br></pre></td></tr></table></figure>
-<p>复杂度分析：时间复杂度为O(n)，空间复杂度为O(n)。</p>
-<h3 id="方法二：快慢指针"><a href="#方法二：快慢指针" class="headerlink" title="方法二：快慢指针"></a>方法二：快慢指针</h3><p>思路：设n为链表中结点的个数。</p>
-<p>首先，设置两个指针slow和fast，均指向链表的第一个结点。</p>
-<p>然后，让fast先走k步，指向链表中第k+1个结点。</p>
-<p>若fast无法走完k步，则表示链表为空或者k不合法（k &lt; 1或者k &gt; n）。此时，直接返回空。</p>
-<p>最后，同时遍历slow和fast，当fast为空时，slow指向的结点即为倒数第k个结点。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">FindKthToTail</span><span class="params">(self, head, k)</span>:</span></span><br><span class="line">        slow = fast = head</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">            <span class="keyword">if</span> fast <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">            fast = fast.next</span><br><span class="line">        <span class="keyword">while</span> fast:</span><br><span class="line">            slow = slow.next</span><br><span class="line">            fast = fast.next</span><br><span class="line">        <span class="keyword">return</span> slow</span><br></pre></td></tr></table></figure>
-<p>复杂度分析：时间复杂度为O(n)，空间复杂度为O(1)。</p>
+<h3 id="方法一：迭代"><a href="#方法一：迭代" class="headerlink" title="方法一：迭代"></a>方法一：迭代</h3><p>思路：遍历链表，将当前节点的值加入到列表中。遍历结束后，翻转该列表。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># 返回从尾部到头部的列表值序列，例如[1,2,3]</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">printListFromTailToHead</span><span class="params">(self, listNode)</span>:</span></span><br><span class="line">        result = []</span><br><span class="line">        node = listNode</span><br><span class="line">        <span class="keyword">while</span> node:</span><br><span class="line">            result.append(node.val)</span><br><span class="line">            node = node.next</span><br><span class="line">        <span class="keyword">return</span> result[::<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="方法二：递归"><a href="#方法二：递归" class="headerlink" title="方法二：递归"></a>方法二：递归</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="comment"># 返回从尾部到头部的列表值序列，例如[1,2,3]</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">printListFromTailToHead</span><span class="params">(self, listNode)</span>:</span></span><br><span class="line">        result = []</span><br><span class="line">        self.__printList(listNode, result)</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__printList</span><span class="params">(self, listNode, result)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> listNode <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.__printList(listNode.next, result)</span><br><span class="line">        result.append(listNode.val)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -555,7 +547,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hegongshan.com/2020/02/03/sword-pointing-to-offer-14-find-kth-to-tail/" title="《剑指offer》14.链表中倒数第k个结点">https://www.hegongshan.com/2020/02/03/sword-pointing-to-offer-14-find-kth-to-tail/</a>
+    <a href="https://www.hegongshan.com/2020/02/03/coding-interview-6-print-list-from-tail-to-head/" title="《剑指offer》6.从尾到头打印链表">https://www.hegongshan.com/2020/02/03/coding-interview-6-print-list-from-tail-to-head/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -583,8 +575,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/03/sword-pointing-to-offer-6-print-list-from-tail-to-head/" rel="next" title="《剑指offer》6.从尾到头打印链表">
-                <i class="fa fa-chevron-left"></i> 《剑指offer》6.从尾到头打印链表
+              <a href="/2020/01/31/leetcode-993-cousins-in-binary-tree/" rel="next" title="LeetCode 993.二叉树的堂兄弟节点">
+                <i class="fa fa-chevron-left"></i> LeetCode 993.二叉树的堂兄弟节点
               </a>
             
           </div>
@@ -593,8 +585,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/02/03/leetcode-206-reverse-linked-list/" rel="prev" title="LeetCode 206./《剑指offer》15.反转链表">
-                LeetCode 206./《剑指offer》15.反转链表 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/02/03/coding-interview-14-find-kth-to-tail/" rel="prev" title="《剑指offer》14.链表中倒数第k个结点">
+                《剑指offer》14.链表中倒数第k个结点 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -706,7 +698,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">288</span>
+                  <span class="site-state-item-count">289</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -728,7 +720,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -829,7 +821,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一：使用数组"><span class="nav-number">1.</span> <span class="nav-text">方法一：使用数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二：快慢指针"><span class="nav-number">2.</span> <span class="nav-text">方法二：快慢指针</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一：迭代"><span class="nav-number">1.</span> <span class="nav-text">方法一：迭代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二：递归"><span class="nav-number">2.</span> <span class="nav-text">方法二：递归</span></a></li></ol></div>
             
 
           </div>
