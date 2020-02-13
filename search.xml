@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[在Linux中存活下来之history]]></title>
+    <url>%2F2020%2F02%2F13%2Flinux-command-history%2F</url>
+    <content type="text"><![CDATA[history命令用于显示历史执行过的命令。 选项 -c：清空当前历史命令 -d offset：删除历史记录中第offset个命令 -w: 将当前历史命令写入历史命令文件中 参数 n：查看最近的n条命令 执行历史命令 1.使用!number执行第number条命令 2.使用!!执行上一条命令]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[《剑指offer》5.替换空格]]></title>
+    <url>%2F2020%2F02%2F13%2Fcoding-interview-5-replace-space%2F</url>
+    <content type="text"><![CDATA[请实现一个函数，将一个字符串中的每个空格替换成“%20”。 例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 方法一：使用自带方法12345class Solution &#123; public String replaceSpace(StringBuffer str) &#123; return str.toString().replace(" ", "%20"); &#125;&#125; 方法二：创建新字符串新建StringBuilder，然后逐一append。 1234567891011121314class Solution &#123; public String replaceSpace(StringBuffer str) &#123; StringBuilder sb = new StringBuilder(); for(int i = 0; i &lt; str.length(); i++) &#123; char c = str.charAt(i); if(c == ' ') &#123; sb.append("%20"); &#125; else &#123; sb.append(c); &#125; &#125; return sb.toString(); &#125;&#125; 时间复杂度为O(n)，空间复杂度为O(n)。 方法三：原地替换1.统计字符串中空格的个数space； 2.对原字符串进行扩容，长度增加2 * space； 3.从后往前替换空格。 12345678910111213141516171819202122232425262728293031323334class Solution &#123; public String replaceSpace(StringBuffer str) &#123; // 1.判断是否为空 if(str == null || str.length() == 0) &#123; return str.toString(); &#125; // 2.统计空格的个数 int space = 0; for(int i = 0; i &lt; str.length(); i++) &#123; if(str.charAt(i) == ' ') &#123; space ++; &#125; &#125; // 3.扩容，长度增加 2*space int left = str.length() - 1; int right = left + 2 * space; str.setLength(right + 1); // 4.原地替换空格 while(0 &lt;= left &amp;&amp; left &lt;= right) &#123; if(str.charAt(left) != ' ') &#123; str.setCharAt(right--, str.charAt(left)); &#125; else &#123; str.setCharAt(right--, '0'); str.setCharAt(right--, '2'); str.setCharAt(right--, '%'); &#125; left --; &#125; return str.toString(); &#125;&#125; 时间复杂度为O(n)，空间复杂度为O(n)。]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>string</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 240.搜索二维矩阵 II/《剑指offer》4.二维数组中的查找]]></title>
     <url>%2F2020%2F02%2F12%2Fleetcode-240-search-a-2d-matrix-ii%2F</url>
     <content type="text"><![CDATA[编写一个高效的算法来搜索 m x n 矩阵 matrix 中的一个目标值 target。该矩阵具有以下特性： 每行的元素从左到右升序排列。 每列的元素从上到下升序排列。 示例: 现有矩阵 matrix 如下： 1234567[ [1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]] 给定 target = 5，返回 true。 给定 target = 20，返回 false。 方法一：暴力法123456class Solution: def searchMatrix(self, matrix: List[List[int]], target: int) -&gt; bool: for row in matrix: if target in row: return True return False 时间复杂度为$O(m \times n)$，空间复杂度为O(1)。 方法二：二分查找（行）由于每行的元素从左到右升序排列，因此，在遍历每行时，可以使用二分法进行查找。 123456789101112131415161718class Solution: def searchMatrix(self, matrix: List[List[int]], target: int) -&gt; bool: for row in matrix: if self.binary_search(row, target): return True return False def binary_search(self, nums: List[int], target: int) -&gt; bool: low, high = 0, len(nums) - 1 while low &lt;= high: mid = (low + high) // 2 if target &lt; nums[mid]: high = mid - 1 elif target &gt; nums[mid]: low = mid + 1 else: return True return False 时间复杂度为$O(m \log_2 n)$，空间复杂度为O(1)。 方法三：二分查找（行和列）12345678910111213141516171819202122232425262728293031class Solution: def searchMatrix(self, matrix: List[List[int]], target: int) -&gt; bool: if not matrix: return False for i in range(min(len(matrix), len(matrix[0]))): row_found = self.binary_search(matrix, target, i, True) column_found = self.binary_search(matrix, target, i, False) if row_found or column_found: return True return False def binary_search(self, matrix: List[List[int]], target: int, start: int, row: bool) -&gt; bool: low= start high = len(matrix[0]) - 1 if row else len(matrix) - 1 while low &lt;= high: mid = (low + high) // 2 if row: if target == matrix[start][mid]: return True if target &lt; matrix[start][mid]: high = mid - 1 else: low = mid + 1 else: if target == matrix[mid][start]: return True if target &lt; matrix[mid][start]: high = mid - 1 else: low = mid + 1 return False 时间复杂度为$O(\log_2 (n!))$，空间复杂度为O(1)。 方法四：1234567891011121314class Solution: def searchMatrix(self, matrix: List[List[int]], target: int) -&gt; bool: if not matrix: return False m, n = len(matrix), len(matrix[0]) i, j = m-1, 0 while i &gt;= 0 and j &lt; n: if target == matrix[i][j]: return True if target &gt; matrix[i][j]: j += 1 else: i -= 1 return False 时间复杂度为O(m+n)，空间复杂度为O(1)。]]></content>
@@ -355,7 +377,7 @@
   <entry>
     <title><![CDATA[在Linux中存活下来之文本搜索grep]]></title>
     <url>%2F2019%2F12%2F08%2Flinux-command-grep%2F</url>
-    <content type="text"><![CDATA[grep（Globally search a Regular Expression and Print） E：支持正则表达式 i：忽略大小写 v：打印不匹配的行]]></content>
+    <content type="text"><![CDATA[grep（Globally search a Regular Expression and Print） 选项 -E：支持正则表达式 i：忽略大小写 -v：打印不匹配的行]]></content>
       <categories>
         <category>linux</category>
       </categories>
@@ -3122,9 +3144,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[在Linux中存活下来之vi编辑器的使用]]></title>
-    <url>%2F2018%2F05%2F11%2Flinux-vi%2F</url>
-    <content type="text"><![CDATA[前话：学习vi编辑器，是一个循序渐进的过程，本篇是博主自己的学习总结，会持续更新。 简介vi编辑器有三种模式： 命令行模式：顾名思义，在这个模式下，所有的键盘操作都会被认为是命令。启动vi编辑器，就会进入命令行模式。 输入模式：除了按下“Esc”外，其他的键盘输入都不会被认为是命令。处于这个模式下，和我们在Windows中用Notepad等编辑文件，几乎没有区别。按下“Esc”，会退出输入模式，进入命令行模式。 末行模式：在命令模式下，输入“:”就会进入末行模式。 这里，博主总结下最近学习到的且经常使用的一些命令。 启动vivi fileName：进入编辑环境并打开或新建文件 命令行模式dd：删除光标所在行，并将当前行内容复制到剪贴板 p：全称paste，表示将剪贴板中的数据粘贴到光标当前位置 yy：复制光标所在行 进入输入模式 i：在命令模式下，在当前光标处进入输入模式 输入模式输入模式，类似于我们在Windows中编辑文件 方向键进行上下左右方向的光标移动 Backspace键：删除光标左侧的字符 delete键：删除光标右侧的字符 退出输入模式按下Esc键：从输入模式回到命令行模式 进入末行模式在命令行模式下，按下”:“就会进入末行模式。 退出viq：退出vi q!：不保存文件并退出vi w：保存文件 wq：保存文件并退出vi wq!：强制保存文件并退出vi（忽略只读）]]></content>
+    <title><![CDATA[在Linux中存活下来之vim编辑器的使用]]></title>
+    <url>%2F2018%2F05%2F11%2Flinux-vim%2F</url>
+    <content type="text"><![CDATA[前话：学习vim编辑器，是一个循序渐进的过程，本篇是博主自己的学习总结，会持续更新。 简介vim编辑器有三种工作模式： 命令行模式：顾名思义，在这个模式下，所有的键盘操作都会被认为是命令。启动vi编辑器，就会进入命令行模式。 输入模式：除了按下“Esc”外，其他的键盘输入都不会被认为是命令。处于这个模式下，和我们在Windows中用Notepad等编辑文件，几乎没有区别。按下“Esc”，会退出输入模式，进入命令行模式。 末行模式（编辑模式）：在命令模式下，输入“:”就会进入末行模式。 这里，博主总结下最近学习到的且经常使用的一些命令。 启动vimvim fileName：进入编辑环境并打开或新建文件 命令行模式dd：删除光标所在行，并将当前行内容复制到剪贴板 p：全称paste，表示将剪贴板中的数据粘贴到光标当前位置 yy：复制光标所在行 进入输入模式 i：在命令模式下，在当前光标处进入输入模式 输入模式输入模式，类似于我们在Windows中编辑文件 方向键进行上下左右方向的光标移动 Backspace键：删除光标左侧的字符 delete键：删除光标右侧的字符 退出输入模式按下Esc键：从输入模式回到命令行模式 进入末行模式在命令行模式下，按下”:“就会进入末行模式。 输入:set number或者:set nu显示行号。 输入:set nonumber或者:set nonu不显示行号。 退出vimq：退出vi q!：不保存文件并退出vi w：保存文件 wq：保存文件并退出vi wq!：强制保存文件并退出vi（忽略只读） 快速定位行1.启动前 定位到文件第num行：vim +num fileName 例如，定位到test.txt的第10行：vim +10 test.txt 2.命令行模式 shift + G：跳转至最后一行 1+shift + G 或者 GG：跳转至第一行 n+shift + G 或者 nGG：跳转至第n行。比如10GG，跳转至第10行 3.末行模式 输入:number，定位到第number行。]]></content>
       <categories>
         <category>linux</category>
       </categories>

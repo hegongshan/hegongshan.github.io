@@ -60,7 +60,7 @@
 
 
 
-  <meta name="keywords" content="linux,vi,">
+  <meta name="keywords" content="linux,">
 
 
 
@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="前话：学习vi编辑器，是一个循序渐进的过程，本篇是博主自己的学习总结，会持续更新。  简介vi编辑器有三种模式：  命令行模式：顾名思义，在这个模式下，所有的键盘操作都会被认为是命令。启动vi编辑器，就会进入命令行模式。 输入模式：除了按下“Esc”外，其他的键盘输入都不会被认为是命令。处于这个模式下，和我们在Windows中用Notepad等编辑文件，几乎没有区别。按下“Esc”，会退出输入模">
-<meta name="keywords" content="linux,vi">
+<meta name="description" content="history命令用于显示历史执行过的命令。">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Linux中存活下来之vi编辑器的使用">
-<meta property="og:url" content="https://www.hegongshan.com/2018/05/11/linux-vi/index.html">
+<meta property="og:title" content="在Linux中存活下来之history">
+<meta property="og:url" content="https://www.hegongshan.com/2020/02/13/linux-command-history/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="前话：学习vi编辑器，是一个循序渐进的过程，本篇是博主自己的学习总结，会持续更新。  简介vi编辑器有三种模式：  命令行模式：顾名思义，在这个模式下，所有的键盘操作都会被认为是命令。启动vi编辑器，就会进入命令行模式。 输入模式：除了按下“Esc”外，其他的键盘输入都不会被认为是命令。处于这个模式下，和我们在Windows中用Notepad等编辑文件，几乎没有区别。按下“Esc”，会退出输入模">
+<meta property="og:description" content="history命令用于显示历史执行过的命令。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-12T12:59:51.000Z">
+<meta property="og:updated_time" content="2020-02-13T15:28:39.264Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在Linux中存活下来之vi编辑器的使用">
-<meta name="twitter:description" content="前话：学习vi编辑器，是一个循序渐进的过程，本篇是博主自己的学习总结，会持续更新。  简介vi编辑器有三种模式：  命令行模式：顾名思义，在这个模式下，所有的键盘操作都会被认为是命令。启动vi编辑器，就会进入命令行模式。 输入模式：除了按下“Esc”外，其他的键盘输入都不会被认为是命令。处于这个模式下，和我们在Windows中用Notepad等编辑文件，几乎没有区别。按下“Esc”，会退出输入模">
+<meta name="twitter:title" content="在Linux中存活下来之history">
+<meta name="twitter:description" content="history命令用于显示历史执行过的命令。">
 
 
 
@@ -112,13 +112,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hegongshan.com/2018/05/11/linux-vi/">
+  <link rel="canonical" href="https://www.hegongshan.com/2020/02/13/linux-command-history/">
 
 
 
 
 
-  <title>在Linux中存活下来之vi编辑器的使用 | 贺巩山的博客</title>
+  <title>在Linux中存活下来之history | 贺巩山的博客</title>
   
 
 
@@ -359,7 +359,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/05/11/linux-vi/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2020/02/13/linux-command-history/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -375,7 +375,7 @@
       <header class="post-header">
         
         
-          <h2 class="post-title" itemprop="name headline">在Linux中存活下来之vi编辑器的使用</h2>
+          <h2 class="post-title" itemprop="name headline">在Linux中存活下来之history</h2>
         
 
         <div class="post-meta">		 
@@ -388,8 +388,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T20:59:51+08:00">
-                2018-05-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-13T23:08:24+08:00">
+                2020-02-13
               </time>
             
 
@@ -404,8 +404,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-05-12T20:59:51+08:00">
-                2018-05-12
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-13T23:28:39+08:00">
+                2020-02-13
               </time>
             
           </span>
@@ -459,7 +459,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  450
+                  95
                 </span>
               
 
@@ -484,37 +484,21 @@
       
 
       
-        <blockquote>
-<p>前话：学习vi编辑器，是一个循序渐进的过程，本篇是博主自己的学习总结，会持续更新。</p>
-</blockquote>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>vi编辑器有三种模式：</p>
-<ul>
-<li>命令行模式：顾名思义，在这个模式下，所有的键盘操作都会被认为是命令。启动vi编辑器，就会进入命令行模式。</li>
-<li>输入模式：除了按下“Esc”外，其他的键盘输入都不会被认为是命令。处于这个模式下，和我们在Windows中用Notepad等编辑文件，几乎没有区别。按下“Esc”，会退出输入模式，进入命令行模式。</li>
-<li>末行模式：在命令模式下，输入“:”就会进入末行模式。</li>
-</ul>
-<p>这里，博主总结下最近学习到的且经常使用的一些命令。</p>
+        <p>history命令用于显示历史执行过的命令。</p>
 <a id="more"></a>
-<h3 id="启动vi"><a href="#启动vi" class="headerlink" title="启动vi"></a>启动vi</h3><p>vi fileName：进入编辑环境并打开或新建文件</p>
-<h3 id="命令行模式"><a href="#命令行模式" class="headerlink" title="命令行模式"></a>命令行模式</h3><p>dd：删除光标所在行，并将当前行内容复制到剪贴板</p>
-<p>p：全称paste，表示将剪贴板中的数据粘贴到光标当前位置</p>
-<p>yy：复制光标所在行</p>
-<h3 id="进入输入模式"><a href="#进入输入模式" class="headerlink" title="进入输入模式"></a>进入输入模式</h3><ul>
-<li>i：在命令模式下，在当前光标处进入输入模式</li>
-</ul>
-<h3 id="输入模式"><a href="#输入模式" class="headerlink" title="输入模式"></a>输入模式</h3><p>输入模式，类似于我们在Windows中编辑文件</p>
+<p>选项</p>
 <ul>
-<li>方向键进行上下左右方向的光标移动</li>
-<li>Backspace键：删除光标左侧的字符</li>
-<li>delete键：删除光标右侧的字符</li>
+<li>-c：清空当前历史命令</li>
+<li>-d offset：删除历史记录中第offset个命令</li>
+<li>-w: 将当前历史命令写入历史命令文件中</li>
 </ul>
-<h3 id="退出输入模式"><a href="#退出输入模式" class="headerlink" title="退出输入模式"></a>退出输入模式</h3><p>按下Esc键：从输入模式回到命令行模式</p>
-<h3 id="进入末行模式"><a href="#进入末行模式" class="headerlink" title="进入末行模式"></a>进入末行模式</h3><p>在命令行模式下，按下”:“就会进入末行模式。</p>
-<h3 id="退出vi"><a href="#退出vi" class="headerlink" title="退出vi"></a>退出vi</h3><p>q：退出vi</p>
-<p>q!：不保存文件并退出vi</p>
-<p>w：保存文件</p>
-<p>wq：保存文件并退出vi</p>
-<p>wq!：强制保存文件并退出vi（忽略只读）</p>
+<p>参数</p>
+<ul>
+<li>n：查看最近的n条命令</li>
+</ul>
+<p>执行历史命令</p>
+<p>1.使用!number执行第number条命令</p>
+<p>2.使用!!执行上一条命令</p>
 
       
     </div>
@@ -573,7 +557,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hegongshan.com/2018/05/11/linux-vi/" title="在Linux中存活下来之vi编辑器的使用">https://www.hegongshan.com/2018/05/11/linux-vi/</a>
+    <a href="https://www.hegongshan.com/2020/02/13/linux-command-history/" title="在Linux中存活下来之history">https://www.hegongshan.com/2020/02/13/linux-command-history/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -590,8 +574,6 @@
           
             <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
           
-            <a href="/tags/vi/" rel="tag"><i class="fa fa-tag"></i> vi</a>
-          
         </div>
       
 
@@ -603,8 +585,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/10/linux-file-directory-manage/" rel="next" title="在Linux中存活下来之文件与目录管理">
-                <i class="fa fa-chevron-left"></i> 在Linux中存活下来之文件与目录管理
+              <a href="/2020/02/13/coding-interview-5-replace-space/" rel="next" title="《剑指offer》5.替换空格">
+                <i class="fa fa-chevron-left"></i> 《剑指offer》5.替换空格
               </a>
             
           </div>
@@ -612,10 +594,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/14/linux-command-tar/" rel="prev" title="在Linux中存活下来之tar压缩和解压缩文件">
-                在Linux中存活下来之tar压缩和解压缩文件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -699,17 +677,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -726,7 +695,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">290</span>
+                  <span class="site-state-item-count">292</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -748,7 +717,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -839,22 +808,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动vi"><span class="nav-number">2.</span> <span class="nav-text">启动vi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行模式"><span class="nav-number">3.</span> <span class="nav-text">命令行模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进入输入模式"><span class="nav-number">4.</span> <span class="nav-text">进入输入模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入模式"><span class="nav-number">5.</span> <span class="nav-text">输入模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#退出输入模式"><span class="nav-number">6.</span> <span class="nav-text">退出输入模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进入末行模式"><span class="nav-number">7.</span> <span class="nav-text">进入末行模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#退出vi"><span class="nav-number">8.</span> <span class="nav-text">退出vi</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
