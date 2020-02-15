@@ -24,9 +24,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[在Linux中存活下来之history]]></title>
+    <title><![CDATA[在Linux中存活下来之历史命令history]]></title>
     <url>%2F2020%2F02%2F13%2Flinux-command-history%2F</url>
-    <content type="text"><![CDATA[history命令用于显示历史执行过的命令。 选项 -c：清空当前历史命令 -d offset：删除历史记录中第offset个命令 -w: 将当前历史命令写入历史命令文件中 参数 n：查看最近的n条命令 执行历史命令 1.使用!number执行第number条命令 2.使用!!执行上一条命令]]></content>
+    <content type="text"><![CDATA[history命令用于查看历史执行过的命令。 命令描述选项 -c：清空历史列表 -d offset：删除历史列表中第offset个命令 -w: 将当前历史命令写入历史文件中 参数 n：查看最近的n条命令 相关变量1.HISTSIZE：history命令显示的命令条数，默认值为1000。 2.HISTFILE：历史命令的存储文件，默认值为~/.bash_history。 ~/.bash_history存储的是当前登录之前执行过的历史命令，本次登录以后执行的命令暂时存储在内存中，使用history命令即可查看。默认情况下，退出账号后，暂存在内存中的历史命令才会追加到存储文件中。 3.HISTFILESIZE：文件中存储的命令条数，默认值也为1000。 4.如果需要修改上述变量的默认值，可以在~/.bash_profile中设置变量值。 例如，将存储文件设置为/root/history.conf，HISTSIZE设置为1500： 首先，在~/.bash_profile添加如下内容 12HISTFILE=/root/history.confHISTSIZE=1500 然后，执行如下命令使上述设置生效 1source ~/.bash_profile 最后，执行如下命令，查看设置是否成功 1echo $HISTFILE $HISTSIZE 执行历史命令1.使用!number执行第number条命令 2.使用!!执行上一条命令]]></content>
       <categories>
         <category>linux</category>
       </categories>
@@ -453,9 +453,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[在Linux中存活下来之head和tail]]></title>
-    <url>%2F2019%2F12%2F01%2Flinux-command-head-and-tail%2F</url>
-    <content type="text"><![CDATA[head和tail是Linux中经常使用的查看文件内容的命令。 headhead – display first lines of a file 1head [-n count | -c bytes] [file ...] n：显示文件的前n行。n默认为10。 c：显示文件的前c个字节。n默认为为10。 不带参数的head等价于head -n 10。 如果指定了多个文件，则每个文件前面都有一个由字符串“ ==&gt; XXX &lt;== ”组成的标头，其中XXX是文件名称。 tailtail – display the last part of a file 1tail [-F | -f | -r] [-q] [-b number | -c number | -n number] [file ...] b：显示文件的后number个512字节块。 c：显示文件的后number个字节。 n：显示文件的后number行 q：不显示文件名称。 r：按照从后往前的顺序输出。 如果指定了多个文件，则每个文件前面都有一个由字符串“ ==&gt; XXX &lt;== ”组成的标头，其中XXX是文件名称。 如果指定了-q参数，则不会输出由字符串“ ==&gt; XXX &lt;== ”组成的标头。 Numbers having a leading plus (+&#39;) sign are relative to the beginning of the input, for example, `-c +2’’ starts the display at the second byte of the input. Numbers having a leading minus (-&#39;) sign or no explicit sign are relative to the end of the input, for example, `-n 2’’ displays the last two lines of the input. The default starting loca- tion is -n 10’’, or the last 10 lines of the input.]]></content>
+    <title><![CDATA[在Linux中存活下来之查看文件内容]]></title>
+    <url>%2F2019%2F12%2F01%2Flinux-view-file-content%2F</url>
+    <content type="text"><![CDATA[Linux中查看文件内容的常用命令有head、tail、cat、tac、more以及less。 headhead – display first lines of a file 1head [-n count | -c bytes] [file ...] -n：显示文件的前n行。n默认为10。 -c：显示文件的前c个字节。n默认为为10。 不带参数的head等价于head -n 10。 如果指定了多个文件，则每个文件前面都有一个由字符串“ ==&gt; XXX &lt;== ”组成的标头，其中XXX是文件名称。 tailtail – display the last part of a file 1tail [-F | -f | -r] [-q] [-b number | -c number | -n number] [file ...] -b：显示文件的后number个512字节块。 -c：显示文件的后number个字节。 -n：显示文件的后number行 -q：不显示文件名称。 -r：按照从后往前的顺序输出。 如果指定了多个文件，则每个文件前面都有一个由字符串“ ==&gt; XXX &lt;== ”组成的标头，其中XXX是文件名称。 如果指定了-q参数，则不会输出由字符串“ ==&gt; XXX &lt;== ”组成的标头。 cat拼接文件并打印到屏幕上。 选项 -n：显示行号 tac与cat相比，tac按照相反的顺序打印文件内容。 more/lessmore只能向前移动↓。 与more相比，less支持向前移动↓和向后移动↑两种查看方式。 /pattern：从第一行向前搜索↓包含pattern的内容 ?pattern：从最后一行向后搜索↑包含pattern的内容 q：退出]]></content>
       <categories>
         <category>linux</category>
       </categories>
@@ -3181,7 +3181,7 @@
   <entry>
     <title><![CDATA[在Linux中存活下来之文件与目录管理]]></title>
     <url>%2F2018%2F05%2F10%2Flinux-file-directory-manage%2F</url>
-    <content type="text"><![CDATA[前话：最近接手了导师的一个项目，项目部署在Linux服务器上后，出了点小问题，需要修改一些文件。因为不是自己部署的，加之对linux命令不熟，怎么办？在本地修改完后，重新让别人帮忙部署？还是自己在服务器上手动修改？天生不喜欢求人，哈哈 总结一下最近常用的一些Linux基础命令，主要和文件、目录的操作相关 lsls，全称list，用于列出某个目录下的所有文件和目录。 用法：ls -options dirName 参数说明： -a或者--all：列出所有的文件，包括以点号开头的文件 cdcd，全称change directory，用于切换路径。估计大伙对cd这个命令都很熟，因为Windows上的命令行界面也是用cd命令来切换路径。值得一提的是，”~”表示当前用户的主目录，”..”表示回到当前目录的上一级目录 用法：cd [dirName] pwdpwd，全称print working directory，用于输出当前的工作目录名。 rmrm，全称remove，用于删除文件或目录。 用法：rm [options] name… 参数说明： -i 删除前逐一询问确认 -f 全称force，删除文件不需要询问 -r 全称recurse，递归删除目录下的所有文件 如果嫌上面的麻烦，那么我们简单粗暴点，删除文件用 rm [fileName]，删除目录用 rm -rf [dirName]，哈哈 cpcp，全称copy，用于复制文件或目录。 用法：cp [options] source… dest cp的参数比较多，这里只讲-r，其他的用到再现学。cp中的-r和rm中的-r意思差不多，都表示递归。主要用于目录复制。 简单粗暴版：复制单个文件用 cp source … dest，复制目录用 cp -r [dirName]&nbsp;[dirName] mvmv，具有rename和move两种功能，用于重命名文件或目录，或者将文件或目录移入另一个目录。 用法：mv source dest 简单来说，如果source和dest同为目录或者文件，且dest不存在，则将source重命名为dest； 如果source为文件或目录，而dest为目录，则将source移到dest中。 touchtouch，用于创建文件。如果文件已经存在，则更新文件的时间戳。 filefile，用于输出文件类型。 用法：file filename mkdirmkdir，全称make directory，用于创建目录。 用法：mkdir [options] dirName mkdir的参数暂时没用过，等用到了再补上。 rmdirrmdir，全称remove directory，用于删除空目录。 语法：rmdir [options] dirName 参数： -p：全称parents，删除指定的空目录后，若此时该目录的父目录已变成空目录，则将父目录一并删除。]]></content>
+    <content type="text"><![CDATA[前话：最近接手了导师的一个项目，项目部署在Linux服务器上后，出了点小问题，需要修改一些文件。因为不是自己部署的，加之对linux命令不熟，怎么办？在本地修改完后，重新让别人帮忙部署？还是自己在服务器上手动修改？天生不喜欢求人，哈哈 总结一下最近常用的一些Linux基础命令，主要和文件、目录的操作相关 lsls，全称list，用于列出某个目录下的所有文件和目录。 用法：ls -options dirName 参数说明： -a或者--all：列出所有的文件，包括以点号开头的文件 cdcd，全称change directory，用于切换路径。估计大伙对cd这个命令都很熟，因为Windows上的命令行界面也是用cd命令来切换路径。 用法：cd [dirName] 值得一提的是， “~”表示当前用户的主目录， “.”表示当前目录， “..”表示回到当前目录的上一级目录 ”-“表示返回之前的目录。例如，当前目录为/usr/local，输入cd /etc后，当前目录为/etc。此时，如果输入cd -，将返回/usr/local，并输出当前目录名。 pwdpwd，全称print working directory，用于输出当前的工作目录名。 rmrm，全称remove，用于删除文件或目录。 用法：rm [options] name… 参数说明： -i 删除前逐一询问确认 -f 全称force，删除文件不需要询问 -r 全称recurse，递归删除目录下的所有文件 如果嫌上面的麻烦，那么我们简单粗暴点，删除文件用 rm [fileName]，删除目录用 rm -rf [dirName]，哈哈！ cpcp，全称copy，用于复制文件或目录。 用法：cp [options] source… dest cp的参数比较多，这里只讲-r，其他的用到再现学。cp中的-r和rm中的-r意思差不多，都表示递归。主要用于目录复制。 简单粗暴版：复制单个文件用 cp source … dest，复制目录用 cp -r [dirName]&nbsp;[dirName] mvmv，具有rename和move两种功能，用于重命名文件或目录，或者将文件或目录移入另一个目录。 用法：mv source dest 简单来说，如果source和dest同为目录或者文件，且dest不存在，则将source重命名为dest； 如果source为文件或目录，而dest为目录，则将source移到dest中。 touchtouch，用于创建文件。如果文件已经存在，则更新文件的时间戳。 filefile，用于输出文件类型。 用法：file filename mkdirmkdir，全称make directory，用于创建目录。 用法：mkdir [options] dirName mkdir的参数暂时没用过，等用到了再补上。 rmdirrmdir，全称remove directory，用于删除空目录。 语法：rmdir [options] dirName 参数： -p：全称parents，删除指定的空目录后，若此时该目录的父目录已变成空目录，则将父目录一并删除。]]></content>
       <categories>
         <category>linux</category>
       </categories>

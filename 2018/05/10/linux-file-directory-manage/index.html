@@ -459,7 +459,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  670
+                  725
                 </span>
               
 
@@ -495,8 +495,13 @@
 <ul>
 <li><code>-a</code>或者<code>--all</code>：列出所有的文件，包括以点号开头的文件</li>
 </ul>
-<h3 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h3><p>cd，全称change directory，用于切换路径。估计大伙对cd这个命令都很熟，因为Windows上的命令行界面也是用cd命令来切换路径。值得一提的是，”~”表示当前用户的主目录，”..”表示回到当前目录的上一级目录</p>
+<h3 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h3><p>cd，全称change directory，用于切换路径。估计大伙对cd这个命令都很熟，因为Windows上的命令行界面也是用cd命令来切换路径。</p>
 <p>用法：cd [dirName]</p>
+<p>值得一提的是，</p>
+<p>“~”表示当前用户的主目录，</p>
+<p>“.”表示当前目录，</p>
+<p>“..”表示回到当前目录的上一级目录</p>
+<p>”-“表示返回之前的目录。例如，当前目录为/usr/local，输入cd /etc后，当前目录为/etc。此时，如果输入cd -，将返回/usr/local，并输出当前目录名。</p>
 <h3 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h3><p>pwd，全称print working directory，用于输出当前的工作目录名。</p>
 <h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><p>rm，全称remove，用于删除文件或目录。</p>
 <p>用法：rm [options] name…</p>
@@ -506,7 +511,7 @@
 <li>-f 全称force，删除文件不需要询问</li>
 <li>-r 全称recurse，递归删除目录下的所有文件</li>
 </ul>
-<p>如果嫌上面的麻烦，那么我们简单粗暴点，删除文件用 rm [fileName]，删除目录用 rm -rf [dirName]，哈哈</p>
+<p>如果嫌上面的麻烦，那么我们简单粗暴点，删除文件用 rm [fileName]，删除目录用 rm -rf [dirName]，哈哈！</p>
 <h3 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h3><p>cp，全称copy，用于复制文件或目录。</p>
 <p>用法：cp [options] source… dest</p>
 <p>cp的参数比较多，这里只讲-r，其他的用到再现学。cp中的-r和rm中的-r意思差不多，都表示递归。主要用于目录复制。</p>

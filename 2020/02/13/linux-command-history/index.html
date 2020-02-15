@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="history命令用于显示历史执行过的命令。">
+<meta name="description" content="history命令用于查看历史执行过的命令。">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Linux中存活下来之history">
+<meta property="og:title" content="在Linux中存活下来之历史命令history">
 <meta property="og:url" content="https://www.hegongshan.com/2020/02/13/linux-command-history/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="history命令用于显示历史执行过的命令。">
+<meta property="og:description" content="history命令用于查看历史执行过的命令。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-13T15:28:39.264Z">
+<meta property="og:updated_time" content="2020-02-15T12:32:50.640Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在Linux中存活下来之history">
-<meta name="twitter:description" content="history命令用于显示历史执行过的命令。">
+<meta name="twitter:title" content="在Linux中存活下来之历史命令history">
+<meta name="twitter:description" content="history命令用于查看历史执行过的命令。">
 
 
 
@@ -118,7 +118,7 @@
 
 
 
-  <title>在Linux中存活下来之history | 贺巩山的博客</title>
+  <title>在Linux中存活下来之历史命令history | 贺巩山的博客</title>
   
 
 
@@ -375,7 +375,7 @@
       <header class="post-header">
         
         
-          <h2 class="post-title" itemprop="name headline">在Linux中存活下来之history</h2>
+          <h2 class="post-title" itemprop="name headline">在Linux中存活下来之历史命令history</h2>
         
 
         <div class="post-meta">		 
@@ -404,8 +404,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-13T23:28:39+08:00">
-                2020-02-13
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-15T20:32:50+08:00">
+                2020-02-15
               </time>
             
           </span>
@@ -459,7 +459,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  95
+                  321
                 </span>
               
 
@@ -484,20 +484,31 @@
       
 
       
-        <p>history命令用于显示历史执行过的命令。</p>
+        <p>history命令用于查看历史执行过的命令。</p>
 <a id="more"></a>
-<p>选项</p>
+<h3 id="命令描述"><a href="#命令描述" class="headerlink" title="命令描述"></a>命令描述</h3><p>选项</p>
 <ul>
-<li>-c：清空当前历史命令</li>
-<li>-d offset：删除历史记录中第offset个命令</li>
-<li>-w: 将当前历史命令写入历史命令文件中</li>
+<li>-c：清空历史列表</li>
+<li>-d offset：删除历史列表中第offset个命令</li>
+<li>-w: 将当前历史命令写入历史文件中</li>
 </ul>
 <p>参数</p>
 <ul>
 <li>n：查看最近的n条命令</li>
 </ul>
-<p>执行历史命令</p>
-<p>1.使用!number执行第number条命令</p>
+<h3 id="相关变量"><a href="#相关变量" class="headerlink" title="相关变量"></a>相关变量</h3><p>1.HISTSIZE：history命令显示的命令条数，默认值为1000。</p>
+<p>2.HISTFILE：历史命令的存储文件，默认值为~/.bash_history。</p>
+<p>~/.bash_history存储的是当前登录之前执行过的历史命令，本次登录以后执行的命令暂时存储在内存中，使用history命令即可查看。默认情况下，退出账号后，暂存在内存中的历史命令才会追加到存储文件中。</p>
+<p>3.HISTFILESIZE：文件中存储的命令条数，默认值也为1000。</p>
+<p>4.如果需要修改上述变量的默认值，可以在~/.bash_profile中设置变量值。</p>
+<p>例如，将存储文件设置为/root/history.conf，HISTSIZE设置为1500：</p>
+<p>首先，在~/.bash_profile添加如下内容</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HISTFILE=/root/history.conf</span><br><span class="line">HISTSIZE=1500</span><br></pre></td></tr></table></figure>
+<p>然后，执行如下命令使上述设置生效</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>最后，执行如下命令，查看设置是否成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $HISTFILE $HISTSIZE</span><br></pre></td></tr></table></figure>
+<h3 id="执行历史命令"><a href="#执行历史命令" class="headerlink" title="执行历史命令"></a>执行历史命令</h3><p>1.使用!number执行第number条命令</p>
 <p>2.使用!!执行上一条命令</p>
 
       
@@ -557,7 +568,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hegongshan.com/2020/02/13/linux-command-history/" title="在Linux中存活下来之history">https://www.hegongshan.com/2020/02/13/linux-command-history/</a>
+    <a href="https://www.hegongshan.com/2020/02/13/linux-command-history/" title="在Linux中存活下来之历史命令history">https://www.hegongshan.com/2020/02/13/linux-command-history/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -681,8 +692,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -812,6 +832,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令描述"><span class="nav-number">1.</span> <span class="nav-text">命令描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关变量"><span class="nav-number">2.</span> <span class="nav-text">相关变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行历史命令"><span class="nav-number">3.</span> <span class="nav-text">执行历史命令</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
