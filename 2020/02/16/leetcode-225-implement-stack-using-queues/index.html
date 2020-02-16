@@ -60,7 +60,7 @@
 
 
 
-  <meta name="keywords" content="linux,">
+  <meta name="keywords" content="stack,queue,">
 
 
 
@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="head和tail是Linux中经常使用的查看文件内容的命令。">
-<meta name="keywords" content="linux">
+<meta name="description" content="使用队列实现栈的下列操作：  push(x) – 元素 x 入栈 pop() – 移除栈顶元素 top() – 获取栈顶元素 empty() – 返回栈是否为空">
+<meta name="keywords" content="stack,queue">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Linux中存活下来之head和tail">
-<meta property="og:url" content="https://www.hegongshan.com/2019/12/01/linux-command-head-and-tail/index.html">
+<meta property="og:title" content="LeetCode 225.用队列实现栈&#x2F;《剑指offer》9(相关).用两个队列实现栈">
+<meta property="og:url" content="https://www.hegongshan.com/2020/02/16/leetcode-225-implement-stack-using-queues/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="head和tail是Linux中经常使用的查看文件内容的命令。">
+<meta property="og:description" content="使用队列实现栈的下列操作：  push(x) – 元素 x 入栈 pop() – 移除栈顶元素 top() – 获取栈顶元素 empty() – 返回栈是否为空">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-01T10:57:57.895Z">
+<meta property="og:updated_time" content="2020-02-16T15:15:50.997Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在Linux中存活下来之head和tail">
-<meta name="twitter:description" content="head和tail是Linux中经常使用的查看文件内容的命令。">
+<meta name="twitter:title" content="LeetCode 225.用队列实现栈&#x2F;《剑指offer》9(相关).用两个队列实现栈">
+<meta name="twitter:description" content="使用队列实现栈的下列操作：  push(x) – 元素 x 入栈 pop() – 移除栈顶元素 top() – 获取栈顶元素 empty() – 返回栈是否为空">
 
 
 
@@ -112,13 +112,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hegongshan.com/2019/12/01/linux-command-head-and-tail/">
+  <link rel="canonical" href="https://www.hegongshan.com/2020/02/16/leetcode-225-implement-stack-using-queues/">
 
 
 
 
 
-  <title>在Linux中存活下来之head和tail | 贺巩山的博客</title>
+  <title>LeetCode 225.用队列实现栈/《剑指offer》9(相关).用两个队列实现栈 | 贺巩山的博客</title>
   
 
 
@@ -359,7 +359,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/12/01/linux-command-head-and-tail/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2020/02/16/leetcode-225-implement-stack-using-queues/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -375,7 +375,7 @@
       <header class="post-header">
         
         
-          <h2 class="post-title" itemprop="name headline">在Linux中存活下来之head和tail</h2>
+          <h2 class="post-title" itemprop="name headline">LeetCode 225.用队列实现栈/《剑指offer》9(相关).用两个队列实现栈</h2>
         
 
         <div class="post-meta">		 
@@ -388,8 +388,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-01T15:40:04+08:00">
-                2019-12-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-16T21:49:12+08:00">
+                2020-02-16
               </time>
             
 
@@ -404,8 +404,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-01T18:57:57+08:00">
-                2019-12-01
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-16T23:15:50+08:00">
+                2020-02-16
               </time>
             
           </span>
@@ -423,8 +423,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
                   </a>
                 </span>
 
@@ -459,7 +459,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  324
+                  998
                 </span>
               
 
@@ -484,30 +484,44 @@
       
 
       
-        <p>head和tail是Linux中经常使用的查看文件内容的命令。</p>
+        <p>使用队列实现栈的下列操作：</p>
+<ul>
+<li>push(x) – 元素 x 入栈</li>
+<li>pop() – 移除栈顶元素</li>
+<li>top() – 获取栈顶元素</li>
+<li>empty() – 返回栈是否为空</li>
+</ul>
 <a id="more"></a>
-<h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><p>head – display first lines of a file</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head [-n count | -c bytes] [file ...]</span><br></pre></td></tr></table></figure>
+<p><strong>注意:</strong></p>
 <ul>
-<li>n：显示文件的前n行。n默认为10。</li>
-<li>c：显示文件的前c个字节。n默认为为10。</li>
+<li>你只能使用队列的基本操作– 也就是 push to back, peek/pop from front, size, 和 is empty 这些操作是合法的。</li>
+<li>你所使用的语言也许不支持队列。 你可以使用 list 或者 deque（双端队列）来模拟一个队列 , 只要是标准的队列操作即可。</li>
+<li>你可以假设所有操作都是有效的（例如, 对一个空的栈不会调用 pop 或者 top 操作）。</li>
 </ul>
-<p>不带参数的head等价于<code>head -n 10</code>。</p>
-<p>如果指定了多个文件，则每个文件前面都有一个由字符串“ ==&gt; XXX &lt;== ”组成的标头，其中XXX是文件名称。</p>
-<h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><p>tail – display the last part of a file</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail [-F | -f | -r] [-q] [-b number | -c number | -n number] [file ...]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>b：显示文件的后number个512字节块。</li>
-<li>c：显示文件的后number个字节。</li>
-<li>n：显示文件的后number行</li>
-<li>q：不显示文件名称。</li>
-<li>r：按照从后往前的顺序输出。</li>
-</ul>
-<p>如果指定了多个文件，则每个文件前面都有一个由字符串“ ==&gt; XXX &lt;== ”组成的标头，其中XXX是文件名称。</p>
-<p>如果指定了-q参数，则不会输出由字符串“ ==&gt; XXX &lt;== ”组成的标头。</p>
-<p>Numbers having a leading plus (<code>+&#39;) sign are relative to the
-     beginning of the input, for example, `</code>-c +2’’ starts the display at the<br>     second byte of the input.  Numbers having a leading minus (<code>-&#39;) sign or
-     no explicit sign are relative to the end of the input, for example, `</code>-n<br>     2’’ displays the last two lines of the input.  The default starting loca-<br>     tion is <code></code>-n 10’’, or the last 10 lines of the input.</p>
+<h3 id="方法一：两个队列，入栈O-1-，出栈O-n"><a href="#方法一：两个队列，入栈O-1-，出栈O-n" class="headerlink" title="方法一：两个队列，入栈O(1)，出栈O(n)"></a>方法一：两个队列，入栈O(1)，出栈O(n)</h3><p>思路：使用两个队列q1和q2。</p>
+<p>1.当需要执行进栈操作时，直接将该元素压入q1。</p>
+<p>2.当需要执行出栈（取栈顶元素）操作时，</p>
+<p>首先，判断q1中的元素个数是否大于1。</p>
+<p>如果刚好等于1，则直接弹出（返回）q1的队首元素；</p>
+<p>如果大于1，则将q1中的元素逐一弹出，并加到q2中，直到q1中的元素个数等于1，然后弹出（返回）该元素。</p>
+<p>最后，交换q1和q2，保证所有的元素均存储在q1中，而q2为空。</p>
+<p>3.判断栈是否为空：由于所有的元素都在q1中，因此，只需要判断q1是否为空即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Queue&lt;Integer&gt; q1;</span><br><span class="line">    <span class="keyword">private</span> Queue&lt;Integer&gt; q2;</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyStack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        q1 = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        q2 = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Push element x onto stack. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        q1.offer(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Removes the element on top of the stack and returns that element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(q1.size() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            q2.offer(q1.poll());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> x = q1.poll();</span><br><span class="line">        Queue&lt;Integer&gt; temp = q1;</span><br><span class="line">        q1 = q2;</span><br><span class="line">        q2 = temp;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Get the top element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(q1.size() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            q2.offer(q1.poll());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> x =  q1.poll();</span><br><span class="line">        q2.offer(x);</span><br><span class="line">        Queue&lt;Integer&gt; temp = q1;</span><br><span class="line">        q1 = q2;</span><br><span class="line">        q2 = temp;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns whether the stack is empty. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> q1.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法二：两个队列，入栈O-n-，出栈O-1"><a href="#方法二：两个队列，入栈O-n-，出栈O-1" class="headerlink" title="方法二：两个队列，入栈O(n)，出栈O(1)"></a>方法二：两个队列，入栈O(n)，出栈O(1)</h3><p>思路：使用两个队列q1和q2。</p>
+<p>1.当需要执行进栈操作时，</p>
+<p>首先，将待添加的元素x压入q2（x在q2的队尾）；</p>
+<p>然后，将q1中的元素逐一弹出，并加到q2中（x在q2的队首）；</p>
+<p>最后，交换q1和q2，保证所有的元素均存储在q1中，而q2为空。</p>
+<p>2.当需要执行出栈（取栈顶元素）操作时，直接弹出（返回）q1的队首元素。</p>
+<p>3.判断栈是否为空：由于所有的元素都在q1中，因此，只需要判断q1是否为空即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Queue&lt;Integer&gt; q1;</span><br><span class="line">    <span class="keyword">private</span> Queue&lt;Integer&gt; q2;</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyStack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        q1 = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        q2 = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Push element x onto stack. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        q2.offer(x);</span><br><span class="line">        <span class="keyword">while</span>(!q1.isEmpty()) &#123;</span><br><span class="line">            q2.offer(q1.poll());</span><br><span class="line">        &#125;</span><br><span class="line">        Queue&lt;Integer&gt; temp = q1;</span><br><span class="line">        q1 = q2;</span><br><span class="line">        q2 = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Removes the element on top of the stack and returns that element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> q1.poll();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Get the top element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;     </span><br><span class="line">        <span class="keyword">return</span> q1.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns whether the stack is empty. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> q1.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方法三：一个队列，入栈O-n-，出栈O-1"><a href="#方法三：一个队列，入栈O-n-，出栈O-1" class="headerlink" title="方法三：一个队列，入栈O(n)，出栈O(1)"></a>方法三：一个队列，入栈O(n)，出栈O(1)</h3><p>思路：仅使用一个普通队列q。</p>
+<p>1.当需要执行进栈操作时，</p>
+<p>首先，将待添加的元素x压入q中（x在队尾）；</p>
+<p>然后，将x前面的所有元素逐一弹出，并重新压入q中（x在队首）。</p>
+<p>2.当需要执行出栈（取栈顶元素）操作时，直接弹出（返回）q的队首元素。</p>
+<p>3.判断栈是否为空：只需要判断q是否为空即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStack</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Queue&lt;Integer&gt; q;</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyStack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        q = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Push element x onto stack. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        q.offer(x);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> size = q.size(); size &gt; <span class="number">1</span>; size--) &#123;</span><br><span class="line">            q.offer(q.poll());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Removes the element on top of the stack and returns that element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> q.poll();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Get the top element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;     </span><br><span class="line">        <span class="keyword">return</span> q.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns whether the stack is empty. */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> q.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -566,7 +580,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hegongshan.com/2019/12/01/linux-command-head-and-tail/" title="在Linux中存活下来之head和tail">https://www.hegongshan.com/2019/12/01/linux-command-head-and-tail/</a>
+    <a href="https://www.hegongshan.com/2020/02/16/leetcode-225-implement-stack-using-queues/" title="LeetCode 225.用队列实现栈/《剑指offer》9(相关).用两个队列实现栈">https://www.hegongshan.com/2020/02/16/leetcode-225-implement-stack-using-queues/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -581,7 +595,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
+            <a href="/tags/stack/" rel="tag"><i class="fa fa-tag"></i> stack</a>
+          
+            <a href="/tags/queue/" rel="tag"><i class="fa fa-tag"></i> queue</a>
           
         </div>
       
@@ -594,8 +610,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/30/linux-command-wc/" rel="next" title="在Linux中存活下来之wc命令">
-                <i class="fa fa-chevron-left"></i> 在Linux中存活下来之wc命令
+              <a href="/2020/02/15/leetcode-232-implement-queue-using-stacks/" rel="next" title="LeetCode 232.用栈实现队列/《剑指offer》9.用两个栈实现队列">
+                <i class="fa fa-chevron-left"></i> LeetCode 232.用栈实现队列/《剑指offer》9.用两个栈实现队列
               </a>
             
           </div>
@@ -603,10 +619,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/12/02/recommender-system-youtube-dnn/" rel="prev" title="论文阅读 Deep Neural Networks for YouTube Recommendations">
-                论文阅读 Deep Neural Networks for YouTube Recommendations <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -717,7 +729,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">294</span>
+                  <span class="site-state-item-count">295</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -840,7 +852,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#head"><span class="nav-number">1.</span> <span class="nav-text">head</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tail"><span class="nav-number">2.</span> <span class="nav-text">tail</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一：两个队列，入栈O-1-，出栈O-n"><span class="nav-number">1.</span> <span class="nav-text">方法一：两个队列，入栈O(1)，出栈O(n)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二：两个队列，入栈O-n-，出栈O-1"><span class="nav-number">2.</span> <span class="nav-text">方法二：两个队列，入栈O(n)，出栈O(1)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法三：一个队列，入栈O-n-，出栈O-1"><span class="nav-number">3.</span> <span class="nav-text">方法三：一个队列，入栈O(n)，出栈O(1)</span></a></li></ol></div>
             
 
           </div>

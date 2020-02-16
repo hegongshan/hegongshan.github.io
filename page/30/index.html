@@ -359,6 +359,225 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/04/11/java-regular-expression/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/11/java-regular-expression/" itemprop="url">正则表达式及Java对其的支持</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-11T15:19:46+08:00">
+                2018-04-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-11T15:19:46+08:00">
+                2018-04-11
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/正则表达式/" itemprop="url" rel="index">
+                    <span itemprop="name">正则表达式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="简述正则表达式"><a href="#简述正则表达式" class="headerlink" title="简述正则表达式"></a>简述正则表达式</h3><p>​    今天我们来讲下正则表达式，先来看下正则表达式中的数量表示</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">?</td>
+<td style="text-align:center">零次或一次匹配？前的字符或子表达式，<strong><em>等价于{0,1}</em></strong></td>
+<td style="text-align:center">gong(shan)?匹配gong或gongshan</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:center">零次或多次匹配*前的字符或子表达式，<strong><strong>等价于{0,}</strong></strong></td>
+<td style="text-align:center">sm*匹配sm或者s</td>
+</tr>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">一次或多次匹配*前的字符或子表达式，<strong><strong>等价于{1,}</strong></strong></td>
+<td style="text-align:center">zoo+匹配zoo或者zooo等</td>
+</tr>
+<tr>
+<td style="text-align:center">{n}</td>
+<td style="text-align:center">n为非负整数，正好匹配n次</td>
+<td style="text-align:center">zo{2}匹配zoo</td>
+</tr>
+<tr>
+<td style="text-align:center">{n,}</td>
+<td style="text-align:center">n为非负整数，至少匹配n次</td>
+<td style="text-align:center">zo{1,}可匹配zo，zoo，zooo等</td>
+</tr>
+<tr>
+<td style="text-align:center">{n,m}</td>
+<td style="text-align:center">n和m均为非负整数，表示至少匹配n次，至多匹配m次</td>
+<td style="text-align:center">zo{1,2}则只匹配zo或者zoo</td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/11/java-regular-expression/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/04/02/java-collections-api-stack/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1117,7 +1336,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">294</span>
+                  <span class="site-state-item-count">295</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
