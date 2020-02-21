@@ -79,7 +79,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="k-近邻算法（k-Nearest Neighbor，简称kNN）,工作原理： 存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所属分类的对应关系． 输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似的数据（最近邻）的分类标签．一般来说，只选择样本数据集中前k个最相似的数据，这就是k-近邻算法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-19T07:23:57.745Z">
+<meta property="og:updated_time" content="2020-02-20T14:08:36.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习之k-近邻算法">
 <meta name="twitter:description" content="k-近邻算法（k-Nearest Neighbor，简称kNN）,工作原理： 存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所属分类的对应关系． 输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似的数据（最近邻）的分类标签．一般来说，只选择样本数据集中前k个最相似的数据，这就是k-近邻算法">
@@ -414,8 +414,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-19T15:23:57+08:00">
-                2019-01-19
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-20T22:08:36+08:00">
+                2020-02-20
               </time>
             
           </span>
@@ -574,7 +574,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">autoNorm</span><span class="params">(dataSet)</span>:</span></span><br><span class="line">    <span class="string">"""将训练集中的数据归一化"""</span></span><br><span class="line">    minValues = dataSet.min(<span class="number">0</span>)</span><br><span class="line">    maxValues = dataSet.max(<span class="number">0</span>)</span><br><span class="line">    ranges = maxValues - minValues</span><br><span class="line">    normDataSet = zeros(shape(dataSet))    </span><br><span class="line">    m = dataSet.shape[<span class="number">0</span>]</span><br><span class="line">    normDataSet = dataSet - tile(minVals,(m,<span class="number">1</span>))</span><br><span class="line">    normDataSet = normDataSet/tile(ranges,(m,<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">return</span> normDataSet</span><br></pre></td></tr></table></figure>
 <p>接着修改classify()函数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify</span><span class="params">(inputData,dataSet,labels,k)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    k-近邻算法</span></span><br><span class="line"><span class="string">    inputData: 需要预测分类的数据</span></span><br><span class="line"><span class="string">    dataSet: 训练样本集</span></span><br><span class="line"><span class="string">    labels: 样本集的分类标签</span></span><br><span class="line"><span class="string">    k: k-近邻算法中k,选择最近邻居的数目</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    dataSet = autoNorm(dataSet)<span class="comment"># 添加这一行</span></span><br><span class="line">    dataSetSize = dataSet.shape[<span class="number">0</span>]</span><br><span class="line">    differenceMatrix = tile(inputData,(dataSize,<span class="number">1</span>)) - dataSet</span><br><span class="line">    sqDifferenceMatrix = sqDifferenceMatrix**<span class="number">2</span></span><br><span class="line">    sqDistances = sqDifferenceMatrix.sum(axis=<span class="number">1</span>)</span><br><span class="line">    distances = sqDistances**<span class="number">0.5</span></span><br><span class="line">    sortedDistanceIndicies = distances.argsort()</span><br><span class="line">    kClassData = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">        label = labels[sortedDistanceIndicies[k]]</span><br><span class="line">        <span class="keyword">if</span> label <span class="keyword">not</span> <span class="keyword">in</span> kClassData:</span><br><span class="line">            kClassData[label] = <span class="number">0</span></span><br><span class="line">        kClassData[label] += <span class="number">1</span></span><br><span class="line">    sortedkClassData = sorted(kClassData.items(),</span><br><span class="line">                              key=operator.itemgetter(<span class="number">1</span>),</span><br><span class="line">                              reverse=<span class="keyword">True</span>)</span><br><span class="line">    <span class="keyword">return</span> sortedkClassData[<span class="number">0</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="涉及的一些numpy中的函数"><a href="#涉及的一些numpy中的函数" class="headerlink" title="涉及的一些numpy中的函数"></a>涉及的一些numpy中的函数</h3>
+
       
     </div>
     
@@ -783,7 +783,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">299</span>
+                  <span class="site-state-item-count">300</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -805,7 +805,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -906,7 +906,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法实现"><span class="nav-number">1.</span> <span class="nav-text">算法实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试算法"><span class="nav-number">2.</span> <span class="nav-text">测试算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法改进"><span class="nav-number">3.</span> <span class="nav-text">算法改进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#涉及的一些numpy中的函数"><span class="nav-number">4.</span> <span class="nav-text">涉及的一些numpy中的函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法实现"><span class="nav-number">1.</span> <span class="nav-text">算法实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试算法"><span class="nav-number">2.</span> <span class="nav-text">测试算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法改进"><span class="nav-number">3.</span> <span class="nav-text">算法改进</span></a></li></ol></div>
             
 
           </div>
