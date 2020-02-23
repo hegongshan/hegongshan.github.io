@@ -79,7 +79,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="给定一个正整数 n，将其拆分为至少两个正整数的和，并使这些整数的乘积最大化。 返回你可以获得的最大乘积。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-22T15:18:55.311Z">
+<meta property="og:updated_time" content="2020-02-22T15:34:28.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode 343.整数拆分&#x2F;《剑指Offer》14.剪绳子">
 <meta name="twitter:description" content="给定一个正整数 n，将其拆分为至少两个正整数的和，并使这些整数的乘积最大化。 返回你可以获得的最大乘积。">
@@ -414,7 +414,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-22T23:18:55+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-22T23:34:28+08:00">
                 2020-02-22
               </time>
             
@@ -469,7 +469,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  635
+                  650
                 </span>
               
 
@@ -502,8 +502,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 10</span><br><span class="line">输出: 36</span><br><span class="line">解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36。</span><br></pre></td></tr></table></figure>
 <p><strong>说明:</strong> 你可以假设 n 不小于 2 且不大于 58。</p>
 <h3 id="方法一：递归"><a href="#方法一：递归" class="headerlink" title="方法一：递归"></a>方法一：递归</h3><p>设函数f(n)为把n拆分成若干个正整数后，这些正整数乘积的最大值。</p>
-<p>在拆分时，一个整数x (x &lt; n)可以被拆分，也可以不被拆分。</p>
-<p>若拆分后，获得的最大乘积$f(x) &lt; x$，则不对x进行拆分。</p>
+<p>在拆分过程中，一个整数i (i &lt; n)可能需要被拆分，也可能不需要被拆分。</p>
+<p>若拆分后，获得的最大乘积$f(i) &lt; i$，则不应该对i进行拆分。</p>
 <p>因此，该问题可以用如下的公式来描述：<br>$$<br>f(n) = \max_i (<br>    \max(i, f(i)) \times \max(n - i, f(n - i))<br>)<br>$$</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">integerBreak</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n / <span class="number">2</span>; i++) &#123;</span><br><span class="line">            max = Math.max(max,</span><br><span class="line">                Math.max(i, integerBreak(i)) * Math.max(n - i, integerBreak(n - i))</span><br><span class="line">            );</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>时间复杂度和空间复杂度均为O($n^2$)。</p>
@@ -511,8 +511,8 @@
 <h3 id="方法二：动态规划（自下而上）"><a href="#方法二：动态规划（自下而上）" class="headerlink" title="方法二：动态规划（自下而上）"></a>方法二：动态规划（自下而上）</h3><p>使用数组将每一个f(i)存储起来，可以避免重复计算。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">integerBreak</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] products = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        products[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span>  max = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i / <span class="number">2</span>; j++) &#123;</span><br><span class="line">                max = Math.max(max,</span><br><span class="line">                    Math.max(j, products[j]) * Math.max(i - j, products[i - j]));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 存储f(i)，避免重复计算</span></span><br><span class="line">            products[i] = max;          </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> products[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>时间复杂度为O($n^2$)，空间复杂度为O(n)。</p>
-<h3 id="方法三：贪心算法"><a href="#方法三：贪心算法" class="headerlink" title="方法三：贪心算法"></a>方法三：贪心算法</h3><p>容易证明：除1以外，任何一个正整数都可以分解为若干个2和若干个3的和。</p>
-<p>当$n \ge 5$时，<br>$$<br>n &gt; 4 \Rightarrow 2(n - 2) &gt; n \\<br>n &gt; 4.5 \Rightarrow 3(n - 3) &gt; n \\<br>n \ge 5 \Rightarrow 3(n - 3) \ge 2(n-2)<br>$$<br>因此，当$n \ge 5$时，尽可能多地拆分成3；当剩下的值为4时，将其拆分成2个2，而不是1和3，因为$2 \times 2 &gt; 1 \times 3$。</p>
+<h3 id="方法三：贪心算法"><a href="#方法三：贪心算法" class="headerlink" title="方法三：贪心算法"></a>方法三：贪心算法</h3><p>容易证明（数学归纳法）：除1以外，任何一个正整数都可以分解为若干个2和若干个3的和。</p>
+<p>当$n \ge 5$时，<br>$$<br>n &gt; 4 \Rightarrow 2(n - 2) &gt; n \\<br>n &gt; 4.5 \Rightarrow 3(n - 3) &gt; n \\<br>n \ge 5 \Rightarrow 3(n - 3) \ge 2(n-2)<br>$$<br>因此，当$n \ge 5$时，应该尽可能多地拆分成3；当剩下的值为4时，将其拆分成2个2，而不是1和3，因为$2 \times 2 &gt; 1 \times 3$。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">integerBreak</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count3 = n / <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">if</span>(count3 * <span class="number">3</span> + <span class="number">1</span> == n) &#123;</span><br><span class="line">            count3--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> count2 = (n - count3 * <span class="number">3</span>) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (Math.pow(<span class="number">3</span>, count3) * Math.pow(<span class="number">2</span>, count2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>时间复杂度和空间复杂度均为O(1)。</p>
 
@@ -724,7 +724,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">301</span>
+                  <span class="site-state-item-count">302</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -746,7 +746,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
