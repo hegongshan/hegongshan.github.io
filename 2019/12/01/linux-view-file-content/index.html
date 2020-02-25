@@ -71,18 +71,18 @@
 
 
 
-<meta name="description" content="Linux中查看文件内容的常用命令有head、tail、cat、tac、more以及less。">
+<meta name="description" content="在Linux中，查看文件内容的常用命令有head、tail、cat、tac、more以及less。">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Linux中存活下来之查看文件内容">
 <meta property="og:url" content="https://www.hegongshan.com/2019/12/01/linux-view-file-content/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="Linux中查看文件内容的常用命令有head、tail、cat、tac、more以及less。">
+<meta property="og:description" content="在Linux中，查看文件内容的常用命令有head、tail、cat、tac、more以及less。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-15T13:13:00.220Z">
+<meta property="og:updated_time" content="2020-02-25T09:17:43.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Linux中存活下来之查看文件内容">
-<meta name="twitter:description" content="Linux中查看文件内容的常用命令有head、tail、cat、tac、more以及less。">
+<meta name="twitter:description" content="在Linux中，查看文件内容的常用命令有head、tail、cat、tac、more以及less。">
 
 
 
@@ -414,8 +414,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-15T21:13:00+08:00">
-                2020-02-15
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-25T17:17:43+08:00">
+                2020-02-25
               </time>
             
           </span>
@@ -469,7 +469,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  351
+                  415
                 </span>
               
 
@@ -494,7 +494,7 @@
       
 
       
-        <p>Linux中查看文件内容的常用命令有head、tail、cat、tac、more以及less。</p>
+        <p>在Linux中，查看文件内容的常用命令有head、tail、cat、tac、more以及less。</p>
 <a id="more"></a>
 <h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><p>head – display first lines of a file</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head [-n count | -c bytes] [file ...]</span><br></pre></td></tr></table></figure>
@@ -509,12 +509,19 @@
 <ul>
 <li>-b：显示文件的后number个512字节块。</li>
 <li>-c：显示文件的后number个字节。</li>
+<li>-f：循环读取</li>
 <li>-n：显示文件的后number行</li>
 <li>-q：不显示文件名称。</li>
 <li>-r：按照从后往前的顺序输出。</li>
 </ul>
+<p><strong>如果number前面有+号，表示从第number开始到文件末尾。</strong></p>
 <p>如果指定了多个文件，则每个文件前面都有一个由字符串“ ==&gt; XXX &lt;== ”组成的标头，其中XXX是文件名称。</p>
 <p>如果指定了-q参数，则不会输出由字符串“ ==&gt; XXX &lt;== ”组成的标头。</p>
+<p>示例：</p>
+<p>1.显示err.log的最后20行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -n 20 err.log</span><br></pre></td></tr></table></figure>
+<p>2.显示err.log的内容，从第20行至文件末尾</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -n +20 err.log</span><br></pre></td></tr></table></figure>
 <h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><p>拼接文件并打印到屏幕上。</p>
 <p>选项</p>
 <ul>
@@ -735,7 +742,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">302</span>
+                  <span class="site-state-item-count">304</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -746,7 +753,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
