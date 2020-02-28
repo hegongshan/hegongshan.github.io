@@ -60,7 +60,7 @@
 
 
 
-  <meta name="keywords" content="string,">
+  <meta name="keywords" content="java collections api,">
 
 
 
@@ -71,18 +71,20 @@
 
 
 
-<meta name="description" content="验证给定的字符串是否可以解释为十进制数字。">
-<meta name="keywords" content="string">
+<meta name="description" content="Map家族 图中省略了部分不常见的实现类和接口。 Map源码下面是Map接口的源码（删除了在1.8中添加的default方法以及Entry中的static方法）。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546public interface Map&amp;lt;K,V&amp;gt; &amp;#1">
+<meta name="keywords" content="java collections api">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode 65.有效的数字&#x2F;《剑指Offer》20.表示数值的字符串">
-<meta property="og:url" content="https://www.hegongshan.com/2020/02/26/leetcode-65-valid-number/index.html">
+<meta property="og:title" content="Java集合类之Map">
+<meta property="og:url" content="https://www.hegongshan.com/2020/02/17/java-collections-api-map/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="验证给定的字符串是否可以解释为十进制数字。">
+<meta property="og:description" content="Map家族 图中省略了部分不常见的实现类和接口。 Map源码下面是Map接口的源码（删除了在1.8中添加的default方法以及Entry中的static方法）。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546public interface Map&amp;lt;K,V&amp;gt; &amp;#1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-27T12:35:40.585Z">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/java-map-family.png">
+<meta property="og:updated_time" content="2020-02-28T15:56:12.741Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode 65.有效的数字&#x2F;《剑指Offer》20.表示数值的字符串">
-<meta name="twitter:description" content="验证给定的字符串是否可以解释为十进制数字。">
+<meta name="twitter:title" content="Java集合类之Map">
+<meta name="twitter:description" content="Map家族 图中省略了部分不常见的实现类和接口。 Map源码下面是Map接口的源码（删除了在1.8中添加的default方法以及Entry中的static方法）。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546public interface Map&amp;lt;K,V&amp;gt; &amp;#1">
+<meta name="twitter:image" content="https://www.hegongshan.com/static/images/java-map-family.png">
 
 
 
@@ -112,13 +114,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hegongshan.com/2020/02/26/leetcode-65-valid-number/">
+  <link rel="canonical" href="https://www.hegongshan.com/2020/02/17/java-collections-api-map/">
 
 
 
 
 
-  <title>Leetcode 65.有效的数字/《剑指Offer》20.表示数值的字符串 | 贺巩山的博客</title>
+  <title>Java集合类之Map | 贺巩山的博客</title>
   
 
 
@@ -369,7 +371,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2020/02/26/leetcode-65-valid-number/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2020/02/17/java-collections-api-map/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -385,7 +387,7 @@
       <header class="post-header">
         
         
-          <h2 class="post-title" itemprop="name headline">Leetcode 65.有效的数字/《剑指Offer》20.表示数值的字符串</h2>
+          <h2 class="post-title" itemprop="name headline">Java集合类之Map</h2>
         
 
         <div class="post-meta">		 
@@ -398,8 +400,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-26T18:07:29+08:00">
-                2020-02-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-17T18:41:26+08:00">
+                2020-02-17
               </time>
             
 
@@ -414,8 +416,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-27T20:35:40+08:00">
-                2020-02-27
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-28T23:56:12+08:00">
+                2020-02-28
               </time>
             
           </span>
@@ -433,8 +435,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -469,7 +471,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  575
+                  283
                 </span>
               
 
@@ -494,30 +496,15 @@
       
 
       
-        <p>验证给定的字符串是否可以解释为十进制数字。</p>
-<a id="more"></a>
-<p>例如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&quot;0&quot; =&gt; true</span><br><span class="line">&quot; 0.1 &quot; =&gt; true</span><br><span class="line">&quot;abc&quot; =&gt; false</span><br><span class="line">&quot;1 a&quot; =&gt; false</span><br><span class="line">&quot;2e10&quot; =&gt; true</span><br><span class="line">&quot; -90e3   &quot; =&gt; true</span><br><span class="line">&quot; 1e&quot; =&gt; false</span><br><span class="line">&quot;e3&quot; =&gt; false</span><br><span class="line">&quot; 6e-1&quot; =&gt; true</span><br><span class="line">&quot; 99e2.5 &quot; =&gt; false</span><br><span class="line">&quot;53.5e93&quot; =&gt; true</span><br><span class="line">&quot; --6 &quot; =&gt; false</span><br><span class="line">&quot;-+3&quot; =&gt; false</span><br><span class="line">&quot;95a54e53&quot; =&gt; false</span><br></pre></td></tr></table></figure>
-<p>说明: 我们有意将问题陈述地比较模糊。在实现代码之前，你应当事先思考所有可能的情况。这里给出一份可能存在于有效十进制数字中的字符列表：</p>
-<ul>
-<li>数字 0-9</li>
-<li>指数 - “e”</li>
-<li>正/负号 - “+”/“-“</li>
-<li>小数点 - “.”</li>
-</ul>
-<p>当然，在输入中，这些字符的上下文也很重要。</p>
-<!--more-->
-<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>数值有以下两种模式：</p>
-<ul>
-<li><code>A[.[B]][e|EC]</code>。</li>
-<li><code>[+|-].B[e|EC]</code>。</li>
-</ul>
-<p>其中，A表示数值的整数部分，B表示数值的小数部分，C表示数值的指数部分。</p>
-<p>A和C是有符号整数，它们的前面可能存在正负号，也可能没有；B是无符号整数，它的前面没有正负号。</p>
-<p>显然，A和B至少要有一个存在。</p>
-<h3 id="方法一：正则表达式"><a href="#方法一：正则表达式" class="headerlink" title="方法一：正则表达式"></a>方法一：正则表达式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNumber</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s == <span class="keyword">null</span> || (s = s.trim()).isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        String regex = <span class="string">"[+-]?(\\d+(\\.\\d*)?|\\.\\d+)([eE][+-]?\\d+)?"</span>;</span><br><span class="line">        <span class="keyword">return</span> s.matches(regex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="方法二：直接法"><a href="#方法二：直接法" class="headerlink" title="方法二：直接法"></a>方法二：直接法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> i;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNumber</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s == <span class="keyword">null</span> || (s = s.trim()).isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">boolean</span> hasA = hasInteger(s);</span><br><span class="line">      </span><br><span class="line">        <span class="keyword">boolean</span> hasB = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; s.length() &amp;&amp; s.charAt(i) == <span class="string">'.'</span>) &#123;</span><br><span class="line">            i++;</span><br><span class="line">            hasB = hasUnsignedInteger(s);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(i &lt; s.length() &amp;&amp; (s.charAt(i) == <span class="string">'e'</span> || s.charAt(i) == <span class="string">'E'</span>)) &#123;</span><br><span class="line">            i++;</span><br><span class="line">            <span class="comment">// 若e/E的后面没有数字，则该字符串不能表示数字</span></span><br><span class="line">            <span class="keyword">boolean</span> hasC = hasInteger(s);</span><br><span class="line">            <span class="keyword">if</span>(!hasC) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// A和B至少要有一个存在，否则无法表示数字</span></span><br><span class="line">        <span class="keyword">return</span> i == s.length() &amp;&amp; (hasA || hasB);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是否存在无符号整数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasUnsignedInteger</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> start = i;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; s.length() &amp;&amp; <span class="string">'0'</span> &lt;= s.charAt(i) &amp;&amp; s.charAt(i) &lt;= <span class="string">'9'</span>) &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> i &gt; start;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 是否存在有符号整数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasInteger</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; <span class="number">0</span> || i &gt;= s.length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">char</span> c = s.charAt(i);</span><br><span class="line">        <span class="keyword">if</span>(c == <span class="string">'+'</span> || c == <span class="string">'-'</span>) &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> hasUnsignedInteger(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>复杂度分析：时间复杂度为O(n)，空间复杂度为O(1)。</p>
+        <h3 id="Map家族"><a href="#Map家族" class="headerlink" title="Map家族"></a>Map家族</h3><p><img src="/static/images/java-map-family.png" alt="Map家族"></p>
+<p>图中省略了部分不常见的实现类和接口。</p>
+<h3 id="Map源码"><a href="#Map源码" class="headerlink" title="Map源码"></a>Map源码</h3><p>下面是Map接口的源码（删除了在1.8中添加的default方法以及Entry中的static方法）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">// Query Operations</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">containsKey</span><span class="params">(Object key)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">containsValue</span><span class="params">(Object value)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function">V <span class="title">get</span><span class="params">(Object key)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Modification Operations   </span></span><br><span class="line">    <span class="function">V <span class="title">put</span><span class="params">(K key, V value)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function">V <span class="title">remove</span><span class="params">(Object key)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Bulk Operations    </span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">putAll</span><span class="params">(Map&lt;? extends K, ? extends V&gt; m)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Views    </span></span><br><span class="line">    <span class="function">Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">Collection&lt;V&gt; <span class="title">values</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    Set&lt;Map.Entry&lt;K, V&gt;&gt; entrySet();</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">interface</span> <span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">        <span class="function">K <span class="title">getKey</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function">V <span class="title">getValue</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function">V <span class="title">setValue</span><span class="params">(V value)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span></span>;</span><br><span class="line">       </span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Comparison and hashing   </span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="遍历Map"><a href="#遍历Map" class="headerlink" title="遍历Map"></a>遍历Map</h3><h4 id="使用for-each循环"><a href="#使用for-each循环" class="headerlink" title="使用for-each循环"></a>使用for-each循环</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry : map.entrySet()) &#123;</span><br><span class="line">		System.out.println(entry.getKey() + <span class="string">":"</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="使用迭代器"><a href="#使用迭代器" class="headerlink" title="使用迭代器"></a>使用迭代器</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;Map.Entry&lt;String, String&gt;&gt; iter = map.entrySet().iterator();</span><br><span class="line"><span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">    Map.Entry&lt;String, String&gt; entry = iter.next();</span><br><span class="line">    System.out.println(entry.getKey() + <span class="string">":"</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="遍历键-然后取值"><a href="#遍历键-然后取值" class="headerlink" title="遍历键-然后取值"></a>遍历键-然后取值</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (String key : map.keySet()) &#123;</span><br><span class="line">  	System.out.println(key + <span class="string">":"</span> + map.get(key));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="分开遍历键和值"><a href="#分开遍历键和值" class="headerlink" title="分开遍历键和值"></a>分开遍历键和值</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (String key : map.keySet()) &#123;</span><br><span class="line">  	System.out.println(key);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (String value : map.values()) &#123;</span><br><span class="line">		System.out.println(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="forEach方法"><a href="#forEach方法" class="headerlink" title="forEach方法"></a>forEach方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map.forEach((k, v) -&gt; &#123;</span><br><span class="line">		System.out.println(k + <span class="string">":"</span> + v);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -576,7 +563,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hegongshan.com/2020/02/26/leetcode-65-valid-number/" title="Leetcode 65.有效的数字/《剑指Offer》20.表示数值的字符串">https://www.hegongshan.com/2020/02/26/leetcode-65-valid-number/</a>
+    <a href="https://www.hegongshan.com/2020/02/17/java-collections-api-map/" title="Java集合类之Map">https://www.hegongshan.com/2020/02/17/java-collections-api-map/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -591,7 +578,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/string/" rel="tag"><i class="fa fa-tag"></i> string</a>
+            <a href="/tags/java-collections-api/" rel="tag"><i class="fa fa-tag"></i> java collections api</a>
           
         </div>
       
@@ -604,8 +591,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/25/linux-process-management/" rel="next" title="在Linux中存活下来之进程管理">
-                <i class="fa fa-chevron-left"></i> 在Linux中存活下来之进程管理
+              <a href="/2020/02/16/leetcode-225-implement-stack-using-queues/" rel="next" title="LeetCode 225.用队列实现栈/《剑指Offer》9(相关).用两个队列实现栈">
+                <i class="fa fa-chevron-left"></i> LeetCode 225.用队列实现栈/《剑指Offer》9(相关).用两个队列实现栈
               </a>
             
           </div>
@@ -614,8 +601,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/02/28/coding-interview-21-reorder-array/" rel="prev" title="《剑指Offer》21.调整数组顺序使奇数位于偶数前面">
-                《剑指Offer》21.调整数组顺序使奇数位于偶数前面 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/02/17/java-collections-api-treemap/" rel="prev" title="Java集合类之红黑树TreeMap">
+                Java集合类之红黑树TreeMap <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -727,7 +714,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">307</span>
+                  <span class="site-state-item-count">310</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -850,7 +837,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题分析"><span class="nav-number">1.</span> <span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一：正则表达式"><span class="nav-number">2.</span> <span class="nav-text">方法一：正则表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二：直接法"><span class="nav-number">3.</span> <span class="nav-text">方法二：直接法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Map家族"><span class="nav-number">1.</span> <span class="nav-text">Map家族</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map源码"><span class="nav-number">2.</span> <span class="nav-text">Map源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历Map"><span class="nav-number">3.</span> <span class="nav-text">遍历Map</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用for-each循环"><span class="nav-number">3.1.</span> <span class="nav-text">使用for-each循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用迭代器"><span class="nav-number">3.2.</span> <span class="nav-text">使用迭代器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遍历键-然后取值"><span class="nav-number">3.3.</span> <span class="nav-text">遍历键-然后取值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分开遍历键和值"><span class="nav-number">3.4.</span> <span class="nav-text">分开遍历键和值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#forEach方法"><span class="nav-number">3.5.</span> <span class="nav-text">forEach方法</span></a></li></ol></li></ol></div>
             
 
           </div>
