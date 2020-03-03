@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[《剑指Offer》32-III.从上到下打印二叉树]]></title>
+    <url>%2F2020%2F03%2F03%2Fcoding-interview-32-binary-tree-level-order-tranversal-iii%2F</url>
+    <content type="text"><![CDATA[请实现一个函数按照之字形顺序打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推。 例如:给定如下的二叉树 12345 8 / \ 6 10 / \ / \5 7 9 11 返回其层次遍历结果： 12345[ [8], [10,6], [5,7,9,11]] 方法一：两个栈分析：题目要求奇数层按照从左到右的顺序打印，偶数层按照从右到左的顺序打印。 思路：设置两个栈odd和even，odd用于存储奇数层，even用于存储偶数层。 1.如果当前层为奇数层，那么，当odd不为空时，循环执行如下操作： 将栈顶元素出栈。若该节点有左孩子，则将其左孩子压入even中。若该节点还有右孩子，则将右孩子也压入even中。 2.如果当前层为偶数层。那么，当even不为空时，循环执行如下操作： 将栈顶元素出栈。若该节点有右孩子，则将其右孩子压入odd中。若该节点还有左孩子，则将左孩子也压入odd中。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123; if(root == null) &#123; return new LinkedList&lt;&gt;(); &#125; List&lt;List&lt;Integer&gt;&gt; res = new LinkedList&lt;&gt;(); Stack&lt;TreeNode&gt; odd = new Stack&lt;&gt;(); Stack&lt;TreeNode&gt; even = new Stack&lt;&gt;(); odd.push(root); int level = 1; while(!odd.isEmpty() || !even.isEmpty()) &#123; List&lt;Integer&gt; list = new LinkedList&lt;&gt;(); // 若当前层是奇数层 if((level &amp; 0x1) == 1) &#123; while(!odd.isEmpty()) &#123; TreeNode node = odd.pop(); list.add(node.val); if(node.left != null) &#123; even.push(node.left); &#125; if(node.right != null) &#123; even.push(node.right); &#125; &#125; &#125; else &#123; while(!even.isEmpty()) &#123; TreeNode node = even.pop(); list.add(node.val); if(node.right != null) &#123; odd.push(node.right); &#125; if(node.left != null) &#123; odd.push(node.left); &#125; &#125; &#125; level++; res.add(list); &#125; return res; &#125;&#125; 复杂度分析：时间复杂度和空间复杂度均为O(n)。其中，n为二叉树中节点的个数。 方法二：双端队列双端队列可以看做是将两个栈的底部拼接在一起构成的。因此，我们也可以使用双端队列来实现方法一。 队首用于存储偶数层，队尾用于存储奇数层。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123; if (root == null) &#123; return new LinkedList&lt;&gt;(); &#125; List&lt;List&lt;Integer&gt;&gt; res = new LinkedList&lt;&gt;(); Deque&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;(); queue.offerLast(root); int level = 1; while (!queue.isEmpty()) &#123; List&lt;Integer&gt; list = new LinkedList&lt;&gt;(); // 若当前层是奇数层 if ((level &amp; 0x1) == 1) &#123; for (int size = queue.size(); size &gt; 0; size--) &#123; TreeNode node = queue.pollLast(); list.add(node.val); if (node.left != null) &#123; queue.offerFirst(node.left); &#125; if (node.right != null) &#123; queue.offerFirst(node.right); &#125; &#125; &#125; else &#123; for (int size = queue.size(); size &gt; 0; size--) &#123; TreeNode node = queue.pollFirst(); list.add(node.val); if (node.right != null) &#123; queue.offerLast(node.right); &#125; if (node.left != null) &#123; queue.offerLast(node.left); &#125; &#125; &#125; level++; res.add(list); &#125; return res; &#125;&#125; 复杂度分析：时间复杂度和空间复杂度均为O(n)。其中，n为二叉树中节点的个数。]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>binary-tree</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[《剑指Offer》32-I.从上到下打印二叉树]]></title>
+    <url>%2F2020%2F03%2F03%2Fcoding-interview-32-binary-tree-level-order-tranversal-i%2F</url>
+    <content type="text"><![CDATA[从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。 例如:给定如下的二叉树 12345 8 / \ 6 10 / \ / \5 7 9 11 返回： 1[8,6,10,5,7,9,11] 问题分析本题的目的在于考察二叉树的层次遍历，可以使用队列来模拟该操作。 算法实现12345678910111213141516171819202122class Solution &#123; public List&lt;Integer&gt; levelOrder(TreeNode root) &#123; if(root == null) &#123; return new LinkedList&lt;&gt;(); &#125; List&lt;Integer&gt; list = new LinkedList&lt;&gt;(); Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;(); queue.offer(root); while(!queue.isEmpty()) &#123; TreeNode node = queue.poll(); list.add(node.val); if(node.left != null) &#123; queue.offer(node.left); &#125; if(node.right != null) &#123; queue.offer(node.right); &#125; &#125; return list; &#125;&#125; 复杂度分析：时间复杂度和空间复杂度均为O(n)。其中，n为二叉树中节点的个数。]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>binary-tree</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 155.最小栈/《剑指Offer》30.包含min函数的栈]]></title>
     <url>%2F2020%2F03%2F02%2Fleetcode-155-min-stack%2F</url>
     <content type="text"><![CDATA[设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。 push(x) – 将元素 x 推入栈中。 pop() – 删除栈顶的元素。 top() – 获取栈顶元素。 getMin() – 检索栈中的最小元素。 示例: 12345678MinStack minStack = new MinStack();minStack.push(-2);minStack.push(0);minStack.push(-3);minStack.getMin(); --&gt; 返回 -3.minStack.pop();minStack.top(); --&gt; 返回 0.minStack.getMin(); --&gt; 返回 -2. 方法一：顺序栈难点：在常数时间内检索到最小元素。 解决方法：使用两个栈，dataStack用于存储数据，minStack用于存储从dataStack对应位置的元素到dataStack底部这一部分元素中的最小值。 123456789101112131415161718192021222324252627282930313233class MinStack &#123; // 成员变量 private Stack&lt;Integer&gt; dataStack; private Stack&lt;Integer&gt; minStack; /** initialize your data structure here. */ public MinStack() &#123; dataStack = new Stack&lt;&gt;(); minStack = new Stack&lt;&gt;(); &#125; public void push(int x) &#123; dataStack.push(x); if(minStack.empty() || x &lt; minStack.peek()) &#123; minStack.push(x); &#125; else &#123; minStack.push(minStack.peek()); &#125; &#125; public void pop() &#123; dataStack.pop(); minStack.pop(); &#125; public int top() &#123; return dataStack.peek(); &#125; public int getMin() &#123; return minStack.peek(); &#125;&#125; 方法二：链栈123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import java.util.EmptyStackException;class MinStack &#123; private Node head; public MinStack() &#123;&#125; public void push(int x) &#123; if(head == null) &#123; head = new Node(x, x, null); &#125; else &#123; // 头插法 Node node = new Node(x, Math.min(x, head.min), head); head = node; &#125; &#125; public void pop() &#123; if(head == null) &#123; return ; &#125; Node node = head; head = head.next; // 删除栈顶元素 node = null; &#125; public int top() &#123; if(head == null) &#123; throw new EmptyStackException(); &#125; return head.val; &#125; public int getMin() &#123; if(head == null) &#123; throw new EmptyStackException(); &#125; return head.min; &#125; static class Node &#123; int val; // 存储从该结点到栈底的最小值 int min; Node next; Node(int val, int min, Node next) &#123; this.val = val; this.min = min; this.next = next; &#125; &#125;&#125;]]></content>
@@ -1971,9 +1993,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 102.二叉树的层次遍历]]></title>
+    <title><![CDATA[LeetCode 102.二叉树的层次遍历/《剑指Offer》32-II.从上到下打印二叉树]]></title>
     <url>%2F2019%2F05%2F26%2Fleetcode-102-binary-tree-level-order-traversal%2F</url>
-    <content type="text"><![CDATA[给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。 例如:给定二叉树: [3,9,20,null,null,15,7], 12345 3 / \9 20 / \ 15 7 返回其层次遍历结果： 12345[ [3], [9,20], [15,7]] 解决方案 思路：使用队列。先将根结点root进队，在队列不为空时循环： 此时队列中的元素个数size即为二叉树中当前层的节点个数，循环执行size次如下操作：将队首元素出队，若其有左孩子，则将其左孩子进队。若其还有右孩子，再将右孩子也进队。 12345678910111213141516171819202122232425262728293031323334/*public class TreeNode &#123; int val; TreeNode left; TreeNode right; TreeNode(int x) &#123; val = x; &#125; &#125;*/class Solution &#123; public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123; List&lt;List&lt;Integer&gt;&gt; list = new ArrayList&lt;&gt;(); if (root != null) &#123; Deque&lt;TreeNode&gt; queue = new ArrayDeque&lt;&gt;(); // 进队 queue.offer(root); while (!queue.isEmpty()) &#123; List&lt;Integer&gt; levels = new ArrayList&lt;&gt;(); // 当前层的节点个数 int size = queue.size(); for (int i = 0; i &lt; size; i++) &#123; // 出队 TreeNode node = queue.poll(); levels.add(node.val); if (node.left != null) &#123; queue.offer(node.left); &#125; if (node.right != null) &#123; queue.offer(node.right); &#125; &#125; list.add(levels); &#125; &#125; return list; &#125;&#125;]]></content>
+    <content type="text"><![CDATA[给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。 例如:给定二叉树: [3,9,20,null,null,15,7], 12345 3 / \9 20 / \ 15 7 返回其层次遍历结果： 12345[ [3], [9,20], [15,7]] 解决方案 思路：使用队列来模拟二叉树的层次遍历。 让根结点root进队，当队列不为空时，循环执行如下操作： 1.获取当前层的节点个数，它等于队列中的元素个数size； 2.遍历当前层的节点。循环执行size次出队操作，每次执行出队操作时，判断当前节点是否有孩子。如果它有左孩子，则将其左孩子进队。若它(还)有右孩子，让右孩子(也)进队。 12345678910111213141516171819202122232425262728293031323334/*public class TreeNode &#123; int val; TreeNode left; TreeNode right; TreeNode(int x) &#123; val = x; &#125; &#125;*/class Solution &#123; public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123; List&lt;List&lt;Integer&gt;&gt; list = new LinkedList&lt;&gt;(); if (root != null) &#123; Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;(); // 进队 queue.offer(root); while (!queue.isEmpty()) &#123; List&lt;Integer&gt; levels = new LinkedList&lt;&gt;(); // 当前层的节点个数 int size = queue.size(); for (int i = 0; i &lt; size; i++) &#123; // 出队 TreeNode node = queue.poll(); levels.add(node.val); if (node.left != null) &#123; queue.offer(node.left); &#125; if (node.right != null) &#123; queue.offer(node.right); &#125; &#125; list.add(levels); &#125; &#125; return list; &#125;&#125;]]></content>
       <categories>
         <category>leetcode</category>
       </categories>
@@ -3276,8 +3298,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -3288,8 +3310,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -3311,8 +3333,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
