@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[《剑指Offer》33.二叉搜索树的后序遍历序列]]></title>
+    <url>%2F2020%2F03%2F04%2Fcoding-interview-33-binary-search-tree-postorder-traversal%2F</url>
+    <content type="text"><![CDATA[输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 true，否则返回 false。假设输入的数组的任意两个数字都互不相同。 问题分析在二叉搜索树的后序遍历序列中，最后一个数字是根结点的值，序列中前面的数字可以分为两个部分： 1.前半部分为左子树节点的值，它们均小于根节点的值； 2.后半部分为右子树节点的值，它们均大于根结点的值。 如果数组不满足上述性质，那么它不是二叉搜索树的后序遍历结果。 方法一：递归1234567891011121314151617181920212223242526class Solution &#123; public boolean verifyPostorder(int[] postorder) &#123; if (postorder == null || postorder.length &lt;= 2) &#123; return true; &#125; return verifyPostorder(postorder, 0, postorder.length - 1); &#125; public boolean verifyPostorder(int[] postorder, int start, int end) &#123; if (start &gt;= end) &#123; return true; &#125; // 左子树 int i=start; while (i &lt; end &amp;&amp; postorder[i] &lt; postorder[end]) &#123; i++; &#125; // 右子树 for (int j = i; j &lt; end; j++) &#123; if(postorder[j] &lt; postorder[end]) &#123; return false; &#125; &#125; return verifyPostorder(postorder, start, i - 1) &amp;&amp; verifyPostorder(postorder, i, end - 1); &#125;&#125; 复杂度分析：时间复杂度为O(n^2)，空间复杂度为O(log n)。其中，n为数组的长度。 方法二：递归1234567891011121314151617181920class Solution &#123; public boolean verifyPostorder(int[] postorder) &#123; if (postorder == null || postorder.length &lt;= 2) &#123; return true; &#125; for (int idx = postorder.length - 1; idx &gt;= 0; idx--) &#123; int i = 0; while (i &lt; idx &amp;&amp; postorder[i] &lt; postorder[idx]) &#123; i++; &#125; while (i &lt; idx &amp;&amp; postorder[i] &gt; postorder[idx]) &#123; i++; &#125; if (i &lt; idx) &#123; return false; &#125; &#125; return true; &#125;&#125; 复杂度分析：时间复杂度为O(n^2)，空间复杂度为O(1)。其中，n为数组的长度。]]></content>
+      <categories>
+        <category>剑指offer</category>
+      </categories>
+      <tags>
+        <tag>binary-tree</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[《剑指Offer》32-III.从上到下打印二叉树]]></title>
     <url>%2F2020%2F03%2F03%2Fcoding-interview-32-binary-tree-level-order-tranversal-iii%2F</url>
     <content type="text"><![CDATA[请实现一个函数按照之字形顺序打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推。 例如:给定如下的二叉树 12345 8 / \ 6 10 / \ / \5 7 9 11 返回其层次遍历结果： 12345[ [8], [10,6], [5,7,9,11]] 方法一：两个栈分析：题目要求奇数层按照从左到右的顺序打印，偶数层按照从右到左的顺序打印。 思路：设置两个栈odd和even，odd用于存储奇数层，even用于存储偶数层。 1.如果当前层为奇数层，那么，当odd不为空时，循环执行如下操作： 将栈顶元素出栈。若该节点有左孩子，则将其左孩子压入even中。若该节点还有右孩子，则将右孩子也压入even中。 2.如果当前层为偶数层。那么，当even不为空时，循环执行如下操作： 将栈顶元素出栈。若该节点有右孩子，则将其右孩子压入odd中。若该节点还有左孩子，则将左孩子也压入odd中。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123; if(root == null) &#123; return new LinkedList&lt;&gt;(); &#125; List&lt;List&lt;Integer&gt;&gt; res = new LinkedList&lt;&gt;(); Stack&lt;TreeNode&gt; odd = new Stack&lt;&gt;(); Stack&lt;TreeNode&gt; even = new Stack&lt;&gt;(); odd.push(root); int level = 1; while(!odd.isEmpty() || !even.isEmpty()) &#123; List&lt;Integer&gt; list = new LinkedList&lt;&gt;(); // 若当前层是奇数层 if((level &amp; 0x1) == 1) &#123; while(!odd.isEmpty()) &#123; TreeNode node = odd.pop(); list.add(node.val); if(node.left != null) &#123; even.push(node.left); &#125; if(node.right != null) &#123; even.push(node.right); &#125; &#125; &#125; else &#123; while(!even.isEmpty()) &#123; TreeNode node = even.pop(); list.add(node.val); if(node.right != null) &#123; odd.push(node.right); &#125; if(node.left != null) &#123; odd.push(node.left); &#125; &#125; &#125; level++; res.add(list); &#125; return res; &#125;&#125; 复杂度分析：时间复杂度和空间复杂度均为O(n)。其中，n为二叉树中节点的个数。 方法二：双端队列双端队列可以看做是将两个栈的底部拼接在一起构成的。因此，我们也可以使用双端队列来实现方法一。 队首用于存储偶数层，队尾用于存储奇数层。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123; if (root == null) &#123; return new LinkedList&lt;&gt;(); &#125; List&lt;List&lt;Integer&gt;&gt; res = new LinkedList&lt;&gt;(); Deque&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;(); queue.offerLast(root); int level = 1; while (!queue.isEmpty()) &#123; List&lt;Integer&gt; list = new LinkedList&lt;&gt;(); // 若当前层是奇数层 if ((level &amp; 0x1) == 1) &#123; for (int size = queue.size(); size &gt; 0; size--) &#123; TreeNode node = queue.pollLast(); list.add(node.val); if (node.left != null) &#123; queue.offerFirst(node.left); &#125; if (node.right != null) &#123; queue.offerFirst(node.right); &#125; &#125; &#125; else &#123; for (int size = queue.size(); size &gt; 0; size--) &#123; TreeNode node = queue.pollFirst(); list.add(node.val); if (node.right != null) &#123; queue.offerLast(node.right); &#125; if (node.left != null) &#123; queue.offerLast(node.left); &#125; &#125; &#125; level++; res.add(list); &#125; return res; &#125;&#125; 复杂度分析：时间复杂度和空间复杂度均为O(n)。其中，n为二叉树中节点的个数。]]></content>
@@ -3298,8 +3309,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -3310,8 +3321,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -3333,8 +3344,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
