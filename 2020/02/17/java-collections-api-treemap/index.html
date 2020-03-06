@@ -72,18 +72,18 @@
 
 
 
-<meta name="description" content="通过阅读TreeMap的源码，学习红黑树。">
+<meta name="description" content="TreeMap底层的数据结构为红黑树，它不允许任何记录的键为null，但可以有多条记录的值为null。">
 <meta name="keywords" content="java collections api">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java集合类之TreeMap">
 <meta property="og:url" content="https://www.hegongshan.com/2020/02/17/java-collections-api-treemap/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="通过阅读TreeMap的源码，学习红黑树。">
+<meta property="og:description" content="TreeMap底层的数据结构为红黑树，它不允许任何记录的键为null，但可以有多条记录的值为null。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-01T13:56:10.168Z">
+<meta property="og:updated_time" content="2020-03-06T15:16:14.589Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java集合类之TreeMap">
-<meta name="twitter:description" content="通过阅读TreeMap的源码，学习红黑树。">
+<meta name="twitter:description" content="TreeMap底层的数据结构为红黑树，它不允许任何记录的键为null，但可以有多条记录的值为null。">
 
 
 
@@ -415,8 +415,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-01T21:56:10+08:00">
-                2020-03-01
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-06T23:16:14+08:00">
+                2020-03-06
               </time>
             
           </span>
@@ -495,10 +495,9 @@
       
 
       
-        <p>通过阅读TreeMap的源码，学习红黑树。</p>
+        <p>TreeMap底层的数据结构为红黑树，它不允许任何记录的键为null，但可以有多条记录的值为null。</p>
 <a id="more"></a>
-<p>TreeMap底层的数据结构为红黑树（Red Black Tree）。</p>
-<p>红黑树是一种含有红黑结点并能自平衡的二叉查找树。它必须满足下面的性质：</p>
+<h3 id="红黑树的性质"><a href="#红黑树的性质" class="headerlink" title="红黑树的性质"></a>红黑树的性质</h3><p>红黑树是一种含有红黑结点并能自平衡的二叉查找树。它必须满足下面的性质：</p>
 <ul>
 <li>性质1：每个节点要么是黑色，要么是红色。</li>
 <li>性质2：根节点是黑色。</li>
@@ -753,7 +752,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">318</span>
+                  <span class="site-state-item-count">320</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -876,7 +875,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#成员变量"><span class="nav-number">1.</span> <span class="nav-text">成员变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储结构"><span class="nav-number">2.</span> <span class="nav-text">存储结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入操作"><span class="nav-number">3.</span> <span class="nav-text">插入操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#put方法"><span class="nav-number">3.1.</span> <span class="nav-text">put方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修复插入"><span class="nav-number">3.2.</span> <span class="nav-text">修复插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#左旋操作"><span class="nav-number">3.3.</span> <span class="nav-text">左旋操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#右旋操作"><span class="nav-number">3.4.</span> <span class="nav-text">右旋操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除操作"><span class="nav-number">4.</span> <span class="nav-text">删除操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#remove方法"><span class="nav-number">4.1.</span> <span class="nav-text">remove方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据键名查找值"><span class="nav-number">4.2.</span> <span class="nav-text">根据键名查找值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除结点"><span class="nav-number">4.3.</span> <span class="nav-text">删除结点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#寻找后继结点"><span class="nav-number">4.4.</span> <span class="nav-text">寻找后继结点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修复删除"><span class="nav-number">4.5.</span> <span class="nav-text">修复删除</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#红黑树的性质"><span class="nav-number">1.</span> <span class="nav-text">红黑树的性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#成员变量"><span class="nav-number">2.</span> <span class="nav-text">成员变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储结构"><span class="nav-number">3.</span> <span class="nav-text">存储结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入操作"><span class="nav-number">4.</span> <span class="nav-text">插入操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#put方法"><span class="nav-number">4.1.</span> <span class="nav-text">put方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修复插入"><span class="nav-number">4.2.</span> <span class="nav-text">修复插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#左旋操作"><span class="nav-number">4.3.</span> <span class="nav-text">左旋操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#右旋操作"><span class="nav-number">4.4.</span> <span class="nav-text">右旋操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除操作"><span class="nav-number">5.</span> <span class="nav-text">删除操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#remove方法"><span class="nav-number">5.1.</span> <span class="nav-text">remove方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据键名查找值"><span class="nav-number">5.2.</span> <span class="nav-text">根据键名查找值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除结点"><span class="nav-number">5.3.</span> <span class="nav-text">删除结点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#寻找后继结点"><span class="nav-number">5.4.</span> <span class="nav-text">寻找后继结点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修复删除"><span class="nav-number">5.5.</span> <span class="nav-text">修复删除</span></a></li></ol></li></ol></div>
             
 
           </div>
