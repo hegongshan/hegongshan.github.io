@@ -72,20 +72,20 @@
 
 
 
-<meta name="description" content="在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？">
+<meta name="description" content="在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物?">
 <meta name="keywords" content="dp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《剑指Offer》47.礼物的最大价值">
 <meta property="og:url" content="https://www.hegongshan.com/2020/03/15/coding-interview-47-max-value-of-gift/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？">
+<meta property="og:description" content="在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物?">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/coding-interview-47-1.png">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/coding-interview-47-2.png">
-<meta property="og:updated_time" content="2020-03-17T10:59:18.509Z">
+<meta property="og:updated_time" content="2020-03-19T10:08:10.439Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《剑指Offer》47.礼物的最大价值">
-<meta name="twitter:description" content="在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？">
+<meta name="twitter:description" content="在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物?">
 <meta name="twitter:image" content="https://www.hegongshan.com/static/images/coding-interview-47-1.png">
 
 
@@ -418,8 +418,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-17T18:59:18+08:00">
-                2020-03-17
+              <time title="更新于" itemprop="dateModified" datetime="2020-03-19T18:08:10+08:00">
+                2020-03-19
               </time>
             
           </span>
@@ -498,7 +498,7 @@
       
 
       
-        <p>在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？</p>
+        <p>在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物?</p>
 <a id="more"></a>
 <h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>令f(i,j)表示到达坐标为(i,j)的格子时，能够拿到的礼物的最大价值；</p>
 <p><code>grid[i][j]</code>表示坐标为(i,j)的格子中礼物的价值，那么：<br>$$<br>f(i,j) = \max(f(i-1,j),\ f(i, j-1)) + grid[i][j]<br>$$</p>
@@ -721,7 +721,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">335</span>
+                  <span class="site-state-item-count">339</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -743,7 +743,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
