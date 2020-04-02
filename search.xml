@@ -31,6 +31,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[手写八大排序算法]]></title>
+    <url>%2F2020%2F04%2F02%2Fsort-algorithm%2F</url>
+    <content type="text"><![CDATA[晚上，腾讯的面试官让我写出熟记的最复杂的排序算法，我猜他是想让我写那几个O(n log n)的排序算法。然而，好久没看排序了，一时之间只写出了O(n^2)，结果可想而知…… 12345private static void swap(int[] arr, int i, int j) &#123; int temp = arr[i]; arr[i] = arr[j]; arr[j] = temp;&#125; 交换排序冒泡排序123456789101112131415public static void bubbleSort(int[] arr) &#123; boolean exchange = false; for (int i = 0; i &lt; arr.length - 1; i++) &#123; exchange = false; for (int j = arr.length - 1; j &gt; i; j--) &#123; if (arr[j - 1] &gt; arr[j]) &#123; swap(arr, j - 1, j); exchange = true; &#125; &#125; if (!exchange) &#123; break; &#125; &#125;&#125; 快速排序12345678910111213141516171819202122232425262728public static void quickSort(int[] arr) &#123; quickSort(arr, 0, arr.length - 1);&#125;private static void quickSort(int[] arr, int start, int end) &#123; if (start &gt;= end) &#123; return; &#125; int data = arr[start]; int i = start, j = end; while (i &lt; j) &#123; while (i &lt; j &amp;&amp; arr[j] &gt;= data) &#123; j--; &#125; if (i &lt; j) &#123; arr[i++] = arr[j]; &#125; while (i &lt; j &amp;&amp; arr[i] &lt;= data) &#123; i++; &#125; if (i &lt; j) &#123; arr[j--] = arr[i]; &#125; &#125; arr[i] = data; quickSort(arr, start, i - 1); quickSort(arr, i + 1, end);&#125; 插入排序简单插入排序1234567public static void insertionSort(int[] arr) &#123; for (int i = 1; i &lt; arr.length; i++) &#123; for (int j = i - 1; j &gt;= 0 &amp;&amp; arr[j] &gt; arr[j + 1]; j--) &#123; swap(arr, j, j + 1); &#125; &#125;&#125; 希尔排序123456789public static void shellSort(int[] arr) &#123; for (int d = arr.length &gt;&gt; 1; d &gt; 0; d &gt;&gt;= 1) &#123; for (int i = d; i &lt; arr.length; i++) &#123; for (int j = i - d; j &gt;= 0 &amp;&amp; arr[j] &gt; arr[j + d]; j -= d) &#123; swap(arr, j, j + d); &#125; &#125; &#125;&#125; 选择排序简单选择排序12345678910111213public static void selectionSort(int[] arr) &#123; for (int i = 0; i &lt; arr.length - 1; i++) &#123; int minIdx = i; for (int j = i + 1; j &lt; arr.length; j++) &#123; if (arr[j] &lt; arr[minIdx]) &#123; minIdx = j; &#125; &#125; if (minIdx != i) &#123; swap(arr, i, minIdx); &#125; &#125;&#125; 堆排序12345678910111213141516171819202122232425262728293031public static void heapSort(int[] arr) &#123; // 1.将数组调整为大根堆，从第1个非叶子结点开始 for (int i = (arr.length &gt;&gt; 1) - 1; i &gt;= 0; i--) &#123; siftDown(arr, i, arr.length); &#125; // 2.每次交换堆首元素与末尾元素，然后继续调整 for (int i = arr.length - 1; i &gt; 0; i--) &#123; swap(arr, 0, i); siftDown(arr, 0, i); &#125;&#125;// 这里参考了PriorityQueue的源码private static void siftDown(int[] arr, int i, int len) &#123; int x = arr[i]; int half = len &gt;&gt; 1; while (i &lt; half) &#123; int k = (i &lt;&lt; 1) + 1; int right = k + 1; if (right &lt; len &amp;&amp; arr[k] &lt; arr[right]) &#123; k++; &#125; // 如果该结点比左右孩子中的较大者还要大 if (arr[k] &lt;= x) &#123; break; &#125; // 子结点大于父结点，继续向下寻找 arr[i] = arr[k]; i = k; &#125; arr[i] = x;&#125; 归并排序123456789101112131415161718192021222324252627282930313233343536public static void mergeSort(int[] arr) &#123; int[] temp = new int[arr.length]; mergeSort(arr, 0, arr.length - 1, temp);&#125;private static void mergeSort(int[] arr, int low, int high, int[] temp) &#123; if (low &gt;= high) &#123; return; &#125; int mid = (low + high) &gt;&gt; 1; mergeSort(arr, low, mid, temp); mergeSort(arr, mid + 1, high, temp); merge(arr, low, mid, high, temp);&#125;private static void merge(int[] arr, int low, int mid, int high, int[] temp) &#123; int i = low; int j = mid + 1; int k = 0; while (i &lt;= mid &amp;&amp; j &lt;= high) &#123; if (arr[i] &lt;= arr[j]) &#123; temp[k++] = arr[i++]; &#125; else &#123; temp[k++] = arr[j++]; &#125; &#125; while (i &lt;= mid) &#123; temp[k++] = arr[i++]; &#125; while (j &lt;= high) &#123; temp[k++] = arr[j++]; &#125; for (i = 0; i &lt; k; i++) &#123; arr[low + i] = temp[i]; &#125;&#125; 基数排序未完待续…]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>sort</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 238.除自身以外数组的乘积/《剑指Offer》66.构建乘积数组]]></title>
     <url>%2F2020%2F04%2F02%2Fleetcode-238-product-of-array-except-self%2F</url>
     <content type="text"><![CDATA[给你一个长度为 n 的整数数组 nums，其中 n &gt; 1，返回输出数组 output ，其中 output[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积。 示例: 12输入: [1,2,3,4]输出: [24,12,8,6] 提示：题目数据保证数组之中任意元素的全部前缀元素和后缀（甚至是整个数组）的乘积都在 32 位整数范围内。 说明: 请不要使用除法，且在 O(n) 时间复杂度内完成此题。 进阶：你可以在常数空间复杂度内完成这个题目吗？（ 出于对空间复杂度分析的目的，输出数组不被视为额外空间。） 方法一：暴力法12345678910111213141516171819class Solution &#123; public int[] productExceptSelf(int[] nums) &#123; int n = nums.length; int[] output = new int[n]; int prod; for (int i = 0; i &lt; n; i++) &#123; prod = 1; for (int j = 0; j &lt; n; j++) &#123; if (i == j) &#123; continue; &#125; prod *= nums[j]; &#125; output[i] = prod; &#125; return output; &#125;&#125; 复杂度分析：时间复杂度为O(n^2)，空间复杂度为O(1)。 方法二：统计0的个数思路：设prod为数组nums中所有非零元素的乘积。统计数组nums中0的个数。 1.如果nums中没有0，则output[i] = prod / nums[i]； 2.如果nums中有1个0，则$$output[i] =\begin{cases}prod, &amp; 当 \mathrm{nums[i] = 0} \\0, &amp; 否则\end{cases}$$3.如果nums中有2个（及以上）0，则数组output中所有元素全为0。 1234567891011121314151617181920212223242526272829303132class Solution &#123; public int[] productExceptSelf(int[] nums) &#123; int n = nums.length; int[] output = new int[n]; // 计算nums中非零元素的乘积 int prod = 1; // 统计nums中0的个数 int zeroCount = 0; for (int i = 0; i &lt; n; i++) &#123; if (nums[i] == 0) &#123; zeroCount ++; &#125; else &#123; prod *= nums[i]; &#125; &#125; if(zeroCount == 0) &#123; for (int i = 0; i &lt; n; i++) &#123; output[i] = prod / nums[i]; &#125; &#125; else if (zeroCount == 1) &#123; for (int i = 0; i &lt; n; i++) &#123; if (nums[i] == 0) &#123; output[i] = prod; break; &#125; &#125; &#125; return output; &#125;&#125; 复杂度分析：时间复杂度为O(n)，空间复杂度为O(1)。 该方法虽然时间复杂度达到了题目的要求，但使用了除法运算，违反了题目说明。 方法三：计算左右乘积已知：$$output[i] = \underbrace{nums[0] \times nums[1] \times \cdots \times nums[i-1]} \times \underbrace{nums[i+1] \times \cdots \times nums[n-1]}$$如果先计算出左右两边的乘积：$$left[i] = nums[0] \times nums[1] \times \cdots \times nums[i-1] \\right[i] = nums[i+1] \times \cdots \times nums[n-1]$$那么，$output[i] = left[i] \times right[i]$。 12345678910111213141516171819202122232425class Solution &#123; public int[] productExceptSelf(int[] nums) &#123; int n = nums.length; int[] left = new int[n]; int[] right = new int[n]; int[] output = new int[n]; // 计算左侧乘积 left[0] = 1; for (int i = 1; i &lt; n; i++) &#123; left[i] = left[i - 1] * nums[i - 1]; &#125; // 计算右侧乘积 right[n - 1] = 1; for (int i = n - 2; i &gt;= 0; i--) &#123; right[i] = right[i + 1] * nums[i + 1]; &#125; for (int i = 0; i &lt; n; i++) &#123; output[i] = left[i] * right[i]; &#125; return output; &#125;&#125; 复杂度分析：时间复杂度为O(n)，空间复杂度为O(n)。 方法四：原地求乘积首先，按照从左到右的顺序，计算nums[i]左侧的乘积，并存储在output[i]中； 然后，按照从右到左的顺序，让output[i]再乘以nums[i]右侧乘积。 12345678910111213141516171819class Solution &#123; public int[] productExceptSelf(int[] nums) &#123; int n = nums.length; int[] output = new int[n]; // 计算左侧乘积 output[0] = 1; for (int i = 1; i &lt; n; i++) &#123; output[i] = output[i - 1] * nums[i - 1]; &#125; // 继续乘右侧乘积 int prod = 1; for (int i = n - 1; i &gt;= 0; i--) &#123; output[i] *= prod; prod *= nums[i]; &#125; return output; &#125;&#125; 复杂度分析：时间复杂度为O(n)，空间复杂度为O(1)。]]></content>
@@ -3724,8 +3735,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -3736,8 +3747,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -3759,8 +3770,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -3899,8 +3910,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>随笔</tag>
         <tag>生活</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
