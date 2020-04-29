@@ -72,18 +72,18 @@
 
 
 
-<meta name="description" content="数组">
+<meta name="description" content="本文回顾了Java中数组的相关知识，同时探究了可变参数的实现原理。">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java数组与可变参数">
 <meta property="og:url" content="https://www.hegongshan.com/2020/04/08/java-array/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="数组">
+<meta property="og:description" content="本文回顾了Java中数组的相关知识，同时探究了可变参数的实现原理。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-10T04:19:46.862Z">
+<meta property="og:updated_time" content="2020-04-14T15:05:19.515Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java数组与可变参数">
-<meta name="twitter:description" content="数组">
+<meta name="twitter:description" content="本文回顾了Java中数组的相关知识，同时探究了可变参数的实现原理。">
 
 
 
@@ -415,8 +415,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-04-10T12:19:46+08:00">
-                2020-04-10
+              <time title="更新于" itemprop="dateModified" datetime="2020-04-14T23:05:19+08:00">
+                2020-04-14
               </time>
             
           </span>
@@ -470,7 +470,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  884
+                  910
                 </span>
               
 
@@ -495,7 +495,7 @@
       
 
       
-        <p>数组</p>
+        <p>本文回顾了Java中数组的相关知识，同时探究了可变参数的实现原理。</p>
 <a id="more"></a>
 <h3 id="申明数组"><a href="#申明数组" class="headerlink" title="申明数组"></a>申明数组</h3><p>当申明数组时，Java支持以下两种方式</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">类型[] 数组名;</span><br><span class="line">类型 数组名[];</span><br></pre></td></tr></table></figure>
@@ -515,7 +515,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">// len等于3</span></span><br><span class="line"><span class="keyword">int</span> len = arr.length;</span><br></pre></td></tr></table></figure>
 <p>该字段是由Java虚拟机自动创建的。在HotSpot虚拟机中，它存储在对象头中。</p>
 <blockquote>
-<p>关于对象头，可以参看《深入理解Java虚拟机：JVM高级特性与最佳实践》第2章中”对象的内存布局“一节。</p>
+<p>关于对象头，可以参看《深入理解Java虚拟机：JVM高级特性与最佳实践》第2章中“对象的内存布局”一节。</p>
 </blockquote>
 <h3 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h3><p>下面以二维数组为例</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定长的二维数组</span></span><br><span class="line"><span class="keyword">int</span>[][] arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">4</span>][<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不定长</span></span><br><span class="line"><span class="keyword">int</span>[][] arr2 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">4</span>][];</span><br><span class="line">arr2[<span class="number">0</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">arr2[<span class="number">1</span>] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br></pre></td></tr></table></figure>
@@ -753,7 +753,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">366</span>
+                  <span class="site-state-item-count">384</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -764,7 +764,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -775,7 +775,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -914,7 +914,7 @@
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script src="/lib/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
     <span class="site-uv">
