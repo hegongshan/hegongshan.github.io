@@ -80,7 +80,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="在Linux中，涉及进程管理的常用命令有ps、top和kill等。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-25T09:17:51.231Z">
+<meta property="og:updated_time" content="2020-05-11T13:04:58.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Linux中存活下来之进程管理">
 <meta name="twitter:description" content="在Linux中，涉及进程管理的常用命令有ps、top和kill等。">
@@ -415,8 +415,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-25T17:17:51+08:00">
-                2020-02-25
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-11T21:04:58+08:00">
+                2020-05-11
               </time>
             
           </span>
@@ -470,7 +470,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  243
+                  564
                 </span>
               
 
@@ -497,41 +497,65 @@
       
         <p>在Linux中，涉及进程管理的常用命令有ps、top和kill等。</p>
 <a id="more"></a>
-<h3 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h3><p>全称process status，用于显示当前时刻进程的状态。</p>
-<p>常用选项：</p>
+<h3 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h3><p>全称<strong>p</strong>rocess <strong>s</strong>tatus，用于显示当前时刻进程的状态。</p>
+<p><strong>常用选项：</strong></p>
 <ul>
 <li>-e：列出所有进程。</li>
 <li>-f：按照完整格式显示进程信息。</li>
 </ul>
-<p>示例：</p>
+<p><strong>示例：</strong></p>
 <p>1.查看系统所有进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef 或者 ps aux</span><br></pre></td></tr></table></figure>
 <p>2.查看特定的进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep 进程名</span><br></pre></td></tr></table></figure>
 <h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>用于实时显示进程的状态。</p>
-<p>常用选项：</p>
+<p><strong>常用选项：</strong></p>
 <ul>
 <li>-d：设置更新周期</li>
 </ul>
-<p>示例：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 每2秒更新一次</span></span><br><span class="line">top -d 2</span><br></pre></td></tr></table></figure>
+<p><strong>输出结果：</strong></p>
+<ol>
+<li>VIRT：Virtual Memory Size (KiB)，表示进程使用的虚拟内存的总量。VIRT = SWAP + RES</li>
+<li>RES：Resident Memory Size (KiB)，表示进程正在使用的非交换物理内存。RES = CODE + DATA</li>
+<li>SHR：Shared Memory Size (KiB)，表示与其他进程共享的内存。</li>
+<li>SWAP：Swapped Size (KiB)</li>
+<li>CODE：Code Size (KiB)，也叫作Text Resident Set size（TRS），表示可执行代码使用的物理内存总量。</li>
+<li>DATA：Data + Stack Size (KiB)，也叫作Data Resident Set size（DRS），表示除可执行代码外，进程使用的物理内存总量。</li>
+<li>%CPU：CPU Usage，CPU使用率。</li>
+<li>%MEM：Memory Usage (RES)，进程使用的物理内存百分比。</li>
+</ol>
+<p><strong>示例：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 每2秒更新一次</span><br><span class="line">top -d 2</span><br></pre></td></tr></table></figure>
 <h3 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h3><p>顾名思义，用于终止进程。</p>
-<p>常用选项：</p>
+<p><strong>常用选项：</strong></p>
 <ul>
 <li>-l [signal]：list，打印信号名称列表，或者将给定的信号值（名称）转换为对应的名称（值）。</li>
 </ul>
-<p>示例：</p>
+<p><strong>示例：</strong></p>
 <p>1.查看信号值9对应的名称</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> KILL</span></span><br><span class="line">kill -l 9</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> KILL</span><br><span class="line">kill -l 9</span><br></pre></td></tr></table></figure>
 <p>2.强迫进程立即终止</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">kill</span> -KILL PID</span></span><br><span class="line">kill -9 PID</span><br></pre></td></tr></table></figure>
-<h3 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h3><p>全称network status。</p>
-<p>示例：</p>
-<p>查看占用端口的进程</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> kill -KILL PID</span><br><span class="line">kill -9 PID</span><br></pre></td></tr></table></figure>
+<h3 id="nohup"><a href="#nohup" class="headerlink" title="nohup"></a>nohup</h3><p>全称<strong>no</strong> <strong>h</strong>ang<strong>up</strong>，运行命令时忽略挂起信号SIGHUP(1)——关闭终端时触发。</p>
+<p><strong>示例：</strong></p>
+<p>1.让进程在后台运行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> &amp;表示忽略SIGINT(2)——使用Ctrl+C时触发</span><br><span class="line">nohup python3 test.py &amp;</span><br></pre></td></tr></table></figure>
+<h3 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h3><p>全称<strong>net</strong>work <strong>stat</strong>us。</p>
+<p><strong>常用选项：</strong></p>
+<ul>
+<li>-t或者<code>--tcp</code>：显示TCP</li>
+<li>-u或者<code>--udp</code>：显示UDP</li>
+<li>-n或者<code>--numeric</code>：以数字的形式表示主机名、端口号和用户名。例如：将localhost:mysql变为127.0.0.1:3306</li>
+<li>-l或者<code>--listening</code>：只显示正处于监听下的套接字。</li>
+<li>-a或者<code>--all</code>：显示listening和non-listening（对于TCP来说，表示已经建立连接）</li>
+<li>-p或者<code>--program</code>：显示每个套接字所在的PID和程序名称。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<p>1.查看占用端口的进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp | grep port</span><br></pre></td></tr></table></figure>
 <h3 id="lsof"><a href="#lsof" class="headerlink" title="lsof"></a>lsof</h3><p>全称list open files。</p>
-<p>示例：</p>
-<p>查看占用端口的进程</p>
+<p><strong>示例：</strong></p>
+<p>1.查看占用端口的进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -i :port</span><br></pre></td></tr></table></figure>
 
       
@@ -865,7 +889,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ps"><span class="nav-number">1.</span> <span class="nav-text">ps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#top"><span class="nav-number">2.</span> <span class="nav-text">top</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kill"><span class="nav-number">3.</span> <span class="nav-text">kill</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netstat"><span class="nav-number">4.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lsof"><span class="nav-number">5.</span> <span class="nav-text">lsof</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ps"><span class="nav-number">1.</span> <span class="nav-text">ps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#top"><span class="nav-number">2.</span> <span class="nav-text">top</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kill"><span class="nav-number">3.</span> <span class="nav-text">kill</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nohup"><span class="nav-number">4.</span> <span class="nav-text">nohup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#netstat"><span class="nav-number">5.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lsof"><span class="nav-number">6.</span> <span class="nav-text">lsof</span></a></li></ol></div>
             
 
           </div>
