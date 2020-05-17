@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[在Linux中存活下来之建立链接ln]]></title>
+    <url>%2F2020%2F05%2F13%2Flinux-command-ln%2F</url>
+    <content type="text"><![CDATA[ln，全称link，默认为硬链接。 常见选项: -s（symbolic link）:符号链接，或者软链接。 软链接与硬链接1.硬链接只能作用于文件；软链接可以作用于文件和目录。 假设有一个文件叫test.txt，其内容如下： 12hgs:test hegongshan$ cat test.txtJava is cool! 首先，我们为test.txt创建一个硬链接hard-test.txt 1ln test.txt hard-test.txt 然后，我们再为其创建一个软链接soft-test.txt 1ln -s test.txt soft-test.txt 注意图中软链接与硬链接的区别：软链接soft-test.txt左下角有一个箭头，而硬链接hard-test.txt却没有。 2.硬链接的inode与源文件相同；软链接的inode与源文件不同。 12345hgs:test hegongshan$ ls -litotal 1635694247 -rw-r--r--@ 2 hegongshan staff 14 5 17 22:10 hard-test.txt35694509 lrwxr-xr-x 1 hegongshan staff 8 5 17 22:14 soft-test.txt -&gt; test.txt35694247 -rw-r--r--@ 2 hegongshan staff 14 5 17 22:10 test.txt 第一列为inode，第二列第一个字符表示文件类型：-表示普通文件，l表示链接文件。 3.删除源文件后，硬链接仍能正常打开；而软链接将无法打开。 接下来，我们通过一个实验来验证下。首先，删除test.txt 1hgs:test hegongshan$ rm -f test.txt 然后，尝试打开hard-test.txt 12hgs:test hegongshan$ cat hard-test.txtJava is cool! 最后，再尝试打开soft-test.txt 12hgs:test hegongshan$ cat soft-test.txtcat: soft-test.txt: No such file or directory 通过上面的实验，我们可以得出：当删除test.txt后，硬链接hard-test.txt仍能正常打开，而软链接soft-test.txt却无法打开。 总结软链接类比于快捷方式，硬链接类比于文件备份。]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MySQL索引]]></title>
     <url>%2F2020%2F05%2F07%2Fmysql-index%2F</url>
     <content type="text"><![CDATA[《阿里巴巴Java开发手册》——MySQL数据库-建表规约 【强制】主键索引名为pk_字段名;唯一索引名为uk_字段名;普通索引名则为idx_字段名。 说明:pk_ 即 primary key;uk_ 即 unique key;idx_ 即 index 的简称。 创建索引创建表时1234567891011create table test ( id int not null, username varchar(255) not null, age int not null, # 主键索引 constraint pk_id primary key (id), # 唯一索引, key可省略 unique key uk_username (username), # 普通索引 index idx_age (age)); 建表以后 使用create命令 1.普通索引 1create index idx_xxx on table_name (column_list); 2.唯一索引 1create unique index uk_xxx on table_name (column_list); 使用alter命令 1.普通索引 1alter table table_name add index idx_xxx (column_list); 2.唯一索引 1alter table table_name add unique uk_xxx (column_list); 3.主键索引 1alter table table_name add primary key (column_name); 删除索引 删除普通索引/唯一索引 1.使用drop命令 1drop index [index_name] on table_name; 2.使用alter命令 1alter table table_name drop index index_name; 删除主键索引 1alter table table_name drop primary key; 查看索引12show index from table_name;# show index in table_name;]]></content>
@@ -4045,8 +4056,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -4057,8 +4068,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -4080,8 +4091,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -4231,8 +4242,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>生活</tag>
         <tag>随笔</tag>
+        <tag>生活</tag>
       </tags>
   </entry>
 </search>
