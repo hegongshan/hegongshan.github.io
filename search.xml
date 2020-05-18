@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Java 8之lambda表达式]]></title>
+    <url>%2F2020%2F05%2F17%2Fjava-lambda%2F</url>
+    <content type="text"><![CDATA[假设我们要创建一个线程，用于打印“Hello world!”。在Java 8之前，我们可以通过如下的方式来实现： 123456new Thread(new Runnable() &#123; @Override public void run() &#123; System.out.println("Hello world!"); &#125;&#125;).start(); 在Java 8以后，可以使用lambda表达式来简写： 1new Thread(() -&gt; System.out.println("Hello world!")).start(); 函数式接口函数式接口：只有一个抽象方法的接口。 在Java 8中，新增了一个注解@FunctionalInterface，用于标识函数式接口。 java.lang.Runnable就是一个函数式接口，其源码如下： 1234@FunctionalInterfacepublic interface Runnable &#123; public abstract void run();&#125; Lambda表达式在接受函数式接口的地方可以使用Lambda表达式。语法如下： 1(parameters) -&gt; expression 或者 1(parameters) -&gt; &#123; statements; &#125; 示例： 1.没有参数 1Runnable r = () -&gt; System.out.println("Hello world!"); 2.一个参数 1234567Predicate&lt;String&gt; p = (String s) -&gt; s.isEmpty();// 省略参数类型Predicate&lt;String&gt; p2 = (s) -&gt; s.isEmpty();// 当仅有一个参数时，参数名称两边的括号可以省略Predicate&lt;String&gt; p3 = s -&gt; s.isEmpty(); 3.两个参数 12345List&lt;User&gt; list = new ArrayList&lt;&gt;();list.sort((User a, User b) -&gt; a.getMoney() - b.getMoney());// 省略参数类型// list.sort((a, b) -&gt; a.getMoney() - b.getMoney()); 4.方法体多于1行 123456list.sort((Apple a, Apple b) -&gt; &#123; if (a.getWeight() != b.getWeight()) &#123; return a.getMoney() - b.getMoney(); &#125; return a.getCountry().compareTo(b.getCountry());&#125;); 使用局部变量lambda表达式允许使用外部变量。但局部变量必须显式声明为final，或者事实上是final。 123// 显式声明为finalfinal int x = 33;Runnable r = () -&gt; System.out.println(x); 或者 123// 事实上是final：只赋值一次int x = 33;Runnable r = () -&gt; System.out.println(x); 下面的代码无法编译，将报错误：Local variable x defined in an enclosing scope must be final or effectively final 123int x = 33;Runnable r = () -&gt; System.out.println(x);x = 44; 方法引用当Lambda表达式中只是直接调用一个方法时，我们可以采用方法引用，重用已有的方法定义。 静态方法。语法为类名::方法名。例如，Integer::parseInt。 实例方法。语法为类名::方法名。例如，String::length。 现存对象的实例方法。例如，this::isEmpty。 构造函数引用。语法：类名::new。例如，String::new。 示例： 1.遍历列表 12345678List&lt;String&gt; list = new ArrayList&lt;&gt;();list.add("Java");list.add("is");list.add("cool!");// 使用lambda表达式list.forEach((x) -&gt; System.out.println(x));// 使用方法引用list.forEach(System.out::println); 2.排序：按照重量对苹果进行升序排序，如果重量相等，则按照原产国排序 123456list.sort((Apple a, Apple b) -&gt; &#123; if (a.getWeight() != b.getWeight()) &#123; return a.getMoney() - b.getMoney(); &#125; return a.getCountry().compareTo(b.getCountry());&#125;); 采用方法引用重写： 12list.sort(Comparator.comparing(Apple::getWeight) .thenComparing(Apple::getCountry));]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[在Linux中存活下来之建立链接ln]]></title>
     <url>%2F2020%2F05%2F13%2Flinux-command-ln%2F</url>
     <content type="text"><![CDATA[ln，全称link，默认为硬链接。 常见选项: -s（symbolic link）:符号链接，或者软链接。 软链接与硬链接1.硬链接只能作用于文件；软链接可以作用于文件和目录。 假设有一个文件叫test.txt，其内容如下： 12hgs:test hegongshan$ cat test.txtJava is cool! 首先，我们为test.txt创建一个硬链接hard-test.txt 1ln test.txt hard-test.txt 然后，我们再为其创建一个软链接soft-test.txt 1ln -s test.txt soft-test.txt 注意图中软链接与硬链接的区别：软链接soft-test.txt左下角有一个箭头，而硬链接hard-test.txt却没有。 2.硬链接的inode与源文件相同；软链接的inode与源文件不同。 12345hgs:test hegongshan$ ls -litotal 1635694247 -rw-r--r--@ 2 hegongshan staff 14 5 17 22:10 hard-test.txt35694509 lrwxr-xr-x 1 hegongshan staff 8 5 17 22:14 soft-test.txt -&gt; test.txt35694247 -rw-r--r--@ 2 hegongshan staff 14 5 17 22:10 test.txt 第一列为inode，第二列第一个字符表示文件类型：-表示普通文件，l表示链接文件。 3.删除源文件后，硬链接仍能正常打开；而软链接将无法打开。 接下来，我们通过一个实验来验证下。首先，删除test.txt 1hgs:test hegongshan$ rm -f test.txt 然后，尝试打开hard-test.txt 12hgs:test hegongshan$ cat hard-test.txtJava is cool! 最后，再尝试打开soft-test.txt 12hgs:test hegongshan$ cat soft-test.txtcat: soft-test.txt: No such file or directory 通过上面的实验，我们可以得出：当删除test.txt后，硬链接hard-test.txt仍能正常打开，而软链接soft-test.txt却无法打开。 总结软链接类比于快捷方式，硬链接类比于文件备份。]]></content>
@@ -4056,8 +4067,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -4068,8 +4079,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -4091,8 +4102,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -4242,8 +4253,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>随笔</tag>
         <tag>生活</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
