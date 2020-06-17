@@ -1577,7 +1577,7 @@
   <entry>
     <title><![CDATA[推荐系统相关资源]]></title>
     <url>%2F2019%2F11%2F21%2Frecommender-system-resource%2F</url>
-    <content type="text"><![CDATA[SIGIR 2020-01-15 IJCAI 2020-01-15 ICWE 2020-01-19 ICML 截稿时间 2020-01-31 KDD 截稿时间 2020-02-13 ECML-PKDD 2020-03-19 相关会议推荐系统专会RecSys - ACM Conference on Recommender Systems 数据挖掘CCF A SIGKDD - ACM Knowledge Discovery and Data Mining dblp ICDE - IEEE International Conference on Data Engineering dblp SIGIR - International Conference on Research on Development in Information Retrieval dblp CCF B CIKM - ACM International Conference on Information and Knowledge Management dblp WSDM - ACM International Conference on Web Search and Data Mining dblp ICDM - International Conference on Data Mining dblp SDM - SIAM International Conference on Data Mining dblp 人工智能CCF A AAAI - AAAI Conference on Artificial Intelligence dblp NeurIPS - Annual Conference on Neural Information Processing Systems dblp IJCAI - International Joint Conference on Artificial Intelligence dblp CCF B UAI - International Conference on Uncertainty in Artificial Intelligence dblp WebCCF A WWW - International World Wide Web Conferences dblp 相关期刊数据挖掘CCF A TOIS - ACM Transactions on Information Systems dblp TKDE - IEEE Transactions on Knowledge and Data Engineering dblp 会议时间Conference Partner (会伴) CCF会议 https://www.myhuiban.com/conferences/ccf 在线查看各个会议的截稿时间 数据集 MovieLens https://grouplens.org/datasets/movielens/ Last.fm https://grouplens.org/datasets/hetrec-2011/ Pinterest https://sites.google.com/site/xueatalphabeta/academic-projects Amazon http://jmcauley.ucsd.edu/data/amazon/ Netflix https://www.kaggle.com/netflix-inc/netflix-prize-data 相关工具/仓库 LibRec: A Leading Java Library for Recommender Systems Best practice https://github.com/microsoft/recommenders Must-read papers https://github.com/hongleizhang/RSPapers Classic papers https://github.com/wzhe06/Reco-papers 相关学者 何向南 http://staff.ustc.edu.cn/~hexn/ 郭贵冰 https://guoguibing.github.io 王灏 http://www.wanghao.in 相关书籍 《推荐系统实践》，人民邮电出版社 《Recommender Systems Handbook》（推荐系统 技术、评估及高效算法，机械工业出版社）]]></content>
+    <content type="text"><![CDATA[SIGIR 2020-01-15 IJCAI 2020-01-15 ICWE 2020-01-19 ICML 截稿时间 2020-01-31 KDD 截稿时间 2020-02-13 ECML-PKDD 2020-03-19 CCF推荐目录中国计算机学会推荐国际学术会议和期刊目录（2019版）：https://www.ccf.org.cn/Focus/2019-04-25/663625.shtml ##论文检索平台 dblp computer science bibliography：https://dblp.uni-trier.de arXiv（预印本）：https://arxiv.org ACM Digital Library：https://dl.acm.org Web of Science：www.webofknowledge.com 中国知网（CNKI）：https://cnki.net 百度学术：https://xueshu.baidu.com 相关会议推荐系统专会RecSys - ACM Conference on Recommender Systems 数据挖掘CCF A SIGKDD - ACM Knowledge Discovery and Data Mining dblp ICDE - IEEE International Conference on Data Engineering dblp SIGIR - International Conference on Research on Development in Information Retrieval dblp CCF B CIKM - ACM International Conference on Information and Knowledge Management dblp WSDM - ACM International Conference on Web Search and Data Mining dblp ICDM - International Conference on Data Mining dblp SDM - SIAM International Conference on Data Mining dblp 人工智能CCF A AAAI - AAAI Conference on Artificial Intelligence dblp NeurIPS - Annual Conference on Neural Information Processing Systems dblp IJCAI - International Joint Conference on Artificial Intelligence dblp CCF B UAI - International Conference on Uncertainty in Artificial Intelligence dblp WebCCF A WWW - International World Wide Web Conferences dblp 相关期刊数据挖掘CCF A TOIS - ACM Transactions on Information Systems dblp TKDE - IEEE Transactions on Knowledge and Data Engineering dblp 会议时间Conference Partner (会伴) CCF会议 https://www.myhuiban.com/conferences/ccf 在线查看各个会议的截稿时间 数据集 MovieLens https://grouplens.org/datasets/movielens/ Last.fm https://grouplens.org/datasets/hetrec-2011/ Pinterest https://sites.google.com/site/xueatalphabeta/academic-projects Amazon http://jmcauley.ucsd.edu/data/amazon/ Netflix https://www.kaggle.com/netflix-inc/netflix-prize-data 相关仓库 LibRec: A Leading Java Library for Recommender Systems Best practice https://github.com/microsoft/recommenders Must-read papers https://github.com/hongleizhang/RSPapers Classic papers https://github.com/wzhe06/Reco-papers 相关学者 中科大 何向南 http://staff.ustc.edu.cn/~hexn/ 东北大学 郭贵冰 https://guoguibing.github.io 王灏 http://www.wanghao.in 相关书籍 《推荐系统实践》，项亮，人民邮电出版社 《Recommender Systems Handbook》（推荐系统 技术、评估及高效算法，机械工业出版社） 《深度学习推荐系统》，王喆，电子工业出版社 相关平台 Overleaf——在线LaTex编辑器：https://www.overleaf.com ORCID——身份识别码：https://orcid.org Process On——在线绘图：https://www.processon.com]]></content>
       <categories>
         <category>recommender systems</category>
       </categories>
@@ -4111,8 +4111,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -4123,8 +4123,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -4146,8 +4146,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -4194,8 +4194,8 @@
         <category>sql</category>
       </categories>
       <tags>
-        <tag>sql</tag>
         <tag>mysql</tag>
+        <tag>sql</tag>
       </tags>
   </entry>
   <entry>
@@ -4297,8 +4297,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>随笔</tag>
         <tag>生活</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
