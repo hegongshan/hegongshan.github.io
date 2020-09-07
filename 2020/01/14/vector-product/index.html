@@ -72,18 +72,18 @@
 
 
 
-<meta name="description" content="向量乘法">
+<meta name="description" content="在阅读相关论文时，总能看到各种向量乘法，包括內积、哈达玛积等。本文对向量的各种乘法运算进行了总结和梳理。">
 <meta name="keywords" content="mathematics">
 <meta property="og:type" content="article">
 <meta property="og:title" content="向量乘法">
 <meta property="og:url" content="https://www.hegongshan.com/2020/01/14/vector-product/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="向量乘法">
+<meta property="og:description" content="在阅读相关论文时，总能看到各种向量乘法，包括內积、哈达玛积等。本文对向量的各种乘法运算进行了总结和梳理。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-18T08:01:40.980Z">
+<meta property="og:updated_time" content="2020-09-07T14:08:44.434Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="向量乘法">
-<meta name="twitter:description" content="向量乘法">
+<meta name="twitter:description" content="在阅读相关论文时，总能看到各种向量乘法，包括內积、哈达玛积等。本文对向量的各种乘法运算进行了总结和梳理。">
 
 
 
@@ -415,8 +415,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-18T16:01:40+08:00">
-                2020-01-18
+              <time title="更新于" itemprop="dateModified" datetime="2020-09-07T22:08:44+08:00">
+                2020-09-07
               </time>
             
           </span>
@@ -470,7 +470,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  148
+                  334
                 </span>
               
 
@@ -495,12 +495,14 @@
       
 
       
-        <p>向量乘法</p>
+        <p>在阅读相关论文时，总能看到各种向量乘法，包括內积、哈达玛积等。本文对向量的各种乘法运算进行了总结和梳理。</p>
 <a id="more"></a>
 <p>假设$\mathbf{a} \in \mathbb{R}^n, \mathbf{b} \in \mathbb{R}^n$</p>
-<h3 id="内积"><a href="#内积" class="headerlink" title="内积"></a>内积</h3><p>内积（inner product或者dot product）<br>$$<br>\mathbf{a} \cdot \mathbf{b} = \mathbf{a}^T \mathbf{b} = \sum_{i=1}^n a_i \times b_i \tag{1}<br>$$</p>
-<h3 id="逐元素相乘"><a href="#逐元素相乘" class="headerlink" title="逐元素相乘"></a>逐元素相乘</h3><p>逐元素相乘（element-wise product）<br>$$<br>\mathbf{a} \odot \mathbf{b} =<br>\begin{bmatrix}<br>a_1 \times b_1 \\<br>a_2 \times b_2 \\<br>\cdots \\<br>a_n \times b_n<br>\end{bmatrix} \tag{2}<br>$$</p>
-<h3 id="外积"><a href="#外积" class="headerlink" title="外积"></a>外积</h3><p>外积（outer product）<br>$$<br>\mathbf{a} \otimes \mathbf{b}<br>= \mathbf{a} \mathbf{b}^T<br>= \begin{bmatrix}<br>a_1 \times b_1 &amp; a_1 \times b_2 &amp; \cdots &amp; a_1 \times b_n \\<br>a_2 \times b_1 &amp; a_2 \times b_2 &amp; \cdots &amp; a_2 \times b_n \\<br>\vdots &amp; \vdots &amp; \vdots &amp; \vdots \\<br>a_n \times b_1 &amp; a_n \times b_2 &amp; \cdots &amp; a_n \times b_n<br>\end{bmatrix} \tag{3}<br>$$</p>
+<h3 id="点积"><a href="#点积" class="headerlink" title="点积"></a>点积</h3><p>点积（dot product），又称内积（inner product）、标量积（scalar product）、数量积。<br>$$<br>\mathbf{a} \cdot \mathbf{b} = \mathbf{a}^T \mathbf{b} = \sum_{i=1}^n a_i \times b_i \tag{1}<br>$$</p>
+<p>几何意义：<br>$$<br>\lvert \mathbf{a} \cdot \mathbf{b} \rvert = \lvert \mathbf{a} \rvert \cdot \lvert \mathbf{b} \rvert \cos \theta \tag{2}<br>$$</p>
+<h3 id="哈达玛积"><a href="#哈达玛积" class="headerlink" title="哈达玛积"></a>哈达玛积</h3><p>哈达玛积（element-wise product或者hadamard product）<br>$$<br>\mathbf{a} \odot \mathbf{b} =<br>\begin{bmatrix}<br>a_1 \times b_1 \\<br>a_2 \times b_2 \\<br>\cdots \\<br>a_n \times b_n<br>\end{bmatrix} \tag{3}<br>$$</p>
+<h3 id="向量积"><a href="#向量积" class="headerlink" title="向量积"></a>向量积</h3><p>向量积，又称叉积（cross product）、<strong>外积</strong>（exterior product）。<br>$$<br>\begin{align}<br>\mathbf{a} \times \mathbf{b}<br>&amp;=<br>\begin{vmatrix}<br>\vec{i} &amp; \vec{j} &amp; \vec{k} \\<br>a_x &amp; a_y &amp; a_z \\<br>b_x &amp; b_y &amp; b_z<br>\end{vmatrix} \\<br>&amp;= (a_y \times b_z - a_z \times b_y) \mathbf{i} + (a_z \times b_x - a_x \times b_z) \mathbf{j} + (a_x \times b_y - a_y \times b_x) \mathbf{k}<br>\end{align} \tag{4}<br>$$<br>几何意义：<br>$$<br>\lvert \mathbf{a} \times \mathbf{b} \rvert = \lvert \mathbf{a} \rvert \cdot \lvert \mathbf{b} \rvert \sin \theta \tag{5}<br>$$</p>
+<h3 id="张量积"><a href="#张量积" class="headerlink" title="张量积"></a>张量积</h3><p>张量积（tensor product），又称<strong>外积</strong>（outer product）。<br>$$<br>\mathbf{a} \otimes \mathbf{b}<br>= \mathbf{a} \mathbf{b}^T<br>= \begin{bmatrix}<br>a_1 \times b_1 &amp; a_1 \times b_2 &amp; \cdots &amp; a_1 \times b_n \\<br>a_2 \times b_1 &amp; a_2 \times b_2 &amp; \cdots &amp; a_2 \times b_n \\<br>\vdots &amp; \vdots &amp; \vdots &amp; \vdots \\<br>a_n \times b_1 &amp; a_n \times b_2 &amp; \cdots &amp; a_n \times b_n<br>\end{bmatrix} \tag{6}<br>$$</p>
 
       
     </div>
@@ -833,7 +835,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内积"><span class="nav-number">1.</span> <span class="nav-text">内积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逐元素相乘"><span class="nav-number">2.</span> <span class="nav-text">逐元素相乘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外积"><span class="nav-number">3.</span> <span class="nav-text">外积</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#点积"><span class="nav-number">1.</span> <span class="nav-text">点积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哈达玛积"><span class="nav-number">2.</span> <span class="nav-text">哈达玛积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向量积"><span class="nav-number">3.</span> <span class="nav-text">向量积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#张量积"><span class="nav-number">4.</span> <span class="nav-text">张量积</span></a></li></ol></div>
             
 
           </div>
