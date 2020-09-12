@@ -72,18 +72,20 @@
 
 
 
-<meta name="description" content="Memorization Generalization impression feature cross-product transformation  Memorization can be loosely defined as learning the frequent co-occurrence of items or features and exploiting the correlat">
+<meta name="description" content="Wide &amp;amp; Deep是Google在2016年发表的一篇论文，自此以后，双塔模型成为了推荐系统研究中的常见模型结构。">
 <meta name="keywords" content="recommender systems">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文阅读 Wide &amp; Deep Learning for Recommender Systems">
 <meta property="og:url" content="https://www.hegongshan.com/2019/11/20/recommender-system-wide&deep/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="Memorization Generalization impression feature cross-product transformation  Memorization can be loosely defined as learning the frequent co-occurrence of items or features and exploiting the correlat">
+<meta property="og:description" content="Wide &amp;amp; Deep是Google在2016年发表的一篇论文，自此以后，双塔模型成为了推荐系统研究中的常见模型结构。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-20T08:33:14.677Z">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/rs-wide-deep.png">
+<meta property="og:updated_time" content="2020-09-10T15:12:42.905Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读 Wide &amp; Deep Learning for Recommender Systems">
-<meta name="twitter:description" content="Memorization Generalization impression feature cross-product transformation  Memorization can be loosely defined as learning the frequent co-occurrence of items or features and exploiting the correlat">
+<meta name="twitter:description" content="Wide &amp;amp; Deep是Google在2016年发表的一篇论文，自此以后，双塔模型成为了推荐系统研究中的常见模型结构。">
+<meta name="twitter:image" content="https://www.hegongshan.com/static/images/rs-wide-deep.png">
 
 
 
@@ -415,8 +417,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-20T16:33:14+08:00">
-                2019-11-20
+              <time title="更新于" itemprop="dateModified" datetime="2020-09-10T23:12:42+08:00">
+                2020-09-10
               </time>
             
           </span>
@@ -470,7 +472,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  105
+                  330
                 </span>
               
 
@@ -495,16 +497,20 @@
       
 
       
-        <p>Memorization</p>
-<p>Generalization</p>
-<p>impression feature</p>
-<p>cross-product transformation</p>
+        <p>Wide &amp; Deep是Google在2016年发表的一篇论文，自此以后，双塔模型成为了推荐系统研究中的常见模型结构。</p>
+<a id="more"></a>
+<h3 id="Memorization-amp-Generalization"><a href="#Memorization-amp-Generalization" class="headerlink" title="Memorization &amp; Generalization"></a>Memorization &amp; Generalization</h3><p>论文中对记忆能力（Memorization）和泛化能力（Generalization）作了如下定义：</p>
 <blockquote>
-<p>Memorization can be loosely defined as learning the frequent co-occurrence of items or features and exploiting the correlation available in the historical data. Generalization, on the other hand, is based on transitivity of correlation and explores new feature combinations that have never or rarely occurred in the past. </p>
+<p>Memorization can be loosely defined as learning the frequent co-occurrence of items or features and exploiting the correlation available in the historical data. </p>
+<p>Generalization, on the other hand, is based on transitivity of correlation and explores new feature combinations that have never or rarely occurred in the past. </p>
 </blockquote>
-<h3 id="Wide-amp-Deep-Learning"><a href="#Wide-amp-Deep-Learning" class="headerlink" title="Wide &amp; Deep Learning"></a>Wide &amp; Deep Learning</h3><h4 id="Wide"><a href="#Wide" class="headerlink" title="Wide"></a>Wide</h4><p>$$<br>y = \mathbf{w}^T \mathbf{x} + b<br>$$</p>
-<p>其中，$\mathbf{x} = [x_1,x_2,\cdots,x_d]$</p>
-<p>既包含原始特征，又包含转换特征。<br>$$<br>\phi_k(\mathbf{x}) = \prod_{i=1}^d x_i^{c_{ki}} \quad  c_{ki} \in \{ 0,1 \}<br>$$</p>
+<h3 id="Wide-amp-Deep-Learning"><a href="#Wide-amp-Deep-Learning" class="headerlink" title="Wide &amp; Deep Learning"></a>Wide &amp; Deep Learning</h3><h4 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h4><p><img src="/static/images/rs-wide-deep.png" alt="wide &amp; deep"></p>
+<h4 id="Wide"><a href="#Wide" class="headerlink" title="Wide"></a>Wide</h4><p>宽度部分是一个泛化的线性回归：<br>$$<br>y = \mathbf{w}^T \mathbf{x} + b<br>$$</p>
+<p>其中，$\mathbf{x} = [x_1,x_2,\cdots,x_d]$是d个特征组成的向量。</p>
+<p>特征集合中既包含原始特征，又包含组合特征。其中，一种最重要的组合特征是叉积转换（cross-product transformation ）：<br>$$<br>\phi_k(\mathbf{x}) = \prod_{i=1}^d x_i^{c_{ki}} \quad  c_{ki} \in \{ 0,1 \}<br>$$</p>
+<p>如果第i个特征在第k个组合中，则$c_{ki} = 1$；否则，$c_{ki} = 0$。</p>
+<h4 id="Deep"><a href="#Deep" class="headerlink" title="Deep"></a>Deep</h4><p>深度部分采用前馈神经网络，对每个隐含层执行如下的计算：<br>$$<br>a^{(l + 1)} = f(\mathbf{W}^{(l)} a^{(l)} + b^{(l)})<br>$$<br>其中，$l$是层号，$f$是激活函数（通常采用ReLU），$a^{(l)}$、$b^{(l)}$和$W^{(l)}$分别是第$l$层的输入、偏置向量和权重矩阵。</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>论文地址：<a href="https://arxiv.org/pdf/1606.07792.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1606.07792.pdf</a></p>
 
       
     </div>
@@ -714,7 +720,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">401</span>
+                  <span class="site-state-item-count">402</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -837,7 +843,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Wide-amp-Deep-Learning"><span class="nav-number">1.</span> <span class="nav-text">Wide &amp; Deep Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Wide"><span class="nav-number">1.1.</span> <span class="nav-text">Wide</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Memorization-amp-Generalization"><span class="nav-number">1.</span> <span class="nav-text">Memorization &amp; Generalization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Wide-amp-Deep-Learning"><span class="nav-number">2.</span> <span class="nav-text">Wide &amp; Deep Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型结构"><span class="nav-number">2.1.</span> <span class="nav-text">模型结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Wide"><span class="nav-number">2.2.</span> <span class="nav-text">Wide</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Deep"><span class="nav-number">2.3.</span> <span class="nav-text">Deep</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>

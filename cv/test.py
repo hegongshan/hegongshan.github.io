@@ -1,0 +1,1 @@
+r‘my name is {model_nam}’.format(model_name='hgs')
