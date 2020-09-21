@@ -81,7 +81,7 @@
 <meta property="og:description" content="Outer Product-based Neural Collaborative Filtering（ONCF）一文发表在IJCAI 2018上，作者使用外积对嵌入空间中各个维度之间的相互关系进行显式建模。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/oncf.png">
-<meta property="og:updated_time" content="2020-01-18T14:17:28.359Z">
+<meta property="og:updated_time" content="2020-09-18T16:36:16.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读 Outer Product-based Neural Collaborative Filtering">
 <meta name="twitter:description" content="Outer Product-based Neural Collaborative Filtering（ONCF）一文发表在IJCAI 2018上，作者使用外积对嵌入空间中各个维度之间的相互关系进行显式建模。">
@@ -235,16 +235,6 @@
               <i class="menu-item-icon fa fa-fw fa-laptop"></i> <br>
             
             CCF CSP题解
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-recommender-systems">
-          <a href="/recommender-systems/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-university"></i> <br>
-            
-            推荐系统
           </a>
         </li>
       
@@ -417,8 +407,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-01-18T22:17:28+08:00">
-                2020-01-18
+              <time title="更新于" itemprop="dateModified" datetime="2020-09-19T00:36:16+08:00">
+                2020-09-19
               </time>
             
           </span>
@@ -472,7 +462,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  108
+                  137
                 </span>
               
 
@@ -499,6 +489,9 @@
       
         <p>Outer Product-based Neural Collaborative Filtering（ONCF）一文发表在IJCAI 2018上，作者使用外积对嵌入空间中各个维度之间的相互关系进行显式建模。</p>
 <a id="more"></a>
+<blockquote>
+<p>The key to design a CF model is in 1) how to represent a user and an item, and 2) how to model their interaction based on the representation.  </p>
+</blockquote>
 <h3 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h3><p><img src="/static/images/oncf.png" alt="ONCF"></p>
 <h3 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h3><p>作者使用了BPR损失函数：<br>$$<br>L = \sum_{(u,i,j) \in \mathcal{D}} - \ln \sigma(\hat y_{ui} - \hat y_{uj}) + \lambda_{\Delta} \left \Vert \Delta \right \Vert^2<br>$$</p>
 <p>论文地址：<a href="https://www.ijcai.org/Proceedings/2018/0308.pdf" target="_blank" rel="noopener">https://www.ijcai.org/Proceedings/2018/0308.pdf</a></p>
@@ -712,7 +705,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">402</span>
+                  <span class="site-state-item-count">403</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
