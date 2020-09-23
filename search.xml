@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数学基础——矩阵乘积]]></title>
+    <url>%2F2020%2F09%2F23%2Fmathematics-matrix-product%2F</url>
+    <content type="text"><![CDATA[科研人必知必会的几种矩阵乘积。 矩阵乘法设 $\mathbf{A} = (a_{ij})_{m \times n}, \mathbf{B} = (b_{ij})_{n \times p}$$$\mathbf{A}_{m \times n} \times \mathbf{B}_{n \times p} = (\sum_{j=1}^n a_{ij} b_{jk})_{m \times p} \tag{1}$$示例：$$\begin{bmatrix}1 &amp; 2 &amp; 3 \\4 &amp; 5 &amp; 6\end{bmatrix}\times\begin{bmatrix}4 &amp; 5 \\6 &amp; 7 \\8 &amp; 9\end{bmatrix}=\begin{bmatrix}1 \times 4 + 2 \times 6 + 3 \times 8 &amp; 1 \times 5 + 2 \times 7 + 3 \times 9 \\4 \times 4 + 5 \times 6 + 6 \times 8 &amp; 4 \times 5 + 5 \times 7 + 6 \times 9\end{bmatrix}=\begin{bmatrix}40 &amp; 46 \\94 &amp; 109\end{bmatrix}$$ NumPy：使用np.matmul()或者@运算符 123456789101112&gt;&gt;&gt; import numpy as np&gt;&gt;&gt; x = np.array([[1, 2, 3], [4, 5, 6]])&gt;&gt;&gt; y = np.array([[4, 5], [6, 7], [8, 9]])&gt;&gt;&gt; np.matmul(x, y)array([[ 40, 46], [ 94, 109]])&gt;&gt;&gt; x @ yarray([[ 40, 46], [ 94, 109]]) TensorFlow：使用tf.matmul()或者@运算符 1234567891011121314&gt;&gt;&gt; import tensorflow as tf&gt;&gt;&gt; x = tf.constant([[1, 2, 3], [4, 5, 6]])&gt;&gt;&gt; y = tf.constant([[4, 5], [6, 7], [8, 9]])&gt;&gt;&gt; tf.matmul(x,y)&lt;tf.Tensor: shape=(2, 2), dtype=int32, numpy=array([[ 40, 46], [ 94, 109]], dtype=int32)&gt;&gt;&gt;&gt; x @ y&lt;tf.Tensor: shape=(2, 2), dtype=int32, numpy=array([[ 40, 46], [ 94, 109]], dtype=int32)&gt; 哈达玛积设 $\mathbf{A} ,\mathbf{B} \in \mathbb{C}^{m \times n}$，$\mathbf{A}$和$\mathbf{B}$的哈达玛积（Hadamard Product）$\mathbf{A} \circ \mathbf{B}$定义为$$\mathbf{A} \circ \mathbf{B}=(a_{ij} \times b_{ij})_{m \times n}=\begin{bmatrix}a_{11} b_{11} &amp; a_{12} b_{12} &amp; \cdots &amp; a_{1n} b_{1n} \\a_{21} b_{21} &amp; a_{22} b_{22} &amp; \cdots &amp; a_{2n} b_{2n} \\\vdots &amp; \vdots &amp; &amp; \vdots \\a_{m1} b_{m1} &amp; a_{m2} b_{m2} &amp; \cdots &amp; a_{mn} b_{mn}\end{bmatrix} \tag{2}$$示例：$$\begin{bmatrix}1 &amp; 2 &amp; 3 \\4 &amp; 5 &amp; 6\end{bmatrix}\circ\begin{bmatrix}4 &amp; 5 &amp; 6 \\7 &amp; 8 &amp; 9\end{bmatrix}=\begin{bmatrix}1 \times 4 &amp; 2 \times 5 &amp; 3 \times 6 \\4 \times 7 &amp; 5 \times 8 &amp; 6 \times 9\end{bmatrix}=\begin{bmatrix}4 &amp; 10 &amp; 18 \\28 &amp; 40 &amp; 54\end{bmatrix}$$ Numpy：使用np.multiply()或者*运算符 123456789&gt;&gt;&gt; import numpy as np&gt;&gt;&gt; x = np.array([[1, 2, 3], [4, 5, 6]])&gt;&gt;&gt; y = np.array([[4, 5, 6], [7, 8, 9]])&gt;&gt;&gt; np.multiply(x, y)array([[ 4, 10, 18], [28, 40, 54]])&gt;&gt;&gt; x * yarray([[ 4, 10, 18], [28, 40, 54]]) TensorFlow：使用tf.multiply()或者*运算符 1234567891011&gt;&gt;&gt; import tensorflow as tf&gt;&gt;&gt; x = tf.constant([[1, 2, 3], [4, 5, 6]])&gt;&gt;&gt; y = tf.constant([[4, 5, 6], [7, 8, 9]])&gt;&gt;&gt; tf.multiply(x, y)&lt;tf.Tensor: shape=(2, 3), dtype=int32, numpy=array([[ 4, 10, 18], [28, 40, 54]], dtype=int32)&gt;&gt;&gt;&gt; x * y&lt;tf.Tensor: shape=(2, 3), dtype=int32, numpy=array([[ 4, 10, 18], [28, 40, 54]], dtype=int32)&gt; 克罗内克积设 $\mathbf{A} \in \mathbb{C}^{m \times n},\mathbf{B} \in \mathbb{C}^{p \times q}$，称如下的分块矩阵$$\mathbf{A} \otimes \mathbf{B}=\begin{bmatrix}a_{11} \mathbf{B} &amp; a_{12} \mathbf{B} &amp; \cdots &amp; a_{1n} \mathbf{B} \\a_{21} \mathbf{B} &amp; a_{22} \mathbf{B} &amp; \cdots &amp; a_{2n} \mathbf{B} \\\vdots &amp; \vdots &amp; &amp; \vdots \\a_{m1} \mathbf{B} &amp; a_{m2} \mathbf{B} &amp; \cdots &amp; a_{mn} \mathbf{B}\end{bmatrix} \tag{3}$$为$\mathbf{A}$与$\mathbf{B}$的克罗内克积（Kronecker Product）或直积。 示例：设$\mathbf{A}=\begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix}$，$\mathbf{B} = \begin{bmatrix}2 &amp; -1 \end{bmatrix}$，则$$\mathbf{A}\otimes\mathbf{B}=\begin{bmatrix}\mathbf{B} &amp; 2 \mathbf{B} \\3 \mathbf{B} &amp; 4 \mathbf{B}\end{bmatrix}=\begin{bmatrix}2 &amp; -1 &amp; 4 &amp; -2 \\6 &amp; -3 &amp; 8 &amp; -4\end{bmatrix}$$ NumPy：使用np.kron() 123456&gt;&gt;&gt; import numpy as np&gt;&gt;&gt; x = np.array([[1, 2], [3, 4]])&gt;&gt;&gt; y = np.array([2, -1])&gt;&gt;&gt; np.kron(x, y)array([[ 2, -1, 4, -2], [ 6, -3, 8, -4]])]]></content>
+      <categories>
+        <category>mathematics</category>
+      </categories>
+      <tags>
+        <tag>mathematics</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[数学基础——常见概率分布]]></title>
     <url>%2F2020%2F09%2F16%2Fmathematics-probability-distribution%2F</url>
     <content type="text"><![CDATA[本文回顾了常见的概率分布（probability distribution）及其期望和方差。 伯努利分布伯努利分布（Bernoulli distribution），又称两点分布（Two points Distribution），0-1分布。$$P(X=k) = p^k (1-p)^{1-k}, k \in \{0, 1\}$$ 二项分布二项分布（Binomial Distribution），$X \sim B(n,p)$。$$P(X=k) = C_n^k p^k (1-p)^{n-k}$$ 泊松分布泊松分布（Poisson Distribution），$X \sim P(\lambda)$。$$P(X = k) = \frac{\lambda^k}{k!} e^{-\lambda}, k = 0, 1, \cdots$$ 其中，$\lambda &gt; 0$。 期望和方差 根据泰勒公式，$$e^x = 1 + x + \frac{x^2}{2!} + \cdots + \frac{x^n}{n!} + \cdots = \sum_{k=0}^{\infty} \frac{x^k}{k!} = \sum_{k=1}^{\infty} \frac{x^{k - 1}}{(k - 1)!}$$ 根据期望的定义：$$\begin{aligned}E(X)&amp;= \sum_{k=0}^\infty k \frac{\lambda^k}{k!} e^{-\lambda} \\&amp;= \sum_{k=1}^\infty k \frac{\lambda^k}{k!} e^{-\lambda} \\&amp;= \lambda e^{-\lambda} \sum_{k=1}^\infty \frac{\lambda^{k - 1}}{(k - 1)!} \\&amp;= \lambda e^{-\lambda} e^{\lambda} \\&amp;= \lambda\end{aligned}$$ $$\begin{aligned}E(X^2)&amp;= \sum_{k=0}^\infty k^2 \frac{\lambda^k}{k!} e^{-\lambda}= \lambda e^{-\lambda} \sum_{k=1}^\infty k \frac{\lambda^{k - 1}}{(k - 1)!} \\&amp;= \lambda e^{-\lambda} \sum_{k=1}^\infty (k - 1 + 1) \frac{\lambda^{k - 1}}{(k - 1)!} \\&amp;= \lambda e^{-\lambda} (\sum_{k=1}^\infty (k - 1) \frac{\lambda^{k - 1}}{(k - 1)!} + \sum_{k=1}^\infty \frac{\lambda^{k - 1}}{(k - 1)!}) \\&amp;= \lambda e^{-\lambda} (\lambda \sum_{k=2}^\infty \frac{\lambda^{k - 2}}{(k - 2)!} + \sum_{k=1}^\infty \frac{\lambda^{k - 1}}{(k - 1)!}) \\&amp;= \lambda e^{-\lambda} (\lambda e^\lambda + e^\lambda) \\&amp;= \lambda (\lambda + 1)\end{aligned}$$ $$D(X) = E(X^2) - E(X)^2 = \lambda^2 + \lambda - \lambda^2 = \lambda$$ 均匀分布均匀分布（Uniform Distribution），概率密度为：$$f(x) =\begin{cases}\frac{1}{b - a}, &amp; a &lt; x &lt; b \\0, &amp; 其他\end{cases}$$ 期望$$\begin{aligned}E(X)&amp;= \int_{-\infty}^{+\infty} x f(x) \mathrm{d}x = \int_a^b \frac{x}{b - a} \mathrm{d}x \\&amp;= \frac{x^2}{2(b - a)} |_a^b \\&amp;= \frac{a + b}{2}\end{aligned}$$ $$\begin{aligned}E(X^2)&amp;= \int_{-\infty}^{+\infty} x^2 f(x) \mathrm{d}x = \int_a^b \frac{x^2}{b - a} \mathrm{d}x \\&amp;= \frac{x^3}{3(b - a)} |_a^b \\&amp;= \frac{a^2 + ab + b^2}{3}\end{aligned}$$ $$D(X) = E(X^2) - E(X)^2 = \frac{a^2 + ab + b^2}{3} - (\frac{a + b}{2})^2=\frac{(b - a)^2}{12}$$ 补充：$$a^3 - b^3 = (a - b)(a^2 + ab + b^2)$$ 指数分布指数分布（Exponential Distribution），$X \sim E(\lambda)$概率密度：$$f(x)=\begin{cases}\lambda e^{-\lambda x}, &amp; x &gt; 0\\0, &amp; x \le 0\end{cases}$$ 其中，$\lambda &gt; 0$。 期望$$\begin{aligned}E(X) &amp;= \int_{-\infty}^{+\infty} x f(x) \mathrm{d}x = \int_{0}^{+\infty} x \lambda e^{-\lambda x} \mathrm{d}x \\&amp;=-(x + \frac{1}{\lambda}) e^{-\lambda x} |_{0}^{+\infty} \\&amp;=\frac{1}{\lambda}\end{aligned}$$方差$$\begin{aligned}E(X^2) &amp;= \int_{-\infty}^{+\infty} x^2 f(x) \mathrm{d}x = \int_{0}^{+\infty} x^2 \lambda e^{-\lambda x} \mathrm{d}x \\&amp;=-(x^2 + \frac{2 x}{\lambda} + \frac{2}{\lambda^2}) e^{-\lambda x} |_{0}^{+\infty} \\&amp;=\frac{2}{\lambda^2}\end{aligned}$$ $$D(X) = E(X^2) - E(X)^2 = \frac{2}{\lambda^2} - \frac{1}{\lambda^2} = \frac{1}{\lambda^2}$$ 正态分布正态分布（Normal Distribution），又称高斯分布（Gaussian Distribution）。 一元正态分布$X \sim N(\mu, \sigma^2)$，概率密度为$$f(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp(-\frac{(x - \mu)^2}{2 \sigma^2})$$ $$\begin{aligned}E(X)&amp;= \int_{-\infty}^{+\infty} x f(x) \mathrm{d}x = \int_{-\infty}^{+\infty} x \frac{1}{\sqrt{2 \pi} \sigma} \exp(-{\frac{(x - \mu)^2}{2 \sigma^2}}) \mathrm{d}x \\&amp;= \sqrt {\frac{2}{\pi}} \sigma \int_{-\infty}^{+\infty} \frac{x - \mu + \mu}{\sqrt{2} \sigma} \exp \left(-(\frac{x - \mu}{\sqrt{2} \sigma})^2 \right) \mathrm{d} \frac{x - \mu}{\sqrt{2} \sigma} \\&amp;= \sqrt {\frac{2}{\pi}} \int_{-\infty}^{+\infty} y e^{-y^2} \mathrm{d}y + \frac{\mu}{\sqrt \pi} \int_{-\infty}^{+\infty} e^{-y^2} \mathrm{d}y \\&amp;=\mu\end{aligned}$$其中，$y e^{-y^2}$是奇函数，其积分值为0；$\int_{-\infty}^{+\infty} e^{-y^2} \mathrm{d}y = \sqrt{\pi}$。 当$\mu = 0, \sigma = 1$时，称之为标准正态分布（Standard Normal Distribution）。$$f(x) = \frac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}}$$ 多元正态分布$X \in N(\mathbf{\mu}, \mathbf{\Sigma})$，概率密度为$$f(x_1,x_2,\cdots,x_n) = \frac{1}{\sqrt{(2 \pi)^k} \left \vert \mathbf{\Sigma} \right \vert} \exp(-\frac{1}{2}(\mathbf{x} - \mathbf{\mu})^T \mathbf{\Sigma}^{-1} (\mathbf{x} - \mathbf{\mu}))$$ 其中，$\left \vert \mathbf{\Sigma} \right \vert$为协方差矩阵的行列式。 拉普拉斯分布拉普拉斯分布（Laplace Distribution），概率密度为$$f(x) = \frac{1}{2 \lambda} \exp(-\frac{\left \vert x - \mu \right \vert}{\lambda})$$ 其中，$\lambda &gt; 0$。 期望 $$\begin{aligned}E(X)&amp;= \int_{-\infty}^{+\infty} x \frac{1}{2 \lambda} \exp(-\frac{\left \vert x - \mu \right \vert}{\lambda}) \mathrm{d}x \\&amp;= \frac{1}{2} \int_{-\infty}^{+\infty} x \exp(-\frac{\left \vert x - \mu \right \vert}{\lambda}) \mathrm{d}\frac{x - \mu}{\lambda} \\&amp;= \frac{1}{2} \int_{-\infty}^{+\infty} (\lambda y + \mu) e^{-\left \vert y \right \vert} \mathrm{d}y \\&amp;= \frac{\mu}{2} (\int_{-\infty}^{0} e^y \mathrm{d}y + \int_{0}^{+\infty} e^{-y} \mathrm{d}y) \\&amp;= \mu\end{aligned}$$ 方差 $$\begin{aligned}D(X)&amp;= E(X - E(X))^2 = \int_{-\infty}^{+\infty} (x - \mu)^2 \frac{1}{2 \lambda} \exp(-\frac{\left \vert x - \mu \right \vert}{\lambda}) \mathrm{d}x \\&amp;= \frac{\lambda^2}{2} \int_{-\infty}^{+\infty} (\frac{x - \mu}{\lambda})^2 \exp(-\frac{\left \vert x - \mu \right \vert}{\lambda}) \mathrm{d} \frac{x - \mu}{\lambda} \\&amp;= \frac{\lambda^2}{2} \int_{-\infty}^{+\infty} y^2 e^{-\left \vert y \right \vert} \mathrm{d}y \\&amp;= \frac{\lambda^2}{2} \left( (y^2 - 2y + 2)e^y |_{-\infty}^{0} - (y^2 + 2y +2)e^{-y} |_{0}^{+\infty} \right) \\&amp;= 2 \lambda^2\end{aligned}$$]]></content>
@@ -4243,8 +4254,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -4255,8 +4266,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -4278,8 +4289,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -4429,8 +4440,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>随笔</tag>
         <tag>生活</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
