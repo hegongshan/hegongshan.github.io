@@ -82,7 +82,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/fism-rmse-algorithm.png">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/fism-auc-algorithm.png">
-<meta property="og:updated_time" content="2019-11-01T02:05:57.715Z">
+<meta property="og:updated_time" content="2020-10-05T08:22:31.580Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读 FISM&amp;#58 Factored Item Similarity Models for Top-N Recommender Systems">
 <meta name="twitter:description" content="针对Top-N推荐问题，作者提出了一种叫作FISM（Factored Item Similarity Models）的推荐算法，用两个低维隐因子矩阵的乘积来表示物品相似度矩阵。">
@@ -408,8 +408,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-01T10:05:57+08:00">
-                2019-11-01
+              <time title="更新于" itemprop="dateModified" datetime="2020-10-05T16:22:31+08:00">
+                2020-10-05
               </time>
             
           </span>
@@ -490,11 +490,11 @@
       
         <p>针对Top-N推荐问题，作者提出了一种叫作FISM（Factored Item Similarity Models）的推荐算法，用两个低维隐因子矩阵的乘积来表示物品相似度矩阵。</p>
 <a id="more"></a>
-<h3 id="符号说明"><a href="#符号说明" class="headerlink" title="符号说明"></a>符号说明</h3><p>1.所有的向量使用<strong>粗体小写字母</strong>表示，例如$\mathbf{p,q}​$。</p>
+<h3 id="符号说明"><a href="#符号说明" class="headerlink" title="符号说明"></a>符号说明</h3><p>1.所有的向量使用<strong>粗体小写字母</strong>表示，例如$\mathbf{p,q}$。</p>
 <p>2.所有的矩阵使用<strong>粗体大写字母</strong>表示，例如$\mathbf{R}$。此外，$\mathbf{p_j}$表示矩阵$\mathbf{P}$的第j行。</p>
 <p>3.评估时的预测值，在字母上方加波浪号，如$\tilde r_{ui}$；训练时的估计值，在字母上方加估计符号，如$\hat r_{ui}$。</p>
 <p>4.$\mathcal{C}$和$\mathcal{D}$分别表示用户和物品集合，$\vert \mathcal{C} \vert=n$，$\vert \mathcal{D} \vert=m$。</p>
-<p>5.$\mathbf{R}​$表示用户-物品隐式反馈矩阵；$\mathcal{R}_u^+​$表示用户u评分过的物品集合；$\mathcal{R}_u^-​$表示用户u未评分过的物品集合。</p>
+<p>5.$\mathbf{R}$表示用户-物品隐式反馈矩阵；$\mathcal{R}_u^+$表示用户u评分过的物品集合；$\mathcal{R}_u^-$表示用户u未评分过的物品集合。</p>
 <p>6.$\vert \mathcal{R}_u^+ \vert = n_u^+ $</p>
 <h3 id="SLIM"><a href="#SLIM" class="headerlink" title="SLIM"></a>SLIM</h3><p><em>Sparse LInear Method</em> (SLIM)的预测模型：<br>$$<br>\mathbf{\tilde r}_u = \mathbf{r_u S} \tag{1}<br>$$<br>其中，$\mathbf{r_u}$表示用户u对所有物品的评分组成的向量；$\mathbf{S} \in \mathbb{R}^{m \times m}$表示物品相似度矩阵。</p>
 <p>目标函数：<br>$$<br>L= \min_{\mathbf{S}} \frac{1}{2} \sum_{(u,i) \in \mathbf{R}}  \left \Vert r_{ui} - \hat r_{ui} \right \Vert_F^2 + \frac{\beta}{2} \left \Vert \mathbf{S} \right \Vert_F^2 + \lambda \left \Vert \mathbf{S} \right \Vert_1 \\<br>subject\ to\ \mathbf{S} \geq 0, diag(\mathbf{S}) = 0 \tag{2}<br>$$<br>其中，$\left \Vert \mathbf{S} \right \Vert_F$是矩阵$\mathbf{S}$的Frobenius范数（参见补充知识）；$\beta$和$\lambda$是正则化参数。</p>
@@ -504,15 +504,15 @@
 <h3 id="NSVD"><a href="#NSVD" class="headerlink" title="NSVD"></a>NSVD</h3><p>NSVD用两个低秩矩阵$\mathbf{P} \in \mathbb{R}^{m \times k}$和$\mathbf{Q} \in \mathbb{R}^{m \times k}$（$k \ll m $）的乘积来表示物品相似度。</p>
 <p>给定物品i和j，二者的相似度$sim(i,j) = \mathbf{p}_i \cdot \mathbf{q}_j^T$。</p>
 <p>预测模型：<br>$$<br>\hat r_{ui} = \tilde r_{ui} = b_u + b_i + \sum_{j \in \mathcal{R}_u^+} \mathbf{p}_j \mathbf{q}_i^T \tag{3}<br>$$<br>目标函数：<br>$$<br>\min_{\mathbf{P,Q}} \frac{1}{2} \sum_{u \in \mathcal{C}} \sum_{i \in \mathcal{R}_u^+} \left \Vert r_{ui} - \hat r_{ui} \right \Vert_F^2 + \frac{\beta}{2} (\left \Vert \mathbf{P} \right \Vert_F^2 + \left \Vert \mathbf{Q} \right \Vert_F^2) \tag{4}<br>$$<br><strong>NSVD的不足之处在于</strong>：在估计评分时，没有排除物品自己对自己的影响。</p>
-<p>例如，在训练时，要估计用户u对物品i的评分$\hat r_{ui}​$，且$i \in \mathcal{R}_u^+​$</p>
+<p>例如，在训练时，要估计用户u对物品i的评分$\hat r_{ui}$，且$i \in \mathcal{R}_u^+$</p>
 <p>根据公式(3)可以得到：<br>$$<br>\hat r_{ui} = b_u + b_i + \mathbf{p}_i \mathbf{q}_i^T  + \sum_{j \in \mathcal{R}_u^+ \setminus \{i\}} \mathbf{p}_j \mathbf{q}_i^T \tag{5}<br>$$</p>
 <h3 id="FISM"><a href="#FISM" class="headerlink" title="FISM"></a>FISM</h3><p>预测模型：<br>$$<br>\tilde r_{ui} = b_u + b_i + \left \vert R_u^+ \right \vert^{- \alpha} \sum_{j \in \mathcal{R_u^+}} \mathbf{p}_j \mathbf{q}_i^T \tag{6}<br>$$</p>
 <p>作者提出了两种版本的FISM模型，它们使用不同的损失函数。</p>
-<h4 id="FISMrmse"><a href="#FISMrmse" class="headerlink" title="FISMrmse"></a>FISMrmse</h4><p>平方误差损失函数：<br>$$<br>\mathcal{L(\cdot)} = \sum_{i \in \mathcal{D}} \sum_{u \in \mathcal{C}} (r_{ui} - \hat r_{ui})^2 \tag{7}<br>$$<br>估计值$\hat r_{ui}$的计算方法如下：<br>$$<br>\hat r_{ui} = b_u + b_i + (\left \vert R_u^+ \right \vert - 1)^{- \alpha} \sum_{j \in \mathcal{R_u^+ \setminus \ \{i\}}} \mathbf{p}_j \mathbf{q}_i^T \tag{8}<br>$$<br>由于FISM只关注隐式反馈，$\forall j \in \mathcal{R}_u^+$，$r_{uj} = 1$，因此，在公式(7)中省略了$r_{uj}$。</p>
+<h4 id="FISMrmse"><a href="#FISMrmse" class="headerlink" title="FISMrmse"></a>FISMrmse</h4><p>平方误差损失函数：<br>$$<br>\mathcal{L(\cdot)} = \sum_{i \in \mathcal{D}} \sum_{u \in \mathcal{C}} (r_{ui} - \hat r_{ui})^2 \tag{7}<br>$$<br>估计值$\hat r_{ui}$的计算方法如下：<br>$$<br>\hat r_{ui} = b_u + b_i + (\left \vert R_u^+ \right \vert - 1)^{- \alpha} \sum_{j \in \mathcal{R_u^+ \setminus \ \{i\}}} \mathbf{p}_j \mathbf{q}_i^T \tag{8}<br>$$<br>由于FISM只关注隐式反馈，$\forall j \in \mathcal{R}_u^+$，$r_{uj} = 1$，因此，在公式(8)中省略了$r_{uj}$。</p>
 <p>目标函数：<br>$$<br>L = \min_{\mathbf{P,Q}} \frac{1}{2} \sum_{(u,i) \in R} \left \Vert r_{ui} - \hat r_{ui} \right \Vert_F^2 + \frac{\beta}{2} (\left \Vert \mathbf{P} \right \Vert_F^2 + \left \Vert \mathbf{Q} \right \Vert_F^2) + \frac{\lambda}{2} \left \Vert \mathbf{b_u} \right \Vert_2^2 + \frac{\gamma}{2} \left \Vert \mathbf{b_i} \right \Vert_2^2 \tag{9}<br>$$<br>其中，$\mathbf{b_u}$和$\mathbf{b_i}$分别是用户和物品的偏置向量。</p>
 <p>使用用户-物品交互矩阵$\mathbf{R}$中的所有元素来计算损失函数是非常耗时的，因此，作者提出对$\mathbf{R}$中的零元素（负样本）进行采样。每次迭代时，随机选择$\rho \cdot nnz(R)$个零元素。</p>
 <p>其中，$\rho$是采样因子（sample factor），$nnz(R)$是$\mathbf{R}$中非零项（non-zero entries）的个数。</p>
-<p>实验表明，当采样比$\rho \in [3,15]​$时，足够产生最佳的模型。</p>
+<p>实验表明，当采样比$\rho \in [3,15]$时，足够产生最佳的模型。</p>
 <p>训练算法：</p>
 <p><img src="/static/images/fism-rmse-algorithm.png" alt=""></p>
 <h4 id="FISMauc"><a href="#FISMauc" class="headerlink" title="FISMauc"></a>FISMauc</h4><p>基于Bayesian Personalized Ranking（BPR）的排序损失函数：<br>$$<br>\mathcal{L(\cdot)} = \sum_{u \in \mathcal{C}} \sum_{i \in \mathcal{R}_u^+,\ j \in \mathcal{R}_u^-} ( (r_{ui} - r_{uj}) - (\hat r_{ui} - \hat r_{uj}) )^2 \tag{10}<br>$$<br>其中，$R_u^+$表示用户评分过的物品，$R_u^-$表示用户未评分过的物品。</p>
@@ -520,8 +520,8 @@
 <p>此外，FISMauc的采样方式与FISMrmse相似。</p>
 <p>训练算法：</p>
 <p><img src="/static/images/fism-auc-algorithm.png" alt=""></p>
-<h3 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h3><p>1.矩阵$\mathbf{A} \in \mathbb{R}^{m \times n}$的Frobenius范数$\left \Vert \mathbf{A} \right \Vert_F$定义为：<br>$$<br>\left \Vert \mathbf{A} \right \Vert_F = \sqrt{tr(\mathbf{A}^T \mathbf{A})} = \sqrt {\sum_{i=1}^m \sum_{j=1}^n A_{ij}^2} \tag{12}<br>$$<br>2.对于矩阵$\mathbf{A}​$<br>$$<br>\frac{\partial \left \Vert \mathbf{A} \right \Vert_F^2}{\partial \mathbf{A}} = 2 \mathbf{A} \tag{13}<br>$$<br>对于向量$\mathbf{x}​$<br>$$<br>\frac{\partial \left \Vert \mathbf{x} \right \Vert_2^2}{\partial \mathbf{x}} = 2 \mathbf{x} \tag{14}<br>$$</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>1.S. Kabbur, X. Ning, and G. Karypis, “FISM: Factored item similar- ity models for top-n recommender systems,” in Proc. 19th ACM SIGKDD Conf. Knowl. Discovery Data Mining, 2013, pp. 659–667.</p>
+<h3 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h3><p>1.矩阵$\mathbf{A} \in \mathbb{R}^{m \times n}$的Frobenius范数$\left \Vert \mathbf{A} \right \Vert_F$定义为：<br>$$<br>\left \Vert \mathbf{A} \right \Vert_F = \sqrt{tr(\mathbf{A}^T \mathbf{A})} = \sqrt {\sum_{i=1}^m \sum_{j=1}^n A_{ij}^2} \tag{12}<br>$$<br>2.对于矩阵$\mathbf{A}$<br>$$<br>\frac{\partial \left \Vert \mathbf{A} \right \Vert_F^2}{\partial \mathbf{A}} = 2 \mathbf{A} \tag{13}<br>$$<br>对于向量$\mathbf{x}$<br>$$<br>\frac{\partial \left \Vert \mathbf{x} \right \Vert_2^2}{\partial \mathbf{x}} = 2 \mathbf{x} \tag{14}<br>$$</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>1.S. Kabbur, X. Ning, and G. Karypis, “FISM: Factored item similarity models for top-n recommender systems,” in Proc. 19th ACM SIGKDD Conf. Knowl. Discovery Data Mining, 2013, pp. 659–667.</p>
 <p>2.<a href="https://github.com/guoguibing/librec/blob/3.0.0/core/src/main/java/net/librec/recommender/cf/ranking/FISMrmseRecommender.java" target="_blank" rel="noopener">https://github.com/guoguibing/librec/blob/3.0.0/core/src/main/java/net/librec/recommender/cf/ranking/FISMrmseRecommender.java</a></p>
 <p>3.<a href="https://github.com/guoguibing/librec/blob/3.0.0/core/src/main/java/net/librec/recommender/cf/ranking/FISMaucRecommender.java" target="_blank" rel="noopener">https://github.com/guoguibing/librec/blob/3.0.0/core/src/main/java/net/librec/recommender/cf/ranking/FISMaucRecommender.java</a></p>
 
@@ -733,7 +733,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">406</span>
+                  <span class="site-state-item-count">407</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -814,19 +814,19 @@
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://www.liuchuo.net" title="柳婼 の blog" target="_blank">柳婼 の blog</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.qinjiangbo.com" title="心灵港" target="_blank">心灵港</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
                     <a href="https://lumingdong.cn" title="卢明冬的博客" target="_blank">卢明冬的博客</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
                     <a href="http://lipixun.me" title="lipixun" target="_blank">lipixun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liuchuo.net" title="柳婼 の blog" target="_blank">柳婼 の blog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.qinjiangbo.com" title="心灵港" target="_blank">心灵港</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
