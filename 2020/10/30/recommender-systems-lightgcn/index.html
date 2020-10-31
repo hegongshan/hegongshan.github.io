@@ -80,10 +80,12 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="LightGCN一文发表在SIGIR 2020上，是NGCF的后续研究。作者发现GCN中的特征转换和非线性激活对提高性能没有太多帮助，还增加了训练的难度，甚至降低了推荐的性能。因此，作者提出了一个只使用GCN的领域聚合部分的推荐模型——LightGCN。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-10-30T13:41:41.197Z">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/lightgcn.png">
+<meta property="og:updated_time" content="2020-10-31T14:13:08.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读 LightGCN&amp;#58 Simplifying and Powering Graph Convolution Network for Recommendation">
 <meta name="twitter:description" content="LightGCN一文发表在SIGIR 2020上，是NGCF的后续研究。作者发现GCN中的特征转换和非线性激活对提高性能没有太多帮助，还增加了训练的难度，甚至降低了推荐的性能。因此，作者提出了一个只使用GCN的领域聚合部分的推荐模型——LightGCN。">
+<meta name="twitter:image" content="https://www.hegongshan.com/static/images/lightgcn.png">
 
 
 
@@ -405,8 +407,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-10-30T21:41:41+08:00">
-                2020-10-30
+              <time title="更新于" itemprop="dateModified" datetime="2020-10-31T22:13:08+08:00">
+                2020-10-31
               </time>
             
           </span>
@@ -460,7 +462,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  270
+                  644
                 </span>
               
 
@@ -487,11 +489,24 @@
       
         <p>LightGCN一文发表在SIGIR 2020上，是NGCF的后续研究。作者发现GCN中的特征转换和非线性激活对提高性能没有太多帮助，还增加了训练的难度，甚至降低了推荐的性能。因此，作者提出了一个只使用GCN的领域聚合部分的推荐模型——LightGCN。</p>
 <a id="more"></a>
-<h3 id="LightGCN"><a href="#LightGCN" class="headerlink" title="LightGCN"></a>LightGCN</h3><h4 id="Light-Graph-Convolution（LGC）"><a href="#Light-Graph-Convolution（LGC）" class="headerlink" title="Light Graph Convolution（LGC）"></a>Light Graph Convolution（LGC）</h4><p>$$<br>\mathbf{e}_u^{(k+1)} = \sum_{i \in \mathcal{N}_u} \frac{1}{\sqrt{\vert \mathcal{N}_u \vert} \sqrt{\vert \mathcal{N}_i \vert}} \mathbf{e}_i^{(k)}, \\<br>\mathbf{e}_i^{(k+1)} = \sum_{u \in \mathcal{N}_i} \frac{1}{\sqrt{\vert \mathcal{N}_i \vert} \sqrt{\vert \mathcal{N}_u \vert}} \mathbf{e}_u^{(k)}<br>$$</p>
-<h4 id="模型预测"><a href="#模型预测" class="headerlink" title="模型预测"></a>模型预测</h4><p>$$<br>\mathbf{e}_u = \sum_{k=0}^K \alpha_k \mathbf{e}_u^{(k)} \\<br>\mathbf{e}_i = \sum_{k=0}^K \alpha_k \mathbf{e}_i^{(k)}<br>$$</p>
+<h3 id="LightGCN"><a href="#LightGCN" class="headerlink" title="LightGCN"></a>LightGCN</h3><p><img src="/static/images/lightgcn.png" alt="模型图"></p>
+<h4 id="Light-Graph-Convolution（LGC）"><a href="#Light-Graph-Convolution（LGC）" class="headerlink" title="Light Graph Convolution（LGC）"></a>Light Graph Convolution（LGC）</h4><p>$$<br>\mathbf{e}_u^{(k+1)} = \sum_{i \in \mathcal{N}_u} \frac{1}{\sqrt{\vert \mathcal{N}_u \vert} \sqrt{\vert \mathcal{N}_i \vert}} \mathbf{e}_i^{(k)}, \\<br>\mathbf{e}_i^{(k+1)} = \sum_{u \in \mathcal{N}_i} \frac{1}{\sqrt{\vert \mathcal{N}_i \vert} \sqrt{\vert \mathcal{N}_u \vert}} \mathbf{e}_u^{(k)} \tag{1}<br>$$</p>
+<p>这里，作者遵循标准的GCN设计，使用$\frac{1}{\sqrt{\vert \mathcal{N}_u \vert} \sqrt{\vert \mathcal{N}_i \vert}}$作为归一化项，从而避免embedding的规模随着图卷积操作的增加而不断扩大。</p>
+<h4 id="模型预测"><a href="#模型预测" class="headerlink" title="模型预测"></a>模型预测</h4><p>作者使用各层embedding的带权和作为最终的embedding。<br>$$<br>\mathbf{e}_u = \sum_{k=0}^K \alpha_k \mathbf{e}_u^{(k)} \\<br>\mathbf{e}_i = \sum_{k=0}^K \alpha_k \mathbf{e}_i^{(k)} \tag{2}<br>$$</p>
 <p>其中，$\alpha_k \ge 0$表示第k层embedding的重要程度。在论文中，作者令$\alpha_k = \frac{1}{K + 1}$。</p>
-<p>和NGCF一样，作者使用用户和物品表示的内积作为模型的预测结果。<br>$$<br>\hat y_{ui} = \mathbf{e}_u^T \mathbf{e}_i<br>$$</p>
-<h4 id="矩阵形式"><a href="#矩阵形式" class="headerlink" title="矩阵形式"></a>矩阵形式</h4><p>邻接矩阵：<br>$$<br>A =<br>\begin{bmatrix}<br>\mathbf{0} &amp; \mathbf{R} \\<br>\mathbf{R}^T &amp; 0<br>\end{bmatrix}<br>$$<br>(正在完善中…)</p>
+<p>和NGCF一样，作者使用用户和物品embedding的内积作为模型的预测结果。<br>$$<br>\hat y_{ui} = \mathbf{e}_u^T \mathbf{e}_i \tag{3}<br>$$</p>
+<h4 id="矩阵形式"><a href="#矩阵形式" class="headerlink" title="矩阵形式"></a>矩阵形式</h4><p>邻接矩阵：<br>$$<br>\mathbf{A} =<br>\begin{bmatrix}<br>\mathbf{0} &amp; \mathbf{R} \\<br>\mathbf{R}^T &amp; 0<br>\end{bmatrix} \tag{4}<br>$$<br>令第0层的embedding矩阵为$\mathbf{E}^{(0)} \in \mathbb{R}^{(M+N) \times T}$，T为embedding的大小，则LGC的矩阵形式为：<br>$$<br>\begin{aligned}<br>\mathbf{E}^{(k + 1)}<br>&amp;= (\mathbf{D}^{-\frac{1}{2}} \mathbf{A} \mathbf{D}^{-\frac{1}{2}}) \mathbf{E}^{(k)} \\<br>&amp;= \mathbf{\tilde A} \mathbf{E}^{(k)}<br>\end{aligned} \tag{5}<br>$$<br>其中，</p>
+<ul>
+<li><p>$\mathbf{D} \in \mathbb{R}^{(M + N)\times(M + N)}$是一个对角矩阵，对角线上的每个元素$\mathbf{D}_{ii}$表示邻接矩阵$\mathbf{A}$第i个行向量中非零元素的个数，又称度矩阵（degree matrix）；</p>
+</li>
+<li><p>$\mathbf{\tilde A} = \mathbf{D}^{-\frac{1}{2}} \mathbf{A} \mathbf{D}^{-\frac{1}{2}}$。</p>
+</li>
+</ul>
+<p>从而，我们得到了最终的embedding矩阵：<br>$$<br>\begin{aligned}<br>\mathbf{E}<br>&amp;= \alpha_0 \mathbf{E}^{(0)} + \alpha_1 \mathbf{E}^{(1)} + \cdots + \alpha_K \mathbf{E}^{(K)} \\<br>&amp;= \alpha_0 \mathbf{E}^{(0)} + \alpha_1 \mathbf{\tilde A} \mathbf{E}^{(0)} + \cdots + \alpha_K \mathbf{\tilde A}^K  \mathbf{E}^{(0)}<br>\end{aligned} \tag{6}<br>$$</p>
+<h3 id="补充知识"><a href="#补充知识" class="headerlink" title="补充知识"></a>补充知识</h3><p><strong>ablation study</strong>：在论文中反复出现，翻译为“消融实验”，指的是移除模型或算法中的一些变量或者操作，观察其对性能的影响。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>论文地址：<a href="http://staff.ustc.edu.cn/~hexn/papers/sigir20-LightGCN.pdf" target="_blank" rel="noopener">http://staff.ustc.edu.cn/~hexn/papers/sigir20-LightGCN.pdf</a></p>
+<p>实验代码：<a href="https://github.com/kuandeng/LightGCN" target="_blank" rel="noopener">https://github.com/kuandeng/LightGCN</a></p>
+<p>什么是 ablation study？ - 尼箍纳斯凯奇的回答 - 知乎 <a href="https://www.zhihu.com/question/60170398/answer/207709956" target="_blank" rel="noopener">https://www.zhihu.com/question/60170398/answer/207709956</a></p>
 
       
     </div>
@@ -820,7 +835,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#LightGCN"><span class="nav-number">1.</span> <span class="nav-text">LightGCN</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Light-Graph-Convolution（LGC）"><span class="nav-number">1.1.</span> <span class="nav-text">Light Graph Convolution（LGC）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型预测"><span class="nav-number">1.2.</span> <span class="nav-text">模型预测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵形式"><span class="nav-number">1.3.</span> <span class="nav-text">矩阵形式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#LightGCN"><span class="nav-number">1.</span> <span class="nav-text">LightGCN</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Light-Graph-Convolution（LGC）"><span class="nav-number">1.1.</span> <span class="nav-text">Light Graph Convolution（LGC）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模型预测"><span class="nav-number">1.2.</span> <span class="nav-text">模型预测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#矩阵形式"><span class="nav-number">1.3.</span> <span class="nav-text">矩阵形式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充知识"><span class="nav-number">2.</span> <span class="nav-text">补充知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
