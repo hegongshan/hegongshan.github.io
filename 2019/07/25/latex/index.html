@@ -80,7 +80,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="LaTex文档的基本格式: 1234567\documentclass[option]&amp;#123;article&amp;#125;% 导入各种工具包\usepackage&amp;#123;xxx&amp;#125;\begin&amp;#123;document&amp;#125;	% 所有的其他内容均放在这里	content...\end&amp;#123;document&amp;#125;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-11-02T15:22:47.975Z">
+<meta property="og:updated_time" content="2020-12-03T14:21:37.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LaTex总结">
 <meta name="twitter:description" content="LaTex文档的基本格式: 1234567\documentclass[option]&amp;#123;article&amp;#125;% 导入各种工具包\usepackage&amp;#123;xxx&amp;#125;\begin&amp;#123;document&amp;#125;	% 所有的其他内容均放在这里	content...\end&amp;#123;document&amp;#125;">
@@ -395,8 +395,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-11-02T23:22:47+08:00">
-                2020-11-02
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-03T22:21:37+08:00">
+                2020-12-03
               </time>
             
           </span>
@@ -450,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.2k
+                  1.3k
                 </span>
               
 
@@ -510,6 +510,7 @@
 <li><code>\caption</code>：图片标题；</li>
 <li><code>\label</code>：为图片添加一个标签，便于在其他地方引用该图片。</li>
 </ul>
+<h4 id="插入子图"><a href="#插入子图" class="headerlink" title="插入子图"></a>插入子图</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;subfigure&#125;</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="插入表格"><a href="#插入表格" class="headerlink" title="插入表格"></a>插入表格</h3><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;table&#125;</span></span></span><br><span class="line">    <span class="tag">\<span class="name">caption</span><span class="string">&#123;表格的标题&#125;</span></span></span><br><span class="line">    <span class="tag">\<span class="name">begin</span><span class="string">&#123;tabular&#125;</span><span class="string">&#123;|ccc|&#125;</span></span></span><br><span class="line">        <span class="tag">\<span class="name">hline</span></span></span><br><span class="line">        直角a &amp; 直角b &amp; 直角c <span class="tag">\<span class="name">\</span></span></span><br><span class="line">        <span class="tag">\<span class="name">hline</span></span></span><br><span class="line">        3 &amp; 4 &amp; 5 <span class="tag">\<span class="name">\</span></span></span><br><span class="line">        5 &amp; 12 &amp; 13 <span class="tag">\<span class="name">\</span></span></span><br><span class="line">        <span class="tag">\<span class="name">hline</span></span></span><br><span class="line">    <span class="tag">\<span class="name">end</span><span class="string">&#123;tabular&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;table&#125;</span></span></span><br></pre></td></tr></table></figure>
 <p>tabular中有一个参数，里面声明了表格中列的模式。|ccc|表示表格有三列，都是居中对齐，在第一列前面和第三列后面各有一条垂直的表格线。类似的还有l（左对齐）和r（右对齐）。</p>
 <p>行与行之间用命令<code>\\</code>隔开，每行内部的表项则用符号&amp;隔开。表格中的横线用<code>\hline</code>命令。</p>
@@ -553,6 +554,25 @@
 <p>在正文中，使用<code>\cite</code>命令引用需要的文献，<code>\cite</code>命令引用的位置会出现文献的编号，同时将提示LATEX列出所引用的文献</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;document&#125;</span></span></span><br><span class="line">...</span><br><span class="line">ncf<span class="tag">\<span class="name">cite</span><span class="string">&#123;He:2017:NCF:3038912.3052569&#125;</span></span></span><br><span class="line"><span class="comment">% 从文献数据库reference.bib中获取文献信息，打印参考文献列表</span></span><br><span class="line"><span class="tag">\<span class="name">bibliography</span><span class="string">&#123;reference&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;document&#125;</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="数学公式"><a href="#数学公式" class="headerlink" title="数学公式"></a>数学公式</h3><p>参看<a href="/2018/07/16/mathjax-tutorial/">MathJax语法</a></p>
+<h3 id="引用与跳转"><a href="#引用与跳转" class="headerlink" title="引用与跳转"></a>引用与跳转</h3><p>1.如果需要在论文中引用公式、图表，可以使用<code>\label</code>和<code>\ref</code>。</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;equation&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">label</span><span class="string">&#123;xxx&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;equation&#125;</span></span></span><br><span class="line"></span><br><span class="line">Equation <span class="tag">\<span class="name">ref</span><span class="string">&#123;xxx&#125;</span></span></span><br></pre></td></tr></table></figure>
+<p>注意：ref中的内容必须与label中的内容一致，才能完成引用。</p>
+<p>2.如果要支持引用跳转，则需要引入<code>hyperref</code>包</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">usepackage</span><span class="string">&#123;hyperref&#125;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="特殊符号"><a href="#特殊符号" class="headerlink" title="特殊符号"></a>特殊符号</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">特殊符号</th>
+<th style="text-align:center">代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">破折号</td>
+<td style="text-align:center"><code>---</code>（三个英文连字符）</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -762,7 +782,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">411</span>
+                  <span class="site-state-item-count">414</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -773,7 +793,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -784,7 +804,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -885,7 +905,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">1.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用中文"><span class="nav-number">2.</span> <span class="nav-text">使用中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章标题"><span class="nav-number">3.</span> <span class="nav-text">文章标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作者"><span class="nav-number">4.</span> <span class="nav-text">作者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">5.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录"><span class="nav-number">6.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页"><span class="nav-number">7.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文字"><span class="nav-number">8.</span> <span class="nav-text">文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚注"><span class="nav-number">9.</span> <span class="nav-text">脚注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入图片"><span class="nav-number">10.</span> <span class="nav-text">插入图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入表格"><span class="nav-number">11.</span> <span class="nav-text">插入表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表"><span class="nav-number">12.</span> <span class="nav-text">列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有序列表"><span class="nav-number">12.1.</span> <span class="nav-text">有序列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无序列表"><span class="nav-number">12.2.</span> <span class="nav-text">无序列表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#章节"><span class="nav-number">13.</span> <span class="nav-text">章节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分栏"><span class="nav-number">14.</span> <span class="nav-text">分栏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">15.</span> <span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学公式"><span class="nav-number">16.</span> <span class="nav-text">数学公式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#注释"><span class="nav-number">1.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用中文"><span class="nav-number">2.</span> <span class="nav-text">使用中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章标题"><span class="nav-number">3.</span> <span class="nav-text">文章标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作者"><span class="nav-number">4.</span> <span class="nav-text">作者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">5.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录"><span class="nav-number">6.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页"><span class="nav-number">7.</span> <span class="nav-text">分页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文字"><span class="nav-number">8.</span> <span class="nav-text">文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚注"><span class="nav-number">9.</span> <span class="nav-text">脚注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入图片"><span class="nav-number">10.</span> <span class="nav-text">插入图片</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#插入子图"><span class="nav-number">10.1.</span> <span class="nav-text">插入子图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入表格"><span class="nav-number">11.</span> <span class="nav-text">插入表格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表"><span class="nav-number">12.</span> <span class="nav-text">列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#有序列表"><span class="nav-number">12.1.</span> <span class="nav-text">有序列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无序列表"><span class="nav-number">12.2.</span> <span class="nav-text">无序列表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#章节"><span class="nav-number">13.</span> <span class="nav-text">章节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分栏"><span class="nav-number">14.</span> <span class="nav-text">分栏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">15.</span> <span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学公式"><span class="nav-number">16.</span> <span class="nav-text">数学公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用与跳转"><span class="nav-number">17.</span> <span class="nav-text">引用与跳转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊符号"><span class="nav-number">18.</span> <span class="nav-text">特殊符号</span></a></li></ol></div>
             
 
           </div>
