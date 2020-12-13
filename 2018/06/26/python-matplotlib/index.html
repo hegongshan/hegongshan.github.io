@@ -81,7 +81,7 @@
 <meta property="og:description" content="Matplotlib是一个Python的2D绘图库。 1import matplotlib.pyplot as plt">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/sigmoid-legend.png">
-<meta property="og:updated_time" content="2020-12-04T18:54:03.202Z">
+<meta property="og:updated_time" content="2020-12-13T15:09:39.472Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Matplotlib入门">
 <meta name="twitter:description" content="Matplotlib是一个Python的2D绘图库。 1import matplotlib.pyplot as plt">
@@ -397,8 +397,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-12-05T02:54:03+08:00">
-                2020-12-05
+              <time title="更新于" itemprop="dateModified" datetime="2020-12-13T23:09:39+08:00">
+                2020-12-13
               </time>
             
           </span>
@@ -452,7 +452,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.3k
+                  1.5k
                 </span>
               
 
@@ -519,6 +519,19 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bar(x, height, width=<span class="number">0.8</span>, bottom=<span class="keyword">None</span>, *, align=<span class="string">'center'</span>, data=<span class="keyword">None</span>, **kwargs)</span><br></pre></td></tr></table></figure>
 <h3 id="饼状图"><a href="#饼状图" class="headerlink" title="饼状图"></a>饼状图</h3><p>绘制饼状图，需要使用matplotlib.pyplot中的<strong>pie</strong>方法</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pie(x, explode=<span class="keyword">None</span>, labels=<span class="keyword">None</span>, colors=<span class="keyword">None</span>, autopct=<span class="keyword">None</span>,</span><br><span class="line">        pctdistance=<span class="number">0.6</span>, shadow=<span class="keyword">False</span>, labeldistance=<span class="number">1.1</span>, startangle=<span class="keyword">None</span>,</span><br><span class="line">        radius=<span class="keyword">None</span>, counterclock=<span class="keyword">True</span>, wedgeprops=<span class="keyword">None</span>, textprops=<span class="keyword">None</span>,</span><br><span class="line">        center=(<span class="number">0</span>, <span class="number">0</span>), frame=<span class="keyword">False</span>, rotatelabels=<span class="keyword">False</span>, hold=<span class="keyword">None</span>, data=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="子图"><a href="#子图" class="headerlink" title="子图"></a>子图</h3><p>如果需要一次性绘制多张图片，需要使用matplotlib.pyplot中的<strong>subplot</strong>方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">subplot(nrows, ncols, index, **kwargs)</span><br><span class="line">subplot(pos, **kwargs)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>(<em>nrows</em>, <em>ncols</em>, <em>index</em>)：nrows表示总行数，ncols表示总列数，index表示当前图片的编号（index从1开始，并按照从左至右、从上至下的顺序依次增加）。</li>
+<li>pos：包含三个数字的整数，每一位与上面三个参数一一对应。</li>
+</ul>
+<p>例如，<code>subplot(235)</code>，等价于<code>subplot(2,3,5)</code>。</p>
+<p>注意：如果使用该方式创建子图，<strong>子图的数量不能超过9张</strong>。</p>
+<h4 id="调整子图布局"><a href="#调整子图布局" class="headerlink" title="调整子图布局"></a>调整子图布局</h4><p>需要使用matplotlib.pyplot中的<strong>subplots_adjust</strong>方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subplots_adjust(left=<span class="keyword">None</span>, bottom=<span class="keyword">None</span>, right=<span class="keyword">None</span>, top=<span class="keyword">None</span>, wspace=<span class="keyword">None</span>, hspace=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>left：图片左边界的位置</li>
+</ul>
 <h3 id="保存图片"><a href="#保存图片" class="headerlink" title="保存图片"></a>保存图片</h3><p>保存图片，需要使用matplotlib.pyplot中的savefig方法。</p>
 <p>需要注意的是：<strong>savefig必须在show方法之前执行</strong>。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.savefig(<span class="string">'./test.eps'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
@@ -881,7 +894,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置图片标题"><span class="nav-number">1.</span> <span class="nav-text">设置图片标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴文字"><span class="nav-number">2.</span> <span class="nav-text">设置x/y轴文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴的刻度范围"><span class="nav-number">3.</span> <span class="nav-text">设置x/y轴的刻度范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴的刻度"><span class="nav-number">4.</span> <span class="nav-text">设置x/y轴的刻度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示图片"><span class="nav-number">5.</span> <span class="nav-text">显示图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用中文"><span class="nav-number">6.</span> <span class="nav-text">使用中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折线图"><span class="nav-number">7.</span> <span class="nav-text">折线图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线条样式及颜色"><span class="nav-number">7.1.</span> <span class="nav-text">线条样式及颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用关键字参数"><span class="nav-number">7.2.</span> <span class="nav-text">常用关键字参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图"><span class="nav-number">8.</span> <span class="nav-text">散点图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#柱状图"><span class="nav-number">9.</span> <span class="nav-text">柱状图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#饼状图"><span class="nav-number">10.</span> <span class="nav-text">饼状图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存图片"><span class="nav-number">11.</span> <span class="nav-text">保存图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加水平-垂直线"><span class="nav-number">12.</span> <span class="nav-text">添加水平/垂直线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示图例"><span class="nav-number">13.</span> <span class="nav-text">显示图例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示网格"><span class="nav-number">14.</span> <span class="nav-text">显示网格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改坐标轴的位置"><span class="nav-number">15.</span> <span class="nav-text">更改坐标轴的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对LaTex的支持"><span class="nav-number">16.</span> <span class="nav-text">对LaTex的支持</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置图片标题"><span class="nav-number">1.</span> <span class="nav-text">设置图片标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴文字"><span class="nav-number">2.</span> <span class="nav-text">设置x/y轴文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴的刻度范围"><span class="nav-number">3.</span> <span class="nav-text">设置x/y轴的刻度范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置x-y轴的刻度"><span class="nav-number">4.</span> <span class="nav-text">设置x/y轴的刻度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示图片"><span class="nav-number">5.</span> <span class="nav-text">显示图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用中文"><span class="nav-number">6.</span> <span class="nav-text">使用中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折线图"><span class="nav-number">7.</span> <span class="nav-text">折线图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线条样式及颜色"><span class="nav-number">7.1.</span> <span class="nav-text">线条样式及颜色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用关键字参数"><span class="nav-number">7.2.</span> <span class="nav-text">常用关键字参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图"><span class="nav-number">8.</span> <span class="nav-text">散点图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#柱状图"><span class="nav-number">9.</span> <span class="nav-text">柱状图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#饼状图"><span class="nav-number">10.</span> <span class="nav-text">饼状图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子图"><span class="nav-number">11.</span> <span class="nav-text">子图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调整子图布局"><span class="nav-number">11.1.</span> <span class="nav-text">调整子图布局</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存图片"><span class="nav-number">12.</span> <span class="nav-text">保存图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加水平-垂直线"><span class="nav-number">13.</span> <span class="nav-text">添加水平/垂直线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示图例"><span class="nav-number">14.</span> <span class="nav-text">显示图例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示网格"><span class="nav-number">15.</span> <span class="nav-text">显示网格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改坐标轴的位置"><span class="nav-number">16.</span> <span class="nav-text">更改坐标轴的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对LaTex的支持"><span class="nav-number">17.</span> <span class="nav-text">对LaTex的支持</span></a></li></ol></div>
             
 
           </div>
