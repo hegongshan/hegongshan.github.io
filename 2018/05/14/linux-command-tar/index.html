@@ -187,8 +187,8 @@
         </li>
       
         
-        <li class="menu-item menu-item-coding-interview">
-          <a href="/coding-interview/" rel="section">
+        <li class="menu-item menu-item-sword-to-offer">
+          <a href="/sword-to-offer/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-code-fork"></i> <br>
             
@@ -450,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  265
+                  328
                 </span>
               
 
@@ -487,6 +487,7 @@
 <li>-x：用于解压文件</li>
 <li>-C：切换到指定目录</li>
 <li>-z：通过gzip命令处理文件。简单来说，如果需要压缩为*.gz文件，或者解压缩*.gz文件，就要带上-z</li>
+<li>-j：处理*.bz2文件</li>
 </ul>
 <h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>1.解压缩tar.gz文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf apache-tomcat-8.5.31.tar.gz</span><br></pre></td></tr></table></figure>
@@ -495,6 +496,10 @@
 <p>3.将某个（些）目录或文件压缩为tar.gz文件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zcvf archive.tar.gz file1 file2 ...</span><br></pre></td></tr></table></figure>
 <p>archive.tar.gz是生成的压缩文件名，file1、file2等是要压缩的文件和目录列表。</p>
+<h4 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h4><p>1.没有安装bzip2</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@hgs ~]# tar -jxf xxx.tar.bz2</span><br><span class="line">tar (child): bzip2：无法 exec: 没有那个文件或目录</span><br><span class="line">tar (child): Error is not recoverable: exiting now</span><br><span class="line">tar: Child returned status 2</span><br><span class="line">tar: Error is not recoverable: exiting now</span><br></pre></td></tr></table></figure>
+<p>安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> CentOS</span></span><br><span class="line">yum install -y bzip2</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -708,7 +713,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">427</span>
+                  <span class="site-state-item-count">456</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -719,7 +724,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -730,7 +735,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -831,7 +836,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数说明："><span class="nav-number">1.</span> <span class="nav-text">参数说明：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数说明："><span class="nav-number">1.</span> <span class="nav-text">参数说明：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见问题"><span class="nav-number">3.</span> <span class="nav-text">常见问题</span></a></li></ol></div>
             
 
           </div>

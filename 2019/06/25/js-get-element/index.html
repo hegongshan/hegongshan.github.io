@@ -80,7 +80,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="在JavaScript中，要想访问HTML元素，可以使用下面几种方法。 12345document.getElementById(id)document.getElementsByTagName(tagName)document.getElementsByClassName(className)document.querySelector(selector)document.querySelect">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-25T11:01:42.596Z">
+<meta property="og:updated_time" content="2021-08-04T16:51:28.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript访问HTML元素">
 <meta name="twitter:description" content="在JavaScript中，要想访问HTML元素，可以使用下面几种方法。 12345document.getElementById(id)document.getElementsByTagName(tagName)document.getElementsByClassName(className)document.querySelector(selector)document.querySelect">
@@ -187,8 +187,8 @@
         </li>
       
         
-        <li class="menu-item menu-item-coding-interview">
-          <a href="/coding-interview/" rel="section">
+        <li class="menu-item menu-item-sword-to-offer">
+          <a href="/sword-to-offer/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-code-fork"></i> <br>
             
@@ -395,8 +395,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-06-25T19:01:42+08:00">
-                2019-06-25
+              <time title="更新于" itemprop="dateModified" datetime="2021-08-05T00:51:28+08:00">
+                2021-08-05
               </time>
             
           </span>
@@ -450,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  585
+                  584
                 </span>
               
 
@@ -489,11 +489,9 @@
 <h3 id="querySelectorAll"><a href="#querySelectorAll" class="headerlink" title="querySelectorAll()"></a>querySelectorAll()</h3><p>该方法返回带有指定CSS样式选择器的所有元素，返回值类型为NodeList。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 访问类名为c-red的所有元素</span></span><br><span class="line"><span class="built_in">document</span>.querySelectorAll(<span class="string">".c-red"</span>);</span><br></pre></td></tr></table></figure>
 <h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p> 下面是一段简单的html片段。</p>
-<div id="main-div"><div class="c-red"><p id="demo-p">JavaScript</p><p>Java</p><p>C++</p></div><div class="c-red c-green"><p>Python</p><p>Ruby</p><p>Swift</p></div></div>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main-div"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"c-red"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"demo-p"</span>&gt;</span>JavaScript<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Java<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>C++<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"c-red c-green"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Python<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Ruby<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Swift<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><a id="btn-id" href="javascript:void(0);" target="_blank" rel="noopener"><br>访问ID为demo-p的元素    </a>&nbsp; &nbsp;<a id="btn-tag" href="javascript:void(0);" target="_blank" rel="noopener">访问标签名为p的所有元素</a>  &nbsp;<a id="btn-class-name" href="javascript:void(0);" target="_blank" rel="noopener">访问类名为c-red的所有元素</a> &nbsp;<a id="btn-query" href="javascript:void(0);" target="_blank" rel="noopener">访问类名为c-red的第一个元素</a></p>
-<p><a id="btn-query-all" href="javascript:void(0);" target="_blank" rel="noopener">访问类名为c-red的所有元素（querySelectorAll）</a></p>
+<p><div id="main-div"><div class="c-red"><p id="demo-p">JavaScript</p><p>Java</p><p>C++</p></div><div class="c-red c-green"><p>Python</p><p>Ruby</p><p>Swift</p></div></div><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main-div"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"c-red"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"demo-p"</span>&gt;</span>JavaScript<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Java<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>C++<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"c-red c-green"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Python<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Ruby<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Swift<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><a id="btn-id" href="javascript:void(0);" onclick="return false" target="_blank" rel="noopener"><br>访问ID为demo-p的元素    </a>&nbsp; &nbsp;<a id="btn-tag" href="javascript:void(0);" onclick="return false" target="_blank" rel="noopener">访问标签名为p的所有元素</a>  &nbsp;<a id="btn-class-name" href="javascript:void(0);" onclick="return false" target="_blank" rel="noopener">访问类名为c-red的所有元素</a> &nbsp;<a id="btn-query" href="javascript:void(0);" onclick="return false" target="_blank" rel="noopener">访问类名为c-red的第一个元素</a></p>
+<p><a id="btn-query-all" href="javascript:void(0);" onclick="return false" target="_blank" rel="noopener">访问类名为c-red的所有元素（querySelectorAll）</a></p>
 <script type="text/javascript">
     window.onload = function() {
         f("btn-id","demo-p",1);
@@ -737,7 +735,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">427</span>
+                  <span class="site-state-item-count">456</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -748,7 +746,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -759,7 +757,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-count">84</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
