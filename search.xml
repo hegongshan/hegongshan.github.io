@@ -2454,7 +2454,7 @@
   <entry>
     <title><![CDATA[Homebrew——MacOS中的包管理器]]></title>
     <url>%2F2019%2F10%2F06%2Fmacos-homebrew%2F</url>
-    <content type="text"><![CDATA[与Ubuntu和CentOS等Linux发行版相比，macOS没有预装wget和tree等命令。 如果需要安装这些缺失的软件包，可以使用Homebrew包管理器。 什么是HomebrewHomebrew是macOS中的第三方包管理器，可以方便地安装那些macOS中没有包含的UNIX工具，比如wget、tree等。 安装Homebrew安装Homebrew前，请确保已安装Xcode命令行工具。如果没有安装，在终端中输入如下命令： 1xcode-select --install 然后，开始安装Homebrew，在终端中输入如下命令： 1/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 安装软件包1brew install 包名 卸载软件包1brew uninstall 包名 升级软件包1brew upgrade [包名...] 若没有指定软件包，则对所有的软件包进行升级。 查看已安装的软件包1brew list 更新Homebrew12# 更新所有的软件包和Homebrewbrew update 搜索软件包1brew search 软件包 查看软件信息1brew info 软件包 显示帮助信息1brew help [command] 若没有指定命令名，则显示Homebrew的帮助信息；否则，显示该命令的帮助信息。 卸载Homebrew在终端中输入如下命令即可： 1ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)" 关于Homebrew的更多信息，请参看这里。]]></content>
+    <content type="text"><![CDATA[与Ubuntu和CentOS等Linux发行版相比，macOS没有预装wget和tree等命令。 如果需要安装这些缺失的软件包，可以使用Homebrew包管理器。 什么是HomebrewHomebrew是macOS中的第三方包管理器，可以方便地安装那些macOS中没有包含的UNIX工具，比如wget、tree等。 安装Homebrew安装Homebrew前，请确保已安装Xcode命令行工具。如果没有安装，在终端中输入如下命令： 1xcode-select --install 然后，开始安装Homebrew，在终端中输入如下命令： 1/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 安装软件包1brew install 包名 卸载软件包1brew uninstall 包名 升级软件包1brew upgrade [包名...] 若没有指定软件包，则对所有的软件包进行升级。 查看已安装的软件包1brew list 更新Homebrew12# 更新所有的软件包和Homebrewbrew update 搜索软件包1brew search 软件包 查看软件信息1brew info 软件包 后台服务管理在HomeBrew中，管理后台服务（如Redis和Nginx等）需要使用services命令。它的子命令有： 子命令 说明 list 列出当前用户的所有服务（services命令的默认行为） run 启动服务，开机或登录时不自动启动 start 启动服务，开机或登录时自动启动服务 stop 暂停服务 restart 重启服务 cleanup 清除所有未被使用的服务 显示帮助信息1brew help [command] 若没有指定命令名，则显示Homebrew的帮助信息；否则，显示该命令的帮助信息。 卸载Homebrew在终端中输入如下命令即可： 1ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)" 关于Homebrew的更多信息，请参看这里。]]></content>
       <categories>
         <category>macos</category>
       </categories>
@@ -4845,8 +4845,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -4857,8 +4857,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -4880,8 +4880,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
