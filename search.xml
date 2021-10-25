@@ -46,7 +46,7 @@
   <entry>
     <title><![CDATA[Linux中的inode与dentry]]></title>
     <url>%2F2021%2F10%2F09%2Ffile-system-dentry-inode%2F</url>
-    <content type="text"><![CDATA[理解文件系统中的inode与dentry。 inodeinode，全称为index node（索引节点），定义在include/linux/fs.h中： 12345678910111213141516struct inode &#123; umode_t i_mode; kuid_t i_uid; kgid_t i_gid; struct super_block *i_sb; unsigned long i_ino; /* inode number */ union &#123; const unsigned int i_nlink; unsigned int __i_nlink; &#125;; loff_t i_size; struct timespec64 i_atime; /* access time */ struct timespec64 i_mtime; /* modify time */ struct timespec64 i_ctime; /* change time */ // ...&#125; dentrydentry，全称为directory entry（目录项）。它定义在include/linux/dcache.h中： 123456789101112131415161718192021222324252627/* * "quick string" -- eases parameter passing, but more importantly * saves "metadata" about the string (ie length and the hash). * * hash comes first so it snuggles against d_parent in the * dentry. */struct qstr &#123; union &#123; struct &#123; HASH_LEN_DECLARE; &#125;; u64 hash_len; &#125;; const unsigned char *name;&#125;;struct dentry &#123; struct dentry *d_parent; /* 父目录 */ struct qstr d_name; /* 目录项名称 */ struct inode *d_inode; /* 索引节点 */ unsigned char d_iname[DNAME_INLINE_LEN]; /* 短名称 */ struct list_head d_child; /* 父目录链表 */ struct list_head d_subdirs; /* 子目录链表 */ // ....&#125; 其中，struct list_head定义在include/linux/types.h中： 123struct list_head &#123; struct list_head *next, *prev;&#125;; 参考资料 《Linux内核设计与实现》 https://github.com/torvalds/linux/]]></content>
+    <content type="text"><![CDATA[理解文件系统中的inode与dentry。 inodeinode，全称为index node（索引节点）。它定义在include/linux/fs.h中： 1234567891011121314151617181920struct inode &#123; umode_t i_mode; kuid_t i_uid; kgid_t i_gid; struct super_block *i_sb; unsigned long i_ino; /* inode number */ union &#123; const unsigned int i_nlink; /* 硬链接数 */ unsigned int __i_nlink; &#125;; dev_t i_rdev; /* 设备号 */ loff_t i_size; /* 文件大小（以位为单位）*/ struct timespec64 i_atime; /* access time */ struct timespec64 i_mtime; /* modify time */ struct timespec64 i_ctime; /* change time */ unsigned short i_bytes; atomic_t i_count; /* 内存引用计数 */ // ...&#125; 1.umode_t i_mode;中的类型umode_t定义在include/linux/types.h： 1typedef unsigned short umode_t; 在C语言中，short类型占用2个字节，共计16位。i_mode的内存布局如下所示： 123| file type | set-user-ID bit | set-group-ID bit | sticky | file mode |--------------------------------------------------------------------------| 4 bits | 1 bit | 1 bit | 1 bit | 9 bits | dentrydentry，全称为directory entry（目录项）。它定义在include/linux/dcache.h中： 123456789101112131415161718192021222324252627/* * "quick string" -- eases parameter passing, but more importantly * saves "metadata" about the string (ie length and the hash). * * hash comes first so it snuggles against d_parent in the * dentry. */struct qstr &#123; union &#123; struct &#123; HASH_LEN_DECLARE; &#125;; u64 hash_len; &#125;; const unsigned char *name;&#125;;struct dentry &#123; struct dentry *d_parent; /* 父目录 */ struct qstr d_name; /* 目录项名称 */ struct inode *d_inode; /* 索引节点 */ unsigned char d_iname[DNAME_INLINE_LEN]; /* 短名称 */ struct list_head d_child; /* 父目录链表 */ struct list_head d_subdirs; /* 子目录链表 */ // ....&#125; 其中，struct list_head定义在include/linux/types.h中： 1234// 双向链表struct list_head &#123; struct list_head *next, *prev;&#125;; Shell命令ls查看文件的相关属性ls -l 123hgs:storage-systems hegongshan$ ls -ltotal 16-rw-r--r--@ 1 hegongshan staff 4199 10 9 18:26 README.md 解析： 123[file mode] [number of links] [owner name] [group name] [number of bytes in the file] [modify time] [path name]modify time: [month] [day] [hour]:[minute] stat查看文件的状态信息。 参考资料 《Linux内核设计与实现》，机械工业出版社 https://github.com/torvalds/linux/]]></content>
       <categories>
         <category>file system</category>
       </categories>
@@ -4845,8 +4845,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -4857,8 +4857,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -4880,8 +4880,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
