@@ -80,13 +80,18 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="为了便于管理，通常会为服务器和个人计算机赋予一个可读的主机名。那么，如何修改Linux/macOS的主机名呢？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://www.hegongshan.com/static/images/macos-permanent-modify-hostname.png">
-<meta property="og:image" content="https://www.hegongshan.com/static/images/macos-permanent-modify-hostname2.png">
-<meta property="og:updated_time" content="2021-10-18T11:18:04.953Z">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/hostname-get-and-set.png">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/set-hostname-by-c.png">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/hostname-max-len.png">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/hostname-file-mode.png">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/set-hostname-by-file.png">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/modify-hostname-permanently-on-macos.png">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/modify-hostname-permanently-on-macos2.png">
+<meta property="og:updated_time" content="2021-10-29T14:37:52.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何修改Linux&#x2F;macOS的主机名">
 <meta name="twitter:description" content="为了便于管理，通常会为服务器和个人计算机赋予一个可读的主机名。那么，如何修改Linux/macOS的主机名呢？">
-<meta name="twitter:image" content="https://www.hegongshan.com/static/images/macos-permanent-modify-hostname.png">
+<meta name="twitter:image" content="https://www.hegongshan.com/static/images/hostname-get-and-set.png">
 
 
 
@@ -398,8 +403,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-10-18T19:18:04+08:00">
-                2021-10-18
+              <time title="更新于" itemprop="dateModified" datetime="2021-10-29T22:37:52+08:00">
+                2021-10-29
               </time>
             
           </span>
@@ -431,7 +436,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  151
+                  719
                 </span>
               
 
@@ -458,16 +463,38 @@
       
         <p>为了便于管理，通常会为服务器和个人计算机赋予一个可读的主机名。那么，如何修改Linux/macOS的主机名呢？</p>
 <a id="more"></a>
-<h3 id="临时修改"><a href="#临时修改" class="headerlink" title="临时修改"></a>临时修改</h3><p>1.使用hostname命令查看当前主机名。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hgs:~ hegongshan$ hostname</span><br><span class="line">hgs</span><br></pre></td></tr></table></figure>
-<p>2.hostname命令也可以修改主机名，<strong>重新进入终端后生效，重启后失效</strong>。</p>
-<h3 id="永久修改"><a href="#永久修改" class="headerlink" title="永久修改"></a>永久修改</h3><h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><p>对于Linux，只需要修改<code>/etc/hostname</code>文件即可：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/hostname</span><br></pre></td></tr></table></figure>
-<h4 id="macOS"><a href="#macOS" class="headerlink" title="macOS"></a>macOS</h4><p>对于macOS，可以使用<code>scutil</code>命令永久修改主机名。例如，将主机名更改为<code>gshe</code>：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scutil --set HostName gshe</span><br></pre></td></tr></table></figure>
-<p><img src="/static/images/macos-permanent-modify-hostname.png" alt=""></p>
+<h3 id="临时修改"><a href="#临时修改" class="headerlink" title="临时修改"></a>临时修改</h3><h4 id="hostname命令"><a href="#hostname命令" class="headerlink" title="hostname命令"></a>hostname命令</h4><p>在Linux/macOS中，hostname命令既可以查看当前主机名，也可以临时修改主机名。在Linux的hostname帮助手册中，我找到了如下的描述文字：</p>
+<blockquote>
+<p>Note, that this is <strong><em>effective  only  until  the  next  reboot</em></strong>.  Edit /etc/hostname for permanent change.</p>
+<p>Note, that <strong><em>only the super-user can change the names</em></strong>.</p>
+</blockquote>
+<p>言下之意是：第一，只有超级用户才能修改主机名；第二，使用这种方式进行修改，<strong>重启后就会失效</strong>。</p>
+<p>下面，我将使用该命令，将主机名修改为<code>33</code>（当前主机名为<code>hgs</code>）：</p>
+<p><img src="/static/images/hostname-get-and-set.png" alt=""></p>
+<p>在修改成功后，hostname输出了更新后的主机名。</p>
+<p>然而，终端中显示的主机名，即提示符<code>hegongshan@</code>和<code>:</code>中间的字符串仍然为原来的主机名<code>hgs</code>。此时，只需要退出当前终端，然后打开一个新的终端，就能看到修改后的主机名。</p>
+<h4 id="调用库函数"><a href="#调用库函数" class="headerlink" title="调用库函数"></a>调用库函数</h4><p>事实上，hostname命令调用了函数gethostname()和sethostname()去实现上面的查看和修改操作。</p>
+<p>这两个函数定义在&lt;unistd.h&gt;，函数原型如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 返回值: 成功返回0；否则，返回-1</span></span><br><span class="line"><span class="comment"> * 参数name: 缓冲区指针</span></span><br><span class="line"><span class="comment"> * 参数len : 缓冲区占用的字节数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>      <span class="title">gethostname</span><span class="params">(<span class="keyword">char</span> *name, <span class="keyword">size_t</span> len)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span>      <span class="title">sethostname</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *name, <span class="keyword">size_t</span> len)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>接下来，我将使用C语言获取主机名，并将主机名恢复为原来的<code>hgs</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> buff[<span class="number">65</span>];</span><br><span class="line">    gethostname(buff, <span class="keyword">sizeof</span>(buff));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"当前主机名: %s\n"</span>, buff);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">strcpy</span>(buff, <span class="string">"hgs"</span>);</span><br><span class="line">    sethostname(buff, <span class="keyword">sizeof</span>(buff));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"修改后的主机名: %s\n"</span>, buff);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果如下所示：</p>
+<p><img src="/static/images/set-hostname-by-c.png" alt=""></p>
+<p>注意：在执行时，使用了sudo命令，这是因为只有超级用户才能修改主机名；如果不加sudo，修改操作将会执行失败。</p>
+<p>此外，路径名的长度也是有限制的，最大长度为配置项<code>_SC_HOST_NAME_MAX</code>设置的字节数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%ld\n"</span>, sysconf(_SC_HOST_NAME_MAX));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行结果如下所示：</p>
+<p><img src="/static/images/hostname-max-len.png" alt=""></p>
+<p>也就是说，在Linux中，路径名的最大长度为64个字符（1个字符占1个字节）。</p>
+<h3 id="永久修改"><a href="#永久修改" class="headerlink" title="永久修改"></a>永久修改</h3><h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><p>在Linux中，如果想要永久地修改主机名，只需要修改文件<code>/etc/hostname</code>即可，修改在<strong>重启后生效</strong>。</p>
+<p>需要注意的是，该文件的所有者为root，其他用户没有写权限：</p>
+<p><img src="/static/images/hostname-file-mode.png" alt=""></p>
+<p>因此，在执行修改操作时，同样需要使用root账号，或者添加<code>sudo</code>命令。</p>
+<p><img src="/static/images/set-hostname-by-file.png" alt=""></p>
+<h4 id="macOS"><a href="#macOS" class="headerlink" title="macOS"></a>macOS</h4><p>在macOS中，可以使用<code>scutil</code>命令永久修改主机名。例如，将主机名更改为<code>33</code>：</p>
+<p><img src="/static/images/modify-hostname-permanently-on-macos.png" alt=""></p>
 <p>重新进入终端后，修改生效：</p>
-<p><img src="/static/images/macos-permanent-modify-hostname2.png" alt=""></p>
+<p><img src="/static/images/modify-hostname-permanently-on-macos2.png" alt=""></p>
 
       
     </div>
@@ -790,7 +817,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#临时修改"><span class="nav-number">1.</span> <span class="nav-text">临时修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#永久修改"><span class="nav-number">2.</span> <span class="nav-text">永久修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux"><span class="nav-number">2.1.</span> <span class="nav-text">Linux</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#macOS"><span class="nav-number">2.2.</span> <span class="nav-text">macOS</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#临时修改"><span class="nav-number">1.</span> <span class="nav-text">临时修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#hostname命令"><span class="nav-number">1.1.</span> <span class="nav-text">hostname命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用库函数"><span class="nav-number">1.2.</span> <span class="nav-text">调用库函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#永久修改"><span class="nav-number">2.</span> <span class="nav-text">永久修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux"><span class="nav-number">2.1.</span> <span class="nav-text">Linux</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#macOS"><span class="nav-number">2.2.</span> <span class="nav-text">macOS</span></a></li></ol></li></ol></div>
             
 
           </div>
