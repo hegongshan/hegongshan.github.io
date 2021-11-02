@@ -80,7 +80,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="编译Linux内核，听起来似乎是一件难度极高的事情。事实上，真的如此吗？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-09-16T02:22:23.621Z">
+<meta property="og:updated_time" content="2021-11-02T10:43:53.414Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译Linux内核">
 <meta name="twitter:description" content="编译Linux内核，听起来似乎是一件难度极高的事情。事实上，真的如此吗？">
@@ -395,8 +395,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-09-16T10:22:23+08:00">
-                2021-09-16
+              <time title="更新于" itemprop="dateModified" datetime="2021-11-02T18:43:53+08:00">
+                2021-11-02
               </time>
             
           </span>
@@ -450,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  249
+                  280
                 </span>
               
 
@@ -490,7 +490,12 @@
 <li>切换分支</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 本文使用4.4版本</span></span><br><span class="line">git checkout v4.4</span><br></pre></td></tr></table></figure>
-<p>2.编译</p>
+<p>2.配置内核</p>
+<p>make defconfig：使用默认配置</p>
+<p>make menuconfig：使用图形界面，依赖库ncurses</p>
+<p>make xconfig：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make menuconfig</span><br></pre></td></tr></table></figure>
+<p>3.编译</p>
 <p>本文采用ARM64交叉编译，如果系统中没有安装，可以使用如下方式进行安装：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> GNU C compiler <span class="keyword">for</span> the arm64 architecture</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Ubuntu</span></span><br><span class="line">apt install -y gcc-aarch64-linux-gnu</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CentOS</span></span><br><span class="line">yum install -y gcc-aarch64-linux-gnu</span><br></pre></td></tr></table></figure>
 <p>下面开始编译：</p>
@@ -502,7 +507,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/bin/sh: 1: bc: not found</span><br><span class="line">Kbuild:32: recipe for target 'include/generated/timeconst.h' failed</span><br><span class="line">make[1]: *** [include/generated/timeconst.h] Error 127</span><br><span class="line">make[1]: *** Waiting for unfinished jobs....</span><br><span class="line">Makefile:1091: recipe for target 'prepare0' failed</span><br><span class="line">make: *** [prepare0] Error 2</span><br></pre></td></tr></table></figure>
 <p>原因分析：找不到<code>bc</code></p>
 <p>解决办法：安装<code>bc</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Ubuntu</span></span><br><span class="line">apt install bc</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CentOS</span></span><br><span class="line">yum install bc</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Ubuntu</span></span><br><span class="line">apt install -y bc</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CentOS</span></span><br><span class="line">yum install -y bc</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -725,7 +730,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
