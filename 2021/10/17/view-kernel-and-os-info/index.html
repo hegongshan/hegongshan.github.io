@@ -80,10 +80,12 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="在阅读论文的过程中，我发现作者均会说明实验使用的内核版本号和发行版本。那么，如何查看Linux/macOS的这些版本信息呢？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-10-18T11:16:41.808Z">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/view-kernel-os-version.png">
+<meta property="og:updated_time" content="2021-11-03T15:25:38.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何查看Linux&#x2F;macOS的版本信息">
 <meta name="twitter:description" content="在阅读论文的过程中，我发现作者均会说明实验使用的内核版本号和发行版本。那么，如何查看Linux/macOS的这些版本信息呢？">
+<meta name="twitter:image" content="https://www.hegongshan.com/static/images/view-kernel-os-version.png">
 
 
 
@@ -395,8 +397,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-10-18T19:16:41+08:00">
-                2021-10-18
+              <time title="更新于" itemprop="dateModified" datetime="2021-11-03T23:25:38+08:00">
+                2021-11-03
               </time>
             
           </span>
@@ -428,7 +430,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  241
+                  266
                 </span>
               
 
@@ -455,6 +457,7 @@
       
         <p>在阅读论文的过程中，我发现作者均会说明实验使用的内核版本号和发行版本。那么，如何查看Linux/macOS的这些版本信息呢？</p>
 <a id="more"></a>
+<p><img src="/static/images/view-kernel-os-version.png" alt=""></p>
 <h3 id="查看内核版本"><a href="#查看内核版本" class="headerlink" title="查看内核版本"></a>查看内核版本</h3><h4 id="uname"><a href="#uname" class="headerlink" title="uname"></a>uname</h4><p>uname，全称为unix name，所有的Linux发行版和macOS均支持该命令。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -sr</span><br></pre></td></tr></table></figure>
 <ul>
@@ -470,8 +473,10 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[hegongshan@hgs ~]$ lsb_release -a</span><br><span class="line">LSB Version:	:core-4.1-amd64:core-4.1-noarch</span><br><span class="line">Distributor ID:	CentOS</span><br><span class="line">Description:	CentOS Linux release 7.9.2009 (Core)</span><br><span class="line">Release:	7.9.2009</span><br><span class="line">Codename:	Core</span><br></pre></td></tr></table></figure>
 <h4 id="cat-etc-redhat-release"><a href="#cat-etc-redhat-release" class="headerlink" title="cat /etc/redhat-release"></a>cat /etc/redhat-release</h4><p>适用于RedHat发布的Linux发行版，比如CentOS。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[hegongshan@hgs ~]$ cat /etc/redhat-release </span><br><span class="line">CentOS Linux release 7.9.2009 (Core)</span><br></pre></td></tr></table></figure>
-<h4 id="sw-vers"><a href="#sw-vers" class="headerlink" title="sw_vers"></a>sw_vers</h4><p>打印macOS的版本。</p>
+<h4 id="sw-vers"><a href="#sw-vers" class="headerlink" title="sw_vers"></a>sw_vers</h4><p>sw_vers，全称为<strong>S</strong>oft<strong>w</strong>are <strong>Vers</strong>ion，用于打印macOS的版本。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hgs:~ hegongshan$ sw_vers</span><br><span class="line">ProductName:	Mac OS X</span><br><span class="line">ProductVersion:	10.13.6</span><br><span class="line">BuildVersion:	17G65</span><br></pre></td></tr></table></figure>
+<p>sw_vers的源码为：</p>
+<p><a href="https://opensource.apple.com/source/DarwinTools/DarwinTools-1/sw_vers.c.auto.html" target="_blank" rel="noopener">https://opensource.apple.com/source/DarwinTools/DarwinTools-1/sw_vers.c.auto.html</a></p>
 
       
     </div>
