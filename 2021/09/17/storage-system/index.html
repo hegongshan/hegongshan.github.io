@@ -80,7 +80,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="存储系统（Storage System）是我博士期间的研究方向。新的研究方向，一切都是未知的，需要自己不断探索。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-11-03T04:11:26.392Z">
+<meta property="og:updated_time" content="2021-11-08T02:46:50.244Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="存储系统 入坑指南">
 <meta name="twitter:description" content="存储系统（Storage System）是我博士期间的研究方向。新的研究方向，一切都是未知的，需要自己不断探索。">
@@ -397,8 +397,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-11-03T12:11:26+08:00">
-                2021-11-03
+              <time title="更新于" itemprop="dateModified" datetime="2021-11-08T10:46:50+08:00">
+                2021-11-08
               </time>
             
           </span>
@@ -452,7 +452,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  939
+                  1k
                 </span>
               
 
@@ -643,6 +643,24 @@
 <li>Data Block：数据块，固定长度的连续数据内容。</li>
 <li>Data Chunk：数据片，可变长度的连续数据内容。</li>
 <li>xx-bound：受xx限制的，比如IO-bound，即为受IO限制的</li>
+<li>workload：工作负载</li>
+<li>overhead：开销</li>
+</ul>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><ul>
+<li>Skip List：跳跃链表，简称跳表</li>
+<li>Log Structure Merge Tree （LSM-Tree）：日志结构合并树🌲</li>
+<li>Radix Tree：基数树</li>
+<li>Bitmap：位图</li>
+<li>Bloom Filter：布隆过滤器</li>
+<li>Ring Buffer：环形缓冲区</li>
+</ul>
+<h4 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h4><ul>
+<li>lock-free：无锁的</li>
+<li>Copy-On-Write （COW）：写时复制</li>
+<li>Read-Copy Update（RCU）：读-副本-更新，<a href="https://www.kernel.org/doc/html/latest/RCU/whatisRCU.html" target="_blank" rel="noopener">https://www.kernel.org/doc/html/latest/RCU/whatisRCU.html</a></li>
+</ul>
+<h4 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h4><ul>
+<li>reclamation：回收</li>
 </ul>
 <h4 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h4><ul>
 <li>Crash Consistency：奔溃一致性</li>
@@ -653,7 +671,7 @@
 <li>inode：index node，索引节点，用于描述文件的属性。</li>
 <li>dentry：directory entry，目录项，用于将文件名映射为inode。</li>
 <li>VFS：Virtual File System，虚拟文件系统。</li>
-<li>FUSE：<strong>F</strong>ilesystem in <strong>U</strong>ser<strong>s</strong>pac<strong>e</strong>，用户级文件系统，即在用户态实现文件系统。</li>
+<li>FUSE：<strong>F</strong>ilesystem in <strong>USE</strong>rspace，用户级文件系统，即在用户态实现文件系统。</li>
 </ul>
 <h4 id="分布式存储"><a href="#分布式存储" class="headerlink" title="分布式存储"></a>分布式存储</h4><ul>
 <li><em>tenant</em>：租户</li>
@@ -873,7 +891,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">465</span>
+                  <span class="site-state-item-count">485</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -895,7 +913,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -992,7 +1010,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关期刊"><span class="nav-number">1.</span> <span class="nav-text">相关期刊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关会议"><span class="nav-number">2.</span> <span class="nav-text">相关会议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#存储系统"><span class="nav-number">2.1.</span> <span class="nav-text">存储系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作系统"><span class="nav-number">2.2.</span> <span class="nav-text">操作系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关书籍"><span class="nav-number">3.</span> <span class="nav-text">相关书籍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作系统-1"><span class="nav-number">3.1.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储系统-1"><span class="nav-number">3.2.</span> <span class="nav-text">存储系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式系统"><span class="nav-number">3.3.</span> <span class="nav-text">分布式系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编程语言"><span class="nav-number">3.4.</span> <span class="nav-text">编程语言</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关课程和实验"><span class="nav-number">4.</span> <span class="nav-text">相关课程和实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Benchmark"><span class="nav-number">5.</span> <span class="nav-text">Benchmark</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Top实验室"><span class="nav-number">6.</span> <span class="nav-text">Top实验室</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#国内"><span class="nav-number">6.1.</span> <span class="nav-text">国内</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#国外"><span class="nav-number">6.2.</span> <span class="nav-text">国外</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开源存储系统"><span class="nav-number">7.</span> <span class="nav-text">开源存储系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件系统"><span class="nav-number">7.1.</span> <span class="nav-text">文件系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#键值对存储"><span class="nav-number">7.2.</span> <span class="nav-text">键值对存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库"><span class="nav-number">7.3.</span> <span class="nav-text">数据库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见概念"><span class="nav-number">8.</span> <span class="nav-text">常见概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一致性"><span class="nav-number">8.1.</span> <span class="nav-text">一致性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单机存储"><span class="nav-number">8.2.</span> <span class="nav-text">单机存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式存储"><span class="nav-number">8.3.</span> <span class="nav-text">分布式存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能评估"><span class="nav-number">8.4.</span> <span class="nav-text">性能评估</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关期刊"><span class="nav-number">1.</span> <span class="nav-text">相关期刊</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关会议"><span class="nav-number">2.</span> <span class="nav-text">相关会议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#存储系统"><span class="nav-number">2.1.</span> <span class="nav-text">存储系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作系统"><span class="nav-number">2.2.</span> <span class="nav-text">操作系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关书籍"><span class="nav-number">3.</span> <span class="nav-text">相关书籍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作系统-1"><span class="nav-number">3.1.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储系统-1"><span class="nav-number">3.2.</span> <span class="nav-text">存储系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式系统"><span class="nav-number">3.3.</span> <span class="nav-text">分布式系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编程语言"><span class="nav-number">3.4.</span> <span class="nav-text">编程语言</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关课程和实验"><span class="nav-number">4.</span> <span class="nav-text">相关课程和实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Benchmark"><span class="nav-number">5.</span> <span class="nav-text">Benchmark</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Top实验室"><span class="nav-number">6.</span> <span class="nav-text">Top实验室</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#国内"><span class="nav-number">6.1.</span> <span class="nav-text">国内</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#国外"><span class="nav-number">6.2.</span> <span class="nav-text">国外</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开源存储系统"><span class="nav-number">7.</span> <span class="nav-text">开源存储系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件系统"><span class="nav-number">7.1.</span> <span class="nav-text">文件系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#键值对存储"><span class="nav-number">7.2.</span> <span class="nav-text">键值对存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库"><span class="nav-number">7.3.</span> <span class="nav-text">数据库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见概念"><span class="nav-number">8.</span> <span class="nav-text">常见概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">8.1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#并发控制"><span class="nav-number">8.2.</span> <span class="nav-text">并发控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#垃圾回收"><span class="nav-number">8.3.</span> <span class="nav-text">垃圾回收</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一致性"><span class="nav-number">8.4.</span> <span class="nav-text">一致性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单机存储"><span class="nav-number">8.5.</span> <span class="nav-text">单机存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式存储"><span class="nav-number">8.6.</span> <span class="nav-text">分布式存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能评估"><span class="nav-number">8.7.</span> <span class="nav-text">性能评估</span></a></li></ol></li></ol></div>
             
 
           </div>

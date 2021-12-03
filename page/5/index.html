@@ -350,7 +350,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/06/02/csapp-3-attack-lab/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/09/13/centos-network-config/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -367,9 +367,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2021/06/02/csapp-3-attack-lab/" itemprop="url">
+                <a class="post-title-link" href="/2021/09/13/centos-network-config/" itemprop="url">
                   
-                   《深入理解计算机系统》实验3.Attack Lab</a></h2>
+                   CentOS网络配置</a></h2>
         
 
         <div class="post-meta">		 
@@ -382,8 +382,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-02T17:44:12+08:00">
-                2021-06-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-13T16:55:59+08:00">
+                2021-09-13
               </time>
             
 
@@ -398,8 +398,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-06-19T22:19:16+08:00">
-                2021-06-19
+              <time title="更新于" itemprop="dateModified" datetime="2021-09-15T22:32:58+08:00">
+                2021-09-15
               </time>
             
           </span>
@@ -417,8 +417,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSAPP/" itemprop="url" rel="index">
-                    <span itemprop="name">CSAPP</span>
+                  <a href="/categories/centos/" itemprop="url" rel="index">
+                    <span itemprop="name">centos</span>
                   </a>
                 </span>
 
@@ -448,7 +448,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4.8k
+                  233
                 </span>
               
 
@@ -474,10 +474,215 @@
 
       
         
-          <p>Attack Lab缓冲区溢出攻击。</p>
+          
+            <p>在CentOS中，网络启动相关配置存放在目录<code>/etc/sysconfig/network-scripts</code>中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/sysconfig/network-scripts</span><br></pre></td></tr></table></figure>
+<p>查看目录下形如<code>ifcfg-xxx</code>的文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ifcfg-enp2s0f0</span><br></pre></td></tr></table></figure>
+<p>BOOTPROTO：启动协议（<strong>Boot Proto</strong>col）</p>
+<ul>
+<li><p>none</p>
+</li>
+<li><p>static：固定IP</p>
+</li>
+<li><p>dhcp：Dynamic Host Configuration Protocol，动态主机配置协议，动态分配IP</p>
+</li>
+</ul>
+<p>ONBOOT</p>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><p>1.修改网络配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IPADDR=192.168.255.101</span><br><span class="line">GATEWAY=192.168.255.2</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">DNS=192.168.255.1</span><br></pre></td></tr></table></figure>
+<p>2.配置DNS</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@hgs ~]# echo nameserver 8.8.8.8 &gt; /etc/resolv.conf</span><br><span class="line">[root@hgs ~]# echo nameserver 114.114.114.114 &gt; /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+<p>3.重启网络服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hgs ~]# systemctl restart network</span><br></pre></td></tr></table></figure>
+<p>查看网络状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hgs ~]# systemctl status network</span><br></pre></td></tr></table></figure>
+<p>4.查看本机的IP地址</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hgs ~]# ifconfig</span><br></pre></td></tr></table></figure>
+<p>不出意外的话，输出的IP地址将与文件<code>/etc/sysconfig/network-scripts/ifcfg-enp2s0f0</code>中配置的IP地址一致。</p>
+<p>5.测试网络连通性</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.baidu.com</span><br></pre></td></tr></table></figure>
+<p>如果找不到ping命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash: ping: command not found</span><br></pre></td></tr></table></figure>
+<p>则需要安装iputils库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y iputils</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/09/10/spec-cpu2006/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2021/09/10/spec-cpu2006/" itemprop="url">
+                  
+                   SPEC CPU2006的编译和运行</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-10T21:35:33+08:00">
+                2021-09-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-09-29T17:25:20+08:00">
+                2021-09-29
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/computer-system/" itemprop="url" rel="index">
+                    <span itemprop="name">computer system</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>SPEC，全称<strong>S</strong>tandard <strong>P</strong>erformance <strong>E</strong>valuation <strong>C</strong>orporation。官网为<a href="https://www.spec.org" target="_blank" rel="noopener">https://www.spec.org</a></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/06/02/csapp-3-attack-lab/#more" rel="contents">
+            <a class="btn" href="/2021/09/10/spec-cpu2006/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -529,7 +734,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/05/09/csapp-2-bomb-lab/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/09/10/parsec/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -546,9 +751,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2021/05/09/csapp-2-bomb-lab/" itemprop="url">
+                <a class="post-title-link" href="/2021/09/10/parsec/" itemprop="url">
                   
-                   《深入理解计算机系统》实验2.Bomb Lab</a></h2>
+                   PARSEC-3.0的编译和运行</a></h2>
         
 
         <div class="post-meta">		 
@@ -561,8 +766,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-09T22:59:44+08:00">
-                2021-05-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-10T21:35:18+08:00">
+                2021-09-10
               </time>
             
 
@@ -577,8 +782,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-05-27T18:43:50+08:00">
-                2021-05-27
+              <time title="更新于" itemprop="dateModified" datetime="2021-09-23T11:10:46+08:00">
+                2021-09-23
               </time>
             
           </span>
@@ -596,8 +801,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSAPP/" itemprop="url" rel="index">
-                    <span itemprop="name">CSAPP</span>
+                  <a href="/categories/operating-system/" itemprop="url" rel="index">
+                    <span itemprop="name">operating system</span>
                   </a>
                 </span>
 
@@ -627,7 +832,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4.2k
+                  542
                 </span>
               
 
@@ -653,10 +858,10 @@
 
       
         
-          <p>Bomb Lab主要考察汇编语言。</p>
+          <p>PARSEC，全称<strong>P</strong>rinceton <strong>A</strong>pplication <strong>R</strong>epository for <strong>S</strong>hared-M<strong>e</strong>mory <strong>C</strong>omputers，官网为<a href="https://parsec.cs.princeton.edu" target="_blank" rel="noopener">https://parsec.cs.princeton.edu</a>。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/05/09/csapp-2-bomb-lab/#more" rel="contents">
+            <a class="btn" href="/2021/09/10/parsec/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -708,7 +913,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/05/06/csapp-1-data-lab/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/09/10/busybox/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -725,9 +930,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2021/05/06/csapp-1-data-lab/" itemprop="url">
+                <a class="post-title-link" href="/2021/09/10/busybox/" itemprop="url">
                   
-                   《深入理解计算机系统》实验1.Data Lab</a></h2>
+                   文件系统的制作、安装以及卸载</a></h2>
         
 
         <div class="post-meta">		 
@@ -740,8 +945,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-06T19:53:18+08:00">
-                2021-05-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-10T21:09:37+08:00">
+                2021-09-10
               </time>
             
 
@@ -756,34 +961,12 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-05-23T23:04:34+08:00">
-                2021-05-23
+              <time title="更新于" itemprop="dateModified" datetime="2021-09-18T13:59:26+08:00">
+                2021-09-18
               </time>
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSAPP/" itemprop="url" rel="index">
-                    <span itemprop="name">CSAPP</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -806,7 +989,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.1k
+                  78
                 </span>
               
 
@@ -832,14 +1015,23 @@
 
       
         
-          <p>Data Lab主要考察位运算和浮点数运算。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/05/06/csapp-1-data-lab/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h3 id="Busybox"><a href="#Busybox" class="headerlink" title="Busybox"></a>Busybox</h3><p>官网：<a href="https://busybox.net" target="_blank" rel="noopener">https://busybox.net</a></p>
+<p>1.下载最新的稳定版Busybox</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://busybox.net/downloads/busybox-1.33.1.tar.bz2</span><br></pre></td></tr></table></figure>
+<p>2.解压</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -jxf busybox-1.33.1.tar.bz2</span><br></pre></td></tr></table></figure>
+<p>3.安装Arm64 GCC</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> Ubuntu</span><br><span class="line">apt install gcc-aarch64-linux-gnu</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> CentOS</span><br><span class="line">yum install gcc-aarch64-linux-gnu</span><br></pre></td></tr></table></figure>
+<p>4.配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make defconfig</span><br></pre></td></tr></table></figure>
+<p>5.编译</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make CROSS_COMPILE=aarch64-linux-gnu-</span><br></pre></td></tr></table></figure>
+<p>6.安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p><code>_install</code>文件夹</p>
+
+          
         
       
     </div>
@@ -887,7 +1079,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/04/28/journey-to-apply-phd-program-in-fudan/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/09/10/linux-kernel-compile/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -904,9 +1096,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2021/04/28/journey-to-apply-phd-program-in-fudan/" itemprop="url">
+                <a class="post-title-link" href="/2021/09/10/linux-kernel-compile/" itemprop="url">
                   
-                   复旦大学计算机博士申请之旅</a></h2>
+                   编译Linux内核</a></h2>
         
 
         <div class="post-meta">		 
@@ -919,8 +1111,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-28T11:36:28+08:00">
-                2021-04-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-10T18:47:51+08:00">
+                2021-09-10
               </time>
             
 
@@ -935,547 +1127,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-08-22T22:05:59+08:00">
-                2021-08-22
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/博士/" itemprop="url" rel="index">
-                    <span itemprop="name">博士</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.2k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>读研之初，我就定下了读博的目标。到了硕士三年级，这种想法愈发强烈。为什么要读博呢？每个申博人应该都有自己的答案。如果要问我，我会斩钉截铁地说：我喜欢“推荐系统”这个研究方向，想要在这个领域有所建树。</p>
-<blockquote>
-<p>然而，事与愿违，博士的研究方向被换成计算机系统相关了。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/04/28/journey-to-apply-phd-program-in-fudan/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/04/27/paper-check/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2021/04/27/paper-check/" itemprop="url">
-                  
-                   除了知网，还可以选择这些论文查重网站</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-27T18:33:16+08:00">
-                2021-04-27
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2021-04-27T17:45:49+08:00">
-                2021-04-27
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/paper/" itemprop="url" rel="index">
-                    <span itemprop="name">paper</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  332
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在购买物品时，很多人注重性价比，要求物美价廉。然而，学位论文并不容许讨价还价，查重率不合格就只能乖乖<strong>延毕</strong>。本文总结了我在硕士论文写作期间使用过的几家论文查重机构。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/04/27/paper-check/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/04/05/view-cpu-info/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2021/04/05/view-cpu-info/" itemprop="url">
-                  
-                   如何查看电脑中CPU的详细信息？</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-05T18:56:24+08:00">
-                2021-04-05
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2021-10-14T17:11:30+08:00">
-                2021-10-14
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/cpu/" itemprop="url" rel="index">
-                    <span itemprop="name">cpu</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  510
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在学位论文的写作过程中，通常会对实验的软硬件环境进行详细的描述，而CPU信息是一个非常重要的参数。那么，如何查看电脑中的CPU描述信息呢？</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/04/05/view-cpu-info/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/02/28/python-scipy-sparse-matrix/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2021/02/28/python-scipy-sparse-matrix/" itemprop="url">
-                  
-                   稀疏矩阵的存储格式</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-28T18:05:45+08:00">
-                2021-02-28
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2021-11-02T22:54:31+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2021-11-02T18:43:53+08:00">
                 2021-11-02
               </time>
             
@@ -1494,8 +1146,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/operating-system/" itemprop="url" rel="index">
+                    <span itemprop="name">operating system</span>
                   </a>
                 </span>
 
@@ -1525,7 +1177,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  872
+                  280
                 </span>
               
 
@@ -1551,10 +1203,10 @@
 
       
         
-          <p>最近在做毕业论文的实验，经常用到稀疏矩阵来存储数据。本文总结了SciPy中的七大稀疏矩阵。</p>
+          <p>编译Linux内核，听起来似乎是一件难度极高的事情。事实上，真的如此吗？</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/02/28/python-scipy-sparse-matrix/#more" rel="contents">
+            <a class="btn" href="/2021/09/10/linux-kernel-compile/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1606,7 +1258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/02/08/computer-science-mooc-summary/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/09/07/docker-container-start-sshd-service/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -1623,9 +1275,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2021/02/08/computer-science-mooc-summary/" itemprop="url">
+                <a class="post-title-link" href="/2021/09/07/docker-container-start-sshd-service/" itemprop="url">
                   
-                   一些较好的在线计算机课程</a></h2>
+                   在Docker容器中启动SSHD服务</a></h2>
         
 
         <div class="post-meta">		 
@@ -1638,8 +1290,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-08T23:33:45+08:00">
-                2021-02-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-07T21:34:55+08:00">
+                2021-09-07
               </time>
             
 
@@ -1654,8 +1306,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-09-02T01:16:27+08:00">
-                2021-09-02
+              <time title="更新于" itemprop="dateModified" datetime="2021-09-15T11:49:23+08:00">
+                2021-09-15
               </time>
             
           </span>
@@ -1673,8 +1325,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mooc/" itemprop="url" rel="index">
-                    <span itemprop="name">mooc</span>
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
                   </a>
                 </span>
 
@@ -1704,7 +1356,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  142
+                  314
                 </span>
               
 
@@ -1730,10 +1382,10 @@
 
       
         
-          <p>本文总结了一些较好的在线计算机课程。</p>
+          <p>在Docker容器中启动SSHD服务，并通过SSH远程登录Docker容器。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/02/08/computer-science-mooc-summary/#more" rel="contents">
+            <a class="btn" href="/2021/09/07/docker-container-start-sshd-service/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1785,7 +1437,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/01/26/deep-learning-optimizer/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/08/14/macos-terminal-color/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -1802,9 +1454,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2021/01/26/deep-learning-optimizer/" itemprop="url">
+                <a class="post-title-link" href="/2021/08/14/macos-terminal-color/" itemprop="url">
                   
-                   深度学习之优化方法</a></h2>
+                   修改macOS的终端颜色</a></h2>
         
 
         <div class="post-meta">		 
@@ -1817,8 +1469,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-26T23:46:09+08:00">
-                2021-01-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-14T23:20:23+08:00">
+                2021-08-14
               </time>
             
 
@@ -1833,8 +1485,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-02-28T01:39:21+08:00">
-                2021-02-28
+              <time title="更新于" itemprop="dateModified" datetime="2021-08-15T01:17:03+08:00">
+                2021-08-15
               </time>
             
           </span>
@@ -1852,8 +1504,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/deep-learning/" itemprop="url" rel="index">
-                    <span itemprop="name">deep learning</span>
+                  <a href="/categories/macos/" itemprop="url" rel="index">
+                    <span itemprop="name">macos</span>
                   </a>
                 </span>
 
@@ -1883,7 +1535,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  35
+                  477
                 </span>
               
 
@@ -1909,10 +1561,11 @@
 
       
         
-          <p>本文总结了深度学习中常用的优化方法。</p>
+          <p>在Linux终端中，不同的文件类型有不同的颜色，比如目录为蓝色，可执行文件为绿色等。</p>
+<p>那么，如何将macOS的终端颜色设置为成和Linux相同呢？</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/01/26/deep-learning-optimizer/#more" rel="contents">
+            <a class="btn" href="/2021/08/14/macos-terminal-color/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1964,7 +1617,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/01/24/python-crawl-web-fiction/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/08/12/computer-network-model-and-protocol/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -1981,9 +1634,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2021/01/24/python-crawl-web-fiction/" itemprop="url">
+                <a class="post-title-link" href="/2021/08/12/computer-network-model-and-protocol/" itemprop="url">
                   
-                   使用Python爬取网络小说</a></h2>
+                   计算机网络TCP/IP五层模型及各层常见协议</a></h2>
         
 
         <div class="post-meta">		 
@@ -1996,8 +1649,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-24T22:47:03+08:00">
-                2021-01-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-12T01:26:06+08:00">
+                2021-08-12
               </time>
             
 
@@ -2012,8 +1665,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-10-15T23:11:45+08:00">
-                2021-10-15
+              <time title="更新于" itemprop="dateModified" datetime="2021-08-15T20:35:00+08:00">
+                2021-08-15
               </time>
             
           </span>
@@ -2031,8 +1684,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/computer-network/" itemprop="url" rel="index">
+                    <span itemprop="name">computer network</span>
                   </a>
                 </span>
 
@@ -2062,7 +1715,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  696
+                  133
                 </span>
               
 
@@ -2088,14 +1741,318 @@
 
       
         
-          <p>作为一个小说爱好者，我经常使用网络爬虫爬取喜欢的网络小说。每次都从头开始写爬取程序，实在没有必要。鉴于上述情况，本文对网络小说的爬取流程进行了简单的提炼。</p>
+          <p>本文总结了计算机网络中常见的协议。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/01/24/python-crawl-web-fiction/#more" rel="contents">
+            <a class="btn" href="/2021/08/12/computer-network-model-and-protocol/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/08/10/ccf-csp-20190904/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2021/08/10/ccf-csp-20190904/" itemprop="url">
+                  
+                   ccf-csp-20190904</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-10T18:47:59+08:00">
+                2021-08-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-08-10T18:47:59+08:00">
+                2021-08-10
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  0
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/08/10/ccf-csp-20190903/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2021/08/10/ccf-csp-20190903/" itemprop="url">
+                  
+                   ccf-csp-20190903</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-10T18:47:56+08:00">
+                2021-08-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-08-10T18:47:56+08:00">
+                2021-08-10
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  0
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
         
       
     </div>
@@ -2134,7 +2091,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/47/">47</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2182,7 +2139,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">465</span>
+                  <span class="site-state-item-count">485</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2204,7 +2161,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

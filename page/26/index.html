@@ -350,7 +350,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/08/23/ccf-csp-20160903/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/10/14/recommender-system-jncf/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -367,9 +367,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/08/23/ccf-csp-20160903/" itemprop="url">
+                <a class="post-title-link" href="/2019/10/14/recommender-system-jncf/" itemprop="url">
                   
-                   CCF CSP 201609-3.炉石传说</a></h2>
+                   论文阅读 Joint Neural Collaborative Filtering for Recommender Systems</a></h2>
         
 
         <div class="post-meta">		 
@@ -382,8 +382,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-23T18:14:56+08:00">
-                2019-08-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-14T21:38:16+08:00">
+                2019-10-14
               </time>
             
 
@@ -398,8 +398,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-23T22:57:27+08:00">
-                2019-08-23
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-26T19:55:44+08:00">
+                2019-10-26
               </time>
             
           </span>
@@ -417,568 +417,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/ccf-csp/" itemprop="url" rel="index">
-                    <span itemprop="name">ccf csp</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>问题描述</strong></p>
-<p>　　《炉石传说：魔兽英雄传》（Hearthstone: Heroes of Warcraft，简称炉石传说）是暴雪娱乐开发的一款集换式卡牌游戏（如下图所示）。游戏在一个战斗棋盘上进行，由两名玩家轮流进行操作，本题所使用的炉石传说游戏的简化规则如下：</p>
-<p><img src="/static/images/ccf-csp-20160903.jpg" alt="hearthstone"></p>
-<ul>
-<li><p>玩家会控制一些<strong>角色</strong>，每个角色有自己的<strong>生命值和攻击力</strong>。当生命值小于等于 0 时，该角色<strong>死亡</strong>。角色分为<strong>英雄和随从</strong>。</p>
-</li>
-<li><p>玩家各控制一个英雄，游戏开始时，英雄的生命值为 30，攻击力为 0。当英雄死亡时，游戏结束，英雄未死亡的一方获胜。</p>
-</li>
-<li><p>玩家可在游戏过程中召唤随从。棋盘上每方都有 7 个可用于放置随从的空位，从左到右一字排开，被称为<strong>战场</strong>。当随从死亡时，它将被从战场上移除。</p>
-</li>
-<li><p>游戏开始后，两位玩家轮流进行操作，每个玩家的连续一组操作称为一个<strong>回合</strong>。</p>
-</li>
-<li><p>每个回合中，当前玩家可进行零个或者多个以下操作：<br>1) <strong>召唤随从</strong>：玩家召唤一个随从进入战场，随从具有指定的生命值和攻击力。<br>2) <strong>随从攻击</strong>：玩家控制自己的某个随从攻击对手的英雄或者某个随从。<br>3) <strong>结束回合</strong>：玩家声明自己的当前回合结束，游戏将进入对手的回合。该操作一定是一个回合的最后一个操作。</p>
-</li>
-<li><p>当随从攻击时，攻击方和被攻击方会同时对彼此造成等同于自己攻击力的<strong>伤害</strong>。受到伤害的角色的生命值将会减少，数值等同于受到的伤害。例如，随从 X 的生命值为 HX、攻击力为 AX，随从 Y 的生命值为 HY、攻击力为 AY，如果随从 X 攻击随从 Y，则攻击发生后随从 X 的生命值变为 HX - AY，随从 Y 的生命值变为 HY - AX。攻击发生后，角色的生命值可以为负数。</p>
-<p>本题将给出一个游戏的过程，要求编写程序模拟该游戏过程并输出最后的局面。</p>
-</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/23/ccf-csp-20160903/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/08/23/ccf-csp-20160403/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/08/23/ccf-csp-20160403/" itemprop="url">
-                  
-                   CCF CSP 201604-3.路径解析</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-23T18:14:50+08:00">
-                2019-08-23
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-23T22:41:07+08:00">
-                2019-08-23
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/ccf-csp/" itemprop="url" rel="index">
-                    <span itemprop="name">ccf csp</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.7k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>问题描述</strong></p>
-<p>　　在操作系统中，数据通常以文件的形式存储在文件系统中。文件系统一般采用层次化的组织形式，由目录（或者文件夹）和文件构成，形成一棵树的形状。文件有内容，用于存储数据。目录是容器，可包含文件或其他目录。同一个目录下的所有文件和目录的名字各不相同，不同目录下可以有名字相同的文件或目录。<br>　　为了指定文件系统中的某个文件，需要用<strong>路径</strong>来定位。在类 Unix 系统（Linux、Mac OS X、FreeBSD等）中，路径由若干<strong>部分</strong>构成，每个部分是一个目录或者文件的名字，相邻两个部分之间用 / 符号分隔。<br>　　有一个特殊的目录被称为<strong>根目录</strong>，是整个文件系统形成的这棵树的根节点，用一个单独的 / 符号表示。在操作系统中，有<strong>当前目录</strong>的概念，表示用户目前正在工作的目录。根据出发点可以把路径分为两类：<br>　　 <strong>绝对路径</strong>：以 / 符号开头，表示从根目录开始构建的路径。<br>　　 <strong>相对路径</strong>：不以 / 符号开头，表示从当前目录开始构建的路径。</p>
-<p>　　例如，有一个文件系统的结构如下图所示。在这个文件系统中，有根目录 / 和其他普通目录 d1、d2、d3、d4，以及文件 f1、f2、f3、f1、f4。其中，两个 f1 是同名文件，但在不同的目录下。<br><img src="/static/images/ccf-csp-20160403.png" alt="img"><br>　　对于 d4 目录下的 f1 文件，可以用绝对路径 /d2/d4/f1 来指定。如果当前目录是 /d2/d3，这个文件也可以用相对路径 ../d4/f1 来指定，这里 .. 表示上一级目录（注意，根目录的上一级目录是它本身）。还有 . 表示本目录，例如 /d1/./f1 指定的就是 /d1/f1。注意，如果有多个连续的 / 出现，其效果等同于一个 /，例如 /d1///f1 指定的也是 /d1/f1。<br>　　本题会给出一些路径，要求对于每个路径，给出<strong>正规化</strong>以后的形式。一个路径经过正规化操作后，其指定的文件不变，但是会变成一个不包含 . 和 .. 的绝对路径，且不包含连续多个 / 符号。如果一个路径以 / 结尾，那么它代表的一定是一个目录，正规化操作要去掉结尾的 /。若这个路径代表根目录，则正规化操作的结果是 /。若路径为空字符串，则正规化操作的结果是当前目录。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/23/ccf-csp-20160403/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/08/21/ccf-csp-20151203/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/08/21/ccf-csp-20151203/" itemprop="url">
-                  
-                   CCF CSP 201512-3.画图</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-21T20:15:55+08:00">
-                2019-08-21
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-21T21:56:06+08:00">
-                2019-08-21
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/ccf-csp/" itemprop="url" rel="index">
-                    <span itemprop="name">ccf csp</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.1k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>问题描述</strong></p>
-<p>　　用 ASCII 字符来画图是一件有趣的事情，并形成了一门被称为 ASCII Art 的艺术。例如，下图是用 ASCII 字符画出来的 CSPRO 字样。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">..____.____..____..____...___..</span><br><span class="line">./.___/.___||.._.\|.._.\./._.\.</span><br><span class="line">|.|...\___.\|.|_).|.|_).|.|.|.|</span><br><span class="line">|.|___.___).|..__/|.._.&lt;|.|_|.|</span><br><span class="line">.\____|____/|_|...|_|.\_\\___/.</span><br></pre></td></tr></table></figure>
-<p>​    本题要求编程实现一个用 ASCII 字符来画图的程序，支持以下两种操作：<br>　　 画线：给出两个端点的坐标，画一条连接这两个端点的线段。简便起见题目保证要画的每条线段都是水平或者竖直的。水平线段用字符 - 来画，竖直线段用字符 | 来画。如果一条水平线段和一条竖直线段在某个位置相交，则相交位置用字符 + 代替。<br>　　 填充：给出填充的起始位置坐标和需要填充的字符，从起始位置开始，用该字符填充相邻位置，直到遇到画布边缘或已经画好的线段。注意这里的相邻位置只需要考虑上下左右 4 个方向，如下图所示，字符 @ 只和 4 个字符 * 相邻。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.*.</span><br><span class="line">*@*</span><br><span class="line">.*.</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/08/21/ccf-csp-20151203/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/08/20/ccf-csp-20150903/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/08/20/ccf-csp-20150903/" itemprop="url">
-                  
-                   CCF CSP 201509-3.模板生成系统</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-20T20:35:24+08:00">
-                2019-08-20
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-23T21:22:09+08:00">
-                2019-08-23
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/ccf-csp/" itemprop="url" rel="index">
-                    <span itemprop="name">ccf csp</span>
+                  <a href="/categories/recommender-systems/" itemprop="url" rel="index">
+                    <span itemprop="name">recommender systems</span>
                   </a>
                 </span>
 
@@ -1034,13 +474,10 @@
 
       
         
-          <p><strong>问题描述</strong></p>
-<p>　　成成最近在搭建一个网站，其中一些页面的部分内容来自数据库中不同的数据记录，但是页面的基本结构是相同的。例如，对于展示用户信息的页面，当用户为 Tom 时，网页的源代码是<br><img src="/static/images/ccf-csp-20150903-1.png" alt="img"></p>
-<p>　　而当用户为 Jerry 时，网页的源代码是<br><img src="/static/images/ccf-csp-20150903-2.png" alt="img"></p>
-<p>　　这样的例子在包含动态内容的网站中还有很多。为了简化生成网页的工作，成成觉得他需要引入一套模板生成系统。<br>　　模板是包含特殊标记的文本。成成用到的模板只包含一种特殊标记，格式为 {{ VAR }}，其中 VAR 是一个变量。该标记在模板生成时会被变量 VAR 的值所替代。例如，如果变量 name = “Tom”，则 {{ name }} 会生成 Tom。具体的规则如下：<br>　　·变量名由大小写字母、数字和下划线 (_) 构成，且第一个字符不是数字，长度不超过 16 个字符。<br>　　·变量名是大小写敏感的，Name 和 name 是两个不同的变量。<br>　　·变量的值是字符串。<br>　　·如果标记中的变量没有定义，则生成空串，相当于把标记从模板中删除。<br>　　·模板不递归生成。也就是说，如果变量的值中包含形如 {{ VAR }} 的内容，不再做进一步的替换。</p>
+          <p>作者使用一个联合神经网络将用户和物品的深度特征学习、用户与物品之间的深度交互建模整合在一起。此外，作者综合考虑了显式反馈和隐式反馈、pointwise和pairwise损失，提出了一种新的损失函数。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/08/20/ccf-csp-20150903/#more" rel="contents">
+            <a class="btn" href="/2019/10/14/recommender-system-jncf/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1092,7 +529,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/08/19/ccf-csp-20150303/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/10/06/macos-homebrew/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -1109,9 +546,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/08/19/ccf-csp-20150303/" itemprop="url">
+                <a class="post-title-link" href="/2019/10/06/macos-homebrew/" itemprop="url">
                   
-                   CCF CSP 201503-3.节日</a></h2>
+                   Homebrew——MacOS中的包管理器</a></h2>
         
 
         <div class="post-meta">		 
@@ -1124,8 +561,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-19T22:38:23+08:00">
-                2019-08-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-06T17:24:33+08:00">
+                2019-10-06
               </time>
             
 
@@ -1140,8 +577,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-20T21:19:25+08:00">
-                2019-08-20
+              <time title="更新于" itemprop="dateModified" datetime="2021-10-19T22:13:23+08:00">
+                2021-10-19
               </time>
             
           </span>
@@ -1159,8 +596,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/ccf-csp/" itemprop="url" rel="index">
-                    <span itemprop="name">ccf csp</span>
+                  <a href="/categories/macos/" itemprop="url" rel="index">
+                    <span itemprop="name">macos</span>
                   </a>
                 </span>
 
@@ -1190,7 +627,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.2k
+                  430
                 </span>
               
 
@@ -1216,11 +653,11 @@
 
       
         
-          <p><strong>问题描述</strong></p>
-<p>　　有一类节日的日期并不是固定的，而是以“<em>a</em>月的第<em>b</em>个星期<em>c</em>”的形式定下来的，比如说母亲节就定为每年的五月的第二个星期日。<br>　　现在，给你<em>a</em>，<em>b</em>，<em>c</em>和<em>y</em>1, <em>y</em>2(1850 ≤ <em>y</em>1, <em>y</em>2 ≤ 2050)，希望你输出从公元<em>y</em>1年到公元<em>y</em>2年间的每年的<em>a</em>月的第<em>b</em>个星期<em>c</em>的日期。<br>　　提示：关于闰年的规则：年份是400的整数倍时是闰年，否则年份是4的倍数并且不是100的倍数时是闰年，其他年份都不是闰年。例如1900年就不是闰年，而2000年是闰年。<br>　　为了方便你推算，已知1850年1月1日是星期二。</p>
+          <p>与Ubuntu和CentOS等Linux发行版相比，macOS没有预装wget和tree等命令。</p>
+<p>如果需要安装这些缺失的软件包，可以使用<a href="https://brew.sh" target="_blank" rel="noopener">Homebrew</a>包管理器。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/08/19/ccf-csp-20150303/#more" rel="contents">
+            <a class="btn" href="/2019/10/06/macos-homebrew/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1272,7 +709,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/08/18/ccf-csp-20131203/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/10/04/recommender-system-dmf/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -1289,9 +726,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/08/18/ccf-csp-20131203/" itemprop="url">
+                <a class="post-title-link" href="/2019/10/04/recommender-system-dmf/" itemprop="url">
                   
-                   CCF CSP 201312-3.最大的矩形</a></h2>
+                   论文阅读 Deep Matrix Factorization Models for Recommender Systems</a></h2>
         
 
         <div class="post-meta">		 
@@ -1304,8 +741,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-18T16:51:48+08:00">
-                2019-08-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-04T12:04:54+08:00">
+                2019-10-04
               </time>
             
 
@@ -1320,8 +757,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-18T17:14:47+08:00">
-                2019-08-18
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-27T19:25:59+08:00">
+                2019-10-27
               </time>
             
           </span>
@@ -1339,8 +776,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/ccf-csp/" itemprop="url" rel="index">
-                    <span itemprop="name">ccf csp</span>
+                  <a href="/categories/recommender-systems/" itemprop="url" rel="index">
+                    <span itemprop="name">recommender systems</span>
                   </a>
                 </span>
 
@@ -1370,7 +807,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  543
+                  880
                 </span>
               
 
@@ -1396,12 +833,10 @@
 
       
         
-          <p><strong>问题描述</strong></p>
-<p>　　在横轴上放了n个相邻的矩形，每个矩形的宽度是1，而第i（1 ≤ i ≤ n）个矩形的高度是hi。这n个矩形构成了一个直方图。例如，下图中六个矩形的高度就分别是3, 1, 6, 5, 2, 3。</p>
-<p><img src="/static/images/ccf-csp-20131203-1.png" alt="img"><br>　　请找出能放在给定直方图里面积最大的矩形，它的边要与坐标轴平行。对于上面给出的例子，最大矩形如下图所示的阴影部分，面积是10。<br><img src="/static/images/ccf-csp-20131203-2.png" alt="img"></p>
+          <p>作者综合考虑了显式评分和隐式反馈，提出了一个基于深度学习的矩阵分解方法以及一个新的损失函数。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/08/18/ccf-csp-20131203/#more" rel="contents">
+            <a class="btn" href="/2019/10/04/recommender-system-dmf/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1453,7 +888,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/08/17/ccf-csp-20140303/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/10/01/python-jupyter/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -1470,9 +905,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/08/17/ccf-csp-20140303/" itemprop="url">
+                <a class="post-title-link" href="/2019/10/01/python-jupyter/" itemprop="url">
                   
-                   CCF CSP 201403-3.命令行选项</a></h2>
+                   Jupyter入门</a></h2>
         
 
         <div class="post-meta">		 
@@ -1485,8 +920,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-17T20:49:21+08:00">
-                2019-08-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-01T17:36:16+08:00">
+                2019-10-01
               </time>
             
 
@@ -1501,8 +936,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-18T17:29:32+08:00">
-                2019-08-18
+              <time title="更新于" itemprop="dateModified" datetime="2019-10-10T19:59:03+08:00">
+                2019-10-10
               </time>
             
           </span>
@@ -1520,8 +955,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/ccf-csp/" itemprop="url" rel="index">
-                    <span itemprop="name">ccf csp</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -1551,7 +986,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.7k
+                  354
                 </span>
               
 
@@ -1577,11 +1012,11 @@
 
       
         
-          <p><strong>问题描述</strong></p>
-<p>　　请你写一个命令行分析程序,用以分析给定的命令行里包含哪些选项。每个命令行由若干个字符串组成,它们之间恰好由一个空格分隔。这些字符串中的第一个为该命令行工具的名字,由小写字母组成,你的程序不用对它进行处理。在工具名字之后可能会包含若干选项,然后可能会包含一 些不是选项的参数。<br>　　选项有两类:带参数的选项和不带参数的选项。一个合法的无参数选项的形式是一个减号后面跟单个小写字母,如”-a” 或”-b”。而带参数选项则由两个由空格分隔的字符串构成,前者的格式要求与无参数选项相同,后者则是该选项的参数,是由小写字母,数字和减号组成的非空字符串。<br>　　该命令行工具的作者提供给你一个格式字符串以指定他的命令行工具需要接受哪些选项。这个字符串由若干小写字母和冒号组成,其中的每个小写字母表示一个该程序接受的选项。如果该小写字母后面紧跟了一个冒号,它就表示一个带参数的选项,否则则为不带参数的选项。例如, “<code>ab​:m:</code>​” 表示该程序接受三种选项,即”-a”(不带参数),”-b”(带参数), 以及”-m”(带参数)。<br>　　命令行工具的作者准备了若干条命令行用以测试你的程序。对于每个命令行,你的工具应当一直向后分析。当你的工具遇到某个字符串既不是合法的选项,又不是某个合法选项的参数时,分析就停止。命令行剩余的未分析部分不构成该命令的选项,因此你的程序应当忽略它们。</p>
+          <p>Jupyter Notebook（此前被称为 IPython notebook）是一个交互式笔记本。</p>
+<p>Jupyter这个词是由<code>Ju</code>lia、<code>Py</code>thon和<code>R</code>中的字母组成。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/08/17/ccf-csp-20140303/#more" rel="contents">
+            <a class="btn" href="/2019/10/01/python-jupyter/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1633,7 +1068,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/08/16/ccf-csp-20140903/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/09/30/recommender-system-bpr/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -1650,9 +1085,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/08/16/ccf-csp-20140903/" itemprop="url">
+                <a class="post-title-link" href="/2019/09/30/recommender-system-bpr/" itemprop="url">
                   
-                   CCF CSP 201409-3.字符串匹配</a></h2>
+                   论文阅读 BPR&#58 Bayesian Personalized Ranking from Implict Feedback</a></h2>
         
 
         <div class="post-meta">		 
@@ -1665,8 +1100,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-16T21:30:57+08:00">
-                2019-08-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-30T11:15:56+08:00">
+                2019-09-30
               </time>
             
 
@@ -1681,8 +1116,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-16T22:09:07+08:00">
-                2019-08-16
+              <time title="更新于" itemprop="dateModified" datetime="2020-10-04T00:51:50+08:00">
+                2020-10-04
               </time>
             
           </span>
@@ -1700,8 +1135,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/ccf-csp/" itemprop="url" rel="index">
-                    <span itemprop="name">ccf csp</span>
+                  <a href="/categories/recommender-systems/" itemprop="url" rel="index">
+                    <span itemprop="name">recommender systems</span>
                   </a>
                 </span>
 
@@ -1731,7 +1166,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  729
+                  2.1k
                 </span>
               
 
@@ -1757,11 +1192,10 @@
 
       
         
-          <p><strong>问题描述</strong></p>
-<p>　　给出一个字符串和多行文字，在这些文字中找到字符串出现的那些行。你的程序还需支持大小写敏感选项：当选项打开时，表示同一个字母的大写和小写看作不同的字符；当选项关闭时，表示同一个字母的大写和小写看作相同的字符。</p>
+          <p>贝叶斯个性化排序（Bayesian Personalized Ranking，BPR）是一种基于pairwise的排序算法，主要利用用户的隐式反馈（如点击、浏览、购买等行为），通过最大化后验概率来对物品进行个性化排序。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/08/16/ccf-csp-20140903/#more" rel="contents">
+            <a class="btn" href="/2019/09/30/recommender-system-bpr/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1813,7 +1247,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/08/15/ccf-csp-20150904/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/09/29/python-tuple/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -1830,9 +1264,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/08/15/ccf-csp-20150904/" itemprop="url">
+                <a class="post-title-link" href="/2019/09/29/python-tuple/" itemprop="url">
                   
-                   CCF CSP 201509-4.高速公路</a></h2>
+                   Python元组（tuple）</a></h2>
         
 
         <div class="post-meta">		 
@@ -1845,8 +1279,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T15:02:56+08:00">
-                2019-08-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-29T19:06:23+08:00">
+                2019-09-29
               </time>
             
 
@@ -1861,8 +1295,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-15T18:38:29+08:00">
-                2019-08-15
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-29T19:57:47+08:00">
+                2019-09-29
               </time>
             
           </span>
@@ -1880,8 +1314,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/ccf-csp/" itemprop="url" rel="index">
-                    <span itemprop="name">ccf csp</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -1911,7 +1345,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  770
+                  246
                 </span>
               
 
@@ -1937,11 +1371,11 @@
 
       
         
-          <p><strong>问题描述</strong></p>
-<p>　　某国有<em>n</em>个城市，为了使得城市间的交通更便利，该国国王打算在城市之间修一些高速公路，由于经费限制，国王打算第一阶段先在部分城市之间修一些单向的高速公路。<br>　　现在，大臣们帮国王拟了一个修高速公路的计划。看了计划后，国王发现，有些城市之间可以通过高速公路直接（不经过其他城市）或间接（经过一个或多个其他城市）到达，而有的却不能。如果城市A可以通过高速公路到达城市B，而且城市B也可以通过高速公路到达城市A，则这两个城市被称为便利城市对。<br>　　国王想知道，在大臣们给他的计划中，有多少个便利城市对。</p>
+          <p>在Python中，元组与列表类似，不同之处在于列表中的元素是可以修改的，而元组中的元素是不可修改的。</p>
+<p>元组用圆括号<code>()</code>来标识，并用逗号来分隔其中的元素。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/08/15/ccf-csp-20150904/#more" rel="contents">
+            <a class="btn" href="/2019/09/29/python-tuple/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1993,7 +1427,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/08/14/ccf-csp-20170904/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/09/28/python-list/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -2010,9 +1444,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/08/14/ccf-csp-20170904/" itemprop="url">
+                <a class="post-title-link" href="/2019/09/28/python-list/" itemprop="url">
                   
-                   CCF CSP 201709-4.通信网络</a></h2>
+                   Python列表（list）</a></h2>
         
 
         <div class="post-meta">		 
@@ -2025,8 +1459,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-14T17:11:20+08:00">
-                2019-08-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-28T13:52:26+08:00">
+                2019-09-28
               </time>
             
 
@@ -2041,8 +1475,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-14T17:38:15+08:00">
-                2019-08-14
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-28T15:03:35+08:00">
+                2019-09-28
               </time>
             
           </span>
@@ -2060,8 +1494,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/ccf-csp/" itemprop="url" rel="index">
-                    <span itemprop="name">ccf csp</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -2091,7 +1525,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  943
+                  599
                 </span>
               
 
@@ -2117,11 +1551,548 @@
 
       
         
-          <p><strong>问题描述</strong></p>
-<p>　　某国的军队由<em>N</em>个部门组成，为了提高安全性，部门之间建立了<em>M</em>条通路，每条通路只能单向传递信息，即一条从部门<em>a</em>到部门<em>b</em>的通路只能由<em>a</em>向<em>b</em>传递信息。信息可以通过中转的方式进行传递，即如果<em>a</em>能将信息传递到<em>b</em>，<em>b</em>又能将信息传递到<em>c</em>，则<em>a</em>能将信息传递到<em>c</em>。一条信息可能通过多次中转最终到达目的地。<br>　　由于保密工作做得很好，并不是所有部门之间都互相知道彼此的存在。只有当两个部门之间可以直接或间接传递信息时，他们才彼此知道对方的存在。部门之间不会把自己知道哪些部门告诉其他部门。<br><img src="/static/images/ccf-csp-20170904.png" alt="img"><br>　　上图中给了一个4个部门的例子，图中的单向边表示通路。部门1可以将消息发送给所有部门，部门4可以接收所有部门的消息，所以部门1和部门4知道所有其他部门的存在。部门2和部门3之间没有任何方式可以发送消息，所以部门2和部门3互相不知道彼此的存在。<br>　　现在请问，有多少个部门知道所有<em>N</em>个部门的存在。或者说，有多少个部门所知道的部门数量（包括自己）正好是<em>N</em>。</p>
+          <p>在Python中，用方括号<code>[]</code>来表示列表，并用逗号来分隔其中的元素。列表中的元素类型可以不一致。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/08/14/ccf-csp-20170904/#more" rel="contents">
+            <a class="btn" href="/2019/09/28/python-list/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/09/28/paper-abbreviation/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2019/09/28/paper-abbreviation/" itemprop="url">
+                  
+                   论文中常见的缩写词</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-28T12:08:55+08:00">
+                2019-09-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-10-08T21:12:17+08:00">
+                2020-10-08
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/paper/" itemprop="url" rel="index">
+                    <span itemprop="name">paper</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  188
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在阅读英文文献时，总能看到许多缩写词，譬如e.g.和i.e.等。本文对常见的缩写词进行了总结。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/28/paper-abbreviation/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/09/17/recommender-system-neural-collaborative-filtering/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2019/09/17/recommender-system-neural-collaborative-filtering/" itemprop="url">
+                  
+                   论文阅读 Neural Collaborative Filtering</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-17T16:48:49+08:00">
+                2019-09-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-09-26T15:28:58+08:00">
+                2020-09-26
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/recommender-systems/" itemprop="url" rel="index">
+                    <span itemprop="name">recommender systems</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  894
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Neural Collaborative Filtering提出了一种融合模型，将深度学习运用到推荐系统中，在隐式反馈问题上获得了state-of-the-art。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/17/recommender-system-neural-collaborative-filtering/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/09/17/keras-model/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2019/09/17/keras-model/" itemprop="url">
+                  
+                   Keras Model类中的常用方法</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-17T16:48:28+08:00">
+                2019-09-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-09-18T20:43:27+08:00">
+                2019-09-18
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/deep-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">deep learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  621
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>近一个月来，我都在阅读Keras之父著作的《Python深度学习》一书。书中最常使用的便是Keras的Model类。</p>
+<p>通过查阅官方文档和Model类源码，本文将Keras Model类中的常用方法进行了梳理和总结。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/09/17/keras-model/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2164,7 +2135,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/47/">47</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2212,7 +2183,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">465</span>
+                  <span class="site-state-item-count">485</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2234,7 +2205,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
