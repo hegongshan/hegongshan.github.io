@@ -497,10 +497,10 @@
 </tr>
 </tbody>
 </table>
-<h3 id="下载IO500"><a href="#下载IO500" class="headerlink" title="下载IO500"></a>下载IO500</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> wget https://github.com/IO500/io500/archive/refs/tags/io500-scc21.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="下载IO500"><a href="#下载IO500" class="headerlink" title="下载IO500"></a>下载IO500</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wget https://github.com/IO500/io500/archive/refs/tags/io500-scc21.tar.gz</span></span><br></pre></td></tr></table></figure>
 <p>解压缩</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> tar -zxf io500-scc21.tar.gz</span><br><span class="line"><span class="meta">$</span> cd io500-io500-scc21/</span><br></pre></td></tr></table></figure>
-<h3 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> ./prepare.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> tar -zxf io500-scc21.tar.gz</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> io500-io500-scc21/</span></span><br></pre></td></tr></table></figure>
+<h3 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./prepare.sh</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>为避免GitHub下载过慢，可以使用镜像网址替换<code>prepare.sh</code>中的github.com，比如hub.fastgit.org</p>
 </blockquote>
@@ -510,7 +510,7 @@
 <p><strong style="color:red;">注意：</strong>上述操作会将编译好的openmpi3下载到<code>/usr/lib64/openmpi3</code>中。然而，<code>/usr/lib64</code>并不在<code>PATH</code>中，因此无法直接使用openmpi3。</p>
 <p>修改<code>/etc/profile</code>或者<code>${USER}/.bash_profile</code>，追加如下内容：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if [ -z "$OPENMPI_ADDED" ]; then</span><br><span class="line">    export PATH=/usr/lib64/openmpi3/bin:$PATH</span><br><span class="line">    export OPENMPI_ADDED=yes</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<h3 id="运行IO500"><a href="#运行IO500" class="headerlink" title="运行IO500"></a>运行IO500</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> mpiexec -np 2 ./io500 config-minimal.ini</span><br></pre></td></tr></table></figure>
+<h3 id="运行IO500"><a href="#运行IO500" class="headerlink" title="运行IO500"></a>运行IO500</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mpiexec -np 2 ./io500 config-minimal.ini</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -591,7 +591,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/12/02/storage-system-test-tool-fio/" rel="next" title="IO测试工具之fio">
+              <a href="/2021/12/02/io-test-tool-fio/" rel="next" title="IO测试工具之fio">
                 <i class="fa fa-chevron-left"></i> IO测试工具之fio
               </a>
             
@@ -601,8 +601,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/12/02/linux-yum/" rel="prev" title="linux-yum">
-                linux-yum <i class="fa fa-chevron-right"></i>
+              <a href="/2021/12/02/linux-yum/" rel="prev" title="在Linux中存活下来之软件包管理器YUM">
+                在Linux中存活下来之软件包管理器YUM <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -714,7 +714,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">485</span>
+                  <span class="site-state-item-count">505</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -725,7 +725,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -736,7 +736,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">94</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

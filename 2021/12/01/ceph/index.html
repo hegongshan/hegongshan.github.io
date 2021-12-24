@@ -80,7 +80,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="本文记录了使用cephadm安装ceph，以及挂载和测试的全过程。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-12-03T14:43:53.582Z">
+<meta property="og:updated_time" content="2021-12-22T09:06:13.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用cephadm部署ceph">
 <meta name="twitter:description" content="本文记录了使用cephadm安装ceph，以及挂载和测试的全过程。">
@@ -395,8 +395,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-12-03T22:43:53+08:00">
-                2021-12-03
+              <time title="更新于" itemprop="dateModified" datetime="2021-12-22T17:06:13+08:00">
+                2021-12-22
               </time>
             
           </span>
@@ -450,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  855
+                  1k
                 </span>
               
 
@@ -609,11 +609,27 @@
 <h3 id="测试读写"><a href="#测试读写" class="headerlink" title="测试读写"></a>测试读写</h3><p>1.挂载前的准备</p>
 <p><a href="https://docs.ceph.com/en/pacific/cephfs/mount-prerequisites/" target="_blank" rel="noopener">https://docs.ceph.com/en/pacific/cephfs/mount-prerequisites/</a></p>
 <p>2.挂载</p>
-<p>第一种，使用内核驱动进行挂载。<a href="https://docs.ceph.com/en/pacific/cephfs/mount-using-kernel-driver/" target="_blank" rel="noopener">https://docs.ceph.com/en/pacific/cephfs/mount-using-kernel-driver/</a></p>
-<p>第二种，使用FUSE进行挂载。<a href="https://docs.ceph.com/en/pacific/cephfs/mount-using-fuse/" target="_blank" rel="noopener">https://docs.ceph.com/en/pacific/cephfs/mount-using-fuse/</a></p>
-<p>安装ceph-fuse</p>
+<ul>
+<li>使用内核驱动进行<a href="https://docs.ceph.com/en/pacific/cephfs/mount-using-kernel-driver/" target="_blank" rel="noopener">挂载</a>。</li>
+</ul>
+<p>在客户端中，需要安装<code>ceph-common</code>，否则无法直接解析mon：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[19986.950242] libceph: Failed to parse monitor IPs: -22</span><br><span class="line">[20036.764549] libceph: Failed to parse monitor IPs: -22</span><br><span class="line">[20407.695311] libceph: Failed to parse monitor IPs: -22</span><br><span class="line">[21540.415601] libceph: Failed to parse monitor IPs: -22</span><br><span class="line">[70653.559713] libceph: Failed to parse monitor IPs: -22</span><br></pre></td></tr></table></figure>
+<p>安装ceph-common时，记得使用cephadm安装较新的版本。不要使用yum，因为其安装的是较老的版本。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -t ceph :/ /mnt/cephfs -o name=&lt;name&gt;</span><br></pre></td></tr></table></figure>
+<p>当然，我们也可以不安装<code>ceph-common</code>，那便需要在挂载时手动指定mon的信息。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -t ceph 192.168.0.1:6789,192.168.0.2:6789:/ /mnt/mycephfs -o name=foo,secret=AQATSKdNGBnwLhAAnNDKnH65FmVKpXZJVasUeQ==</span><br></pre></td></tr></table></figure>
+<p>其中，<code>&lt;name&gt;</code>和<code>&lt;secret&gt;</code>来自于<code>/etc/ceph/ceph.client.&lt;name&gt;.keyring</code>。</p>
+<ul>
+<li>使用FUSE进行<a href="https://docs.ceph.com/en/pacific/cephfs/mount-using-fuse/" target="_blank" rel="noopener">挂载</a></li>
+</ul>
+<p>首先，安装ceph-fuse</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y ceph-fuse</span><br></pre></td></tr></table></figure>
+<p>然后，挂载CephFS</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ceph-fuse --id 用户名 挂载点</span><br><span class="line"><span class="meta">#</span> ceph-fuse -n client.用户名 挂载点</span><br></pre></td></tr></table></figure>
+<p>3.修改/etc/fstab</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>## Ceph运行中可能出现的问题</span><br><span class="line"></span><br><span class="line">问题一：</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line">HEALTH_WARN clock skew detected on mon.xxx</span><br></pre></td></tr></table></figure>
+<p>解决办法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -710,7 +726,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/12/02/storage-system-test-tool-fio/" rel="prev" title="IO测试工具之fio">
+              <a href="/2021/12/02/io-test-tool-fio/" rel="prev" title="IO测试工具之fio">
                 IO测试工具之fio <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -823,7 +839,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">485</span>
+                  <span class="site-state-item-count">505</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -834,7 +850,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -845,7 +861,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">94</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -80,7 +80,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="在Linux中，涉及进程管理的常用命令有ps、top和kill等。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-11T13:04:58.511Z">
+<meta property="og:updated_time" content="2021-12-18T17:29:48.846Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Linux中存活下来之进程管理">
 <meta name="twitter:description" content="在Linux中，涉及进程管理的常用命令有ps、top和kill等。">
@@ -395,8 +395,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-05-11T21:04:58+08:00">
-                2020-05-11
+              <time title="更新于" itemprop="dateModified" datetime="2021-12-19T01:29:48+08:00">
+                2021-12-19
               </time>
             
           </span>
@@ -450,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  564
+                  720
                 </span>
               
 
@@ -482,12 +482,20 @@
 <ul>
 <li>-e：列出所有进程。</li>
 <li>-f：按照完整格式显示进程信息。</li>
+<li><code>-p pid</code>：只显示进程号为pid的进程。</li>
+<li><code>-o keyword</code>：按照指定的字段列出进程信息。</li>
 </ul>
 <p><strong>示例：</strong></p>
 <p>1.查看系统所有进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef 或者 ps aux</span><br></pre></td></tr></table></figure>
 <p>2.查看特定的进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep 进程名</span><br></pre></td></tr></table></figure>
+<p>3.列出进程的进程号、CPU占用率和命令名称</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hgs:~ hegongshan$ ps -o pid,%cpu,command</span><br><span class="line">  PID  %CPU COMMAND</span><br><span class="line">70842   0.1 -bash</span><br></pre></td></tr></table></figure>
+<p>可以使用<code>=</code>为关键字指定别名，例如</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Linux: ps -o pid=id -o %cpu,<span class="built_in">command</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 在Linux中，使用逗号时，第一列不能使用别名</span></span><br><span class="line">hgs:~ hegongshan$ ps -o pid=id,%cpu,command</span><br><span class="line">   id  %CPU COMMAND</span><br><span class="line">70842   0.0 -bash</span><br></pre></td></tr></table></figure>
+<p>如果所有关键字的别名均为空，那么就不会输出表头行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Linux:  ps -o pid= -o pcpu= -o <span class="built_in">command</span>= </span></span><br><span class="line">hgs:~ hegongshan$ ps -o pid=,%cpu=,command=</span><br><span class="line">70842   0.0 -bash</span><br></pre></td></tr></table></figure>
 <h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>用于实时显示进程的状态。</p>
 <p><strong>常用选项：</strong></p>
 <ul>
@@ -746,7 +754,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">485</span>
+                  <span class="site-state-item-count">505</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -757,7 +765,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -768,7 +776,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">94</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

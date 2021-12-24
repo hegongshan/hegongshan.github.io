@@ -82,7 +82,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/computer-network-nslookup-baidu1.png">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/computer-network-nslookup-baidu2.png">
-<meta property="og:updated_time" content="2021-08-05T10:52:34.132Z">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/computer-network-route.png">
+<meta property="og:updated_time" content="2021-12-20T06:53:11.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络常用命令">
 <meta name="twitter:description" content="在看过《计算机是怎样跑起来的》关于网络的一章后，我发现自己对网络相关的常用命令似乎还不太了解。">
@@ -398,8 +399,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-08-05T18:52:34+08:00">
-                2021-08-05
+              <time title="更新于" itemprop="dateModified" datetime="2021-12-20T14:53:11+08:00">
+                2021-12-20
               </time>
             
           </span>
@@ -453,7 +454,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  714
+                  773
                 </span>
               
 
@@ -513,12 +514,17 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">hgs:~ hegongshan$ nslookup</span><br><span class="line"><span class="meta">&gt;</span> www.baidu.com</span><br><span class="line">Server:		192.168.31.1</span><br><span class="line">Address:	192.168.31.1#53</span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">www.baidu.com	canonical name = www.a.shifen.com.</span><br><span class="line">Name:	www.a.shifen.com</span><br><span class="line">Address: 182.61.200.7</span><br><span class="line">Name:	www.a.shifen.com</span><br><span class="line">Address: 182.61.200.6</span><br><span class="line"><span class="meta">&gt;</span> exit</span><br><span class="line">hgs:~ hegongshan$</span><br></pre></td></tr></table></figure>
 <p>输入exit命令，可以退出交互模式。</p>
 <h4 id="host"><a href="#host" class="headerlink" title="host"></a>host</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hgs:~ hegongshan$ host www.baidu.com</span><br><span class="line">www.baidu.com is an alias for www.a.shifen.com.</span><br><span class="line">www.a.shifen.com has address 182.61.200.7</span><br><span class="line">www.a.shifen.com has address 182.61.200.6</span><br><span class="line">hgs:~ hegongshan$</span><br></pre></td></tr></table></figure>
-<h3 id="arp"><a href="#arp" class="headerlink" title="arp"></a>arp</h3><p>arp，全称为地址解析协议（Address Resolution Protocol，ARP），用于将IP地址转化为对应的MAC地址。</p>
+<h4 id="dig"><a href="#dig" class="headerlink" title="dig"></a>dig</h4><h3 id="arp"><a href="#arp" class="headerlink" title="arp"></a>arp</h3><p>arp，全称为地址解析协议（Address Resolution Protocol，ARP），用于将IP地址转化为对应的MAC地址。</p>
 <ul>
 <li>显示所有的项</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arp -a</span><br></pre></td></tr></table></figure>
-<h3 id="路由信息"><a href="#路由信息" class="headerlink" title="路由信息"></a>路由信息</h3><h4 id="route"><a href="#route" class="headerlink" title="route"></a>route</h4><p>路由表</p>
+<h3 id="路由信息"><a href="#路由信息" class="headerlink" title="路由信息"></a>路由信息</h3><h4 id="route"><a href="#route" class="headerlink" title="route"></a>route</h4><p>查看和管理路由表，设置静态路由。</p>
+<p><img src="/static/images/computer-network-route.png" alt="查看路由表"></p>
+<p>1.添加路由</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route add -net 192.168.20.0 netmask 255.255.255.0 gw 172.16.2.10 dev ens9f0</span><br></pre></td></tr></table></figure>
+<p>2.删除路由</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route del -net 192.168.20.0 netmask 255.255.255.0 gw 172.16.2.10 dev ens9f0</span><br></pre></td></tr></table></figure>
 <h4 id="traceroute-tracert"><a href="#traceroute-tracert" class="headerlink" title="traceroute/tracert"></a>traceroute/tracert</h4><p>功能：查看路由路径。</p>
 <ul>
 <li>Windows使用tracert</li>
@@ -733,7 +739,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">485</span>
+                  <span class="site-state-item-count">505</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -744,7 +750,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -755,7 +761,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">94</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -852,7 +858,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测网络连通性"><span class="nav-number">1.</span> <span class="nav-text">检测网络连通性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ping"><span class="nav-number">1.1.</span> <span class="nav-text">ping</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#telnet"><span class="nav-number">1.2.</span> <span class="nav-text">telnet</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ipconfig-ifconfig"><span class="nav-number">2.</span> <span class="nav-text">ipconfig/ifconfig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#域名解析"><span class="nav-number">3.</span> <span class="nav-text">域名解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nslookup"><span class="nav-number">3.1.</span> <span class="nav-text">nslookup</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#host"><span class="nav-number">3.2.</span> <span class="nav-text">host</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arp"><span class="nav-number">4.</span> <span class="nav-text">arp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由信息"><span class="nav-number">5.</span> <span class="nav-text">路由信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#route"><span class="nav-number">5.1.</span> <span class="nav-text">route</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#traceroute-tracert"><span class="nav-number">5.2.</span> <span class="nav-text">traceroute/tracert</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#检测网络连通性"><span class="nav-number">1.</span> <span class="nav-text">检测网络连通性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ping"><span class="nav-number">1.1.</span> <span class="nav-text">ping</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#telnet"><span class="nav-number">1.2.</span> <span class="nav-text">telnet</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ipconfig-ifconfig"><span class="nav-number">2.</span> <span class="nav-text">ipconfig/ifconfig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#域名解析"><span class="nav-number">3.</span> <span class="nav-text">域名解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nslookup"><span class="nav-number">3.1.</span> <span class="nav-text">nslookup</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#host"><span class="nav-number">3.2.</span> <span class="nav-text">host</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dig"><span class="nav-number">3.3.</span> <span class="nav-text">dig</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#arp"><span class="nav-number">4.</span> <span class="nav-text">arp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由信息"><span class="nav-number">5.</span> <span class="nav-text">路由信息</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#route"><span class="nav-number">5.1.</span> <span class="nav-text">route</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#traceroute-tracert"><span class="nav-number">5.2.</span> <span class="nav-text">traceroute/tracert</span></a></li></ol></li></ol></div>
             
 
           </div>
