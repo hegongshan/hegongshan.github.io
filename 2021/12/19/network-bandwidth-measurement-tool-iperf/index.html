@@ -482,7 +482,7 @@
         <p>本文介绍了网络带宽测试工具iperf的安装和使用。</p>
 <a id="more"></a>
 <p>iperf是一个网络带宽测试工具，可以用于测试TCP、UDP以及SCTP的网络带宽。</p>
-<h3 id="安装iperf3"><a href="#安装iperf3" class="headerlink" title="安装iperf3"></a>安装iperf3</h3><h4 id="使用包管理器"><a href="#使用包管理器" class="headerlink" title="使用包管理器"></a>使用包管理器</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> Ubuntu</span><br><span class="line">apt install -y iperf3</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> CentOS</span><br><span class="line">yum install -y iperf3</span><br></pre></td></tr></table></figure>
+<h3 id="安装iperf3"><a href="#安装iperf3" class="headerlink" title="安装iperf3"></a>安装iperf3</h3><h4 id="使用包管理器"><a href="#使用包管理器" class="headerlink" title="使用包管理器"></a>使用包管理器</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Ubuntu</span></span><br><span class="line">apt install -y iperf3</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CentOS</span></span><br><span class="line">yum install -y iperf3</span><br></pre></td></tr></table></figure>
 <p>包管理器的优点在于安装简单，但软件包的版本通常不是最新的版本。</p>
 <h4 id="源码安装"><a href="#源码安装" class="headerlink" title="源码安装"></a>源码安装</h4><p>下面👇使用源码安装iperf3：</p>
 <p>1.下载iperf3</p>
@@ -503,11 +503,11 @@
 <p>6.安装</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
 <p>7.查看版本</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> iperf3 --version</span><br><span class="line">iperf3 -v</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> iperf3 --version</span></span><br><span class="line">iperf3 -v</span><br></pre></td></tr></table></figure>
 <p><img src="/static/images/iperf-version.png" alt="查看版本"></p>
 <h3 id="测试网络带宽"><a href="#测试网络带宽" class="headerlink" title="测试网络带宽"></a>测试网络带宽</h3><p>在使用iperf3执行网络带宽测试前，需要确保客户端和服务器端都已经安装了iperf3。</p>
 <p>1.启动服务器端</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 在前台运行</span><br><span class="line">iperf3 --server</span><br><span class="line">iperf3 -s</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 在前台运行</span></span><br><span class="line">iperf3 --server</span><br><span class="line">iperf3 -s</span><br></pre></td></tr></table></figure>
 <p><img src="/static/images/iperf-server.png" alt="启动服务器端"></p>
 <p>默认情况下，服务器端会在前台执行。可以使用<code>-D</code>或<code>--daemon</code>让服务器端在后台运行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iperf3 -s -D</span><br></pre></td></tr></table></figure>
@@ -527,7 +527,7 @@
 <li>测试持续时间</li>
 </ul>
 <p>默认情况下，只会运行10秒。可以使用<code>-t</code>设置持续时间（秒）：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 持续60秒</span><br><span class="line">iperf3 -c &lt;host&gt; -t 60</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 持续60秒</span></span><br><span class="line">iperf3 -c &lt;host&gt; -t 60</span><br></pre></td></tr></table></figure>
 <ul>
 <li>指定连接端口</li>
 </ul>
@@ -540,7 +540,7 @@
 <ul>
 <li>指定输出的单位：<code>-f</code>或者<code>--format [kmgtKMGT]</code></li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 大写字母表示使用字节为单位输出结果，小写字母表示使用比特为单位，如G表示GBytes，g表示Gbits</span><br><span class="line">iperf3 -c &lt;host&gt; -t 60 -f G --logfile result.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 大写字母表示使用字节为单位输出结果，小写字母表示使用比特为单位，如G表示GBytes，g表示Gbits</span></span><br><span class="line">iperf3 -c &lt;host&gt; -t 60 -f G --logfile result.txt</span><br></pre></td></tr></table></figure>
 <ul>
 <li>指定其他数据传输模式：默认情况下，数据传输采用普通模式，即从客户端上传到服务器端。</li>
 </ul>
