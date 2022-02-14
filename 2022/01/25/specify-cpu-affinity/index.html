@@ -61,7 +61,7 @@
 
 
 
-  <meta name="keywords" content="gongshan,hegongshan,gongshanhe,blog">
+  <meta name="keywords" content="cpu,">
 
 
 
@@ -72,19 +72,19 @@
 
 
 
-<meta name="description" content="设置CPU亲和度的API位于头文件&amp;lt;sched.h&amp;gt;中： 1vim /usr/include/sched.h  1234567#define _GNU_SOURCEgcc -D_CNU_SOURCE xx.cor #define __USE_GNU 123456789#include &amp;lt;sched.h&amp;gt;static int setaffinity(int c)&amp;#123;">
-<meta name="keywords" content="GongshanHe Java Python MachineLearning DeepLearning RecommenderSystems KnowledgeGraph">
+<meta name="description" content="一台计算机上可能有多个CPU，如何让程序只在特定的CPU上运行呢？">
+<meta name="keywords" content="cpu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用C语言设置CPU亲和度">
 <meta property="og:url" content="https://www.hegongshan.com/2022/01/25/specify-cpu-affinity/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="设置CPU亲和度的API位于头文件&amp;lt;sched.h&amp;gt;中： 1vim /usr/include/sched.h  1234567#define _GNU_SOURCEgcc -D_CNU_SOURCE xx.cor #define __USE_GNU 123456789#include &amp;lt;sched.h&amp;gt;static int setaffinity(int c)&amp;#123;">
+<meta property="og:description" content="一台计算机上可能有多个CPU，如何让程序只在特定的CPU上运行呢？">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/sched-cpu-affinity-api.png">
-<meta property="og:updated_time" content="2022-01-26T07:53:50.512Z">
+<meta property="og:updated_time" content="2022-02-14T14:18:21.522Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用C语言设置CPU亲和度">
-<meta name="twitter:description" content="设置CPU亲和度的API位于头文件&amp;lt;sched.h&amp;gt;中： 1vim /usr/include/sched.h  1234567#define _GNU_SOURCEgcc -D_CNU_SOURCE xx.cor #define __USE_GNU 123456789#include &amp;lt;sched.h&amp;gt;static int setaffinity(int c)&amp;#123;">
+<meta name="twitter:description" content="一台计算机上可能有多个CPU，如何让程序只在特定的CPU上运行呢？">
 <meta name="twitter:image" content="https://www.hegongshan.com/static/images/sched-cpu-affinity-api.png">
 
 
@@ -397,12 +397,34 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-01-26T15:53:50+08:00">
-                2022-01-26
+              <time title="更新于" itemprop="dateModified" datetime="2022-02-14T22:18:21+08:00">
+                2022-02-14
               </time>
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/cpu/" itemprop="url" rel="index">
+                    <span itemprop="name">cpu</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -430,7 +452,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  212
+                  239
                 </span>
               
 
@@ -455,10 +477,12 @@
       
 
       
-        <p>设置CPU亲和度的API位于头文件<code>&lt;sched.h&gt;</code>中：</p>
+        <p>一台计算机上可能有多个CPU，如何让程序只在特定的CPU上运行呢？</p>
+<a id="more"></a>
+<p>设置CPU亲和度的API位于头文件<code>&lt;sched.h&gt;</code>中：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/include/sched.h</span><br></pre></td></tr></table></figure>
 <p><img src="/static/images/sched-cpu-affinity-api.png" alt="CPU亲和度"></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _GNU_SOURCE</span></span><br><span class="line"></span><br><span class="line">gcc -D_CNU_SOURCE xx.c</span><br><span class="line"></span><br><span class="line"><span class="keyword">or</span> </span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __USE_GNU</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _GNU_SOURCE</span></span><br><span class="line"></span><br><span class="line">gcc -D_GNU_SOURCE xx.c</span><br><span class="line"></span><br><span class="line"><span class="keyword">or</span> </span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __USE_GNU</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sched.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">setaffinity</span><span class="params">(<span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="keyword">cpu_set_t</span> cpuset;</span><br><span class="line">        CPU_ZERO(&amp;cpuset);</span><br><span class="line">        CPU_SET(c, &amp;cpuset);</span><br><span class="line">        <span class="keyword">return</span> sched_setaffinity(<span class="number">0</span>, <span class="keyword">sizeof</span>(cpuset), &amp;cpuset);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>测试：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sched.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">setaffinity</span><span class="params">(<span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="keyword">cpu_set_t</span> cpuset;</span><br><span class="line">        CPU_ZERO(&amp;cpuset);</span><br><span class="line">        CPU_SET(c, &amp;cpuset);</span><br><span class="line">        <span class="keyword">return</span> sched_setaffinity(<span class="number">0</span>, <span class="keyword">sizeof</span>(cpuset), &amp;cpuset);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">set_test_root</span><span class="params">(<span class="keyword">int</span> id, <span class="keyword">char</span> *test_root)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">sprintf</span>(test_root, <span class="string">"%s/%d"</span>, fx_opt-&gt;root, worker-&gt;id);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">pre_work</span><span class="params">(struct worker *worker)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> test_root[PATH_MAX];</span><br><span class="line">	set_test_root(worker, test_root);</span><br><span class="line">	<span class="keyword">return</span> mkdir_p(test_root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">main_work</span><span class="params">(struct worker *worker)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> test_root[PATH_MAX];</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">bench</span> *<span class="title">bench</span> = <span class="title">worker</span>-&gt;<span class="title">bench</span>;</span></span><br><span class="line">	<span class="keyword">uint64_t</span> iter;</span><br><span class="line">	<span class="keyword">int</span> rc = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	set_test_root(worker, test_root);</span><br><span class="line">	<span class="keyword">for</span> (iter = <span class="number">0</span>; !stop; ++iter) &#123;</span><br><span class="line">		<span class="keyword">char</span> file[PATH_MAX];</span><br><span class="line">		<span class="keyword">int</span> fd;</span><br><span class="line">		<span class="comment">/* create and close */</span></span><br><span class="line">		<span class="built_in">snprintf</span>(file, PATH_MAX, <span class="string">"%s/n_inode_alloc-%"</span> PRIu64 <span class="string">".dat"</span>, </span><br><span class="line">			 test_root, iter);</span><br><span class="line">		<span class="keyword">if</span> ((fd = open(file, O_CREAT | O_RDWR, S_IRWXU)) == <span class="number">-1</span>)</span><br><span class="line">			<span class="keyword">goto</span> err_out;</span><br><span class="line">		close(fd);</span><br><span class="line">	&#125;</span><br><span class="line">out:</span><br><span class="line">	worker-&gt;works = (<span class="keyword">double</span>)iter;</span><br><span class="line">	<span class="keyword">return</span> rc;</span><br><span class="line">err_out:</span><br><span class="line">	stop = <span class="number">1</span>;</span><br><span class="line">	rc = errno;</span><br><span class="line">	<span class="keyword">goto</span> out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -533,6 +557,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/cpu/" rel="tag"><i class="fa fa-tag"></i> cpu</a>
+          
+        </div>
+      
 
       
       
@@ -542,8 +572,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/01/23/linux-strace/" rel="next" title="linux-strace">
-                <i class="fa fa-chevron-left"></i> linux-strace
+              <a href="/2022/01/23/linux-strace/" rel="next" title="查看进程调用的系统调用">
+                <i class="fa fa-chevron-left"></i> 查看进程调用的系统调用
               </a>
             
           </div>
