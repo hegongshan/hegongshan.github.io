@@ -31,9 +31,9 @@
 
 		
 <body>
-	<p class="title">博士期间任务完成情况表</p>
+	<span id="time">3</span>秒后自动跳转
+<!--	<p class="title">博士期间任务完成情况表</p>
 	<table>
-		<!--
 		<tr>
 			<td rowspan="7">2018-2019第二学期 第x周</td>
 			<td>2019.x.xx</td>
@@ -45,7 +45,6 @@
 				
 			</td>
 		</tr>
-		-->
 		<tr>
 			<th colspan="2">日期</th>
 			<th>任务</th>
@@ -73,5 +72,18 @@
 			</td>
 		</tr>
 	</table>
+-->
+	<script type="text/javascript">
+		window.onload = function() {
+			var second = 3;
+			setInterval(function() {
+				var otime = document.getElementById("time");
+				otime.innerHTML = --second;
+			}, 1000);
+			setTimeout(function() {
+				window.location.href = "https://docs.qq.com/doc/DTmVjVWVra0NFRUdX";
+			}, 3000);
+		};
+	</script>
 </body>
 </html>

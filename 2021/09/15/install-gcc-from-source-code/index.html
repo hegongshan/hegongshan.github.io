@@ -478,7 +478,7 @@
         <p>本文梳理了从源码安装GCC的流程，回顾了安装过程中遇到的一些问题。</p>
 <a id="more"></a>
 <p>1.下载GCC</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> wget http://ftp.gnu.org/gnu/gcc/gcc-4.9.4/gcc-4.9.4.tar.gz</span><br><span class="line">[root@hgs ~]# wget https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/gcc-4.9.4/gcc-4.9.4.tar.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> wget http://ftp.gnu.org/gnu/gcc/gcc-4.9.4/gcc-4.9.4.tar.gz</span></span><br><span class="line">[root@hgs ~]# wget https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/gcc-4.9.4/gcc-4.9.4.tar.gz</span><br></pre></td></tr></table></figure>
 <p>2.解压</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@hgs ~]# tar -zxf gcc-4.9.4.tar.gz</span><br><span class="line">[root@hgs ~]# cd gcc-4.9.4</span><br></pre></td></tr></table></figure>
 <p>3.下载必要的依赖</p>
@@ -486,7 +486,7 @@
 <p>若出现下述问题：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar (child): bzip2：无法 exec: 没有那个文件或目录</span><br><span class="line">tar (child): Error is not recoverable: exiting now</span><br><span class="line">tar: Child returned status 2</span><br><span class="line">tar: Error is not recoverable: exiting now</span><br></pre></td></tr></table></figure>
 <p>则需要安装bzip2：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> apt-get install -y bzip2</span><br><span class="line">yum install -y bzip2</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> apt-get install -y bzip2</span></span><br><span class="line">yum install -y bzip2</span><br></pre></td></tr></table></figure>
 <p>4.配置GCC</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@hgs gcc-4.9.4]# mkdir build</span><br><span class="line">[root@hgs gcc-4.9.4]# cd build/</span><br><span class="line">[root@hgs build]# ../configure --enable-checking=release --enable-languages=c,c++ --disable-multilib</span><br></pre></td></tr></table></figure>
 <p>5.编译</p>
@@ -700,7 +700,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">506</span>
+                  <span class="site-state-item-count">524</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -711,7 +711,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -722,7 +722,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">98</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -823,7 +823,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2022</span>
   <span class="with-love" style="color:red;">
     <i class="fa fa-heart"></i>
   </span>

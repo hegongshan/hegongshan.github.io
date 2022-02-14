@@ -350,7 +350,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/12/06/leetcode-101-symmetric-tree/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2020/01/11/leetcode-147-insertion-sort-list/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -367,9 +367,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/12/06/leetcode-101-symmetric-tree/" itemprop="url">
+                <a class="post-title-link" href="/2020/01/11/leetcode-147-insertion-sort-list/" itemprop="url">
                   
-                   LeetCode 101./《剑指Offer》28.对称二叉树</a></h2>
+                   LeetCode 147.对链表进行插入排序</a></h2>
         
 
         <div class="post-meta">		 
@@ -382,8 +382,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-06T13:44:42+08:00">
-                2019-12-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-11T23:26:17+08:00">
+                2020-01-11
               </time>
             
 
@@ -398,8 +398,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-29T14:51:11+08:00">
-                2020-02-29
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-11T23:53:35+08:00">
+                2020-01-11
               </time>
             
           </span>
@@ -448,7 +448,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  473
+                  563
                 </span>
               
 
@@ -474,10 +474,10 @@
 
       
         
-          <p>给定一个二叉树，检查它是否是镜像对称的。</p>
+          <p>对链表进行插入排序。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/12/06/leetcode-101-symmetric-tree/#more" rel="contents">
+            <a class="btn" href="/2020/01/11/leetcode-147-insertion-sort-list/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -529,7 +529,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/12/04/recommender-system-eals/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2020/01/08/recommender-system-deepfm/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -546,9 +546,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/12/04/recommender-system-eals/" itemprop="url">
+                <a class="post-title-link" href="/2020/01/08/recommender-system-deepfm/" itemprop="url">
                   
-                   论文阅读 Fast Matrix Factorization for Online Recommendation with Implicit Feedback</a></h2>
+                   论文阅读 DeepFM&#58 A Factorization-Machine based Neural Network for CTR Prediction</a></h2>
         
 
         <div class="post-meta">		 
@@ -561,8 +561,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-04T18:35:49+08:00">
-                2019-12-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-08T20:45:24+08:00">
+                2020-01-08
               </time>
             
 
@@ -577,8 +577,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-05T22:13:27+08:00">
-                2019-12-05
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-08T22:26:26+08:00">
+                2020-01-08
               </time>
             
           </span>
@@ -627,7 +627,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.4k
+                  286
                 </span>
               
 
@@ -653,198 +653,10 @@
 
       
         
-          
-            <p>$$<br>\hat r_{ui} = &lt;\mathbf{p}_u, \mathbf{q}_i&gt; = \mathbf{p}_u^T \mathbf{q}_i \tag{1}<br>$$<br>biasedMF<br>$$<br>\hat r_{ui} = b_u + b_i + &lt;\mathbf{p}_u^B, \mathbf{q}_i^B&gt;<br>$$<br>令$\mathbf{p}_u \leftarrow [\mathbf{p}_u^B, b_u, 1]$，$\mathbf{q}_i \leftarrow [\mathbf{p}_u^B, 1, b_i]$</p>
-<p>从而，可以将带偏置的矩阵分解归入式<br>$$<br>\hat r_{ui} = b_u + b_i + &lt;\mathbf{p}_u^B, \mathbf{q}_i^B&gt;<br>=<br>\begin{bmatrix}<br>\mathbf{p}_u^B &amp; b_u &amp; 1<br>\end{bmatrix}<br>\begin{bmatrix}<br>\mathbf{p}_u^B \\<br>1 \\<br>b_i<br>\end{bmatrix}<br>= \mathbf{p}_u^T \mathbf{q}_i<br>$$<br>目标函数：<br>$$<br>L = \sum_{u=1}^M \sum_{i=1}^N w_{ui} (r_{ui} - \hat r_{ui})^2 +<br>\lambda (<br>    \sum_{u=1}^M \left \Vert \mathbf{p}_u \right \Vert^2 +<br>    \sum_{i=1}^N \left \Vert \mathbf{q}_i \right \Vert^2<br>) \tag{2}<br>$$<br>使用交替最小二乘法（Alternating Least Square, ALS）：迭代地优化一个参数，而保持其他参数不变</p>
-<p>考虑$\mathbf{p}_u$：<br>$$<br>L_u = \left \Vert<br>    \mathbf{W}^u (\mathbf{r}_u - \mathbf{Q} \mathbf{p}_u)<br>\right \Vert^2 + \lambda \left \Vert \mathbf{p}_u \right \Vert^2<br>$$<br>其中，$\mathbf{W}^u$是$N \times N$的对角矩阵，其对角元素$W_{ii}^u = w_{ui}$。</p>
-<p>令$L_u$对$\mathbf{p}_u$的一阶导数等于0：<br>$$<br>\frac{ \partial L_u }{ \partial \mathbf{p}_u }<br>= -2 \mathbf{Q}^T \mathbf{W}^u (\mathbf{r}_u - \mathbf{Q} \mathbf{p}_u) + 2 \lambda \mathbf{p}_u = 0 \\<br>\begin{align}<br>&amp;\Rightarrow ( \mathbf{Q}^T \mathbf{W}^u \mathbf{Q} + \lambda \mathbf{I} ) \mathbf{p}_u = \mathbf{Q}^T \mathbf{W}^u \mathbf{r}_u \\<br>&amp;\Rightarrow \mathbf{p}_u = ( \mathbf{Q}^T \mathbf{W}^u \mathbf{Q} + \lambda \mathbf{I} )^{-1} \mathbf{Q}^T \mathbf{W}^u \mathbf{r}_u<br>\end{align} \tag{3}<br>$$<br>其中，$\mathbf{I}$是单位矩阵。</p>
-<p>给所有的缺失项赋相同的权重$w_0$<br>$$<br>\mathbf{Q}^T \mathbf{W}^u \mathbf{Q} = w_0 \mathbf{Q}^T \mathbf{Q} + \mathbf{Q}^T (\mathbf{W}^u - \mathbf{w}^0) \mathbf{Q} \tag{4}<br>$$<br>其中，$\mathbf{w}^0$是对角矩阵，其对角元素均为$w_0$。</p>
-<p>由于$\mathbf{Q}^T \mathbf{Q}$独立于u，因此，它可以被预先计算好。</p>
-<p>Element-wise ALS</p>
-<p>令$\hat r_{ui} = \hat r_{ui}^f + p_{uf} q_{if}$，则公式（2）可重写为<br>$$<br>L = \sum_{u=1}^M \sum_{i=1}^N w_{ui} (r_{ui} - \hat r_{ui}^f - p_{uf} q_{if})^2 +<br>\lambda (<br>    \sum_{u=1}^M \left \Vert \mathbf{p}_u \right \Vert^2 +<br>    \sum_{i=1}^N \left \Vert \mathbf{q}_i \right \Vert^2<br>)<br>$$<br>L对$p_{uf}$的的偏导数：<br>$$<br>\frac{ \partial L }{ \partial p_{uf} } = -2 \sum_{i=1}^N  (r_{ui} - \hat r_{ui}^f - p_{uf} q_{if}) w_{ui} q_{if} + 2 \lambda p_{uf}<br>$$<br>令$\frac{ \partial L }{ \partial p_{uf} } = 0$，得到$p_{uf}$的解：<br>$$<br>p_{uf} = \frac{<br>    \sum_{i=1}^N (r_{ui} - \hat r_{ui}^f) w_{ui} q_{if}<br>}{<br>    \sum_{i=1}^N w_{ui} q_{if}^2 + \lambda<br>} \tag{5}<br>$$<br>相似地，我们可以得到$q_{if}$的解：<br>$$<br>q_{if} = \frac{<br>    \sum_{u=1}^M (r_{ui} - \hat r_{ui}^f) w_{ui} p_{uf}<br>}{<br>    \sum_{u=1}^M w_{ui} p_{uf}^2 + \lambda<br>} \tag{6}<br>$$</p>
-<p>$$<br>L = \sum_{(u,i) \in \mathcal{R}} w_{ui} (r_{ui} - \hat r_{ui})^2 +<br>\sum_{u=1}^M \sum_{i \notin \mathcal{R}_u} c_i \hat r_{ui}^2 + \\<br>\lambda (<br>    \sum_{u=1}^M \left \Vert \mathbf{p}_u \right \Vert^2 +<br>    \sum_{i=1}^N \left \Vert \mathbf{q}_i \right \Vert^2<br>) \tag{7}<br>$$<br>其中，$c_i$是负反馈的置信度。<br>$$<br>c_i = c_0 \frac{ f_i^\alpha }{ \sum_{j=1}^N f_i^\alpha } \tag{8}<br>$$<br>其中，$c_0$决定缺失数据的全局权重；$f_i$表示物品i的流行度。<br>$$<br>f_i = \frac{<br>    \left \vert \mathcal{R}_i \right \vert<br>}{<br>    \sum_{j=1}^N \left \vert \mathcal{R}_j \right \vert<br>}<br>$$<br>此时，<br>$$<br>p_{uf} = \frac{<br>    \sum_{i \in \mathcal{R}_u } (r_{ui} - \hat r_{ui}^f) w_{ui} q_{if} -<br>    \sum_{i \notin \mathcal{R}_u } \hat r_{ui}^f c_i q_{if}<br>}{<br>    \sum_{i \in \mathcal{R}_u } + \sum_{i \notin \mathcal{R}_u } c_i q_{if}^2 + \lambda<br>} \tag{I}<br>$$<br>上式的计算瓶颈在于缺失数据项的相加</p>
-<p>首先考虑分子：<br>$$<br>\begin{align}<br>\sum_{i \notin \mathcal{R}_u } \hat r_{ui}^f c_i q_{if}<br>&amp;= \sum_{i=1}^N \hat r_{ui}^f c_i q_{if} - \sum_{i \in \mathcal{R}_u } \hat r_{ui}^f c_i q_{if} \\<br>&amp;= \sum_{i=1}^N c_i q_{if} \sum_{k \neq f} p_{uk} q_{ik} - \sum_{i \in \mathcal{R}_u } \hat r_{ui}^f c_i q_{if} \\<br>&amp;= \sum_{k \neq f} p_{uk} \sum_{i=1}^N c_i q_{if} q_{ik} - \sum_{i \in \mathcal{R}_u } \hat r_{ui}^f c_i q_{if}<br>\end{align} \tag{9}<br>$$<br>可以看到，上式主要的计算部分$\sum_{i=1}^N c_i q_{if} q_{ik}$独立于u。</p>
-<p>令$\mathbf{S}^q = \sum_{i=1}^N c_i \mathbf{q}_i \mathbf{q}_i^T$</p>
-<p>则<br>$$<br>\sum_{i \notin \mathcal{R}_u } \hat r_{ui}^f c_i q_{if} = \sum_{k \neq f} p_{uk} s_{kf}^q  - \sum_{i \in \mathcal{R}_u } \hat r_{ui}^f c_i q_{if} \tag{10}<br>$$</p>
-<p>相似地，分母中<br>$$<br>\begin{align}<br>\sum_{ i \notin \mathcal{R}_u } c_i q_{if}^2<br>&amp;= \sum_{i=1}^N c_i q_{if}^2 - \sum_{i \in \mathcal{R}_u } c_i q_{if}^2 \\<br>&amp;= s_{ff}^q  - \sum_{i \in \mathcal{R}_u } c_i q_{if}^2<br>\end{align} \tag{11}<br>$$<br>由式（I）、（10）以及（11）可得：<br>$$<br>p_{uf} = \frac{<br>    \sum_{i \in \mathcal{R}_u } [ w_{ui} r_{ui} - (w_{ui} - c_i)\hat r_{ui}^f ] q_{if} -<br>    \sum_{k \neq f} p_{uk} s_{kf}^q<br>}{<br>    \sum_{i \in \mathcal{R}_u } (w_{ui} - c_i) q_{if}^2 + s_{ff}^q + \lambda<br>} \tag{12}<br>$$<br>类似地可以得到<br>$$<br>q_{if} = \frac{<br>    \sum_{u \in \mathcal{R}_i } [ w_{ui} r_{ui} - (w_{ui} - c_i)\hat r_{ui}^f ] p_{uf} -<br>    c_i \sum_{k \neq f} q_{ik} s_{kf}^p<br>}{<br>    \sum_{u \in \mathcal{R}_i } (w_{ui} - c_i) p_{uf}^2 + c_i s_{ff}^p + \lambda<br>} \tag{12}<br>$$<br>其中，$\mathbf{S}^p = \mathbf{P}^T \mathbf{P}$</p>
-<p>$$<br>\begin{align}<br>\sum_{u=1}^M \sum_{i=1}^N c_i \hat r_{ui}^2<br>&amp;= \sum_{u=1}^M \sum_{i=1}^N c_i (\mathbf{p}_u^T \mathbf{q}_i)(\mathbf{q}_i^T \mathbf{p}_u) \\<br>&amp;= \sum_{u=1}^M \mathbf{p}_u^T \sum_{i=1}^N (c_i \mathbf{q}_i \mathbf{q}_i^T) \mathbf{p}_u \\<br>&amp;= \sum_{u=1}^M \mathbf{p}_u^T \mathbf{S}^q \mathbf{p}_u<br>\end{align}<br>$$<br>因此，式（7）目标函数中<br>$$<br>\begin{align}<br>\sum_{u=1}^M \sum_{i \notin \mathcal{R}_u} c_i \hat r_{ui}^2<br>&amp;= \sum_{u=1}^M \sum_{i=1}^N c_i \hat r_{ui}^2 -<br>\sum_{u=1}^M \sum_{i \in \mathcal{R}_u} c_i \hat r_{ui}^2  \\<br>&amp;= \sum_{u=1}^M \mathbf{p}_u^T \mathbf{S}^q \mathbf{p}_u -<br>\sum_{(u,i) \in \mathcal{R}} c_i \hat r_{ui}^2<br>\end{align}<br>$$</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/12/02/recommender-system-youtube-dnn/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/12/02/recommender-system-youtube-dnn/" itemprop="url">
-                  
-                   论文阅读 Deep Neural Networks for YouTube Recommendations</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-02T18:53:08+08:00">
-                2019-12-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-02T21:34:57+08:00">
-                2019-12-02
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/recommender-systems/" itemprop="url" rel="index">
-                    <span itemprop="name">recommender systems</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  598
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>深度学习在工业界推荐系统中的典型实例。</p>
+          <p>DeepFM一文发表在IJCAI 2017上，作者在wide &amp; deep的基础上，使用分解机代替线性回归，从而避免了特征工程。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/12/02/recommender-system-youtube-dnn/#more" rel="contents">
+            <a class="btn" href="/2020/01/08/recommender-system-deepfm/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -896,7 +708,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/12/01/linux-view-file-content/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2020/01/07/leetcode-1290-convert-binary-number-in-a-linked-list-to-integer/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -913,9 +725,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/12/01/linux-view-file-content/" itemprop="url">
+                <a class="post-title-link" href="/2020/01/07/leetcode-1290-convert-binary-number-in-a-linked-list-to-integer/" itemprop="url">
                   
-                   在Linux中存活下来之查看文件内容</a></h2>
+                   LeetCode 1290.二进制链表转整数</a></h2>
         
 
         <div class="post-meta">		 
@@ -928,8 +740,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-01T15:40:04+08:00">
-                2019-12-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-07T23:34:31+08:00">
+                2020-01-07
               </time>
             
 
@@ -944,903 +756,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-04-12T14:29:06+08:00">
-                2021-04-12
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  443
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在Linux中，查看文件内容的常用命令有head、tail、cat、tac、more以及less。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/12/01/linux-view-file-content/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/11/30/linux-command-wc/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/11/30/linux-command-wc/" itemprop="url">
-                  
-                   在Linux中存活下来之wc命令</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-30T21:26:21+08:00">
-                2019-11-30
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-30T22:35:21+08:00">
-                2019-11-30
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  463
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>wc：word, line, character, and byte count</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/11/30/linux-command-wc/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/11/29/the-mythical-man-month/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/11/29/the-mythical-man-month/" itemprop="url">
-                  
-                   《人月神话》阅读笔记</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-29T22:00:26+08:00">
-                2019-11-29
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-12-02T21:37:01+08:00">
-                2019-12-02
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/software-engineering/" itemprop="url" rel="index">
-                    <span itemprop="name">software engineering</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  204
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>软件工程</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/11/29/the-mythical-man-month/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/11/28/python-set/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/11/28/python-set/" itemprop="url">
-                  
-                   Python集合（set）</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-28T18:39:29+08:00">
-                2019-11-28
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-28T21:25:39+08:00">
-                2019-11-28
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  884
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>set和dict类似，也是一组key的集合，但不存储value。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/11/28/python-set/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/11/25/git/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/11/25/git/" itemprop="url">
-                  
-                   Git常用命令总结</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-25T19:51:43+08:00">
-                2019-11-25
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2021-08-15T20:26:16+08:00">
-                2021-08-15
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  532
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>现代软件开发离不开团队协作，常用的Git命令必须熟练使用。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/11/25/git/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/11/24/leetcode-509-fibonacci-number/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/11/24/leetcode-509-fibonacci-number/" itemprop="url">
-                  
-                   LeetCode 509.斐波那契数</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-24T11:36:51+08:00">
-                2019-11-24
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-24T12:00:35+08:00">
-                2019-11-24
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-08T14:38:22+08:00">
+                2020-01-08
               </time>
             
           </span>
@@ -1889,7 +806,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  339
+                  316
                 </span>
               
 
@@ -1915,12 +832,10 @@
 
       
         
-          <p>斐波那契数，通常用 F(n) 表示，形成的序列称为斐波那契数列。该数列由 0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">F(0) = 0,   F(1) = 1</span><br><span class="line">F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.</span><br></pre></td></tr></table></figure>
-<p>给定 N，计算 F(N)。</p>
+          <p>给你一个单链表的引用结点 head。链表中每个结点的值不是 0 就是 1。已知此链表是一个整数数字的二进制表示形式。请你返回该链表所表示数字的<strong>十进制值</strong> 。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/11/24/leetcode-509-fibonacci-number/#more" rel="contents">
+            <a class="btn" href="/2020/01/07/leetcode-1290-convert-binary-number-in-a-linked-list-to-integer/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1972,7 +887,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/11/23/python-dict/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2020/01/06/recommender-system-nncf/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -1989,9 +904,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2019/11/23/python-dict/" itemprop="url">
+                <a class="post-title-link" href="/2020/01/06/recommender-system-nncf/" itemprop="url">
                   
-                   Python字典（dict）</a></h2>
+                   论文阅读 A Neural Collaborative Filtering Model with Interaction-based Neighborhood</a></h2>
         
 
         <div class="post-meta">		 
@@ -2004,8 +919,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-23T16:18:54+08:00">
-                2019-11-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-06T19:41:00+08:00">
+                2020-01-06
               </time>
             
 
@@ -2020,8 +935,1082 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-11-23T18:24:08+08:00">
-                2019-11-23
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-06T21:55:09+08:00">
+                2020-01-06
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/recommender-systems/" itemprop="url" rel="index">
+                    <span itemprop="name">recommender systems</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  94
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Neighborhood-based Neural Collaborative Filtering（NNCF）一文发表在CIKM 2017上，作者在Neural Collaborative Filtering的基础上，加入了邻域信息。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/01/06/recommender-system-nncf/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/12/31/2019-year-end-summary/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2019/12/31/2019-year-end-summary/" itemprop="url">
+                  
+                   2019年终总结</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-31T20:39:08+08:00">
+                2019-12-31
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-31T22:17:11+08:00">
+                2019-12-31
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/任重而道远/" itemprop="url" rel="index">
+                    <span itemprop="name">任重而道远</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>元旦将至，恍惚之间便是一年。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/31/2019-year-end-summary/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/12/30/recommender-system-deepcf/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2019/12/30/recommender-system-deepcf/" itemprop="url">
+                  
+                   论文阅读 DeepCF&#58 A Unified Framework of Representation Learning and Matching Function Learning in Recommender System</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-30T18:45:39+08:00">
+                2019-12-30
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-30T21:48:30+08:00">
+                2019-12-30
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/recommender-systems/" itemprop="url" rel="index">
+                    <span itemprop="name">recommender systems</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  389
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>DeepCF一文发表在AAAI 2019上，作者将基于表示学习的方法与基于匹配函数学习的方法进行了融合，极大地改进了模型性能。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/30/recommender-system-deepcf/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/12/26/recommender-system-afm/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2019/12/26/recommender-system-afm/" itemprop="url">
+                  
+                   论文阅读 Attentional Factorization Machines&#58 Learning the Weight of Feature Interactions via Attention Networks</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-26T21:38:17+08:00">
+                2019-12-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-03T21:43:38+08:00">
+                2020-01-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/recommender-systems/" itemprop="url" rel="index">
+                    <span itemprop="name">recommender systems</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  734
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Attentional Factorization Machines（AFM）一文发表在IJCAI 2017上，作者在分解机中引入了attention机制，为不同的特征交互赋予不同的权重。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/26/recommender-system-afm/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/12/25/recommender-system-nfm/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2019/12/25/recommender-system-nfm/" itemprop="url">
+                  
+                   论文阅读 Neural Factorization Machines for Sparse Predictive Analytics</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-25T21:57:53+08:00">
+                2019-12-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-01-03T22:08:00+08:00">
+                2020-01-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/recommender-systems/" itemprop="url" rel="index">
+                    <span itemprop="name">recommender systems</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  402
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Neural Factorization Machine（NFM）一文发表在SIGIR 2017上，作者将分解机与神经网络整合在一起，利用分解机对二元特征交互进行建模，使用神经网络对高层特征交互进行建模。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/25/recommender-system-nfm/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/12/24/recommender-system-din/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2019/12/24/recommender-system-din/" itemprop="url">
+                  
+                   论文阅读 Deep Interest Network for Click-Through Rate Prediction</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-24T16:34:06+08:00">
+                2019-12-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-28T22:31:13+08:00">
+                2019-12-28
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/recommender-systems/" itemprop="url" rel="index">
+                    <span itemprop="name">recommender systems</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  739
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Deep Interest Network for Click-Through Rate Prediction是阿里巴巴发表在KDD 2018上的一篇论文。作者在常见的Embedding&amp;MLP范式中，引入了attention机制，极大地改进了模型的表达能力。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/12/24/recommender-system-din/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2019/12/22/python-slicing/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2019/12/22/python-slicing/" itemprop="url">
+                  
+                   Python切片操作</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-22T16:30:39+08:00">
+                2019-12-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-12-28T21:24:55+08:00">
+                2019-12-28
               </time>
             
           </span>
@@ -2070,7 +2059,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.3k
+                  734
                 </span>
               
 
@@ -2096,10 +2085,10 @@
 
       
         
-          <p>dict是Python中的标准映射类型，可以存储任意类型对象。</p>
+          <p>为了访问list、str等序列类型中某些元素所构成的子集，Python提供了一种简单的语法——切片。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/11/23/python-dict/#more" rel="contents">
+            <a class="btn" href="/2019/12/22/python-slicing/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2142,7 +2131,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/25/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><span class="page-number current">26</span><a class="page-number" href="/page/27/">27</a><span class="space">&hellip;</span><a class="page-number" href="/page/53/">53</a><a class="extend next" rel="next" href="/page/27/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2190,7 +2179,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">506</span>
+                  <span class="site-state-item-count">524</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2201,7 +2190,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2212,7 +2201,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">98</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2313,7 +2302,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2022</span>
   <span class="with-love" style="color:red;">
     <i class="fa fa-heart"></i>
   </span>
