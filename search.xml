@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[部署网络文件系统]]></title>
+    <url>%2F2022%2F02%2F18%2Ffile-system-nfs%2F</url>
+    <content type="text"><![CDATA[1985年，Sun公司提出了网络文件系统（Network File System，NFS）协议。它采用了客户端-服务器架构，允许多个客户端通过计算机网络共享文件服务器中的文件。 12服务端：192.168.2.10客户端：192.168.2.11 服务端配置1.安装NFS和RPC工具包 RPC：Remote Procedure Call，远程方法调用 12# CentOSyum install -y nfs-utils rpcbind 2.创建共享目录 12mkdir /datachown -R nfsnobody:nfsnobody /data 3.修改配置文件 1vim /etc/exports 文件格式如下：共享目录 允许访问的主机(权限) 1/data 192.168.2.11(rw,sync) 权限： 1234567891011121314151617ro：readonlyrw：readwritesync：synchronizationasync：asynchronizationno_root_squashroot_squashall_squashanonuid：anonymous uidanongid：anonymous gid 4.启动NFS和RPC服务 123# CentOSsystemctl enable nfs rpcbindsystemctl start nfs rpcbind 客户端配置1.安装RPC工具包 12# CentOSyum install -y rpcbind nfs-utils 2.启动RPC服务 1systemctl start rpcbind 3.挂载NFS服务 1mount -t nfs 192.168.2.10:/data /mnt/nfs 4.查看挂载情况 1df -h 5.设置开机自动挂载 1echo '192.168.2.10:/data /mnt/nfs nfs defaults 0 0' &gt;&gt; /etc/fstab 参考资料1.Design and Implementation of the Sun Network Filesystem]]></content>
+      <categories>
+        <category>file system</category>
+      </categories>
+      <tags>
+        <tag>file system</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Linux中存活下来之时间管理工具timedatectl]]></title>
+    <url>%2F2022%2F02%2F17%2Flinux-timedatectl%2F</url>
+    <content type="text"><![CDATA[本文介绍了时间管理工具timedatectl。 time：时间，x时x分x秒date：日期，x年x月x日 1.查看当前时间设置 1timedatectl status 输出结果如下： 123456789101112131415$ timedatectl status Local time: 四 2022-02-17 03:03:22 EST Universal time: 四 2022-02-17 08:03:22 UTC RTC time: 四 2022-02-17 08:03:23 Time zone: America/New_York (EST, -0500) NTP enabled: yesNTP synchronized: no RTC in local TZ: no DST active: no Last DST change: DST ended at 日 2021-11-07 01:59:59 EDT 日 2021-11-07 01:00:00 EST Next DST change: DST begins (the clock jumps one hour forward) at 日 2022-03-13 01:59:59 EST 日 2022-03-13 03:00:00 EDT 从上述结果可以看出，本机使用的是纽约时间。 2.设置当前时间 1timedatectl set-time TIME 3.设置时区 12timedatectl set-timezone ZONEtimedatectl list-timezones 将本机时区修改为上海时间。 123456789101112$ timedatectl list-timezones | grep -i shanghaiAsia/Shanghai$ timedatectl set-timezone Asia/Shanghai$ timedatectl status Local time: 四 2022-02-17 16:10:43 CST Universal time: 四 2022-02-17 08:10:43 UTC RTC time: 四 2022-02-17 08:10:44 Time zone: Asia/Shanghai (CST, +0800) NTP enabled: yesNTP synchronized: no RTC in local TZ: no DST active: n/a]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[在Linux中存活下来之日历命令cal]]></title>
     <url>%2F2022%2F02%2F15%2Flinux-cal%2F</url>
     <content type="text"><![CDATA[cal是日历calendar的简写。 1.默认情况下，只输出当前月份 1cal 2.输出当前月份及之前的n个月 1cal -B n 其中，B表示Before。 3.输出当前月份及之后的n个月 1cal -A n 其中，A表示After。 4.只输出某年的某月 1cal [[month] year] 其中，month是可选的，不加month，表示输出全年的日历。 例如，输出2018年9月： 1cal 9 2018 输出结果如下所示： 12345678 九月 2018 日 一 二 三 四 五 六 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30]]></content>
