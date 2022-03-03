@@ -567,23 +567,23 @@
 <p>5.查看集群中的OSD</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ceph osd ls</span><br></pre></td></tr></table></figure>
 <h3 id="部署CephFS"><a href="#部署CephFS" class="headerlink" title="部署CephFS"></a>部署CephFS</h3><p>1.创建文件系统</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ceph fs volume create &lt;fs_name&gt;</span></span><br><span class="line">ceph fs volume create cephfs --placement="&lt;placement spec&gt;"</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> ceph fs volume create &lt;fs_name&gt;</span><br><span class="line">ceph fs volume create cephfs --placement="&lt;placement spec&gt;"</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>2.手动创建</p>
 <p>首先，创建元数据和数据存储池</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> ceph osd pool create cephfs_data</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> ceph osd pool create cephfs_metadata</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> ceph osd pool create cephfs_data</span><br><span class="line"><span class="meta">&gt;</span> ceph osd pool create cephfs_metadata</span><br><span class="line"><span class="meta">&gt;</span></span><br></pre></td></tr></table></figure>
 </blockquote>
 <blockquote>
 <p>删除存储池：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> ceph osd pool rm &lt;pool&gt; [&lt;pool&gt;] [--yes-i-really-really-mean-it]</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> ceph osd pool rm &lt;pool&gt; [&lt;pool&gt;] [--yes-i-really-really-mean-it]</span><br><span class="line"><span class="meta">&gt;</span></span><br></pre></td></tr></table></figure>
 </blockquote>
 <blockquote>
 <p>然后，创建文件系统</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> <span class="comment"># ceph fs new &lt;fs_name&gt; &lt;metadata&gt; &lt;data&gt;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"> ceph fs new cephfs cephfs_metadata cephfs_data</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> # ceph fs new &lt;fs_name&gt; &lt;metadata&gt; &lt;data&gt;</span><br><span class="line"><span class="meta">&gt;</span> ceph fs new cephfs cephfs_metadata cephfs_data</span><br><span class="line"><span class="meta">&gt;</span></span><br></pre></td></tr></table></figure>
 </blockquote>
 <blockquote>
 <p>查看存储池信息：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> ceph osd pool ls detail</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span> ceph osd pool ls detail</span><br><span class="line"><span class="meta">&gt;</span></span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>2.部署MDS</p>
 <p>创建描述文件：</p>
@@ -593,13 +593,13 @@
 <p>查看MDS状态：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ceph mds stat</span><br></pre></td></tr></table></figure>
 <p>3.查看文件系统状态</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ceph fs status &lt;fs_name&gt;</span></span><br><span class="line">ceph fs status cephfs</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> ceph fs status &lt;fs_name&gt;</span><br><span class="line">ceph fs status cephfs</span><br></pre></td></tr></table></figure>
 <p>4.删除mds</p>
 <p><a href="https://docs.ceph.com/en/pacific/cephfs/add-remove-mds/#removing-an-mds" target="_blank" rel="noopener">https://docs.ceph.com/en/pacific/cephfs/add-remove-mds/#removing-an-mds</a></p>
 <p>5.删除文件系统</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ceph fs volume rm &lt;vol_name&gt; --yes-i-really-mean-it</span><br></pre></td></tr></table></figure>
 <h3 id="查看Ceph"><a href="#查看Ceph" class="headerlink" title="查看Ceph"></a>查看Ceph</h3><p>1.查看ceph集群的状态</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ceph status</span></span><br><span class="line">ceph -s</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> ceph status</span><br><span class="line">ceph -s</span><br></pre></td></tr></table></figure>
 <p>2.查看ceph集群的健康状态</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ceph health [detail]</span><br></pre></td></tr></table></figure>
 <p>3.查看ceph集群中所有的守护进程</p>
@@ -625,9 +625,9 @@
 <p>首先，安装ceph-fuse</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y ceph-fuse</span><br></pre></td></tr></table></figure>
 <p>然后，挂载CephFS</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ceph-fuse --id 用户名 挂载点</span><br><span class="line"><span class="meta">#</span><span class="bash"> ceph-fuse -n client.用户名 挂载点</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ceph-fuse --id 用户名 挂载点</span><br><span class="line"><span class="meta">#</span> ceph-fuse -n client.用户名 挂载点</span><br></pre></td></tr></table></figure>
 <p>3.修改/etc/fstab</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">## Ceph运行中可能出现的问题</span></span></span><br><span class="line"></span><br><span class="line">问题一：</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line">HEALTH_WARN clock skew detected on mon.xxx</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>## Ceph运行中可能出现的问题</span><br><span class="line"></span><br><span class="line">问题一：</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line">HEALTH_WARN clock skew detected on mon.xxx</span><br></pre></td></tr></table></figure>
 <p>解决办法：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -839,7 +839,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">529</span>
+                  <span class="site-state-item-count">530</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -861,7 +861,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">98</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

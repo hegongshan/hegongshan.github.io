@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[论文阅读《Dynamic Metadata Management for Petabyte-scale File Systems》]]></title>
+    <url>%2F2022%2F03%2F01%2Ffile-system-ceph-metadata-management%2F</url>
+    <content type="text"><![CDATA[本文发表在SC’04中，作者提出了一种动态的元数据管理方法，后来成为了存储系统Ceph的核心部分之一。 Metadata Distribution 静态子树划分（Static Subtree Partitioning） Static subtree partitioning typically requires a system administrator to decide how the file system should be distributed and manually assign subtrees of the hierarchy to individual file servers. 可能会造成负载不均衡： If client workload is not evenly distributed across all file data, static partitioning is vulnerable to imbalance as individual servers can be overloaded by “hot spots” of popularity in certain parts of the hierar- chy. 哈希映射（Hash-based Partitioning） distribute files across servers based on a hash of some unique file identifier, such as an in- ode number or path name. 优点：可以实现元数据的负载均衡 缺点： 1.Hot-spots consisting of individual files can still overwhelm a single responsible MDS. 2.A hashed metadata distribution also makes the process of expanding the MDS cluster to accommodate growth more difficult because the size of the desired output range suddenly changes. 动态子树划分（Dynamic Subtree Partitioning） Central to the dynamic subtree partitioning approach is the treatment of the file system as a hierarchy. The file system is partitioned by delegating authority for subtrees of the hierarchy to different metadata servers.]]></content>
+      <categories>
+        <category>file system</category>
+      </categories>
+      <tags>
+        <tag>ceph</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[sftp协议]]></title>
     <url>%2F2022%2F02%2F23%2Flinux-sftp%2F</url>
     <content type="text"><![CDATA[sftp全称为Secure File Transfer Protocol，即安全的文件传输协议。 工作原理流程图 上手实践使用sftp协议登录ftp服务器： 1sftp user@ip 与scp相比，sftp可以方便的操作本地和远程目录。 1.下载 1get [-afPpRr] remote [local] 2.上传 1put local [remote] 3.目录操作 12345cdrmlcd == !cdlrm == !rm lcommand == !command，表示在本地执行command命令。 其中，l为local的首字母缩写。 4.退出 123byequitexit 5.查看帮助信息 12help?]]></content>
@@ -16,7 +27,7 @@
         <category>file system</category>
       </categories>
       <tags>
-        <tag>file system</tag>
+        <tag>ceph</tag>
       </tags>
   </entry>
   <entry>
@@ -1170,7 +1181,7 @@
   <entry>
     <title><![CDATA[MS Office中的奇淫巧技]]></title>
     <url>%2F2020%2F10%2F18%2Foffice-trick%2F</url>
-    <content type="text"><![CDATA[在日常的文档编辑中，经常会遇到的一些问题，每次在网上搜寻都费时费力。 Word显示公式编辑框按下Alt+=，就可以显示公式编辑框。 此外，Word支持部分LaTex语法 公式对齐首先，在一行中输入一个连等式或者多个公式； 1y = f(x) = ax + b 然后，在每个等号前按下Shift+Enter，插入软间隔； 最后，选中公式区域，右击鼠标，选择“在等号处对齐”。 交换上下两行例如： 12AAAABBBB 如果光标在AAAA这一行，按下Alt+Shift+↓，这两行将被交换； 如果光标在BBBB这一行，则需要使用Alt+Shift+↑。 设置页眉1.从某一页开始 假设从第2页开始，首先在前一页（第1页）的末行添加分节符下一页，点击【布局】→【分隔】→【下一页】： 然后，双击当前页的页眉，取消链接到上一个选项： 2.奇偶页不同 双击页眉，勾选奇偶页不同选项： 设置页码让页码从指定页开始 首先，在前一页的末行添加分节符下一页，点击【布局】→【分隔】→【下一页】 然后，双击当前页的页脚，取消链接到上一个选项： 其次，设置页码，点击【页眉和页脚】→【页码】→【页码】，设置对齐方式 最后，修改页码格式，选中并设置起始编号： Powerpoint设置幻灯片大小操作步骤：点击【设计】→【幻灯片大小】→【页面设置】 添加幻灯片编号在制作报告Slides时，为方便他人提问，通常会在Slides中添加幻灯片编号。例如，下图中右下角的34： 操作步骤： 首先，点击【插入】→【幻灯片编号】 然后，勾选幻灯片编号和标题幻灯片中不显示 最后，点击应用或者全部应用按钮。 其中，应用表示仅在当前页中添加幻灯片编号；而全部应用则表示在所有的幻灯片中都添加幻灯片编号。 隐藏幻灯片在播放时，不希望播放部分草稿幻灯片，这时候可以隐藏该幻灯片。 操作步骤：点击【幻灯片放映】→【隐藏幻灯片】]]></content>
+    <content type="text"><![CDATA[在日常的文档编辑中，经常会遇到的一些问题，每次在网上搜寻都费时费力。 Word显示公式编辑框按下Alt+=，就可以显示公式编辑框。 此外，Word支持部分LaTex语法 公式对齐首先，在一行中输入一个连等式或者多个公式； 1y = f(x) = ax + b 然后，在每个等号前按下Shift+Enter，插入软间隔； 最后，选中公式区域，右击鼠标，选择“在等号处对齐”。 交换上下两行例如： 12AAAABBBB 如果光标在AAAA这一行，按下Alt+Shift+↓，这两行将被交换； 如果光标在BBBB这一行，则需要使用Alt+Shift+↑。 设置页眉1.从某一页开始 假设从第2页开始，首先在前一页（第1页）的末行添加分节符下一页，点击【布局】→【分隔】→【下一页】： 然后，双击当前页的页眉，取消链接到上一个选项： 2.奇偶页不同 双击页眉，勾选奇偶页不同选项： 设置页码让页码从指定页开始 首先，在前一页的末行添加分节符下一页，点击【布局】→【分隔】→【下一页】 然后，双击当前页的页脚，取消链接到上一个选项： 其次，设置页码，点击【页眉和页脚】→【页码】→【页码】，设置对齐方式 最后，修改页码格式，选中并设置起始编号： 显示隐藏标记点击【开始】→显示/隐藏编辑标记： Powerpoint设置幻灯片大小操作步骤：点击【设计】→【幻灯片大小】→【页面设置】 添加幻灯片编号在制作报告Slides时，为方便他人提问，通常会在Slides中添加幻灯片编号。例如，下图中右下角的34： 操作步骤： 首先，点击【插入】→【幻灯片编号】 然后，勾选幻灯片编号和标题幻灯片中不显示 最后，点击应用或者全部应用按钮。 其中，应用表示仅在当前页中添加幻灯片编号；而全部应用则表示在所有的幻灯片中都添加幻灯片编号。 隐藏幻灯片在播放时，不希望播放部分草稿幻灯片，这时候可以隐藏该幻灯片。 操作步骤：点击【幻灯片放映】→【隐藏幻灯片】 添加节在制作Slides时，希望更好地管理层次结构，可以添加节。 操作步骤：右击→【添加节】]]></content>
       <categories>
         <category>office</category>
       </categories>
@@ -5476,8 +5487,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5488,8 +5499,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5511,8 +5522,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
