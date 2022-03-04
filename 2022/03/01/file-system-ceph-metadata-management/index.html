@@ -80,7 +80,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="本文发表在SC’04中，作者提出了一种动态的元数据管理方法，后来成为了存储系统Ceph的核心部分之一。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-03-03T13:11:35.601Z">
+<meta property="og:updated_time" content="2022-03-04T07:38:07.489Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读《Dynamic Metadata Management for Petabyte-scale File Systems》">
 <meta name="twitter:description" content="本文发表在SC’04中，作者提出了一种动态的元数据管理方法，后来成为了存储系统Ceph的核心部分之一。">
@@ -395,8 +395,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-03-03T21:11:35+08:00">
-                2022-03-03
+              <time title="更新于" itemprop="dateModified" datetime="2022-03-04T15:38:07+08:00">
+                2022-03-04
               </time>
             
           </span>
@@ -450,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  257
+                  657
                 </span>
               
 
@@ -477,7 +477,7 @@
       
         <p>本文发表在SC’04中，作者提出了一种动态的元数据管理方法，后来成为了存储系统Ceph的核心部分之一。</p>
 <a id="more"></a>
-<h3 id="Metadata-Distribution"><a href="#Metadata-Distribution" class="headerlink" title="Metadata Distribution"></a>Metadata Distribution</h3><ul>
+<h3 id="元数据分布"><a href="#元数据分布" class="headerlink" title="元数据分布"></a>元数据分布</h3><ul>
 <li>静态子树划分（Static Subtree Partitioning）</li>
 </ul>
 <blockquote>
@@ -505,6 +505,31 @@
 <blockquote>
 <p>Central to the dynamic subtree partitioning approach is the treatment of the file system as a hierarchy. The file system is partitioned by delegating authority for subtrees of the hierarchy to different metadata servers.</p>
 </blockquote>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>若某个目录很大，或者访问频繁，那么，可以将目录中的内容进行哈希映射：</p>
+<blockquote>
+<p>a single directory becomes extraordinarily large or busy</p>
+<p>an individual directory’s contents can be hashed across the cluster, such that the authority for a given directory entry is defined by a hash of the file name and the directory inode number.</p>
+</blockquote>
+<p>哈希映射是动态的：</p>
+<blockquote>
+<p>we propose that the decision to hash (or unhash) a directory be dynamic: as directories grow or become popular it may become appropriate to hash them, but if they shrink or become less popular they should be consolidated on a single node for more efficient manipulation and storage.</p>
+</blockquote>
+<p>负载均衡策略应该追求资源利用率的均衡：</p>
+<blockquote>
+<p>A robust load balancing strategy might seek to equalize utilization of all resources across the cluster.</p>
+</blockquote>
+<h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><p>使用访问计数器表示元数据的流行度，其值随着时间不断衰减。</p>
+<p>对于热门文件/目录，将其元数据复制多份，分散流量；否则，直接访问相应的MDS。</p>
+<blockquote>
+<p>MDS nodes monitor the popularity of metadata using a simple <strong style="color:red;">access counter</strong> whose value <strong style="color:red;">decays over time</strong>, or any other measure or estimate of the extent to which an item appears in client caches (precision isn’t necessary).</p>
+<p>All responses sent to clients include <strong>current distribution information</strong>—that is, which MDS nodes the client should contact in the future—<strong>for the metadata requested</strong> and their <strong>prefix directories</strong>, which are then cached on the client.</p>
+<p>For unpopular items, the MDS cluster will tell clients to direct future requests only at the authoritative node, while for popular items the client is told the item is replicated on many or all nodes.</p>
+</blockquote>
+<h3 id="目录局部性"><a href="#目录局部性" class="headerlink" title="目录局部性"></a>目录局部性</h3><p>目录局部性（Directory Locality）</p>
+<blockquote>
+<p>We exploit workload locality by <strong>storing directly related information together</strong> whenever possible, and <strong>prefetching potentially related information</strong>—inodes within the same directory— to more efficiently satisfy requests in typical workloads.</p>
+</blockquote>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>1.Sage Weil, et. al, Dynamic Metadata Management for Petabyte-scale File Systems, SC’04</p>
 
       
     </div>
@@ -829,7 +854,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Metadata-Distribution"><span class="nav-number">1.</span> <span class="nav-text">Metadata Distribution</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#元数据分布"><span class="nav-number">1.</span> <span class="nav-text">元数据分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#负载均衡"><span class="nav-number">2.</span> <span class="nav-text">负载均衡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量控制"><span class="nav-number">3.</span> <span class="nav-text">流量控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录局部性"><span class="nav-number">4.</span> <span class="nav-text">目录局部性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>

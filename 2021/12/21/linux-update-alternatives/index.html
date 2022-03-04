@@ -80,10 +80,12 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="经常会遇到，在同一台机器上，装了多个版本的软件，如何管理多个版本呢？ 比如，不同的应用可能需要不同版本的GCC。假设本机上存在两个版本的GCC： 1234# 4.8.5/usr/bin/gcc# 11.2.0/usr/local/bin/gcc 当然，我们可以手动修改路径名。例如现在要使用v4.8.5，则对v11.2.0执行重命名： 1mv /usr/local/bin/gcc /usr/loca">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-12-24T12:18:43.901Z">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/alternatives-structure.png">
+<meta property="og:updated_time" content="2022-03-04T07:52:00.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Linux中存活下来之命令管理">
 <meta name="twitter:description" content="经常会遇到，在同一台机器上，装了多个版本的软件，如何管理多个版本呢？ 比如，不同的应用可能需要不同版本的GCC。假设本机上存在两个版本的GCC： 1234# 4.8.5/usr/bin/gcc# 11.2.0/usr/local/bin/gcc 当然，我们可以手动修改路径名。例如现在要使用v4.8.5，则对v11.2.0执行重命名： 1mv /usr/local/bin/gcc /usr/loca">
+<meta name="twitter:image" content="https://www.hegongshan.com/static/images/alternatives-structure.png">
 
 
 
@@ -395,8 +397,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-12-24T20:18:43+08:00">
-                2021-12-24
+              <time title="更新于" itemprop="dateModified" datetime="2022-03-04T15:52:00+08:00">
+                2022-03-04
               </time>
             
           </span>
@@ -477,7 +479,7 @@
       
         <p>经常会遇到，在同一台机器上，装了多个版本的软件，如何管理多个版本呢？</p>
 <p>比如，不同的应用可能需要不同版本的GCC。假设本机上存在两个版本的GCC：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 4.8.5</span></span><br><span class="line">/usr/bin/gcc</span><br><span class="line"><span class="meta">#</span><span class="bash"> 11.2.0</span></span><br><span class="line">/usr/local/bin/gcc</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 4.8.5</span><br><span class="line">/usr/bin/gcc</span><br><span class="line"><span class="meta">#</span> 11.2.0</span><br><span class="line">/usr/local/bin/gcc</span><br></pre></td></tr></table></figure>
 <p>当然，我们可以手动修改路径名。例如现在要使用<code>v4.8.5</code>，则对<code>v11.2.0</code>执行重命名：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/local/bin/gcc /usr/local/bin/gcc-11.2.0</span><br></pre></td></tr></table></figure>
 <p>编译完以后，再将名称改回来。</p>
@@ -488,6 +490,7 @@
 <p>link：主链接的软链接</p>
 <p>path：可供主链接选择的链接路径</p>
 <p>priority：优先级，默认选择优先级最高的版本</p>
+<p><img src="/static/images/alternatives-structure.png" alt="alternatives结构"></p>
 <p>下面以gcc为例，使用<code>/usr/bin/gcc</code>作为各个版本GCC的软链接。</p>
 <p>首先，对现有的gcc执行重命名：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/bin/gcc /usr/bin/gcc-4.8.5</span><br><span class="line">mv /usr/local/bin/gcc /usr/local/bin/gcc-11.2.0</span><br></pre></td></tr></table></figure>
