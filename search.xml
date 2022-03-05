@@ -601,7 +601,10 @@
   <entry>
     <title><![CDATA[精致生活]]></title>
     <url>%2F2021%2F11%2F07%2Fhow-to-make-life-elegant%2F</url>
-    <content type="text"><![CDATA[让生活更精致。 个人卫生 头发：两日一洗 刷牙：一日两刷 洗脸：一日一洗 洗澡：夏天每日一洗，冬天不超过两日一洗 外在形象 头发：每月理发一次 鼻毛：定期修剪 胡须：一周一剃 指甲：一周一剪 服饰鞋袜 衣物：勤洗勤换，有趣但不能“有味” 鞋子：保持鞋面干净，勤擦勤洗 规律作息 饮食：一日三餐不能少 睡眠：早上八点起床，晚上一点前睡觉 运动：一周一跑 终身学习 阅读]]></content>
+    <content type="text"><![CDATA[让生活更精致。 个人卫生 头发：两日一洗 刷牙：一日两刷 洗脸：一日一洗 洗澡：夏天每日一洗，冬天不超过两日一洗 外在形象 头发：每月理发一次 鼻毛：定期修剪 胡须：一周一剃 指甲：一周一剪 服饰鞋袜 衣物：勤洗勤换，有趣但不能“有味” 鞋子：保持鞋面干净，勤擦勤洗 居住环境 书桌：保持桌面整洁，物品摆放有序 被子：床单被套半月一洗，被子勤晒 地板：一周一扫一拖 垃圾：分类投放，满了就扔 规律作息 饮食：一日三餐不能少 睡眠：早上八点起床，晚上一点前睡觉 运动：一周两跑🏃‍♀️+一次羽毛球🏸 终身学习 阅读 英语听说读写]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
       <tags>
         <tag>生活</tag>
       </tags>
@@ -5487,8 +5490,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -5499,8 +5502,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -5522,8 +5525,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -5570,8 +5573,8 @@
         <category>sql</category>
       </categories>
       <tags>
-        <tag>sql</tag>
         <tag>mysql</tag>
+        <tag>sql</tag>
       </tags>
   </entry>
   <entry>

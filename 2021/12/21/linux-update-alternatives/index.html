@@ -479,7 +479,7 @@
       
         <p>经常会遇到，在同一台机器上，装了多个版本的软件，如何管理多个版本呢？</p>
 <p>比如，不同的应用可能需要不同版本的GCC。假设本机上存在两个版本的GCC：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 4.8.5</span><br><span class="line">/usr/bin/gcc</span><br><span class="line"><span class="meta">#</span> 11.2.0</span><br><span class="line">/usr/local/bin/gcc</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 4.8.5</span></span><br><span class="line">/usr/bin/gcc</span><br><span class="line"><span class="meta">#</span><span class="bash"> 11.2.0</span></span><br><span class="line">/usr/local/bin/gcc</span><br></pre></td></tr></table></figure>
 <p>当然，我们可以手动修改路径名。例如现在要使用<code>v4.8.5</code>，则对<code>v11.2.0</code>执行重命名：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/local/bin/gcc /usr/local/bin/gcc-11.2.0</span><br></pre></td></tr></table></figure>
 <p>编译完以后，再将名称改回来。</p>
