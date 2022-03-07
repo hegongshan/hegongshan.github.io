@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[论文阅读《CRUSH&#58; Controlled, Scalable, Decentralized Placement of Replicated Data》]]></title>
+    <url>%2F2022%2F03%2F07%2Ffile-system-ceph-crush%2F</url>
+    <content type="text"><![CDATA[本文发表在SC’06中，作者提出了一种可扩展的、伪随机的数据分布算法CRUSH，后来成为了存储系统Ceph的核心部分之一。 CRUSHCRUSH (Controlled Replication Under Scalable Hashing，发音为[krʌʃ]）是一种针对分布式对象存储系统而设计的、伪随机的数据分布算法。 作用： We have developed CRUSH, a pseudo-random data distribution algorithm that efficiently and robustly distributes object replicas across a heterogeneous, structured storage cluster. CRUSH is implemented as a pseudo-random, deterministic function that maps an input value, typically an object or object group identifier, to a list of devices on which to store object replicas. 与传统数据分布方法相比，有何不同： This differs from conventional approaches in that data placement does not rely on any sort of per-file or per-object directory—CRUSH needs only a compact, hierarchical description of the devices comprising the storage cluster and knowledge of the replica placement policy. 优点： 1.It is completely distributed such that any party in a large system can independently calculate the location of any object; 2.What little metadata is required is mostly static, changing only when devices are added or removed.]]></content>
+      <categories>
+        <category>file system</category>
+      </categories>
+      <tags>
+        <tag>ceph</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[论文阅读《Dynamic Metadata Management for Petabyte-scale File Systems》]]></title>
     <url>%2F2022%2F03%2F01%2Ffile-system-ceph-metadata-management%2F</url>
     <content type="text"><![CDATA[本文发表在SC’04中，作者提出了一种动态的元数据管理方法，后来成为了存储系统Ceph的核心部分之一。 元数据分布 静态子树划分（Static Subtree Partitioning） Static subtree partitioning typically requires a system administrator to decide how the file system should be distributed and manually assign subtrees of the hierarchy to individual file servers. 可能会造成负载不均衡： If client workload is not evenly distributed across all file data, static partitioning is vulnerable to imbalance as individual servers can be overloaded by “hot spots” of popularity in certain parts of the hierar- chy. 哈希映射（Hash-based Partitioning） distribute files across servers based on a hash of some unique file identifier, such as an in- ode number or path name. 优点：可以实现元数据的负载均衡 缺点： 1.Hot-spots consisting of individual files can still overwhelm a single responsible MDS. 2.A hashed metadata distribution also makes the process of expanding the MDS cluster to accommodate growth more difficult because the size of the desired output range suddenly changes. 动态子树划分（Dynamic Subtree Partitioning） Central to the dynamic subtree partitioning approach is the treatment of the file system as a hierarchy. The file system is partitioned by delegating authority for subtrees of the hierarchy to different metadata servers. 负载均衡若某个目录很大，或者访问频繁，那么，可以将目录中的内容进行哈希映射： a single directory becomes extraordinarily large or busy an individual directory’s contents can be hashed across the cluster, such that the authority for a given directory entry is defined by a hash of the file name and the directory inode number. 哈希映射是动态的： we propose that the decision to hash (or unhash) a directory be dynamic: as directories grow or become popular it may become appropriate to hash them, but if they shrink or become less popular they should be consolidated on a single node for more efficient manipulation and storage. 负载均衡策略应该追求资源利用率的均衡： A robust load balancing strategy might seek to equalize utilization of all resources across the cluster. 流量控制使用访问计数器表示元数据的流行度，其值随着时间不断衰减。 对于热门文件/目录，将其元数据复制多份，分散流量；否则，直接访问相应的MDS。 MDS nodes monitor the popularity of metadata using a simple access counter whose value decays over time, or any other measure or estimate of the extent to which an item appears in client caches (precision isn’t necessary). All responses sent to clients include current distribution information—that is, which MDS nodes the client should contact in the future—for the metadata requested and their prefix directories, which are then cached on the client. For unpopular items, the MDS cluster will tell clients to direct future requests only at the authoritative node, while for popular items the client is told the item is replicated on many or all nodes. 目录局部性目录局部性（Directory Locality） We exploit workload locality by storing directly related information together whenever possible, and prefetching potentially related information—inodes within the same directory— to more efficiently satisfy requests in typical workloads. 参考文献1.Sage Weil, et. al, Dynamic Metadata Management for Petabyte-scale File Systems, SC’04]]></content>
@@ -5490,8 +5501,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5502,8 +5513,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5525,8 +5536,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>

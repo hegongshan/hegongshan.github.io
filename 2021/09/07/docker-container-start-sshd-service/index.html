@@ -490,7 +490,7 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y openssh-server</span><br></pre></td></tr></table></figure>
 <h3 id="配置SSHD"><a href="#配置SSHD" class="headerlink" title="配置SSHD"></a>配置SSHD</h3><p>修改/etc/ssh/sshd_config文件，将<code>PermitRootLogin</code>的值（默认值为<code>prohibit-password</code>）更新为<code>yes</code>：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 允许root用户登录</span></span><br><span class="line">PermitRootLogin yes</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 允许root用户登录</span><br><span class="line">PermitRootLogin yes</span><br></pre></td></tr></table></figure>
 <h3 id="创建新容器"><a href="#创建新容器" class="headerlink" title="创建新容器"></a>创建新容器</h3><p>1.生成新镜像。使用Docker中的<code>commit</code>命令可以从容器创建一个新的镜像。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hgs ~]# docker commit mycontainer newimage[:tag]</span><br></pre></td></tr></table></figure>
 <p>2.根据新镜像，创建并启动新容器</p>
@@ -499,7 +499,7 @@
 <ul>
 <li>自动启动</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Ubuntu</span></span><br><span class="line">service ssh start</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> CentOS</span></span><br><span class="line">service sshd start</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> Ubuntu</span><br><span class="line">service ssh start</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> CentOS</span><br><span class="line">service sshd start</span><br></pre></td></tr></table></figure>
 <ul>
 <li>手动启动</li>
 </ul>
@@ -721,7 +721,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">530</span>
+                  <span class="site-state-item-count">531</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
