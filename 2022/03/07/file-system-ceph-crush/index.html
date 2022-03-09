@@ -80,7 +80,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="本文发表在SC’06中，作者提出了一种可扩展的、伪随机的数据分布算法CRUSH，后来成为了存储系统Ceph的核心部分之一。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-03-07T12:21:35.821Z">
+<meta property="og:updated_time" content="2022-03-09T14:03:31.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读《CRUSH&amp;#58; Controlled, Scalable, Decentralized Placement of Replicated Data》">
 <meta name="twitter:description" content="本文发表在SC’06中，作者提出了一种可扩展的、伪随机的数据分布算法CRUSH，后来成为了存储系统Ceph的核心部分之一。">
@@ -395,8 +395,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-03-07T20:21:35+08:00">
-                2022-03-07
+              <time title="更新于" itemprop="dateModified" datetime="2022-03-09T22:03:31+08:00">
+                2022-03-09
               </time>
             
           </span>
@@ -450,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  240
+                  343
                 </span>
               
 
@@ -492,6 +492,14 @@
 <p>1.It is completely distributed such that <strong style="color:red">any party in a large system can independently calculate the location of any object</strong>;</p>
 <p>2.What little metadata is required is mostly static, changing only when devices are added or removed. </p>
 </blockquote>
+<h4 id="Cluster-Map"><a href="#Cluster-Map" class="headerlink" title="Cluster Map"></a>Cluster Map</h4><p>集群运行图：</p>
+<blockquote>
+<p>The cluster map is composed of <em>devices</em> and <em>buckets</em>, both of which have numerical identifiers and weight values associated with them. </p>
+<p>1.Buckets can contain any number of devices or other buckets, allowing them to form interior nodes in a storage hierarchy in which devices are always at the leaves. </p>
+<p>2.Storage devices are assigned weights by the administrator to control the relative amount of data they are responsible for storing.</p>
+<p>3.Bucket weights are defined as the sum of the weights of the items they contain.</p>
+</blockquote>
+<h4 id="数据分布算法"><a href="#数据分布算法" class="headerlink" title="数据分布算法"></a>数据分布算法</h4><p>(to be continuing)</p>
 
       
     </div>
@@ -697,7 +705,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">531</span>
+                  <span class="site-state-item-count">532</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -816,7 +824,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CRUSH"><span class="nav-number">1.</span> <span class="nav-text">CRUSH</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CRUSH"><span class="nav-number">1.</span> <span class="nav-text">CRUSH</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cluster-Map"><span class="nav-number">1.1.</span> <span class="nav-text">Cluster Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据分布算法"><span class="nav-number">1.2.</span> <span class="nav-text">数据分布算法</span></a></li></ol></li></ol></div>
             
 
           </div>
