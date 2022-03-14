@@ -80,7 +80,7 @@
 <meta property="og:site_name" content="贺巩山的博客">
 <meta property="og:description" content="本文发表在SC’06中，作者提出了一种可扩展的、伪随机的数据分布算法CRUSH，后来成为了存储系统Ceph的核心部分之一。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-03-09T14:03:31.187Z">
+<meta property="og:updated_time" content="2022-03-11T08:17:41.915Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读《CRUSH&amp;#58; Controlled, Scalable, Decentralized Placement of Replicated Data》">
 <meta name="twitter:description" content="本文发表在SC’06中，作者提出了一种可扩展的、伪随机的数据分布算法CRUSH，后来成为了存储系统Ceph的核心部分之一。">
@@ -395,8 +395,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-03-09T22:03:31+08:00">
-                2022-03-09
+              <time title="更新于" itemprop="dateModified" datetime="2022-03-11T16:17:41+08:00">
+                2022-03-11
               </time>
             
           </span>
@@ -450,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  343
+                  658
                 </span>
               
 
@@ -483,6 +483,7 @@
 <p>We have developed CRUSH, a pseudo-random data distribution algorithm that <strong>efficiently and robustly distributes object replicas across a heterogeneous, structured storage cluster</strong>. </p>
 <p>CRUSH is implemented as a pseudo-random, deterministic function that  <strong>maps an input value</strong>, typically an object or object group identifier, <strong>to a list of devices</strong> on which to store object replicas.</p>
 </blockquote>
+<p>$$<br>CRUSH(x) = (osd_1, osd_2, \cdots, osd_n)<br>$$</p>
 <p>与传统数据分布方法相比，有何不同：</p>
 <blockquote>
 <p>This differs from conventional approaches in that data placement does not rely on any sort of per-file or per-object directory—<strong>CRUSH needs only a compact, hierarchical description of the devices</strong> comprising the storage cluster <strong>and knowledge of the replica placement policy</strong>. </p>
@@ -500,6 +501,19 @@
 <p>3.Bucket weights are defined as the sum of the weights of the items they contain.</p>
 </blockquote>
 <h4 id="数据分布算法"><a href="#数据分布算法" class="headerlink" title="数据分布算法"></a>数据分布算法</h4><p>(to be continuing)</p>
+<h3 id="Bucket-Types"><a href="#Bucket-Types" class="headerlink" title="Bucket Types"></a>Bucket Types</h3><p><a href="https://github.com/ceph/ceph/blob/master/src/crush/mapper.c" target="_blank" rel="noopener">https://github.com/ceph/ceph/blob/master/src/crush/mapper.c</a></p>
+<h4 id="Uniform-Buckets"><a href="#Uniform-Buckets" class="headerlink" title="Uniform Buckets"></a>Uniform Buckets</h4><p>Given a CRUSH input value of <em>x</em> and a replica number <em>r</em>, we choose an item from a uniform bucket of size <em>m</em>:<br>$$<br>c(r, x) = (hash(x) + rp) \mod m<br>$$<br>where <em>p</em> is a randomly (but deterministically) chosen prime number greater than <em>m</em>.</p>
+<h4 id="List-Buckets"><a href="#List-Buckets" class="headerlink" title="List Buckets"></a>List Buckets</h4><p>List buckets structure their contents as a <strong style="color:red">linked list</strong>, and can contain items with arbitrary weights.</p>
+<p>To place a replica, CRUSH begins at the head of the list with the most recently added item and compares its weight to the sum of all remaining items’ weights.</p>
+<h4 id="Tree-Buckets"><a href="#Tree-Buckets" class="headerlink" title="Tree Buckets"></a>Tree Buckets</h4><p>Tree buckets are structured as a <strong style="color:red">weighted binary search tree</strong> with items at the leaves.</p>
+<p>节点标记策略：</p>
+<ol>
+<li>The leftmost leaf in the tree is always labeled “1.”</li>
+<li>Each time the tree is expanded, the old root becomes the new root’s left child, and the new root node is labeled with the old root’s label shifted one bit to the left (1, 10, 100, etc.).</li>
+<li>The labels for the right side of the tree mirror those on the left side except with a “1” prepended to each value.（先在前面补零对齐，然后再添加前置的1）</li>
+</ol>
+<h4 id="Straw-Buckets"><a href="#Straw-Buckets" class="headerlink" title="Straw Buckets"></a>Straw Buckets</h4><p>To place a replica, a straw of random length is drawn for each item in the bucket. The item with the longest straw wins.</p>
+<p>The length of each straw is initially a value in a fixed range, based on a hash of the CRUSH input <em>x</em>, replica number <em>r</em>, and bucket item <em>i</em>. Each straw length is scaled by a factor $f(w_i)$ based on the item’s weight so that heavily weighted items are more likely to win the draw:<br>$$<br>c(r, x) = \max_i \left( f(w_i) hash(x, r, i) \right)<br>$$</p>
 
       
     </div>
@@ -716,7 +730,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -727,7 +741,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">99</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -824,7 +838,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CRUSH"><span class="nav-number">1.</span> <span class="nav-text">CRUSH</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cluster-Map"><span class="nav-number">1.1.</span> <span class="nav-text">Cluster Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据分布算法"><span class="nav-number">1.2.</span> <span class="nav-text">数据分布算法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CRUSH"><span class="nav-number">1.</span> <span class="nav-text">CRUSH</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cluster-Map"><span class="nav-number">1.1.</span> <span class="nav-text">Cluster Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据分布算法"><span class="nav-number">1.2.</span> <span class="nav-text">数据分布算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bucket-Types"><span class="nav-number">2.</span> <span class="nav-text">Bucket Types</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Uniform-Buckets"><span class="nav-number">2.1.</span> <span class="nav-text">Uniform Buckets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List-Buckets"><span class="nav-number">2.2.</span> <span class="nav-text">List Buckets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tree-Buckets"><span class="nav-number">2.3.</span> <span class="nav-text">Tree Buckets</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Straw-Buckets"><span class="nav-number">2.4.</span> <span class="nav-text">Straw Buckets</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1399,6 +1413,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
