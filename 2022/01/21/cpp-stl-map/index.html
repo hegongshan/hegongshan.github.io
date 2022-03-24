@@ -61,7 +61,7 @@
 
 
 
-  <meta name="keywords" content="c++,">
+  <meta name="keywords" content="cpp,">
 
 
 
@@ -72,18 +72,18 @@
 
 
 
-<meta name="description" content="最近的实验需要用到键值对映射。项目代码采用C++编写，因此，有必要了解下STL中map的使用方法。">
-<meta name="keywords" content="c++">
+<meta name="description" content="最近，我参与了师兄的论文实现，原型系统需要用到键值对映射。考虑到项目代码采用C++编写，因此，有必要了解下STL中map的使用方法。">
+<meta name="keywords" content="cpp">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++标准模板库（STL）之map">
 <meta property="og:url" content="https://www.hegongshan.com/2022/01/21/cpp-stl-map/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="最近的实验需要用到键值对映射。项目代码采用C++编写，因此，有必要了解下STL中map的使用方法。">
+<meta property="og:description" content="最近，我参与了师兄的论文实现，原型系统需要用到键值对映射。考虑到项目代码采用C++编写，因此，有必要了解下STL中map的使用方法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-03-15T15:20:00.945Z">
+<meta property="og:updated_time" content="2022-03-24T12:12:33.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++标准模板库（STL）之map">
-<meta name="twitter:description" content="最近的实验需要用到键值对映射。项目代码采用C++编写，因此，有必要了解下STL中map的使用方法。">
+<meta name="twitter:description" content="最近，我参与了师兄的论文实现，原型系统需要用到键值对映射。考虑到项目代码采用C++编写，因此，有必要了解下STL中map的使用方法。">
 
 
 
@@ -395,8 +395,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-03-15T23:20:00+08:00">
-                2022-03-15
+              <time title="更新于" itemprop="dateModified" datetime="2022-03-24T20:12:33+08:00">
+                2022-03-24
               </time>
             
           </span>
@@ -414,8 +414,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index">
-                    <span itemprop="name">c++</span>
+                  <a href="/categories/cpp/" itemprop="url" rel="index">
+                    <span itemprop="name">cpp</span>
                   </a>
                 </span>
 
@@ -450,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  373
+                  601
                 </span>
               
 
@@ -475,21 +475,36 @@
       
 
       
-        <p>最近的实验需要用到键值对映射。项目代码采用C++编写，因此，有必要了解下STL中map的使用方法。</p>
+        <p>最近，我参与了师兄的论文实现，原型系统需要用到键值对映射。考虑到项目代码采用C++编写，因此，有必要了解下STL中map的使用方法。</p>
 <a id="more"></a>
-<h3 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; filemap;</span><br></pre></td></tr></table></figure>
-<h3 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>[key] = value;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;iterator, <span class="keyword">bool</span>&gt; insert(<span class="keyword">const</span> value_type&amp; val);</span><br><span class="line">insert(pair&lt;key_type, value_type&gt;(key, element));</span><br><span class="line">insert(make_pair(key, element));</span><br><span class="line">insert(<span class="built_in">map</span>&lt;key_type, type&gt;::value_type(key, element));</span><br></pre></td></tr></table></figure>
-<p>在指定位置插入：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>.insert(iterator position, &#123; key, element &#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="查找元素"><a href="#查找元素" class="headerlink" title="查找元素"></a>查找元素</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iterator = <span class="built_in">map</span>.find(<span class="keyword">const</span> key_type&amp; x);</span><br></pre></td></tr></table></figure>
-<p>遍历所有元素：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">map</span>&lt;key_type, value_type&gt;::iterator it = <span class="built_in">map</span>.begin(); </span><br><span class="line">		it != <span class="built_in">map</span>.end(); it++) &#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; it-&gt;first &lt;&lt; <span class="string">":"</span> &lt;&lt; it-&gt;second &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="定义map"><a href="#定义map" class="headerlink" title="定义map"></a>定义map</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.添加头文件</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.使用标准命名空间</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.定义map</span></span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; filemap;</span><br></pre></td></tr></table></figure>
+<h3 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h3><h4 id="直接添加"><a href="#直接添加" class="headerlink" title="直接添加"></a>直接添加</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>[key] = value;</span><br></pre></td></tr></table></figure>
+<h4 id="使用insert函数"><a href="#使用insert函数" class="headerlink" title="使用insert函数"></a>使用insert函数</h4><ul>
+<li>直接插入</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// value_type为std::pair&lt;key_type, mapped_type&gt;</span></span><br><span class="line"><span class="built_in">std</span>::pair&lt;iterator, <span class="keyword">bool</span>&gt; insert(<span class="keyword">const</span> value_type&amp; value);</span><br></pre></td></tr></table></figure>
+<p>例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; mp;</span><br><span class="line">    mp.insert(pair&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;(<span class="string">"name"</span>, <span class="string">"33"</span>));  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种写法比较啰嗦，为了简化代码，可以使用<code>make_pair</code>函数，其函数签名如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::pair&lt;T1, T2&gt; make_pair(T1 t, T2 u);</span><br></pre></td></tr></table></figure>
+<p>使用<code>make_pair</code>函数，上述代码简化为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mp.insert(make_pair(<span class="string">"name"</span>, <span class="string">"33"</span>));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在指定位置插入</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">insert</span><span class="params">(iterator position, <span class="keyword">const</span> value_type&amp; value)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="查找元素"><a href="#查找元素" class="headerlink" title="查找元素"></a>查找元素</h3><p>函数签名：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;key_type, mapped_type&gt;::<span class="function">iterator <span class="title">find</span><span class="params">(<span class="keyword">const</span> key_type&amp; x)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>示例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; dict;</span><br><span class="line">        dict[<span class="string">"name"</span>] = <span class="string">"33"</span>;</span><br><span class="line">        dict[<span class="string">"sex"</span>] = <span class="string">"male"</span>;</span><br><span class="line">        dict[<span class="string">"age"</span>] = <span class="string">"26"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;::iterator it = dict.find(<span class="string">"sex"</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s %s\n"</span>, it-&gt;first.c_str(), it-&gt;second.c_str());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sex male</span><br></pre></td></tr></table></figure>
+<h3 id="遍历元素"><a href="#遍历元素" class="headerlink" title="遍历元素"></a>遍历元素</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">map</span>&lt;key_type, mapped_type&gt;::iterator it = <span class="built_in">map</span>.begin(); </span><br><span class="line">		it != <span class="built_in">map</span>.end(); it++) &#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; it-&gt;first &lt;&lt; <span class="string">":"</span> &lt;&lt; it-&gt;second &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h3><ul>
 <li>删除单个元素</li>
 </ul>
 <p>函数原型：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">erase</span><span class="params">(iterator position)</span></span>;</span><br><span class="line"><span class="function">size_type <span class="title">erase</span><span class="params">(<span class="keyword">const</span> key_type&amp; x)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回删除元素的个数</span></span><br><span class="line"><span class="function">size_type <span class="title">erase</span><span class="params">(<span class="keyword">const</span> key_type&amp; x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">erase</span><span class="params">(iterator position)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>示例：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; dict;</span><br><span class="line">        dict[<span class="string">"name"</span>] = <span class="string">"33"</span>;</span><br><span class="line">        dict[<span class="string">"sex"</span>] = <span class="string">"male"</span>;</span><br><span class="line">        dict[<span class="string">"age"</span>] = <span class="string">"26"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;::iterator it = dict.find(<span class="string">"name"</span>);</span><br><span class="line">        dict.erase(it);</span><br><span class="line">        dict.erase(<span class="string">"sex"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;::iterator it = dict.begin(); it != dict.end(); it++) &#123; </span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%s = %s\n"</span>, it-&gt;first.c_str(), it-&gt;second.c_str());</span><br><span class="line">        &#125;   </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出内容如下：</p>
@@ -502,6 +517,9 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt; dict;</span><br><span class="line">        dict[<span class="string">"name"</span>] = <span class="string">"33"</span>;</span><br><span class="line">        dict[<span class="string">"sex"</span>] = <span class="string">"male"</span>;</span><br><span class="line">        dict[<span class="string">"age"</span>] = <span class="string">"26"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;::iterator it = dict.find(<span class="string">"name"</span>);</span><br><span class="line">        dict.erase(it, dict.end());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;::iterator it = dict.begin(); it != dict.end(); it++) &#123; </span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%s = %s\n"</span>, it-&gt;first.c_str(), it-&gt;second.c_str());</span><br><span class="line">        &#125;   </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出内容如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">26</span></span><br></pre></td></tr></table></figure>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li>std::map, <a href="https://zh.cppreference.com/w/cpp/container/map" target="_blank" rel="noopener">https://zh.cppreference.com/w/cpp/container/map</a></li>
+</ul>
 
       
     </div>
@@ -575,7 +593,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/c/" rel="tag"><i class="fa fa-tag"></i> c++</a>
+            <a href="/tags/cpp/" rel="tag"><i class="fa fa-tag"></i> cpp</a>
           
         </div>
       
@@ -711,7 +729,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">532</span>
+                  <span class="site-state-item-count">534</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -830,7 +848,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义变量"><span class="nav-number">1.</span> <span class="nav-text">定义变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加元素"><span class="nav-number">2.</span> <span class="nav-text">添加元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找元素"><span class="nav-number">3.</span> <span class="nav-text">查找元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除元素"><span class="nav-number">4.</span> <span class="nav-text">删除元素</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义map"><span class="nav-number">1.</span> <span class="nav-text">定义map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加元素"><span class="nav-number">2.</span> <span class="nav-text">添加元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接添加"><span class="nav-number">2.1.</span> <span class="nav-text">直接添加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用insert函数"><span class="nav-number">2.2.</span> <span class="nav-text">使用insert函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找元素"><span class="nav-number">3.</span> <span class="nav-text">查找元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历元素"><span class="nav-number">4.</span> <span class="nav-text">遍历元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除元素"><span class="nav-number">5.</span> <span class="nav-text">删除元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
