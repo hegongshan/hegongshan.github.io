@@ -81,7 +81,8 @@
 <meta property="og:description" content="Filebench是一种文件系统和存储测试工具，可以生成大量的工作负载。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/file-system-benchmark-filebench-workload.png">
-<meta property="og:updated_time" content="2022-03-25T09:57:19.800Z">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/file-system-benchmark-filebench-webserver-result.png">
+<meta property="og:updated_time" content="2022-03-28T15:13:43.622Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件系统测试工具之Filebench">
 <meta name="twitter:description" content="Filebench是一种文件系统和存储测试工具，可以生成大量的工作负载。">
@@ -397,8 +398,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-03-25T17:57:19+08:00">
-                2022-03-25
+              <time title="更新于" itemprop="dateModified" datetime="2022-03-28T23:13:43+08:00">
+                2022-03-28
               </time>
             
           </span>
@@ -452,7 +453,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  267
+                  818
                 </span>
               
 
@@ -479,6 +480,9 @@
       
         <p>Filebench是一种文件系统和存储测试工具，可以生成大量的工作负载。</p>
 <a id="more"></a>
+<h3 id="Filebench介绍"><a href="#Filebench介绍" class="headerlink" title="Filebench介绍"></a>Filebench介绍</h3><p>2002年，SUN公司开发了Filebench，并于2005年公开了源代码。</p>
+<p>在SUN公司停止开发后，石溪大学的文件系统和存储实验室获得了许可，由他们负责继续开发和维护<sup><a href="#ref-1" style="border:none">[1]</a></sup>。</p>
+<p>根据谷歌学术的统计结果，有超过500篇论文使用Filebench作为测试工具<sup><a href="#ref-2" style="border:none">[2]</a></sup>。</p>
 <h3 id="安装Filebench"><a href="#安装Filebench" class="headerlink" title="安装Filebench"></a>安装Filebench</h3><h4 id="直接安装"><a href="#直接安装" class="headerlink" title="直接安装"></a>直接安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y filebench</span><br></pre></td></tr></table></figure>
 <h4 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h4><p>1.安装依赖</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y flex bison</span><br></pre></td></tr></table></figure>
@@ -495,10 +499,37 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/<span class="built_in">local</span>/share/filebench/workloads/webserver.f mywebserver.f</span><br></pre></td></tr></table></figure>
 <p>最后，运行工作负载：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebench -f mywebserver.f</span><br></pre></td></tr></table></figure>
-<p>关于测试结果的具体说明：<a href="https://github.com/filebench/filebench/wiki/Collected-metrics" target="_blank" rel="noopener">https://github.com/filebench/filebench/wiki/Collected-metrics</a></p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
-<li>Filebench，<a href="https://github.com/filebench/filebench/wiki" target="_blank" rel="noopener">https://github.com/filebench/filebench/wiki</a></li>
+<p>输出的部分结果如下所示：</p>
+<p><img src="/static/images/file-system-benchmark-filebench-webserver-result.png" alt="工作负载"></p>
+<h3 id="测试结果说明"><a href="#测试结果说明" class="headerlink" title="测试结果说明"></a>测试结果说明</h3><p>Filebench的测试结果在wiki中有较为详细的说明<sup><a href="#ref-3" style="border:none">[3]</a></sup>，对应的代码位于<code>stats.c</code>中。</p>
+<p>1.每个操作的输出代码如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (flowop) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  (<span class="keyword">void</span>) <span class="built_in">snprintf</span>(line, <span class="keyword">sizeof</span>(line), <span class="string">"%-20s %dops %8.0lfops/s "</span></span><br><span class="line">                  <span class="string">"%5.1lfmb/s %8.3fms/op"</span>,</span><br><span class="line">                  flowop-&gt;fo_name,</span><br><span class="line">                  flowop-&gt;fo_stats.fs_count, </span><br><span class="line">                  flowop-&gt;fo_stats.fs_count / total_time_sec,</span><br><span class="line">                  (flowop-&gt;fo_stats.fs_bytes / MB_FLOAT) / total_time_sec,</span><br><span class="line">                  flowop-&gt;fo_stats.fs_count ?</span><br><span class="line">                  flowop-&gt;fo_stats.fs_total_lat /</span><br><span class="line">                  (flowop-&gt;fo_stats.fs_count * SEC2MS_FLOAT) : <span class="number">0</span>);</span><br><span class="line">  (<span class="keyword">void</span>) <span class="built_in">strcat</span>(str, line);</span><br><span class="line"></span><br><span class="line">  (<span class="keyword">void</span>) <span class="built_in">snprintf</span>(line, <span class="keyword">sizeof</span>(line),<span class="string">" [%.3fms - %5.3fms]"</span>,</span><br><span class="line">                  flowop-&gt;fo_stats.fs_minlat / SEC2MS_FLOAT,</span><br><span class="line">                  flowop-&gt;fo_stats.fs_maxlat / SEC2MS_FLOAT);</span><br><span class="line">  (<span class="keyword">void</span>) <span class="built_in">strcat</span>(str, line);</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// filebench.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>	KB_FLOAT ((double)1024.0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>	MB_FLOAT (KB_FLOAT * KB_FLOAT)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// fbtime.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>	SEC2MS_FLOAT (double)1000000.0</span></span><br></pre></td></tr></table></figure>
+<p>以<code>readfile1</code>操作为例，</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readfile1            <span class="number">9787</span>ops      <span class="number">163</span>ops/s  <span class="number">10.0</span>mb/s      <span class="number">0.0</span>ms/op [<span class="number">0.00</span>ms -  <span class="number">0.88</span>ms]</span><br></pre></td></tr></table></figure>
+<p>上述结果表明：</p>
+<ul>
+<li>本次测试共执行了9787次读取操作</li>
+<li>每秒执行的平均读取次数为163次</li>
+<li>每秒读取的平均数据10MB</li>
+<li>每次操作的平均延迟为0.0ms，每次操作的最小延迟为0.00ms，最大延迟为0.88ms</li>
 </ul>
+<p>2.总的统计代码如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">filebench_log(LOG_INFO,</span><br><span class="line">	    <span class="string">"IO Summary: %5d ops %5.3lf ops/s %0.0lf/%0.0lf rd/wr "</span></span><br><span class="line">	    <span class="string">"%5.1lfmb/s %5.3fms/op"</span>,</span><br><span class="line">	    iostat-&gt;fs_count + aiostat-&gt;fs_count,</span><br><span class="line">	    (iostat-&gt;fs_count + aiostat-&gt;fs_count) / total_time_sec,</span><br><span class="line">	    (iostat-&gt;fs_rcount + aiostat-&gt;fs_rcount) / total_time_sec,</span><br><span class="line">	    (iostat-&gt;fs_wcount + aiostat-&gt;fs_wcount) / total_time_sec,</span><br><span class="line">	    ((iostat-&gt;fs_bytes + aiostat-&gt;fs_bytes) / MB_FLOAT)</span><br><span class="line">						/ total_time_sec,</span><br><span class="line">	    (iostat-&gt;fs_count + aiostat-&gt;fs_count) ?</span><br><span class="line">	    (iostat-&gt;fs_total_lat + aiostat-&gt;fs_total_lat) /</span><br><span class="line">	    ((iostat-&gt;fs_count + aiostat-&gt;fs_count) * SEC2MS_FLOAT) : <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p>依旧以上面的测试结果为例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IO Summary: <span class="number">303389</span> ops <span class="number">5055.849</span> ops/s <span class="number">1631</span>/<span class="number">163</span> rd/wr <span class="number">100.7</span>mb/s   <span class="number">0.0</span>ms/op</span><br></pre></td></tr></table></figure>
+<p>其表明：</p>
+<ul>
+<li>本次测试共执行了303389次各类操作</li>
+<li>每秒执行的平均操作次数为5055.849</li>
+<li>每秒执行的平均读操作次数为1631，平均写操作次数为163次</li>
+<li>每秒读写的平均数据为100.7MB</li>
+<li>每次操作的平均延迟为0.0ms</li>
+</ul>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p id="ref-1">[1] Filebench，<a href="https://github.com/filebench/filebench" target="_blank" rel="noopener">https://github.com/filebench/filebench</a></p>
+
+<p id="ref-2">[2] Filebench: A Flexible Framework for File System Benchmarking, ;login: The USENIX Magazine’16, <a href="https://www.usenix.org/system/files/login/articles/login_spring16_02_tarasov.pdf" target="_blank" rel="noopener">https://www.usenix.org/system/files/login/articles/login_spring16_02_tarasov.pdf</a></p>
+
+<p id="ref-3">[3] Collected metrics，<a href="https://github.com/filebench/filebench/wiki/Collected-metrics" target="_blank" rel="noopener">https://github.com/filebench/filebench/wiki/Collected-metrics</a></p>
 
       
     </div>
@@ -823,7 +854,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Filebench"><span class="nav-number">1.</span> <span class="nav-text">安装Filebench</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接安装"><span class="nav-number">1.1.</span> <span class="nav-text">直接安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手动安装"><span class="nav-number">1.2.</span> <span class="nav-text">手动安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Filebench"><span class="nav-number">2.</span> <span class="nav-text">使用Filebench</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Filebench介绍"><span class="nav-number">1.</span> <span class="nav-text">Filebench介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Filebench"><span class="nav-number">2.</span> <span class="nav-text">安装Filebench</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接安装"><span class="nav-number">2.1.</span> <span class="nav-text">直接安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手动安装"><span class="nav-number">2.2.</span> <span class="nav-text">手动安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Filebench"><span class="nav-number">3.</span> <span class="nav-text">使用Filebench</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试结果说明"><span class="nav-number">4.</span> <span class="nav-text">测试结果说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
