@@ -72,18 +72,22 @@
 
 
 
-<meta name="description" content="共享内存（SHared Memory，SHM）是最快的进程间通信（Inter-Process Communication，IPC）方式。">
+<meta name="description" content="共享内存（SHared Memory，SHM）不需要在进程间来回复制数据，是最快的进程间通信（Inter-Process Communication，IPC）方式。">
 <meta name="keywords" content="interprocess communication">
 <meta property="og:type" content="article">
 <meta property="og:title" content="进程间通信之共享内存">
 <meta property="og:url" content="https://www.hegongshan.com/2022/03/19/c-ipc-shared-memory/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="共享内存（SHared Memory，SHM）是最快的进程间通信（Inter-Process Communication，IPC）方式。">
+<meta property="og:description" content="共享内存（SHared Memory，SHM）不需要在进程间来回复制数据，是最快的进程间通信（Inter-Process Communication，IPC）方式。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-03-24T12:45:01.906Z">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/shared-memory-principle.png">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/shared-memory-test-server.png">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/shared-memory-test-client.png">
+<meta property="og:updated_time" content="2022-03-31T15:15:59.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="进程间通信之共享内存">
-<meta name="twitter:description" content="共享内存（SHared Memory，SHM）是最快的进程间通信（Inter-Process Communication，IPC）方式。">
+<meta name="twitter:description" content="共享内存（SHared Memory，SHM）不需要在进程间来回复制数据，是最快的进程间通信（Inter-Process Communication，IPC）方式。">
+<meta name="twitter:image" content="https://www.hegongshan.com/static/images/shared-memory-principle.png">
 
 
 
@@ -395,8 +399,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-03-24T20:45:01+08:00">
-                2022-03-24
+              <time title="更新于" itemprop="dateModified" datetime="2022-03-31T23:15:59+08:00">
+                2022-03-31
               </time>
             
           </span>
@@ -450,7 +454,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  133
+                  503
                 </span>
               
 
@@ -475,14 +479,24 @@
       
 
       
-        <p>共享内存（SHared Memory，SHM）是最快的进程间通信（Inter-Process Communication，IPC）方式。</p>
+        <p>共享内存（SHared Memory，SHM）不需要在进程间来回复制数据，是最快的进程间通信（Inter-Process Communication，IPC）方式。</p>
 <a id="more"></a>
-<p>共享内存相关的方法位于：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/include/sys/shm.h</span><br></pre></td></tr></table></figure>
-<p>包含了四个方法：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span>     <span class="title">shmget</span><span class="params">(<span class="keyword">key_t</span> key, <span class="keyword">size_t</span> size, <span class="keyword">int</span> shmflg)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span>    *<span class="title">shmat</span><span class="params">(<span class="keyword">int</span> shmid, <span class="keyword">const</span> <span class="keyword">void</span> *shmaddr, <span class="keyword">int</span> shmflg)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span>     <span class="title">shmdt</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> *shmaddr)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span>     <span class="title">shmctl</span><span class="params">(<span class="keyword">int</span> shmid, <span class="keyword">int</span> cmd, struct shmid_ds *buf)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p><img src="/static/images/shared-memory-principle.png" alt="共享内存"></p>
+<h3 id="系统库函数"><a href="#系统库函数" class="headerlink" title="系统库函数"></a>系统库函数</h3><p>共享内存相关的方法位于<code>sys/shm.h</code>，共包含了四个方法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回共享内存的唯一标识符</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>     <span class="title">shmget</span><span class="params">(<span class="keyword">key_t</span> key, <span class="keyword">size_t</span> size, <span class="keyword">int</span> shmflg)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span>    *<span class="title">shmat</span><span class="params">(<span class="keyword">int</span> shmid, <span class="keyword">const</span> <span class="keyword">void</span> *shmaddr, <span class="keyword">int</span> shmflg)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span>     <span class="title">shmdt</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> *shmaddr)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span>     <span class="title">shmctl</span><span class="params">(<span class="keyword">int</span> shmid, <span class="keyword">int</span> cmd, struct shmid_ds *buf)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>at</code>表示attach，<code>dt</code>表示detach。</p>
+<p>此外，系统库中还提供了函数ftok()，用于生成进程间通信的键值。该函数位于<code>sys/ipc.h</code>中：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">key_t</span>   ftok(<span class="keyword">const</span> <span class="keyword">char</span> *fname, <span class="keyword">int</span> id);</span><br></pre></td></tr></table></figure>
 <p>常用模板：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.创建共享内存</span></span><br><span class="line"><span class="keyword">int</span> shm_id = shmget(“”, <span class="number">65535</span>, IPC_CREAT | <span class="number">0644</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.连接共享内存</span></span><br><span class="line"><span class="keyword">void</span> *<span class="built_in">map</span> = shmat(shm_id, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.读写共享内存</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 4.断开连接</span></span><br><span class="line">shmdt(shm_id);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5.删除共享内存</span></span><br><span class="line">shmctl(shm_id, IPC_RMID, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.根据文件路径名和id，得到键值</span></span><br><span class="line"><span class="keyword">key_t</span> key = ftok(<span class="string">"."</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.创建共享内存，并设置共享内存的大小、访问权限</span></span><br><span class="line"><span class="keyword">int</span> shm_id = shmget(key, <span class="number">65535</span>, IPC_CREAT | <span class="number">0644</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.连接共享内存</span></span><br><span class="line"><span class="keyword">void</span> *shm = shmat(shm_id, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4.读写共享内存</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 5.断开连接</span></span><br><span class="line">shmdt(shm_id);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 6.删除共享内存</span></span><br><span class="line">shmctl(shm_id, IPC_RMID, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><p>要求：一个进程创建共享内存，并写入字符串<code>shared memory</code>；而另一个进程则从共享内存中读取该字符串。</p>
+<h4 id="写入数据"><a href="#写入数据" class="headerlink" title="写入数据"></a>写入数据</h4><p>创建共享内存，并写入一个字符串：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/shm.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="keyword">key_t</span> shmkey = ftok(<span class="string">"."</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> shmid = shmget(shmkey, <span class="number">1024</span> * <span class="number">1024</span>, IPC_CREAT | <span class="number">0666</span>);</span><br><span class="line">        <span class="keyword">if</span> (shmid == <span class="number">-1</span>) &#123;</span><br><span class="line">                <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">char</span> *shm = (<span class="keyword">char</span> *)shmat(shmid, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> (shm == <span class="literal">NULL</span>) &#123;</span><br><span class="line">                <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">strcpy</span>(shm, <span class="string">"shared memory"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> result = shmdt(shm);</span><br><span class="line">        <span class="keyword">if</span> (result == <span class="number">-1</span>) &#123;</span><br><span class="line">                <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/static/images/shared-memory-test-server.png" alt="创建共享内存并写入数据"></p>
+<p>其中，ipcs（<strong>ipc s</strong>tatus）命令用于查看系统中的ipc状态，<code>-m</code>表示只输出共享内存的相关信息。</p>
+<h4 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h4><p>读取共享内存中的字符串：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/shm.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="keyword">key_t</span> shmkey = ftok(<span class="string">"."</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> shmid = shmget(shmkey, <span class="number">1024</span> * <span class="number">1024</span>, <span class="number">0666</span>);</span><br><span class="line">        <span class="keyword">if</span> (shmid == <span class="number">-1</span>) &#123;</span><br><span class="line">                <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">char</span> *shm = (<span class="keyword">char</span> *)shmat(shmid, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> (shm == <span class="literal">NULL</span>) &#123;</span><br><span class="line">                <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, shm);</span><br><span class="line">        <span class="keyword">if</span> (shmdt(shm) == <span class="number">-1</span>) &#123;</span><br><span class="line">                <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (shmctl(shmid, IPC_RMID, <span class="literal">NULL</span>) == <span class="number">-1</span>) &#123;</span><br><span class="line">                <span class="built_in">exit</span>(EXIT_FAILURE);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">exit</span>(EXIT_SUCCESS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/static/images/shared-memory-test-client.png" alt="读取共享内存"></p>
 
       
     </div>
@@ -665,8 +679,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -792,6 +815,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现原理"><span class="nav-number">1.</span> <span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统库函数"><span class="nav-number">2.</span> <span class="nav-text">系统库函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践"><span class="nav-number">3.</span> <span class="nav-text">实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#写入数据"><span class="nav-number">3.1.</span> <span class="nav-text">写入数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读取数据"><span class="nav-number">3.2.</span> <span class="nav-text">读取数据</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
