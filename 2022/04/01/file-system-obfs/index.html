@@ -72,20 +72,24 @@
 
 
 
-<meta name="description" content="OBFS一文由加州大学圣克鲁兹分校（UCSC）发表在MSST’04中，是Ceph RADOS的前置研究。">
+<meta name="description" content="OBFS全称为Object-Based File System，翻译成中文就是基于对象的文件系统。 该论文是Ceph RADOS的前置研究，发表在MSST’04中，作者来自于加州大学圣克鲁兹分校（UCSC）。">
 <meta name="keywords" content="GongshanHe Java Python MachineLearning DeepLearning RecommenderSystems KnowledgeGraph">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文阅读《OBFS&amp;#58; A File System for Object-based Storage Devices》">
 <meta property="og:url" content="https://www.hegongshan.com/2022/04/01/file-system-obfs/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="OBFS一文由加州大学圣克鲁兹分校（UCSC）发表在MSST’04中，是Ceph RADOS的前置研究。">
+<meta property="og:description" content="OBFS全称为Object-Based File System，翻译成中文就是基于对象的文件系统。 该论文是Ceph RADOS的前置研究，发表在MSST’04中，作者来自于加州大学圣克鲁兹分校（UCSC）。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/file-system-obfs-and-ceph-ebofs.png">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/file-system-obfs-data-distribution.png">
-<meta property="og:updated_time" content="2022-04-02T14:30:08.300Z">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/file-system-stripe.png">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/file-system-obfs-structure.png">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/file-system-obfs-region-layout.png">
+<meta property="og:updated_time" content="2022-04-04T15:52:41.075Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读《OBFS&amp;#58; A File System for Object-based Storage Devices》">
-<meta name="twitter:description" content="OBFS一文由加州大学圣克鲁兹分校（UCSC）发表在MSST’04中，是Ceph RADOS的前置研究。">
-<meta name="twitter:image" content="https://www.hegongshan.com/static/images/file-system-obfs-data-distribution.png">
+<meta name="twitter:description" content="OBFS全称为Object-Based File System，翻译成中文就是基于对象的文件系统。 该论文是Ceph RADOS的前置研究，发表在MSST’04中，作者来自于加州大学圣克鲁兹分校（UCSC）。">
+<meta name="twitter:image" content="https://www.hegongshan.com/static/images/file-system-obfs-and-ceph-ebofs.png">
 
 
 
@@ -397,8 +401,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-04-02T22:30:08+08:00">
-                2022-04-02
+              <time title="更新于" itemprop="dateModified" datetime="2022-04-04T23:52:41+08:00">
+                2022-04-04
               </time>
             
           </span>
@@ -430,7 +434,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  288
+                  1.2k
                 </span>
               
 
@@ -455,9 +459,11 @@
       
 
       
-        <p>OBFS一文由加州大学圣克鲁兹分校（UCSC）发表在MSST’04中，是Ceph RADOS的前置研究。</p>
+        <p>OBFS全称为Object-Based File System，翻译成中文就是基于对象的文件系统。</p>
+<p>该论文是Ceph RADOS的前置研究，发表在MSST’04中，作者来自于加州大学圣克鲁兹分校（UCSC）。</p>
 <a id="more"></a>
-<p> The basic idea of OBFS is to optimize the disk layout based on our knowledge of the workload.</p>
+<p><img src="/static/images/file-system-obfs-and-ceph-ebofs.png" alt="OBFS与Ceph的关系" style="width:70%"></p>
+<p>OSD全称为 Object-Based Storage Devices，对象存储设备。</p>
 <h3 id="研究动机"><a href="#研究动机" class="headerlink" title="研究动机"></a>研究动机</h3><blockquote>
 <p>The workload presented to the OSDs will be quite different from that of general purpose file systems, yet many distributed file systems employ general-purpose file systems as their underlying file system.</p>
 </blockquote>
@@ -465,10 +471,43 @@
 <p>At the OSD level, objects typically have no logical relationship, presenting a flat name space. </p>
 <p>As a result, general-purpose file systems, which are usually optimized for workloads exhibiting relatively small variable-sized files, relatively small hierarchical directories, and some degree of locality, do not perform particularly well under this workload.</p>
 </blockquote>
+<p>The basic idea of OBFS is to optimize the disk layout based on our knowledge of the workload.</p>
 <h3 id="工作负载分析"><a href="#工作负载分析" class="headerlink" title="工作负载分析"></a>工作负载分析</h3><p><img src="/static/images/file-system-obfs-data-distribution.png" alt="数据分布情况"></p>
 <p>1.Most of the files are larger than 4 KB and <strong>the majority of all files are distributed between 32 KB and 8 MB</strong>. Those files that are smaller than 4 KB (a typical block size for a general-purpose file system) only account for a very small portion of the total files.</p>
 <p>2.However, almost all of the disk space is occupied by files larger than 4 MB and <strong>the majority of all bytes are in files between 4 MB and 1 GB</strong>. The total number of bytes in files smaller than 256 KB is insignificant. Though the files larger than 1 GB are only a small percentage of the files, the total number of bytes in such files account for more than 15% of the bytes in the system.</p>
+<p>In the LLNL workload we estimate that about 85% of all objects will be 512 KB and 15% of all objects will be smaller than 512 KB. </p>
+<p>OBFS将与系统条带大小相同的对象称为大对象，其他对象称为小对象。</p>
+<h3 id="设计与实现"><a href="#设计与实现" class="headerlink" title="设计与实现"></a>设计与实现</h3><p>设置条带大小，将文件条带化（striping）</p>
+<p><img src="/static/images/file-system-stripe.png" alt="文件条带化"></p>
+<h4 id="Region和变长块"><a href="#Region和变长块" class="headerlink" title="Region和变长块"></a>Region和变长块</h4><p>OBFS将磁盘划分为大小相同的Region，同一Region中的块大小相同，不同Region中的块大小不同。</p>
+<p>在实现时，OBFS使用了两种块大小：4KB的小块（Linux中的逻辑块大小）和512KB的大块（系统中的条带大小）。大块用于存储大对象，小块用于存储小对象。</p>
+<p>如下图所示，包含大块的Region叫作Large block region（以下简称为大块Region），包含小块的Region叫作Small block region（以下简称为小块Region）。</p>
+<p><img src="/static/images/file-system-obfs-structure.png" alt="OBFS磁盘布局" style="width:50%"></p>
+<p><strong>TODO：磁盘没有存文件名，文件名存哪儿？inode？</strong></p>
+<h4 id="对象元数据"><a href="#对象元数据" class="headerlink" title="对象元数据"></a>对象元数据</h4><p>下图是OBFS中两种Region的具体结构和对应的数据布局。不难发现，小块Region的磁盘布局与Ext2是非常相似的。</p>
+<p><img src="/static/images/file-system-obfs-region-layout.png" alt="Region布局"></p>
+<p>其中，Onode（Object node）表示对象的元数据。每个Onode都有一个32位的ID，高16位为Region ID，低16位为Region内的对象ID，即图中的Onode Index（以下统一采用Onode Index表示）。</p>
+<p>在实现时，无论是大对象，还是小对象，其Onode均占用512个字节。</p>
+<h4 id="对象查询"><a href="#对象查询" class="headerlink" title="对象查询"></a>对象查询</h4><p>OBFS使用哈希表（Object Lookup Table，OLT）来管理Object ID和Onode ID的映射，也就是说：<br>$$<br>hash(\mathrm{Object\ ID}) \rightarrow \mathrm{Onode\ ID} \tag{1}<br>$$<br>每个Region都有一个Region头，其存储了Region的一些元数据，如空闲块位图位置、空闲Onode位图位置以及Onode表（只有小块Region有）等。所有的Region头均会被链接到Region头链表（Region Head List，RHL）中。</p>
+<p>在查找某个对象时，需要经过以下三步：</p>
+<p>首先，查询哈希表，根据对象ID得到对应的Onode ID，即</p>
+<p>然后，根据Onode ID得到对应的Region ID（Onode ID的高16位），搜索Region头链表，找到对应的Region；</p>
+<p>最后，根据Onode ID得到对应的Onode Index（Onode ID的低16位）。如果Onode属于大块Region，可以直接计算出数据位置：<br>$$<br>(\mathrm{Data\ Block\ Size} + \mathrm{Onode\ Size}) \times \mathrm{Onode\ Index} \tag{2}<br>$$<br>如果属于小块Region，则需要先搜索Onode表，找到对应的Onode，再根据Onode得到对象的数据位置。</p>
+<h4 id="数据分配策略"><a href="#数据分配策略" class="headerlink" title="数据分配策略"></a>数据分配策略</h4><ul>
+<li>如何判断应该用大块，还是小块来存储对象呢？</li>
+</ul>
+<p>如果对象的大小大于使用大块的阈值，则为其分配一个大块；否则，为其分配一个小块。</p>
+<ul>
+<li>对象应该存放在哪里呢？</li>
+</ul>
+<p>1.对于大对象来说，OBFS会从最近的大块Region中寻找空闲块来存放它。如果找不到空闲块，则初始化一个最近的空闲Region来存放它。</p>
+<p>2.对于小对象来说，</p>
+<p>OBFS会从最近的小块Region开始搜索，如果能找到足够大的连续空闲块，则将对象直接存放在其中；</p>
+<p>如果找不到足够大的连续空闲块，则将最大的连续空闲块分配给该对象。然后，从对象大小中减去已分配的空间，重复执行该过程，直到整个对象被存放在Region中为止；</p>
+<p>如果在当前Region中找不到足够的空间来存放该对象，则继续往后寻找其他的小块Region；</p>
+<p>如果仍然找不到足够的空间来存放该对象，则初始化最近的空闲Region（将其放进活跃Region链表中），在新的Region中分配空间来存放该对象。</p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>1.论文，<a href="https://www.storageconference.us/2004/Papers/33-Wang-a.pdf" target="_blank" rel="noopener">https://www.storageconference.us/2004/Papers/33-Wang-a.pdf</a></p>
+<p>2.Slides，<a href="https://www.storageconference.us/2004/Presentations/33r1.pdf" target="_blank" rel="noopener">https://www.storageconference.us/2004/Presentations/33r1.pdf</a></p>
 
       
     </div>
@@ -549,8 +588,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/04/01/file-system-ceph-rados/" rel="next" title="file-system-ceph-rados">
-                <i class="fa fa-chevron-left"></i> file-system-ceph-rados
+              <a href="/2022/03/25/file-system-benchmark-filebench/" rel="next" title="文件系统测试工具之Filebench">
+                <i class="fa fa-chevron-left"></i> 文件系统测试工具之Filebench
               </a>
             
           </div>
@@ -558,6 +597,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/04/05/file-system-ceph-rados/" rel="prev" title="file-system-ceph-rados">
+                file-system-ceph-rados <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -787,7 +830,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#研究动机"><span class="nav-number">1.</span> <span class="nav-text">研究动机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作负载分析"><span class="nav-number">2.</span> <span class="nav-text">工作负载分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#研究动机"><span class="nav-number">1.</span> <span class="nav-text">研究动机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作负载分析"><span class="nav-number">2.</span> <span class="nav-text">工作负载分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计与实现"><span class="nav-number">3.</span> <span class="nav-text">设计与实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Region和变长块"><span class="nav-number">3.1.</span> <span class="nav-text">Region和变长块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象元数据"><span class="nav-number">3.2.</span> <span class="nav-text">对象元数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象查询"><span class="nav-number">3.3.</span> <span class="nav-text">对象查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据分配策略"><span class="nav-number">3.4.</span> <span class="nav-text">数据分配策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -1362,6 +1405,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
