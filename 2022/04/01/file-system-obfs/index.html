@@ -85,7 +85,7 @@
 <meta property="og:image" content="https://www.hegongshan.com/static/images/file-system-obfs-data-distribution.png">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/file-system-obfs-structure.png">
 <meta property="og:image" content="https://www.hegongshan.com/static/images/file-system-obfs-region-layout.png">
-<meta property="og:updated_time" content="2022-04-05T15:20:43.185Z">
+<meta property="og:updated_time" content="2022-04-06T13:37:34.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读《OBFS&amp;#58; A File System for Object-based Storage Devices》">
 <meta name="twitter:description" content="OBFS全称为Object-Based File System，翻译成中文就是基于对象的文件系统。 该论文是Ceph EBOFS的前置研究，发表在MSST’04中，作者来自于加州大学圣克鲁兹分校（UCSC）。">
@@ -401,8 +401,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-04-05T23:20:43+08:00">
-                2022-04-05
+              <time title="更新于" itemprop="dateModified" datetime="2022-04-06T21:37:34+08:00">
+                2022-04-06
               </time>
             
           </span>
@@ -456,7 +456,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.6k
+                  1.7k
                 </span>
               
 
@@ -485,12 +485,13 @@
 <p>该论文是Ceph EBOFS的前置研究，发表在MSST’04中，作者来自于加州大学圣克鲁兹分校（UCSC）。</p>
 <a id="more"></a>
 <p><img src="/static/images/file-system-obfs-and-ceph-ebofs.png" alt="OBFS与Ceph的关系" style="width:70%"></p>
-<p>OSD全称为Object Storage Devices，对象存储设备。作者发现：OSD上的工作负载与通用目的文件系统中的工作负载十分不同。基于该发现，他们提出针对工作负载来优化磁盘布局。</p>
+<h3 id="对象存储介绍"><a href="#对象存储介绍" class="headerlink" title="对象存储介绍"></a>对象存储介绍</h3><p>在基于对象的存储系统中，文件被条带化（striping）成多个对象，如下图所示：</p>
+<p><img src="/static/images/file-system-stripe.png" alt="文件条带化"></p>
+<p>这些对象分散存储在多个OSD（Object Storage Devices，对象存储设备）中。</p>
+<p>作者发现：OSD上的工作负载与通用目的文件系统中的工作负载十分不同。基于该发现，他们提出针对工作负载来优化磁盘布局。</p>
 <blockquote>
 <p>The basic idea of OBFS is to optimize the disk layout based on our knowledge of the workload.</p>
 </blockquote>
-<h3 id="对象存储"><a href="#对象存储" class="headerlink" title="对象存储"></a>对象存储</h3><p>将文件条带化（striping）成对象：（TODO：完善）</p>
-<p><img src="/static/images/file-system-stripe.png" alt="文件条带化"></p>
 <h3 id="工作负载分析"><a href="#工作负载分析" class="headerlink" title="工作负载分析"></a>工作负载分析</h3><p>作者分析了劳伦斯利物莫国家实验室（LLNL）中分布式文件系统的工作负载，统计结果如下图所示：</p>
 <p><img src="/static/images/file-system-obfs-data-distribution.png" alt="数据分布情况"></p>
 <ul>
@@ -537,7 +538,7 @@
 <p>如果在当前Region中找不到足够的空间来存放该对象，则继续往后寻找其他的小块Region；</p>
 <p>如果仍然找不到足够的空间来存放该对象，则初始化最近的空闲Region（放进小块Region链表中），在新的Region中分配空间来存放该对象。</p>
 <blockquote>
-<p>作者博士论文还提到：当写负载密集时，直接分配空闲Region要优于先搜索现有的Region。</p>
+<p>作者的博士论文还提到：当写负载密集时，直接分配空闲Region要优于先搜索现有的Region。</p>
 </blockquote>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
 <li><p>论文, <a href="https://www.storageconference.us/2004/Papers/33-Wang-a.pdf" target="_blank" rel="noopener">https://www.storageconference.us/2004/Papers/33-Wang-a.pdf</a></p>
@@ -875,7 +876,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象存储"><span class="nav-number">1.</span> <span class="nav-text">对象存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作负载分析"><span class="nav-number">2.</span> <span class="nav-text">工作负载分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计与实现"><span class="nav-number">3.</span> <span class="nav-text">设计与实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Region和变长块"><span class="nav-number">3.1.</span> <span class="nav-text">Region和变长块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象元数据"><span class="nav-number">3.2.</span> <span class="nav-text">对象元数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象查询"><span class="nav-number">3.3.</span> <span class="nav-text">对象查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据分配策略"><span class="nav-number">3.4.</span> <span class="nav-text">数据分配策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象存储介绍"><span class="nav-number">1.</span> <span class="nav-text">对象存储介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作负载分析"><span class="nav-number">2.</span> <span class="nav-text">工作负载分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计与实现"><span class="nav-number">3.</span> <span class="nav-text">设计与实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Region和变长块"><span class="nav-number">3.1.</span> <span class="nav-text">Region和变长块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象元数据"><span class="nav-number">3.2.</span> <span class="nav-text">对象元数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象查询"><span class="nav-number">3.3.</span> <span class="nav-text">对象查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据分配策略"><span class="nav-number">3.4.</span> <span class="nav-text">数据分配策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
