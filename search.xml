@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[论文阅读《DAOS&#58; A Scale-Out High Performance Storage Stack for Storage Class Memory》]]></title>
+    <url>%2F2022%2F04%2F11%2Ffile-system-daos%2F</url>
+    <content type="text"><![CDATA[该论文由Intel公司发表在2020年的SCFA（Supercomputing Frontiers）中，介绍了其开发的基于NVM的存储栈——DAOS。 Distributed Asynchronous Object Storage (DAOS) Persistent Memory Development Kit (PMDK) Storage Performance Development Kit (SPDK)]]></content>
+      <categories>
+        <category>file system</category>
+      </categories>
+      <tags>
+        <tag>daos</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[论文阅读《File Systems Unfit as Distributed Storage Backends&#58 Lessons from 10 Years of Ceph Evolution》]]></title>
+    <url>%2F2022%2F04%2F08%2Fceph-evolution%2F</url>
+    <content type="text"><![CDATA[该论文发表在2019年的SOSP会议中。 参考资料1.论文：https://www.pdl.cmu.edu/PDL-FTP/Storage/ceph-exp-sosp19.pdf 2.Slides：https://sosp19.rcs.uwaterloo.ca/slides/aghayev.odp 3.速读：https://blog.acolyer.org/2019/11/06/ceph-evolution/]]></content>
+      <categories>
+        <category>file system</category>
+      </categories>
+      <tags>
+        <tag>ceph</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[论文阅读《RADOS&#58; A Scalable, Reliable Storage Service for Petabyte-scale Storage Clusters》]]></title>
     <url>%2F2022%2F04%2F05%2Ffile-system-ceph-rados%2F</url>
     <content type="text"><![CDATA[RADOS一文发表在SC’07，后来成为了存储系统Ceph的核心部分之一。 RADOS全称为Reliable, Autonomic Distributed Object Store。 在Ceph中，Object Storage Devices（OSDs）设备的状态有两个衡量维度： 1.当OSD在线可达时，处于up状态；否则，处于down。 2.从设备活性的角度看，当OSD存放了PG时，处于in；否则，处于out。 可达\活性 in out up ✔︎ 设备在线但空闲 down 设备不可达，PG数据尚未被重新映射 ✘ 论文，https://ceph.com/assets/pdfs/weil-rados-pdsw07.pdf Ph.D. Thesis “Ceph: Reliable, Scalable, and High-Performance Distributed Storage”, https://ceph.com/assets/pdfs/weil-thesis.pdf]]></content>
@@ -416,17 +438,6 @@
     <title><![CDATA[文件系统的层次结构]]></title>
     <url>%2F2021%2F12%2F18%2Ffile-hierachy%2F</url>
     <content type="text"><![CDATA[Linux1man file-hierarchy macOS1man hier]]></content>
-      <categories>
-        <category>file system</category>
-      </categories>
-      <tags>
-        <tag>file system</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[论文阅读《File Systems Unfit as Distributed Storage Backends&#58 Lessons from 10 Years of Ceph Evolution》]]></title>
-    <url>%2F2021%2F12%2F17%2Fceph-evolution%2F</url>
-    <content type="text"><![CDATA[该论文发表在2019年的SOSP会议中。 参考资料1.论文：https://www.pdl.cmu.edu/PDL-FTP/Storage/ceph-exp-sosp19.pdf 2.Slides：https://sosp19.rcs.uwaterloo.ca/slides/aghayev.odp 3.速读：https://blog.acolyer.org/2019/11/06/ceph-evolution/]]></content>
       <categories>
         <category>file system</category>
       </categories>
@@ -5573,8 +5584,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -5585,8 +5596,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -5608,8 +5619,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>java</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
