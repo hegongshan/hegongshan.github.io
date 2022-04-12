@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[论文阅读《DAOS&#58; A Scale-Out High Performance Storage Stack for Storage Class Memory》]]></title>
     <url>%2F2022%2F04%2F11%2Ffile-system-daos%2F</url>
-    <content type="text"><![CDATA[该论文由Intel公司发表在2020年的SCFA（Supercomputing Frontiers）中，介绍了其开发的基于NVM的存储栈——DAOS。 Distributed Asynchronous Object Storage (DAOS) Persistent Memory Development Kit (PMDK) Storage Performance Development Kit (SPDK)]]></content>
+    <content type="text"><![CDATA[该论文发表在2020年的SCFA（Supercomputing Frontiers）中，主要介绍了Intel公司开发的基于NVM的存储栈——DAOS。 DAOS架构DAOS (Distributed Asynchronous Object Storage) 绕开了Linux内核IO，完全运行在用户态。 Persistent Memory Development Kit (PMDK) Storage Performance Development Kit (SPDK) 其中，VOS全称为Versioning Object Store， 数据保护和数据恢复为了保证数据不丢失，DAOS支持多副本和纠删码（erasure coding，EC）两种方式。 DAOS采用了主-从复制模式，由主副本负责向其他副本转发请求。 与基于主副本的复制不同，DAOS的主副本只将RPC请求转发到备副本服务器，然后所有的副本发起RDMA请求，直接从客户端的缓冲区中得到数据。 DAOS使用了两阶段提交的变体来保证复制写的原子性：如果某个副本不能执行改变，所有的副本都应该丢弃这次修改。]]></content>
       <categories>
         <category>file system</category>
       </categories>

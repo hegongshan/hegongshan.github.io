@@ -72,18 +72,21 @@
 
 
 
-<meta name="description" content="该论文由Intel公司发表在2020年的SCFA（Supercomputing Frontiers）中，介绍了其开发的基于NVM的存储栈——DAOS。">
+<meta name="description" content="该论文发表在2020年的SCFA（Supercomputing Frontiers）中，主要介绍了Intel公司开发的基于NVM的存储栈——DAOS。">
 <meta name="keywords" content="daos">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文阅读《DAOS&amp;#58; A Scale-Out High Performance Storage Stack for Storage Class Memory》">
 <meta property="og:url" content="https://www.hegongshan.com/2022/04/11/file-system-daos/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="该论文由Intel公司发表在2020年的SCFA（Supercomputing Frontiers）中，介绍了其开发的基于NVM的存储栈——DAOS。">
+<meta property="og:description" content="该论文发表在2020年的SCFA（Supercomputing Frontiers）中，主要介绍了Intel公司开发的基于NVM的存储栈——DAOS。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-04-11T16:11:47.464Z">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/daos-system-architecture.png">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/daos-message-and-data-flow-of-replication-and-ec.png">
+<meta property="og:updated_time" content="2022-04-12T14:41:28.360Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读《DAOS&amp;#58; A Scale-Out High Performance Storage Stack for Storage Class Memory》">
-<meta name="twitter:description" content="该论文由Intel公司发表在2020年的SCFA（Supercomputing Frontiers）中，介绍了其开发的基于NVM的存储栈——DAOS。">
+<meta name="twitter:description" content="该论文发表在2020年的SCFA（Supercomputing Frontiers）中，主要介绍了Intel公司开发的基于NVM的存储栈——DAOS。">
+<meta name="twitter:image" content="https://www.hegongshan.com/static/images/daos-system-architecture.png">
 
 
 
@@ -395,7 +398,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-04-12T00:11:47+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2022-04-12T22:41:28+08:00">
                 2022-04-12
               </time>
             
@@ -450,7 +453,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  45
+                  233
                 </span>
               
 
@@ -475,11 +478,18 @@
       
 
       
-        <p>该论文由Intel公司发表在2020年的SCFA（Supercomputing Frontiers）中，介绍了其开发的基于NVM的存储栈——DAOS。</p>
+        <p>该论文发表在2020年的SCFA（Supercomputing Frontiers）中，主要介绍了Intel公司开发的基于NVM的存储栈——DAOS。</p>
 <a id="more"></a>
-<p>Distributed Asynchronous Object Storage (DAOS)</p>
+<h3 id="DAOS架构"><a href="#DAOS架构" class="headerlink" title="DAOS架构"></a>DAOS架构</h3><p>DAOS (Distributed Asynchronous Object Storage) 绕开了Linux内核IO，完全运行在用户态。</p>
+<p><img src="/static/images/daos-system-architecture.png" alt="DAOS架构"></p>
 <p>Persistent Memory Development Kit (PMDK)</p>
 <p>Storage Performance Development Kit (SPDK)</p>
+<p>其中，VOS全称为Versioning Object Store，</p>
+<h3 id="数据保护和数据恢复"><a href="#数据保护和数据恢复" class="headerlink" title="数据保护和数据恢复"></a>数据保护和数据恢复</h3><p>为了保证数据不丢失，DAOS支持多副本和纠删码（erasure coding，EC）两种方式。</p>
+<p><img src="/static/images/daos-message-and-data-flow-of-replication-and-ec.png" alt="多副本和纠删码数据流图"></p>
+<p>DAOS采用了主-从复制模式，由主副本负责向其他副本转发请求。</p>
+<p>与基于主副本的复制不同，DAOS的主副本只将RPC请求转发到备副本服务器，然后所有的副本发起RDMA请求，直接从客户端的缓冲区中得到数据。</p>
+<p>DAOS使用了两阶段提交的变体来保证复制写的原子性：如果某个副本不能执行改变，所有的副本都应该丢弃这次修改。</p>
 
       
     </div>
@@ -658,8 +668,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -785,6 +804,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#DAOS架构"><span class="nav-number">1.</span> <span class="nav-text">DAOS架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据保护和数据恢复"><span class="nav-number">2.</span> <span class="nav-text">数据保护和数据恢复</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
