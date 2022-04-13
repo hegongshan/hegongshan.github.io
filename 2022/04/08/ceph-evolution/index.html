@@ -72,18 +72,21 @@
 
 
 
-<meta name="description" content="该论文发表在2019年的SOSP会议中。">
+<meta name="description" content="该论文发表在2019年的SOSP会议中，描述了Ceph的新存储后端——BlueStore。">
 <meta name="keywords" content="ceph">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文阅读《File Systems Unfit as Distributed Storage Backends&amp;#58 Lessons from 10 Years of Ceph Evolution》">
 <meta property="og:url" content="https://www.hegongshan.com/2022/04/08/ceph-evolution/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="该论文发表在2019年的SOSP会议中。">
+<meta property="og:description" content="该论文发表在2019年的SOSP会议中，描述了Ceph的新存储后端——BlueStore。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-04-11T16:03:10.060Z">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/ceph-storage-backend-evolution.png">
+<meta property="og:image" content="https://www.hegongshan.com/static/images/ceph-storage-backend-bluestore-architecture.png">
+<meta property="og:updated_time" content="2022-04-13T15:09:55.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论文阅读《File Systems Unfit as Distributed Storage Backends&amp;#58 Lessons from 10 Years of Ceph Evolution》">
-<meta name="twitter:description" content="该论文发表在2019年的SOSP会议中。">
+<meta name="twitter:description" content="该论文发表在2019年的SOSP会议中，描述了Ceph的新存储后端——BlueStore。">
+<meta name="twitter:image" content="https://www.hegongshan.com/static/images/ceph-storage-backend-evolution.png">
 
 
 
@@ -395,8 +398,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-04-12T00:03:10+08:00">
-                2022-04-12
+              <time title="更新于" itemprop="dateModified" datetime="2022-04-13T23:09:55+08:00">
+                2022-04-13
               </time>
             
           </span>
@@ -450,7 +453,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  53
+                  516
                 </span>
               
 
@@ -475,8 +478,25 @@
       
 
       
-        <p>该论文发表在2019年的SOSP会议中。</p>
+        <p>该论文发表在2019年的SOSP会议中，描述了Ceph的新存储后端——BlueStore。</p>
 <a id="more"></a>
+<h3 id="研究背景"><a href="#研究背景" class="headerlink" title="研究背景"></a>研究背景</h3><h4 id="分布式存储后端基础"><a href="#分布式存储后端基础" class="headerlink" title="分布式存储后端基础"></a>分布式存储后端基础</h4><p>什么是存储后端？存储后端是指管理物理机器中磁盘空间的软件模块。</p>
+<p>分布式文件系统对存储后端的两个共同要求：</p>
+<ul>
+<li>高效的事务机制</li>
+<li>快速的元数据操作</li>
+<li>（新的要求）对新型存储硬件的支持</li>
+</ul>
+<h4 id="Ceph存储后端的演化"><a href="#Ceph存储后端的演化" class="headerlink" title="Ceph存储后端的演化"></a>Ceph存储后端的演化</h4><p><img src="/static/images/ceph-storage-backend-evolution.png" alt="存储后端演化时间线"></p>
+<p>EBOFS（Extent and B-Tree-based Object File System）参看Ceph OSDI’06和Ph.D. Thesis’07</p>
+<h5 id="FileStore"><a href="#FileStore" class="headerlink" title="FileStore"></a>FileStore</h5><p>对象集合被映射成目录，对象数据存储在文件中。对象属性一开始存放在POSIX文件扩展属性xattrs中，当</p>
+<p>超过xttars的大小和数量限制后，将被转移到LevelDB中。</p>
+<p>1.虽然Btrfs提供了事务机制、数据去重、校验和以及透明压缩，但是它存在着严重的数据和元数据碎片化问题。</p>
+<p>2.虽然XFS的扩展性很好，拥有更块的元数据性能，但是它也存在着了元数据碎片化问题，不能充分发挥硬件的性能；由于XFS缺乏对事务的支持，Ceph不得不使用用户态的预写日志（Write-Ahead Log，WAL）机制，这限制了Ceph的性能。此外，由于XFS不是COW文件系统，快照机制重度使用克隆操作，导致了较大的性能开销。</p>
+<h5 id="NewStore"><a href="#NewStore" class="headerlink" title="NewStore"></a>NewStore</h5><p>为了解决基于文件系统的存储后端中存在的元数据问题，NewStore将对象元数据存放在RocksDB中，对象数据存放在文件中。此外，它还使用RocksDB来实现WAL。</p>
+<p>用文件来存储对象数据，在日志文件系统（XFS）上运行RocksDB，带来了较高的一致性开销。</p>
+<p>正是由于这些问题的存在，BlueStore横空出世，它直接构建在裸盘上。</p>
+<p><img src="/static/images/ceph-storage-backend-bluestore-architecture.png" alt="BlueStore架构"></p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>1.论文：<a href="https://www.pdl.cmu.edu/PDL-FTP/Storage/ceph-exp-sosp19.pdf" target="_blank" rel="noopener">https://www.pdl.cmu.edu/PDL-FTP/Storage/ceph-exp-sosp19.pdf</a></p>
 <p>2.Slides：<a href="https://sosp19.rcs.uwaterloo.ca/slides/aghayev.odp" target="_blank" rel="noopener">https://sosp19.rcs.uwaterloo.ca/slides/aghayev.odp</a></p>
 <p>3.速读：<a href="https://blog.acolyer.org/2019/11/06/ceph-evolution/" target="_blank" rel="noopener">https://blog.acolyer.org/2019/11/06/ceph-evolution/</a></p>
@@ -808,7 +828,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">1.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#研究背景"><span class="nav-number">1.</span> <span class="nav-text">研究背景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式存储后端基础"><span class="nav-number">1.1.</span> <span class="nav-text">分布式存储后端基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ceph存储后端的演化"><span class="nav-number">1.2.</span> <span class="nav-text">Ceph存储后端的演化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#FileStore"><span class="nav-number">1.2.1.</span> <span class="nav-text">FileStore</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NewStore"><span class="nav-number">1.2.2.</span> <span class="nav-text">NewStore</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">2.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>

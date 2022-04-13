@@ -14,7 +14,7 @@
   <entry>
     <title><![CDATA[论文阅读《File Systems Unfit as Distributed Storage Backends&#58 Lessons from 10 Years of Ceph Evolution》]]></title>
     <url>%2F2022%2F04%2F08%2Fceph-evolution%2F</url>
-    <content type="text"><![CDATA[该论文发表在2019年的SOSP会议中。 参考资料1.论文：https://www.pdl.cmu.edu/PDL-FTP/Storage/ceph-exp-sosp19.pdf 2.Slides：https://sosp19.rcs.uwaterloo.ca/slides/aghayev.odp 3.速读：https://blog.acolyer.org/2019/11/06/ceph-evolution/]]></content>
+    <content type="text"><![CDATA[该论文发表在2019年的SOSP会议中，描述了Ceph的新存储后端——BlueStore。 研究背景分布式存储后端基础什么是存储后端？存储后端是指管理物理机器中磁盘空间的软件模块。 分布式文件系统对存储后端的两个共同要求： 高效的事务机制 快速的元数据操作 （新的要求）对新型存储硬件的支持 Ceph存储后端的演化 EBOFS（Extent and B-Tree-based Object File System）参看Ceph OSDI’06和Ph.D. Thesis’07 FileStore对象集合被映射成目录，对象数据存储在文件中。对象属性一开始存放在POSIX文件扩展属性xattrs中，当 超过xttars的大小和数量限制后，将被转移到LevelDB中。 1.虽然Btrfs提供了事务机制、数据去重、校验和以及透明压缩，但是它存在着严重的数据和元数据碎片化问题。 2.虽然XFS的扩展性很好，拥有更块的元数据性能，但是它也存在着了元数据碎片化问题，不能充分发挥硬件的性能；由于XFS缺乏对事务的支持，Ceph不得不使用用户态的预写日志（Write-Ahead Log，WAL）机制，这限制了Ceph的性能。此外，由于XFS不是COW文件系统，快照机制重度使用克隆操作，导致了较大的性能开销。 NewStore为了解决基于文件系统的存储后端中存在的元数据问题，NewStore将对象元数据存放在RocksDB中，对象数据存放在文件中。此外，它还使用RocksDB来实现WAL。 用文件来存储对象数据，在日志文件系统（XFS）上运行RocksDB，带来了较高的一致性开销。 正是由于这些问题的存在，BlueStore横空出世，它直接构建在裸盘上。 参考资料1.论文：https://www.pdl.cmu.edu/PDL-FTP/Storage/ceph-exp-sosp19.pdf 2.Slides：https://sosp19.rcs.uwaterloo.ca/slides/aghayev.odp 3.速读：https://blog.acolyer.org/2019/11/06/ceph-evolution/]]></content>
       <categories>
         <category>file system</category>
       </categories>
@@ -564,7 +564,7 @@
   <entry>
     <title><![CDATA[存储设备之RAID]]></title>
     <url>%2F2021%2F11%2F30%2Flinux-raid%2F</url>
-    <content type="text"><![CDATA[近期遇到了一个需求——删除创建的软RAID，趁机了解了下RAID的知识和操作。 什么是RAIDRAID，全称为Redundancy Array of Independent Disk。 mdadm是管理Linux中软件RAID的工具。其中，md的全称为multiple devices。 创建RAID12# mdadm --createmdadm -C /dev/md0 -l 10 -n /dev/sdb&#123;1..4&#125; -l, –level：设置RAID级别 -n, –raid-devices：指定RAID中的活跃磁盘数 管理RAID 添加一个磁盘 1mdadm /dev/md0 --add /dev/sdb 删除一个磁盘 1mdadm /dev/md0 --fail /dev/sdb1 --remove /dev/sdb1 查看RAID信息1cat /proc/mdstat 运行RAID1mdadm -A -s /dev/md0 查看某个RAID1mdadm -D /dev/md0 删除RAID1.卸载RAID 1umount /dev/md0 2.停用RAID设备 12# mdadm --stop /dev/md0mdadm -S /dev/md0 3.删除RAID中的所有磁盘 1mdadm --zero-superblock /dev/sda&#123;a..f&#125; 4.删除配置文件 1rm -f /etc/mdadm.conf 5.删除fstab中的配置 1vim /etc/fstab 可能出现的问题： 1mdadm: Couldn't open sdb for write - not zeroing]]></content>
+    <content type="text"><![CDATA[近期遇到了一个需求——删除创建的软RAID，趁机了解了下RAID的知识和操作。 什么是RAIDRAID，全称为Redundancy Array of Independent Disk，独立磁盘冗余阵列。 mdadm是Linux中软件RAID的管理工具。其中，md的全称为multiple devices。 古人云：工欲善其事，必先利其器。想要使用软件RAID，则需要先安装mdadm： 1yum install -y mdadm 创建RAID12# mdadm --createmdadm -C /dev/md0 -n 4 -l 10 /dev/sdb&#123;1..4&#125; 其中， -n, –raid-devices：指定RAID中的活跃磁盘数； -l, –level：设置RAID级别； 最后则是磁盘设备名称列表。 管理RAID 添加一个磁盘 1mdadm /dev/md0 --add /dev/sdb 删除一个磁盘 1mdadm /dev/md0 --fail /dev/sdb1 --remove /dev/sdb1 查看RAID 查看所有的RAID 1cat /proc/mdstat 查看某个RAID 1mdadm -D /dev/md0 删除RAID1.查看RAID中的磁盘信息，记下设备号 1mdadm -D /dev/md0 2.卸载RAID 1umount /dev/md0 3.逐一删除所有磁盘设备 12mdadm /dev/md0 --fail /dev/sdb1 --remove /dev/sdb1mdadm /dev/md0 --fail /dev/sdc1 --remove /dev/sdc1 4.停用RAID 12# mdadm --stop /dev/md0mdadm -S /dev/md0 5.删除配置文件 1rm -f /etc/mdadm.conf 6.删除fstab中的配置 1vim /etc/fstab 重新组装RAID在停用RAID后，如果想要重新启动RAID，则可以使用如下命令： 1mdadm -A -s /dev/md0]]></content>
       <categories>
         <category>linux</category>
       </categories>
