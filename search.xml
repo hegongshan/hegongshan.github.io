@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[定制Shell提示符]]></title>
+    <url>%2F2022%2F04%2F22%2Fshell-prompt%2F</url>
+    <content type="text"><![CDATA[macOS默认的Shell提示符与CentOS的提示符并不相同，习惯了CentOS的提示符，难以适应。 提示符说明macOS的默认提示符为 打开/etc/bashrc可以看到上述提示符的定义，即PS1（Primary Prompt String）变量： 其中， 命令 描述 \h 全称为hostname，主机名 \u 全称为user，用户名 \W 全称为Working Directory，表示工作路径中的最后一个目录，若工作路径为/root/xxx，则显示xxx 同理，可以得到CentOS的提示符： 1PS1="[\u@\h \W]\$ " 修改提示符修改~/.bash_profile文件，执行脚本使修改生效： 12echo "PS1='[\u@\h \W]\$ '" &gt;&gt; ~/.bash_profilesource ~/.bash_profile sh与source的区别sh与source命令都是用于执行Shell脚本，二者的区别在于： 1.source是Shell内置命令，而sh则不是。 1234[hegongshan@hgs Desktop]$ type shsh is /bin/sh[hegongshan@hgs Desktop]$ type sourcesource is a shell builtin 2.source在当前Shell中执行脚本，在当前Shell中可以访问脚本中定义的变量； 而sh则会创建子进程去执行脚本，在当前Shell中无法访问脚本中定义的变量。]]></content>
+      <categories>
+        <category>shell</category>
+      </categories>
+      <tags>
+        <tag>shell</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[论文阅读《DAOS&#58; A Scale-Out High Performance Storage Stack for Storage Class Memory》]]></title>
     <url>%2F2022%2F04%2F11%2Ffile-system-daos%2F</url>
     <content type="text"><![CDATA[该论文发表在2020年的SCFA（Supercomputing Frontiers）中，主要介绍了Intel公司开发的基于NVM的存储栈——DAOS。 DAOS架构DAOS (Distributed Asynchronous Object Storage) 绕开了Linux内核IO，完全运行在用户态。 Persistent Memory Development Kit (PMDK) Storage Performance Development Kit (SPDK) 其中，VOS全称为Versioning Object Store， 数据保护和数据恢复为了保证数据不丢失，DAOS支持多副本和纠删码（erasure coding，EC）两种方式。 DAOS采用了主-从复制模式，由主副本负责向其他副本转发请求。 与基于主副本的复制不同，DAOS的主副本只将RPC请求转发到备副本服务器，然后所有的副本发起RDMA请求，直接从客户端的缓冲区中得到数据。 DAOS使用了两阶段提交的变体来保证复制写的原子性：如果某个副本不能执行改变，所有的副本都应该丢弃这次修改。]]></content>
@@ -5667,8 +5678,8 @@
         <category>sql</category>
       </categories>
       <tags>
-        <tag>mysql</tag>
         <tag>sql</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -5770,8 +5781,8 @@
         <category>生活</category>
       </categories>
       <tags>
-        <tag>随笔</tag>
         <tag>生活</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
