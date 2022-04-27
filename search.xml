@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[修改SSH的端口号，并禁止密码登录]]></title>
+    <url>%2F2022%2F04%2F26%2Flinux-ssh-change-port-and-prohibit-password%2F</url>
+    <content type="text"><![CDATA[处于安全考虑，需要修改服务器的SSHD端口号，并禁止密码登录。 生成key1.在个人电脑中，使用RSA算法生成公钥和私钥： 1ssh-keygen -t rsa -f root@2.84 将公钥发送给服务器（公钥文件名后缀.pub可加可不加，不加会自动加上）： 1ssh-copy-id -i root@2.84.pub root@10.190.2.84 配置sshd1.登录服务器，修改sshd_config文件： 1vim /etc/ssh/sshd_config 将Port的值修改为需要使用的端口（如1922），取消PubkeyAuthentication的注释，并修改PasswordAuthentication的值： 12345Port 1922PubkeyAuthentication yesPasswordAuthentication no 配置SELinux1.在SELinux（Security-Enhanced Linux）中为sshd添加1922端口 1semanage port -a -t ssh_port_t -p tcp 1922 2.确认添加是否成功 1semanage port -l | grep ssh_port_t 配置防火墙1.查看防火墙状态： 1systemctl status firewalld 2.如果没有开启，则启动防火墙： 12systemctl start firewalldsystemctl enable firewalld 3.开放端口 12firewall-cmd --permanent --zone=public --add-port=1922/tcpfirewall-cmd --reload 测试1.服务器：重启sshd 1systemctl restart sshd 2.客户端：尝试使用默认22端口登录 3.客户端：使用正确的端口，尝试使用密码登录 4.客户端：使用正确的端口和秘钥进行登录 1ssh -p 1922 -i root@2.84 root@IP]]></content>
+      <categories>
+        <category>ssh</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[定制Shell提示符]]></title>
     <url>%2F2022%2F04%2F22%2Fshell-prompt%2F</url>
     <content type="text"><![CDATA[macOS默认的Shell提示符与CentOS的提示符并不相同，习惯了CentOS的提示符，难以适应。 提示符说明macOS的默认提示符为 打开/etc/bashrc可以看到上述提示符的定义，即PS1（Primary Prompt String）变量： 其中， 命令 描述 \h 全称为hostname，主机名 \u 全称为user，用户名 \W 全称为Working Directory，表示工作路径中的最后一个目录，若工作路径为/root/xxx，则显示xxx 同理，可以得到CentOS的提示符： 1PS1="[\u@\h \W]\$ " 修改提示符修改~/.bash_profile文件，执行脚本使修改生效： 12echo "PS1='[\u@\h \W]\$ '" &gt;&gt; ~/.bash_profilesource ~/.bash_profile sh与source的区别sh与source命令都是用于执行Shell脚本，二者的区别在于： 1.source是Shell内置命令，而sh则不是。 1234[hegongshan@hgs Desktop]$ type shsh is /bin/sh[hegongshan@hgs Desktop]$ type sourcesource is a shell builtin 2.source在当前Shell中执行脚本，在当前Shell中可以访问脚本中定义的变量； 而sh则会创建子进程去执行脚本，在当前Shell中无法访问脚本中定义的变量。]]></content>
@@ -1289,7 +1300,7 @@
   <entry>
     <title><![CDATA[MS Office中的奇淫巧技]]></title>
     <url>%2F2020%2F10%2F18%2Foffice-trick%2F</url>
-    <content type="text"><![CDATA[在日常的文档编辑中，经常会遇到的一些问题，每次在网上搜寻都费时费力。 Word显示公式编辑框按下Alt+=，就可以显示公式编辑框。 此外，Word支持部分LaTex语法 公式对齐首先，在一行中输入一个连等式或者多个公式； 1y = f(x) = ax + b 然后，在每个等号前按下Shift+Enter，插入软间隔； 最后，选中公式区域，右击鼠标，选择“在等号处对齐”。 交换上下两行例如： 12AAAABBBB 如果光标在AAAA这一行，按下Alt+Shift+↓，这两行将被交换； 如果光标在BBBB这一行，则需要使用Alt+Shift+↑。 设置页眉1.从某一页开始 假设从第2页开始，首先在前一页（第1页）的末行添加分节符下一页，点击【布局】→【分隔】→【下一页】： 然后，双击当前页的页眉，取消链接到上一个选项： 2.奇偶页不同 双击页眉，勾选奇偶页不同选项： 设置页码让页码从指定页开始 首先，在前一页的末行添加分节符下一页，点击【布局】→【分隔】→【下一页】 然后，双击当前页的页脚，取消链接到上一个选项： 其次，设置页码，点击【页眉和页脚】→【页码】→【页码】，设置对齐方式 最后，修改页码格式，选中并设置起始编号： 显示隐藏标记点击【开始】→显示/隐藏编辑标记： 隐藏页面间的空白双击页面间空白，就可以隐藏空白部分；再次双击，则会重新显示空白。 快速选中文本Shift + ←：选中光标左侧的一个字符 Shift + →：选中光标右侧的一个字符 Shift + ↑：选中从光标所在位置到上一行该位置之间的内容 Shift + ↓：选中从光标所在位置到下一行该位置之间的内容 Ctrl + A：全选 快速对齐左对齐：Ctrl + L（Left） 居中对齐：Ctrl + E（cEnter） 右对齐：Ctrl + R（Right） 两端对齐：Ctrl + J（Justify） 快速设置行距1倍行距：Ctrl + 1 2倍行距：Ctrl + 2 1.5倍行距：Ctrl + 5 清除格式：Ctrl + Shift + N Powerpoint设置幻灯片大小操作步骤：点击【设计】→【幻灯片大小】→【页面设置】 添加幻灯片编号在制作报告Slides时，为方便他人提问，通常会在Slides中添加幻灯片编号。例如，下图中右下角的34： 操作步骤： 首先，点击【插入】→【幻灯片编号】 然后，勾选幻灯片编号和标题幻灯片中不显示 最后，点击应用或者全部应用按钮。 其中，应用表示仅在当前页中添加幻灯片编号；而全部应用则表示在所有的幻灯片中都添加幻灯片编号。 隐藏幻灯片在播放时，不希望播放部分草稿幻灯片，这时候可以隐藏该幻灯片。 操作步骤：点击【幻灯片放映】→【隐藏幻灯片】 添加节在制作Slides时，希望更好地管理层次结构，可以添加节。 操作步骤：右击→【添加节】]]></content>
+    <content type="text"><![CDATA[在日常的文档编辑中，经常会遇到的一些问题，每次在网上搜寻都费时费力。 Word显示公式编辑框按下Alt+=，就可以显示公式编辑框。 此外，Word支持部分LaTex语法 公式对齐首先，在一行中输入一个连等式或者多个公式； 1y = f(x) = ax + b 然后，在每个等号前按下Shift+Enter，插入软间隔； 最后，选中公式区域，右击鼠标，选择“在等号处对齐”。 交换上下两行例如： 12AAAABBBB 如果光标在AAAA这一行，按下Alt+Shift+↓，这两行将被交换； 如果光标在BBBB这一行，则需要使用Alt+Shift+↑。 设置页眉1.从某一页开始 假设从第2页开始，首先在前一页（第1页）的末行添加分节符下一页，点击【布局】→【分隔】→【下一页】： 然后，双击当前页的页眉，取消链接到上一个选项： 2.奇偶页不同 双击页眉，勾选奇偶页不同选项： 设置页码让页码从指定页开始 首先，在前一页的末行添加分节符下一页，点击【布局】→【分隔】→【下一页】 然后，双击当前页的页脚，取消链接到上一个选项： 其次，设置页码，点击【页眉和页脚】→【页码】→【页码】，设置对齐方式 最后，修改页码格式，选中并设置起始编号： 显示隐藏标记点击【开始】→显示/隐藏编辑标记： 隐藏页面间的空白双击页面间空白，就可以隐藏空白部分；再次双击，则会重新显示空白。 快速选中文本Shift + ←：选中光标左侧的一个字符 Shift + →：选中光标右侧的一个字符 Shift + ↑：选中从光标所在位置到上一行该位置之间的内容 Shift + ↓：选中从光标所在位置到下一行该位置之间的内容 Ctrl + A：全选 快速对齐左对齐：Ctrl + L（Left） 居中对齐：Ctrl + E（cEnter） 右对齐：Ctrl + R（Right） 两端对齐：Ctrl + J（Justify） 快速设置行距1倍行距：Ctrl + 1 2倍行距：Ctrl + 2 1.5倍行距：Ctrl + 5 清除格式：Ctrl + Shift + N Powerpoint设置幻灯片大小操作步骤：点击【设计】→【幻灯片大小】→【页面设置】 添加幻灯片编号在制作报告Slides时，为方便他人提问，通常会在Slides中添加幻灯片编号。例如，下图中右下角的34： 操作步骤： 首先，点击【插入】→【幻灯片编号】 然后，勾选幻灯片编号和标题幻灯片中不显示 最后，点击应用或者全部应用按钮。 其中，应用表示仅在当前页中添加幻灯片编号；而全部应用则表示在所有的幻灯片中都添加幻灯片编号。 隐藏幻灯片在播放时，不希望播放部分草稿幻灯片，这时候可以隐藏该幻灯片。 操作步骤：点击【幻灯片放映】→【隐藏幻灯片】 添加节在制作Slides时，希望更好地管理层次结构，可以添加节。 操作步骤：右击→【添加节】 修改默认字体操作步骤：点击【视图】→【幻灯片母版】]]></content>
       <categories>
         <category>office</category>
       </categories>
@@ -5678,8 +5689,8 @@
         <category>sql</category>
       </categories>
       <tags>
-        <tag>sql</tag>
         <tag>mysql</tag>
+        <tag>sql</tag>
       </tags>
   </entry>
   <entry>
