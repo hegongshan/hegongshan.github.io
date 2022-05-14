@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[计算CPU利用率]]></title>
+    <url>%2F2022%2F05%2F03%2Flinux-cpu-utilization%2F</url>
+    <content type="text"><![CDATA[/proc/stat12cat /proc/stat | grep "cpu " | \awk '&#123;for(i = 2; i &lt;= NF; i++) &#123;cpu += $i&#125; printf "%d\n", cpu&#125;' /proc/&lt;pid>/stat1cat /proc/&lt;pid&gt;/stat | awk '&#123;printf "%d\n", $14 + $15 + $16 + $17&#125;' $$\mathrm{cpu\ utilization} = \frac{c2 - c1}{t2 - t1}$$ 参考资料1.https://www.kernel.org/doc/html/latest/filesystems/proc.html#miscellaneous-kernel-statistics-in-proc-stat]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>cpu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux防火墙]]></title>
+    <url>%2F2022%2F04%2F30%2Flinux-firewall%2F</url>
+    <content type="text"><![CDATA[Linux设置防火墙。 实现原理包过滤 下面介绍两个常用的防火墙软件：firewall-cmd和ufw。 firewalldfirewall-cmd是CentOS的默认防火墙。默认禁止所有访问。 启动防火墙 12systemctl start firewalldsystemctl enable firewalld 开放某个端口 1firewall-cmd --permanent --zone=public --add-port=1922/tcp 重新加载防火墙 1firewall-cmd --reload 查看开放的所有端口 1firewall-cmd --permanent --zone=public --list-ports 关闭已开放的端口 1firewall-cmd --permanent --zone=public --remove-port=1922/tcp 关闭防火墙 12systemctl stop firewalldsystemctl disable firewalld ufwufw（Uncomplicated FireWall）是Ubuntu的默认防火墙。 查看防火墙状态，包括防火墙是否启动、开放和关闭的端口等信息 1ufw status 开启/关闭防火墙 123ufw enableufw disable 开放端口 1ufw allow [port] 关闭端口 1ufw deny [port]]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[修改SSH的端口号，并禁止密码登录]]></title>
     <url>%2F2022%2F04%2F26%2Flinux-ssh-change-port-and-prohibit-password%2F</url>
     <content type="text"><![CDATA[处于安全考虑，需要修改服务器的SSHD端口号，并禁止密码登录。 生成key1.在个人电脑中，使用RSA算法生成公钥和私钥： 1ssh-keygen -t rsa -f root@2.84 将公钥发送给服务器（公钥文件名后缀.pub可加可不加，不加会自动加上）： 1ssh-copy-id -i root@2.84.pub root@10.190.2.84 配置sshd1.登录服务器，修改sshd_config文件： 1vim /etc/ssh/sshd_config 将Port的值修改为需要使用的端口（如1922），取消PubkeyAuthentication的注释，并修改PasswordAuthentication的值： 12345Port 1922PubkeyAuthentication yesPasswordAuthentication no 配置SELinux1.在SELinux（Security-Enhanced Linux）中为sshd添加1922端口 1semanage port -a -t ssh_port_t -p tcp 1922 2.确认添加是否成功 1semanage port -l | grep ssh_port_t 配置防火墙1.查看防火墙状态： 1systemctl status firewalld 2.如果没有开启，则启动防火墙： 12systemctl start firewalldsystemctl enable firewalld 3.开放端口 12firewall-cmd --permanent --zone=public --add-port=1922/tcpfirewall-cmd --reload 测试1.服务器：重启sshd 1systemctl restart sshd 2.客户端：尝试使用默认22端口登录 3.客户端：使用正确的端口，尝试使用密码登录 4.客户端：使用正确的端口和秘钥进行登录 1ssh -p 1922 -i root@2.84 root@IP]]></content>
@@ -10,6 +32,11 @@
       <tags>
         <tag>linux</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[网桥与虚拟网卡]]></title>
+    <url>%2F2022%2F04%2F26%2Fcomputer-network-bridge-and-vlan%2F</url>
+    <content type="text"><![CDATA[网桥安装网桥管理工具： 1yum install -y bridge-utils 创建网桥： 1brctl addbr &lt;bridge&gt; 将网卡添加到网桥中： 1brctl addif &lt;bridge&gt; &lt;device&gt; 虚拟网卡安装虚拟网卡管理工具： 1yum install -y vconfig 12vconfig add [interface-name] [vlan_id]vconfig rem [vlan-name]]]></content>
   </entry>
   <entry>
     <title><![CDATA[定制Shell提示符]]></title>
@@ -58,23 +85,12 @@
   <entry>
     <title><![CDATA[论文阅读《OBFS&#58; A File System for Object-based Storage Devices》]]></title>
     <url>%2F2022%2F04%2F01%2Ffile-system-obfs%2F</url>
-    <content type="text"><![CDATA[OBFS全称为Object-Based File System，翻译成中文就是基于对象的文件系统。 该论文是Ceph EBOFS的前置研究，发表在MSST’04中，作者来自于加州大学圣克鲁兹分校（UCSC）。 对象存储介绍在基于对象的存储系统中，文件被条带化（striping）成多个对象，如下图所示： 这些对象分散存储在多个OSD（Object Storage Devices，对象存储设备）中。 作者发现：OSD上的工作负载与通用目的文件系统中的工作负载十分不同。基于该发现，他们提出针对工作负载来优化磁盘布局。 The basic idea of OBFS is to optimize the disk layout based on our knowledge of the workload. 工作负载分析作者分析了劳伦斯利物莫国家实验室（LLNL）中分布式文件系统的工作负载，统计结果如下图所示： 从图1(a)中可以发现：小于4KB（通用目的文件系统中的典型块大小）的文件只占很小一部分；绝大部分文件在32KB-8MB之间； 从图1(b)中可以发现：小于256KB的文件占用的磁盘空间很小；绝大部分空间被4MB-1GB的文件所占据。虽然大于大于1GB的文件只占一小部分，但是其占用的总空间超过了15%。 假设系统条带大小为512KB，在LLNL的工作负载中，预计85%的对象为512KB，其余15%的对象则小于512KB。 而OBFS将与系统条带大小相同的对象称为大对象，其他对象称为小对象。也就是说，在其工作负载中，85%的对象都是大对象。 设计与实现Region和变长块OBFS将磁盘划分为大小相同的Region，同一Region中的块大小相同，不同Region中的块大小不同。 在实现时，OBFS使用了两种块大小：4KB的小块（Linux中的逻辑块大小）和512KB的大块（系统中的条带大小）。大块用于存储大对象，小块用于存储小对象。 因为大对象的大小与条带化大小相等，所以大对象只占用一个大块；而小对象的大小则不尽相同，可能会存放在多个小块中。 如下图所示，包含大块的Region叫作Large block region（以下简称为大块Region），包含小块的Region叫作Small block region（以下简称为小块Region），没有初始化的Region称为空闲Region。 每个Region都有一个Region头，其存储了Region的一些元数据，如空闲块位图位置（只有小块Region有）、空闲Onode位图位置以及Onode表（只有小块Region有）等。 所有的Region头均会被链接到Region头链表（Region Head List，RHL）中。 此外，OBFS还会将它们组织成三个子链表：大块Region链表、小块Region链表以及空闲Region链表，每个链表都按照Region的地址升序排列。 当小（大）块Region链表中找不到足够的空闲块来存放对象时，OBFS就会从空闲Region链表中分配一个空闲Region，将其中的所有块初始化为需要的块大小（4KB或者512KB）。 对象元数据下图是OBFS中两种Region的具体结构和对应的数据布局。不难发现，小块Region的磁盘布局与Ext2是非常相似的。 其中，Onode（Object node）表示对象的元数据。每个Onode都有一个32位的ID，高16位为Region ID，低16位为Region内的对象ID，即图中的Onode Index（以下统一采用Onode Index表示）。 在实现时，无论是大对象，还是小对象，其Onode均占用512个字节。Onode中存储了Object ID，可以实现从Onode到Object的反向映射。 对象查询OBFS使用哈希表（Object Lookup Table，OLT）来管理Object ID和Onode ID的映射，也就是说：$$hash(\mathrm{Object\ ID}) \rightarrow \mathrm{Onode\ ID} \tag{1}$$在哈希表中，每个项需要8个字节：4个字节用于存储Object ID，4个字节用于存储Onode ID。 在查找某个对象时，需要经过以下三步： 首先，查询哈希表，根据Object ID得到对应的Onode ID，即 然后，根据Onode ID得到对应的Region ID（Onode ID的高16位），搜索Region头链表，找到对应的Region； 最后，根据Onode ID得到对应的Onode Index（Onode ID的低16位）。如果Onode属于大块Region，可以直接计算出数据位置：$$(\mathrm{Data\ Block\ Size} + \mathrm{Onode\ Size}) \times \mathrm{Onode\ Index} \tag{2}$$如果属于小块Region，则需要先搜索Onode表，找到对应的Onode，再根据Onode得到对象的数据位置。 数据分配策略OBFS采用了基于Extent的块分配策略，Onode中存储了多个&lt;块地址，对象偏移，长度&gt;三元组，每组占用4个字节。 如何判断应该用大块，还是小块来存储对象呢？ 如果对象的大小大于使用大块的阈值，则为其分配一个大块；否则，为其分配适当数量的小块。 对象应该存放在哪里呢？ 1.对于大对象来说，OBFS会从最近的大块Region中寻找空闲块来存放它。如果找不到空闲块，则初始化一个最近的空闲Region来存放它。 2.对于小对象来说， OBFS会顺序遍历小块Region链表，从上一次访问过的小块Region开始搜索，如果能找到足够大的连续空闲块，则将对象直接存放在其中； 如果找不到足够大的连续空闲块，则将最大的连续空闲块（一个Extent）分配给该对象。然后，从对象大小中减去已分配的空间，重复执行该过程，直到整个对象被存放在Region中为止； 注意：为了避免超出Onode的存储容量（512B），OBFS为对象设置了最大的Extent数量，只有当使用的Extent数量小于该阈值时，才会将对象分配给当前的Region。 如果在当前Region中找不到足够的空间来存放该对象，则继续往后寻找其他的小块Region； 如果仍然找不到足够的空间来存放该对象，则初始化最近的空闲Region（放进小块Region链表中），在新的Region中分配空间来存放该对象。 作者的博士论文还提到：当写负载密集时，直接分配空闲Region要优于先搜索现有的Region。 参考资料 论文, https://www.storageconference.us/2004/Papers/33-Wang-a.pdf Slides, https://www.storageconference.us/2004/Presentations/33r1.pdf Ph.D. Thesis “Storage Management in Large Distributed Object-Based Storage Systems”, https://www.ssrc.ucsc.edu/media/pubs/b478452bd61cc3cb3510ed6ea8750d5d93f2affd.pdf]]></content>
+    <content type="text"><![CDATA[OBFS全称为Object-Based File System，翻译成中文就是基于对象的文件系统。 该论文是Ceph EBOFS的前置研究，发表在MSST’04中，作者来自于加州大学圣克鲁兹分校（UCSC）。 对象存储介绍在基于对象的存储系统中，文件被条带化（striping）成多个对象，如下图所示： 这些对象分散存储在多个OSD（Object Storage Devices，对象存储设备）中。 作者发现：OSD上的工作负载与通用目的文件系统中的工作负载十分不同。基于该发现，他们提出针对工作负载来优化磁盘布局。 The basic idea of OBFS is to optimize the disk layout based on our knowledge of the workload. 工作负载分析作者分析了劳伦斯利物莫国家实验室（LLNL）中分布式文件系统的工作负载，统计结果如下图所示： 从图1(a)中可以发现：小于4KB（通用目的文件系统中的典型块大小）的文件只占很小一部分；绝大部分文件在32KB-8MB之间； 从图1(b)中可以发现：小于256KB的文件占用的磁盘空间很小；绝大部分空间被4MB-1GB的文件所占据。虽然大于1GB的文件只占一小部分，但是其占用的总空间超过了15%。 假设系统条带大小为512KB，在LLNL的工作负载中，预计85%的对象为512KB，其余15%的对象则小于512KB。 而OBFS将与系统条带大小相同的对象称为大对象，其他对象称为小对象。也就是说，在其工作负载中，85%的对象都是大对象。 设计与实现Region和变长块OBFS将磁盘划分为大小相同的Region，同一Region中的块大小相同，不同Region中的块大小不同。 在实现时，OBFS使用了两种块大小：4KB的小块（Linux中的逻辑块大小）和512KB的大块（系统中的条带大小）。大块用于存储大对象，小块用于存储小对象。 因为大对象的大小与条带化大小相等，所以大对象只占用一个大块；而小对象的大小则不尽相同，可能会存放在多个小块中。 如下图所示，包含大块的Region叫作Large block region（以下简称为大块Region），包含小块的Region叫作Small block region（以下简称为小块Region），没有初始化的Region称为空闲Region。 每个Region都有一个Region头，其存储了Region的一些元数据，如空闲块位图位置（只有小块Region有）、空闲Onode位图位置以及Onode表（只有小块Region有）等。 所有的Region头均会被链接到Region头链表（Region Head List，RHL）中。 此外，OBFS还会将它们组织成三个子链表：大块Region链表、小块Region链表以及空闲Region链表，每个链表都按照Region的地址升序排列。 当小（大）块Region链表中找不到足够的空闲块来存放对象时，OBFS就会从空闲Region链表中分配一个空闲Region，将其中的所有块初始化为需要的块大小（4KB或者512KB）。 对象元数据下图是OBFS中两种Region的具体结构和对应的数据布局。不难发现，小块Region的磁盘布局与Ext2是非常相似的。 其中，Onode（Object node）表示对象的元数据。每个Onode都有一个32位的ID，高16位为Region ID，低16位为Region内的对象ID，即图中的Onode Index（以下统一采用Onode Index表示）。 在实现时，无论是大对象，还是小对象，其Onode均占用512个字节。Onode中存储了Object ID，可以实现从Onode到Object的反向映射。 对象查询OBFS使用哈希表（Object Lookup Table，OLT）来管理Object ID和Onode ID的映射，也就是说：$$hash(\mathrm{Object\ ID}) \rightarrow \mathrm{Onode\ ID} \tag{1}$$在哈希表中，每个项需要8个字节：4个字节用于存储Object ID，4个字节用于存储Onode ID。 在查找某个对象时，需要经过以下三步： 首先，查询哈希表，根据Object ID得到对应的Onode ID，即 然后，根据Onode ID得到对应的Region ID（Onode ID的高16位），搜索Region头链表，找到对应的Region； 最后，根据Onode ID得到对应的Onode Index（Onode ID的低16位）。如果Onode属于大块Region，可以直接计算出数据位置：$$(\mathrm{Data\ Block\ Size} + \mathrm{Onode\ Size}) \times \mathrm{Onode\ Index} \tag{2}$$如果属于小块Region，则需要先搜索Onode表，找到对应的Onode，再根据Onode得到对象的数据位置。 数据分配策略OBFS采用了基于Extent的块分配策略，Onode中存储了多个&lt;块地址，对象偏移，长度&gt;三元组，每组占用4个字节。 如何判断应该用大块，还是小块来存储对象呢？ 如果对象的大小大于使用大块的阈值，则为其分配一个大块；否则，为其分配适当数量的小块。 对象应该存放在哪里呢？ 1.对于大对象来说，OBFS会从最近的大块Region中寻找空闲块来存放它。如果找不到空闲块，则初始化一个最近的空闲Region来存放它。 2.对于小对象来说， OBFS会顺序遍历小块Region链表，从上一次访问过的小块Region开始搜索，如果能找到足够大的连续空闲块，则将对象直接存放在其中； 如果找不到足够大的连续空闲块，则将最大的连续空闲块（一个Extent）分配给该对象。然后，从对象大小中减去已分配的空间，重复执行该过程，直到整个对象被存放在Region中为止； 注意：为了避免超出Onode的存储容量（512B），OBFS为对象设置了最大的Extent数量，只有当使用的Extent数量小于该阈值时，才会将对象分配给当前的Region。 如果在当前Region中找不到足够的空间来存放该对象，则继续往后寻找其他的小块Region； 如果仍然找不到足够的空间来存放该对象，则初始化最近的空闲Region（放进小块Region链表中），在新的Region中分配空间来存放该对象。 作者的博士论文还提到：当写负载密集时，直接分配空闲Region要优于先搜索现有的Region。 参考资料 论文, https://www.storageconference.us/2004/Papers/33-Wang-a.pdf Slides, https://www.storageconference.us/2004/Presentations/33r1.pdf Ph.D. Thesis “Storage Management in Large Distributed Object-Based Storage Systems”, https://www.ssrc.ucsc.edu/media/pubs/b478452bd61cc3cb3510ed6ea8750d5d93f2affd.pdf]]></content>
       <categories>
         <category>file system</category>
       </categories>
       <tags>
         <tag>ceph</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[文件系统测试工具之Filebench]]></title>
-    <url>%2F2022%2F03%2F25%2Ffile-system-benchmark-filebench%2F</url>
-    <content type="text"><![CDATA[Filebench是一种文件系统和存储测试工具，可以生成大量的工作负载。 Filebench介绍2002年，SUN公司开发了Filebench，并于2005年公开了源代码。 在SUN公司停止开发后，石溪大学的文件系统和存储实验室获得了许可，由他们负责继续开发和维护[1]。 根据谷歌学术的统计结果，有超过500篇论文使用Filebench作为测试工具[2]。 安装Filebench直接安装1yum install -y filebench 手动安装1.安装依赖 1yum install -y flex bison 2.从官网选择需要的版本，最新的版本为v1.5-alpha3： 1wget https://github.com/filebench/filebench/releases/download/1.5-alpha3/filebench-1.5-alpha3.tar.gz 3.解压 12tar -zxf filebench-1.5-alpha3.tar.gzcd filebench-1.5-alpha3 4.配置、编译以及安装 123./configuremakemake install 使用FilebenchFilebench定义了一门用于描述工作负载的语言——WML（Workload Model Language），并预先定义好了一些工作负载。 默认情况下，这些工作负载配置文件位于：/usr/local/share/filebench/workloads。 在测试时，官方不建议直接使用这些配置文件。如果需要使用这些工作负载，可以先复制一份，再进行修改： 1cp /usr/local/share/filebench/workloads/webserver.f mywebserver.f 最后，运行工作负载： 1filebench -f mywebserver.f 输出的部分结果如下所示： 测试结果说明Filebench的测试结果在wiki中有较为详细的说明[3]，对应的代码位于stats.c中。 1.每个操作的输出代码如下所示： 1234567891011121314151617181920212223242526while (flowop) &#123; // ... (void) snprintf(line, sizeof(line), "%-20s %dops %8.0lfops/s " "%5.1lfmb/s %8.3fms/op", flowop-&gt;fo_name, flowop-&gt;fo_stats.fs_count, flowop-&gt;fo_stats.fs_count / total_time_sec, (flowop-&gt;fo_stats.fs_bytes / MB_FLOAT) / total_time_sec, flowop-&gt;fo_stats.fs_count ? flowop-&gt;fo_stats.fs_total_lat / (flowop-&gt;fo_stats.fs_count * SEC2MS_FLOAT) : 0); (void) strcat(str, line); (void) snprintf(line, sizeof(line)," [%.3fms - %5.3fms]", flowop-&gt;fo_stats.fs_minlat / SEC2MS_FLOAT, flowop-&gt;fo_stats.fs_maxlat / SEC2MS_FLOAT); (void) strcat(str, line); // ...&#125;// filebench.h#define KB_FLOAT ((double)1024.0)#define MB_FLOAT (KB_FLOAT * KB_FLOAT)// fbtime.h#define SEC2MS_FLOAT (double)1000000.0 以readfile1操作为例， 1readfile1 9787ops 163ops/s 10.0mb/s 0.0ms/op [0.00ms - 0.88ms] 上述结果表明： 本次测试共执行了9787次读取操作 每秒执行的平均读取次数为163次 每秒读取的平均数据10MB 每次操作的平均延迟为0.0ms，每次操作的最小延迟为0.00ms，最大延迟为0.88ms 2.总的统计代码如下所示： 123456789101112filebench_log(LOG_INFO, "IO Summary: %5d ops %5.3lf ops/s %0.0lf/%0.0lf rd/wr " "%5.1lfmb/s %5.3fms/op", iostat-&gt;fs_count + aiostat-&gt;fs_count, (iostat-&gt;fs_count + aiostat-&gt;fs_count) / total_time_sec, (iostat-&gt;fs_rcount + aiostat-&gt;fs_rcount) / total_time_sec, (iostat-&gt;fs_wcount + aiostat-&gt;fs_wcount) / total_time_sec, ((iostat-&gt;fs_bytes + aiostat-&gt;fs_bytes) / MB_FLOAT) / total_time_sec, (iostat-&gt;fs_count + aiostat-&gt;fs_count) ? (iostat-&gt;fs_total_lat + aiostat-&gt;fs_total_lat) / ((iostat-&gt;fs_count + aiostat-&gt;fs_count) * SEC2MS_FLOAT) : 0); 依旧以上面的测试结果为例： 1IO Summary: 303389 ops 5055.849 ops/s 1631/163 rd/wr 100.7mb/s 0.0ms/op 其表明： 本次测试共执行了303389次各类操作 每秒执行的平均操作次数为5055.849 每秒执行的平均读操作次数为1631，平均写操作次数为163次 每秒读写的平均数据为100.7MB 每次操作的平均延迟为0.0ms 参考资料[1] Filebench，https://github.com/filebench/filebench [2] Filebench: A Flexible Framework for File System Benchmarking, ;login: The USENIX Magazine’16, https://www.usenix.org/system/files/login/articles/login_spring16_02_tarasov.pdf [3] Collected metrics，https://github.com/filebench/filebench/wiki/Collected-metrics]]></content>
-      <categories>
-        <category>file system</category>
-      </categories>
-      <tags>
-        <tag>file system</tag>
       </tags>
   </entry>
   <entry>
@@ -138,17 +154,6 @@
       </categories>
       <tags>
         <tag>ceph</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[部署网络文件系统]]></title>
-    <url>%2F2022%2F02%2F18%2Ffile-system-nfs%2F</url>
-    <content type="text"><![CDATA[1985年，Sun公司提出了网络文件系统（Network File System，NFS）协议。它采用了客户端-服务器架构，允许多个客户端通过计算机网络共享文件服务器中的文件。 12服务端：192.168.2.10客户端：192.168.2.11 服务端配置1.安装NFS和RPC工具包 RPC：Remote Procedure Call，远程方法调用 12# CentOSyum install -y nfs-utils rpcbind 2.创建共享目录 12mkdir /datachown -R nfsnobody:nfsnobody /data 3.修改配置文件 1vim /etc/exports 文件格式如下：共享目录 允许访问的主机(权限) 1/data 192.168.2.11(rw,sync) 权限： 1234567891011121314151617ro：readonlyrw：readwritesync：synchronizationasync：asynchronizationno_root_squashroot_squashall_squashanonuid：anonymous uidanongid：anonymous gid 4.启动NFS和RPC服务 123# CentOSsystemctl enable nfs rpcbindsystemctl start nfs rpcbind 客户端配置1.安装RPC工具包 12# CentOSyum install -y rpcbind nfs-utils 2.启动RPC服务 1systemctl start rpcbind 3.挂载NFS服务 1mount -t nfs 192.168.2.10:/data /mnt/nfs 4.查看挂载情况 1df -h 5.设置开机自动挂载 1echo '192.168.2.10:/data /mnt/nfs nfs defaults 0 0' &gt;&gt; /etc/fstab 参考资料1.Design and Implementation of the Sun Network Filesystem]]></content>
-      <categories>
-        <category>file system</category>
-      </categories>
-      <tags>
-        <tag>file system</tag>
       </tags>
   </entry>
   <entry>
@@ -495,17 +500,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[元数据性能测试mdtest]]></title>
-    <url>%2F2021%2F12%2F10%2Fio-benchmark-mdtest%2F</url>
-    <content type="text"><![CDATA[mdtest是一个元数据测试基准测试程序。 简介 the mdtest benchmark which specifically tests the peak metadata rates of storage systems under different directory structures. 编译mdtestmdtest已经被合并进IOR中，因此，只需要按照IOR的编译过程执行即可。 基本概念123456789101112131415161718192021222324Hierarchical directory structure (tree) ======= | | (tree node) ======= / | \ ------ | ------ / | \ ======= ======= ======= | | | | | | (leaf level) ======= ======= ======= In this example, the tree has a depth of one (z=1) and branching factor of three (b=3). The node at the top of the tree is the root node. The level of nodes furthest from the root is the leaf level. All trees created by mdtest are balanced. To see how mdtest operates, do a simple run like the following: mdtest -z 1 -b 3 -I 10 -C -i 3 This command will create a tree like the one above, then each task will create 10 files/dirs per tree node. Three of these trees will be created (one for each iteration). 文档1.https://github.com/MDTEST-LANL/mdtest/tree/master/old 2.https://ior.readthedocs.io/en/latest/]]></content>
-      <categories>
-        <category>benchmark</category>
-      </categories>
-      <tags>
-        <tag>benchmark</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[执行可执行文件]]></title>
     <url>%2F2021%2F12%2F10%2Flinux-execute-executeable-file%2F</url>
     <content type="text"><![CDATA[对于可执行文件，只需要在终端中输入文件名称就可以执行。 1.使用相对路径。例如，执行当前目录下的可执行文件 1$ ./run.bin 2.使用绝对路径。 1$ /root/run.bin]]></content>
@@ -563,8 +557,8 @@
   </entry>
   <entry>
     <title><![CDATA[IO测试工具之fio]]></title>
-    <url>%2F2021%2F12%2F02%2Fio-test-tool-fio%2F</url>
-    <content type="text"><![CDATA[fio是一个常用的I/O测试工具，基于不同的测试引擎可以产生多种类型的测试压力。其作者Jens Axboe是Linux内核的维护者之一，主要负责内核中的块设备部分，fio原本是他为了模拟读/写负载能力而开发的。 安装fio1.从GitHub中下载需要的版本，以3.28版本为例： 1wget https://github.com/axboe/fio/archive/refs/tags/fio-3.28.zip 2.解压缩 12unzip fio-3.28.zipcd fio-fio-3.28/ 3.执行配置程序 1./configure 4.编译 1make -j5 5.安装 1make install 6.查看安装的位置和版本 1234[root@hgs fio-fio-3.28]# which fio/usr/local/bin/fio[root@hgs fio-fio-3.28]# fio -vfio-3.28 使用fiofio即可以使用命令行参数执行，也可以通过指定jobfile执行。 1$ fio [options] [jobfile] ... 任务文件的格式参考Job file format 12[job name]parameters 常见的任务参数： directory：设置目录 filename：设置需要测试的磁盘名或文件名，多个磁盘或文件名通过冒号:分隔，例如/dev/sda:/dev/sdb；如果路径名中含有:，则需要进行转义，例如路径名为F:\filename，则filename=F\:\filename ioengine：设置使用的IO引擎 1.libaio：使用Linux中的异步读写接口 1yum install -y libaio-devel 安装libaio以后，需要重新执行配置、编译以及安装，否则会出现如下错误： 1libaio: cannot open shared object file: No such file or directory 2.sync：同步读写 3.psync：原子同步读写 rw和readwrite：设置读写模式 123456read: 顺序读write: 顺序写rw, readwrite: 混合顺序读写randread: 随机读randwrite: 随机写randrw: 混合随机读写 bs和blocksize：设置块大小，默认的单位为字节，大小为4096。 runtime=time：设置运行时间，默认的单位为秒。 size=int：设置读写的大小， thread：默认情况下，fio使用fork创建任务。如果设置了thread，则使用POSIX中的Thread创建任务。 group_reporting：默认情况下，fio按照任务输出最终的测试结果。如果设置了group_reporting，则会按组输出最终的结果。 测试实例运行fio，https://fio.readthedocs.io/en/latest/fio_doc.html#running-fio For example, for the job file parameter iodepth=2, the mirror command line option would be --iodepth 2 or --iodepth=2. 1.创建任务文件test.fio： 123456789101112131415161718192021[global]threaddirect=1exec_prerun=echo 3 &gt; /proc/sys/vm/drop_cachesioengine=libaioruntime=5ramp_time=6filename=/dev/sdagroup_reporting[randwrite]description="Random Write"rw=randwritebs=4Kiodepth=16[seqwrite]description="Sequential Write"rw=writebs=4Miodepth=1 2.执行测试： 1sudo fio test.fio --section=randwrite fio绘图在执行测试时，添加如下参数： 1234write_bw_log=带宽日志前缀write_iops_log=iops日志前缀write_lat_log=latlatlog_avg_msec=1000 安装gnuplot绘图库。 1yum install -y gnuplot 绘制图形： 1fio2gnuplot -b -g 参考资料 https://github.com/axboe/fio fio - Flexible I/O tester，https://fio.readthedocs.io fio引擎libaio加载失败，https://support.huaweicloud.com/trouble-kunpengsdss/kunpengsdss_09_0012.html]]></content>
+    <url>%2F2021%2F12%2F02%2Fio-benchmark-fio%2F</url>
+    <content type="text"><![CDATA[fio是一个常用的I/O测试工具，基于不同的测试引擎可以产生多种类型的测试压力。其作者Jens Axboe是Linux内核的维护者之一，主要负责内核中的块设备部分，fio原本是他为了模拟读/写负载能力而开发的。 安装fio1.从GitHub中下载需要的版本，以3.28版本为例： 1wget https://github.com/axboe/fio/archive/refs/tags/fio-3.28.zip 2.解压缩 12unzip fio-3.28.zipcd fio-fio-3.28/ 3.执行配置程序 1./configure 4.编译 1make -j5 5.安装 1make install 6.查看安装的位置和版本 1234[root@hgs fio-fio-3.28]# which fio/usr/local/bin/fio[root@hgs fio-fio-3.28]# fio -vfio-3.28 使用fiofio既可以使用命令行参数执行，也可以通过指定jobfile执行。 1$ fio [options] [jobfile] ... 任务文件的格式参考Job file format 12[job name]parameters 常见的任务参数： directory：设置目录 filename：设置需要测试的磁盘名或文件名，多个磁盘或文件名通过冒号:分隔，例如/dev/sda:/dev/sdb；如果路径名中含有:，则需要进行转义，例如路径名为F:\filename，则filename=F\:\filename ioengine：设置使用的IO引擎 1.libaio：使用Linux中的异步读写接口 1yum install -y libaio-devel 安装libaio以后，需要重新执行配置、编译以及安装，否则会出现如下错误： 1libaio: cannot open shared object file: No such file or directory 2.sync：同步读写 3.psync：原子同步读写 rw和readwrite：设置读写模式 123456read: 顺序读write: 顺序写rw, readwrite: 混合顺序读写randread: 随机读randwrite: 随机写randrw: 混合随机读写 bs和blocksize：设置块大小，默认的单位为字节，大小为4096。 runtime=time：设置运行时间，默认的单位为秒。 ramp_time=time：设置预热时间。 size=int：设置读写的大小 thread：默认情况下，fio使用fork创建任务。如果设置了thread，则使用POSIX中的Thread创建任务。 group_reporting：默认情况下，fio按照任务输出最终的测试结果。如果设置了group_reporting，则会按组输出最终的结果。 测试实例运行fio，https://fio.readthedocs.io/en/latest/fio_doc.html#running-fio For example, for the job file parameter iodepth=2, the mirror command line option would be --iodepth 2 or --iodepth=2. 1.创建任务文件test.fio： 123456789101112131415161718192021[global]threaddirect=1exec_prerun=echo 3 &gt; /proc/sys/vm/drop_cachesioengine=libaioruntime=5ramp_time=6filename=/dev/sdagroup_reporting[randwrite]description="Random Write"rw=randwritebs=4Kiodepth=16[seqwrite]description="Sequential Write"rw=writebs=4Miodepth=1 2.执行测试： 1sudo fio test.fio --section=randwrite fio绘图在执行测试时，添加如下参数： 1234write_bw_log=带宽日志前缀write_iops_log=iops日志前缀write_lat_log=latlatlog_avg_msec=1000 安装gnuplot绘图库。 1yum install -y gnuplot 绘制图形： 1fio2gnuplot -b -g 参考资料 https://github.com/axboe/fio fio - Flexible I/O tester，https://fio.readthedocs.io fio引擎libaio加载失败，https://support.huaweicloud.com/trouble-kunpengsdss/kunpengsdss_09_0012.html]]></content>
       <categories>
         <category>file system</category>
       </categories>
@@ -581,17 +575,6 @@
       </categories>
       <tags>
         <tag>file system</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[存储设备之RAID]]></title>
-    <url>%2F2021%2F11%2F30%2Flinux-raid%2F</url>
-    <content type="text"><![CDATA[近期遇到了一个需求——删除创建的软RAID，趁机了解了下RAID的知识和操作。 什么是RAIDRAID，全称为Redundancy Array of Independent Disk，独立磁盘冗余阵列。 mdadm是Linux中软件RAID的管理工具。其中，md的全称为multiple devices。 古人云：工欲善其事，必先利其器。想要使用软件RAID，则需要先安装mdadm： 1yum install -y mdadm 创建RAID12# mdadm --createmdadm -C /dev/md0 -n 4 -l 10 /dev/sdb&#123;1..4&#125; 其中， -n, –raid-devices：指定RAID中的活跃磁盘数； -l, –level：设置RAID级别； 最后则是磁盘设备名称列表。 管理RAID 添加一个磁盘 1mdadm /dev/md0 --add /dev/sdb 删除一个磁盘 1mdadm /dev/md0 --fail /dev/sdb1 --remove /dev/sdb1 查看RAID 查看所有的RAID 1cat /proc/mdstat 查看某个RAID 1mdadm -D /dev/md0 删除RAID1.查看RAID中的磁盘信息，记下设备号 1mdadm -D /dev/md0 2.卸载RAID 1umount /dev/md0 3.逐一删除所有磁盘设备 12mdadm /dev/md0 --fail /dev/sdb1 --remove /dev/sdb1mdadm /dev/md0 --fail /dev/sdc1 --remove /dev/sdc1 4.停用RAID 12# mdadm --stop /dev/md0mdadm -S /dev/md0 5.删除配置文件 1rm -f /etc/mdadm.conf 6.删除fstab中的配置 1vim /etc/fstab 重新组装RAID在停用RAID后，如果想要重新启动RAID，则可以使用如下命令： 1mdadm -A -s /dev/md0]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
@@ -701,17 +684,6 @@
       </categories>
       <tags>
         <tag>c</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[NYU CS202 Lab 5.File System]]></title>
-    <url>%2F2021%2F11%2F08%2Fnyu-cs202-file-system-lab%2F</url>
-    <content type="text"><![CDATA[本文对NYU CS202中的Lab 5 文件系统进行了梳理。 练习2：实现alloc_block()任务描述：实现bitmap.c中的函数alloc_block()。 123456789// Search the bitmap for a free block and allocate it. When you// allocate a block, immediately flush the changed bitmap block// to disk.//// Return block number allocated on success,// -ENOSPC if we are out of blocks.//// Hint: use free_block as an example for manipulating the bitmap.int alloc_block(void); 先来看下free_block是如何实现的： 1234567891011121314151617181920212223// Check to see if the block bitmap indicates that block 'blockno' is free.// Return 1 if the block is free, 0 if not.bool block_is_free(uint32_t blockno)&#123; if (super == 0 || blockno &gt;= super-&gt;s_nblocks) return 0; if (bitmap[blockno / 32] &amp; (1 &lt;&lt; (blockno % 32))) return 1; return 0;&#125;// Mark a block free in the bitmap. // Silently does nothing if passed blockno == 0void free_block(uint32_t blockno)&#123; // Blockno zero is the null pointer of block numbers. // Simplify code paths elsewhere by silently doing nothing // on free_block(0). if (blockno == 0) return; bitmap[blockno / 32] |= 1 &lt;&lt; (blockno % 32);&#125; 1.bitmap和super定义在disk_map.h中： 1234extern uint32_t *bitmap;extern struct superblock *super;void flush_block(void *addr); 2.struct superblock定义在fs_types.h中： 12345struct superblock &#123; uint32_t s_magic; // Magic number: FS_MAGIC. uint32_t s_nblocks; // Total number of blocks on disk. uint32_t s_root; // Inum of the root directory inode.&#125;; 3.根据上述代码可以发现，当块处于空闲状态时，位图中的相应位为1；否则，相应位为0。 blockno / 32确定了块的相应位在哪个整数里，而blockno % 32确定了块的相应位是该整数中的第几位。 为什么是32呢？因为bitmap是32位无符号整型指针uint32_t *。 12// 判断块是否空闲bitmap[blockno / 32] &amp; (1 &lt;&lt; (blockno % 32)) 基于上述理解，可以着手实现函数alloc_block()： 12 5分到手&gt;_&lt;$$\begin{cases}1 + x + y = N \\x \times \mathrm{BLKBITSIZE} = y\end{cases} \\\Rightarrow x = \frac{N - 1}{\mathrm{BLKBITSIZE + 1}}, y=\frac{(N - 1) \times \mathrm{BLKBITSIZE}}{\mathrm{BLKBITSIZE} + 1}$$ 练习3：实现inode_block_walk和inode_get_block任务描述：实现inode.c中的函数inode_block_walk和inode_get_block。 inode_block_walk finds the disk block number slot for the ‘filebno’th block in inode ‘ino’, and sets ‘ppdiskbno’ to point to that slot. inode_get_block goes one step further and sets `blkto the start of the block, such that by using*blk`, we can access the contents of the block. It also allocates a new block if necessary. inode_block_walk123456789101112131415161718192021222324// Find the disk block number slot for the 'filebno'th block in inode 'ino'.// Set '*ppdiskbno' to point to that slot. The slot will be one of the// ino-&gt;i_direct[] entries, an entry in the indirect block, or an entry// in one of the indirect blocks referenced by the double-indirect block.//// When 'alloc' is set, this function will allocate an indirect block or// a double-indirect block (and any indirect blocks in the double-indirect// block) if necessary.//// Returns:// 0 on success (but note that **ppdiskbno might equal 0).// -ENOENT if the function needed to allocate an indirect block, but// alloc was 0.// -ENOSPC if there's no space on the disk for an indirect block.// -EINVAL if filebno is out of range (it's &gt;= N_DIRECT + N_INDIRECT +// N_DOUBLE).//// Hints:// - You may find it helpful to draw pictures.// - Don't forget to clear any block you allocate.// - Recall that diskaddr() converts from a disk block to an in-memory address// - You may end up writing code with a similar structure three times.// It may simplify your life to factor it into a helper function. int inode_block_walk(struct inode *ino, uint32_t filebno, uint32_t **ppdiskbno, bool alloc); 1.注释中提到的diskaddr()定义在disk_map.h中： 12345678910uint8_t *diskmap;// Maps a block number to an address. The pointer returned// points to the first byte of the specified block in mapped memory.void *diskaddr(uint32_t blockno)&#123; if (blockno == 0 || (super &amp;&amp; blockno &gt;= super-&gt;s_nblocks)) panic("bad block number %08x in diskaddr", blockno); return (char *)(diskmap + blockno * BLKSIZE);&#125; 2.参数中的struct inode *ino定义在fs_types.h中: 12345678struct inode &#123; // Block pointers. // A block is allocated iff its value is != 0. uint32_t i_direct[N_DIRECT]; // Direct blocks. uint32_t i_indirect; // Indirect block. uint32_t i_double; // Double-indirect block.&#125;; 下面着手实现： 12 inode_get_block12345678910// Set *blk to the address in memory where the filebno'th block of// inode 'ino' would be mapped. Allocate the block if it doesn't yet// exist.//// Returns 0 on success, &lt; 0 on error. Errors are:// -ENOSPC if a block needed to be allocated but the disk is full.// -EINVAL if filebno is out of range.//// Hint: Use inode_block_walk and alloc_block.int inode_get_block(struct inode *ino, uint32_t filebno, char **blk); 练习4 Implement inode_truncate_blocks in inode.c. inode_truncate_blocks frees data and metadata blocks that an inode allocated but no longer needs. This function is used, for instance, when an inode is deleted; the space reserved by the inode must be freed so that other files can be created on the system. 12345678910111213141516171819// Remove any blocks currently allocated for inode "ino" that would// not be needed for an inode of size "newsize" (where newsize is smaller// than ino-&gt;i_size). Do not change ino-&gt;i_size.//// For both the old and new sizes, compute the number of blocks required,// and then free the blocks from new_nblocks to old_nblocks. If new_nblocks// is no more than NDIRECT and the indirect block has been allocated, then// free the indirect block. Do the same for the double-indirect block if// new_nblocks is no more than NDIRECT + NINDIRECT. Don't forget to free// the indirect blocks allocated in the double-indirect block!//// Hints:// - Use inode_free_block to free all the data blocks, then use// free_block to free the meta-data blocks (for example, the indirect block).// - the ROUNDUP macro may be helpful// - Note that we do not need to explicitly free the blocks pointed to// by the indirect block (ask yourself: where are those blocks freed?)static voidinode_truncate_blocks(struct inode *ino, uint32_t newsize); 实现： 12 练习5inode_unlink1234567891011// Unlink an inode by decrementing its link count and zeroing the name// and inum fields in its associated struct dirent. If the link count// of the inode reaches 0, free the inode.//// Returns 0 on success, or -ENOENT if the file to be unlinked does// not exist.//// Hint: Use walk_path and inode_free. You will need to take advantage// of walk_path setting the pdent parameter to point to the directory// entry associated with the file to be unlinked.int inode_unlink(const char *path); inode_link12345678// Link the inode at the location srcpath to the new location dstpath.// Increment the link count on the inode.//// Returns 0 on success, &lt; 0 on failure. In particular, the function// should fail with -EEXIST if a file exists already at dstpath.//// Hint: Use walk_path and dir_alloc_dirent.int inode_link(const char *srcpath, const char *dstpath) 参考资料1.CS202: Lab 5: File system，https://cs.nyu.edu/~mwalfish/classes/21sp/labs/lab5.html 2.labs-21sp仓库，https://github.com/nyu-cs202/labs-21sp 3.我的实现：https://github.com/hegongshan/nyu-cs202-labs]]></content>
-      <categories>
-        <category>file system</category>
-      </categories>
-      <tags>
-        <tag>file system</tag>
       </tags>
   </entry>
   <entry>
@@ -5689,8 +5661,8 @@
         <category>sql</category>
       </categories>
       <tags>
-        <tag>mysql</tag>
         <tag>sql</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>

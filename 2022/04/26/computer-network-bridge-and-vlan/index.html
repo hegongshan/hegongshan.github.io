@@ -61,7 +61,7 @@
 
 
 
-  <meta name="keywords" content="linux,">
+  <meta name="keywords" content="gongshan,hegongshan,gongshanhe,blog">
 
 
 
@@ -72,18 +72,18 @@
 
 
 
-<meta name="description" content="近期遇到了一个需求——删除创建的软RAID，趁机了解了下RAID的知识和操作。">
-<meta name="keywords" content="linux">
+<meta name="description" content="网桥安装网桥管理工具： 1yum install -y bridge-utils 创建网桥： 1brctl addbr &amp;lt;bridge&amp;gt; 将网卡添加到网桥中： 1brctl addif &amp;lt;bridge&amp;gt; &amp;lt;device&amp;gt; 虚拟网卡安装虚拟网卡管理工具： 1yum install -y vconfig 12vconfig add [interface-name]">
+<meta name="keywords" content="GongshanHe Java Python MachineLearning DeepLearning RecommenderSystems KnowledgeGraph">
 <meta property="og:type" content="article">
-<meta property="og:title" content="存储设备之RAID">
-<meta property="og:url" content="https://www.hegongshan.com/2021/11/30/linux-raid/index.html">
+<meta property="og:title" content="网桥与虚拟网卡">
+<meta property="og:url" content="https://www.hegongshan.com/2022/04/26/computer-network-bridge-and-vlan/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="近期遇到了一个需求——删除创建的软RAID，趁机了解了下RAID的知识和操作。">
+<meta property="og:description" content="网桥安装网桥管理工具： 1yum install -y bridge-utils 创建网桥： 1brctl addbr &amp;lt;bridge&amp;gt; 将网卡添加到网桥中： 1brctl addif &amp;lt;bridge&amp;gt; &amp;lt;device&amp;gt; 虚拟网卡安装虚拟网卡管理工具： 1yum install -y vconfig 12vconfig add [interface-name]">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-04-13T04:46:02.880Z">
+<meta property="og:updated_time" content="2022-05-06T14:16:30.833Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="存储设备之RAID">
-<meta name="twitter:description" content="近期遇到了一个需求——删除创建的软RAID，趁机了解了下RAID的知识和操作。">
+<meta name="twitter:title" content="网桥与虚拟网卡">
+<meta name="twitter:description" content="网桥安装网桥管理工具： 1yum install -y bridge-utils 创建网桥： 1brctl addbr &amp;lt;bridge&amp;gt; 将网卡添加到网桥中： 1brctl addif &amp;lt;bridge&amp;gt; &amp;lt;device&amp;gt; 虚拟网卡安装虚拟网卡管理工具： 1yum install -y vconfig 12vconfig add [interface-name]">
 
 
 
@@ -113,13 +113,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hegongshan.com/2021/11/30/linux-raid/">
+  <link rel="canonical" href="https://www.hegongshan.com/2022/04/26/computer-network-bridge-and-vlan/">
 
 
 
 
 
-  <title>存储设备之RAID | 贺巩山的博客</title>
+  <title>网桥与虚拟网卡 | 贺巩山的博客</title>
   
 
 
@@ -350,7 +350,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/11/30/linux-raid/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2022/04/26/computer-network-bridge-and-vlan/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -366,7 +366,7 @@
       <header class="post-header">
         
         
-          <h2 class="post-title" itemprop="name headline">存储设备之RAID</h2>
+          <h2 class="post-title" itemprop="name headline">网桥与虚拟网卡</h2>
         
 
         <div class="post-meta">		 
@@ -379,8 +379,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-30T22:37:53+08:00">
-                2021-11-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-26T19:35:33+08:00">
+                2022-04-26
               </time>
             
 
@@ -395,34 +395,12 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-04-13T12:46:02+08:00">
-                2022-04-13
+              <time title="更新于" itemprop="dateModified" datetime="2022-05-06T22:16:30+08:00">
+                2022-05-06
               </time>
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -450,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  324
+                  68
                 </span>
               
 
@@ -475,47 +453,15 @@
       
 
       
-        <p>近期遇到了一个需求——删除创建的软RAID，趁机了解了下RAID的知识和操作。</p>
-<a id="more"></a>
-<h3 id="什么是RAID"><a href="#什么是RAID" class="headerlink" title="什么是RAID"></a>什么是RAID</h3><p>RAID，全称为Redundancy Array of Independent Disk，独立磁盘冗余阵列。</p>
-<p>mdadm是Linux中软件RAID的管理工具。其中，md的全称为multiple devices。</p>
-<p>古人云：工欲善其事，必先利其器。想要使用软件RAID，则需要先安装mdadm：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y mdadm</span><br></pre></td></tr></table></figure>
-<h3 id="创建RAID"><a href="#创建RAID" class="headerlink" title="创建RAID"></a>创建RAID</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> mdadm --create</span></span><br><span class="line">mdadm -C /dev/md0 -n 4 -l 10 /dev/sdb&#123;1..4&#125;</span><br></pre></td></tr></table></figure>
-<p>其中，</p>
-<p>-n, –raid-devices：指定RAID中的活跃磁盘数；</p>
-<p>-l, –level：设置RAID级别；</p>
-<p>最后则是磁盘设备名称列表。</p>
-<h3 id="管理RAID"><a href="#管理RAID" class="headerlink" title="管理RAID"></a>管理RAID</h3><ul>
-<li>添加一个磁盘</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm /dev/md0 --add /dev/sdb</span><br></pre></td></tr></table></figure>
-<ul>
-<li>删除一个磁盘</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm /dev/md0 --fail /dev/sdb1 --remove /dev/sdb1</span><br></pre></td></tr></table></figure>
-<h3 id="查看RAID"><a href="#查看RAID" class="headerlink" title="查看RAID"></a>查看RAID</h3><ul>
-<li>查看所有的RAID</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/mdstat</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看某个RAID</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm -D /dev/md0</span><br></pre></td></tr></table></figure>
-<h3 id="删除RAID"><a href="#删除RAID" class="headerlink" title="删除RAID"></a>删除RAID</h3><p>1.查看RAID中的磁盘信息，记下设备号</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm -D /dev/md0</span><br></pre></td></tr></table></figure>
-<p>2.卸载RAID</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount /dev/md0</span><br></pre></td></tr></table></figure>
-<p>3.逐一删除所有磁盘设备</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mdadm /dev/md0 --fail /dev/sdb1 --remove /dev/sdb1</span><br><span class="line">mdadm /dev/md0 --fail /dev/sdc1 --remove /dev/sdc1</span><br></pre></td></tr></table></figure>
-<p>4.停用RAID</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> mdadm --stop /dev/md0</span></span><br><span class="line">mdadm -S /dev/md0</span><br></pre></td></tr></table></figure>
-<p>5.删除配置文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -f /etc/mdadm.conf</span><br></pre></td></tr></table></figure>
-<p>6.删除fstab中的配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/fstab</span><br></pre></td></tr></table></figure>
-<h3 id="重新组装RAID"><a href="#重新组装RAID" class="headerlink" title="重新组装RAID"></a>重新组装RAID</h3><p>在停用RAID后，如果想要重新启动RAID，则可以使用如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mdadm -A -s /dev/md0</span><br></pre></td></tr></table></figure>
+        <h3 id="网桥"><a href="#网桥" class="headerlink" title="网桥"></a>网桥</h3><p>安装网桥管理工具：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y bridge-utils</span><br></pre></td></tr></table></figure>
+<p>创建网桥：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brctl addbr &lt;bridge&gt;</span><br></pre></td></tr></table></figure>
+<p>将网卡添加到网桥中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brctl addif &lt;bridge&gt; &lt;device&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="虚拟网卡"><a href="#虚拟网卡" class="headerlink" title="虚拟网卡"></a>虚拟网卡</h3><p>安装虚拟网卡管理工具：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y vconfig</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vconfig add [interface-name] [vlan_id]</span><br><span class="line">vconfig rem [vlan-name]</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -574,7 +520,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hegongshan.com/2021/11/30/linux-raid/" title="存储设备之RAID">https://www.hegongshan.com/2021/11/30/linux-raid/</a>
+    <a href="https://www.hegongshan.com/2022/04/26/computer-network-bridge-and-vlan/" title="网桥与虚拟网卡">https://www.hegongshan.com/2022/04/26/computer-network-bridge-and-vlan/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -587,12 +533,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
-          
-        </div>
-      
 
       
       
@@ -602,8 +542,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/11/29/linux-ipmi/" rel="next" title="IPMI服务器管理">
-                <i class="fa fa-chevron-left"></i> IPMI服务器管理
+              <a href="/2022/04/22/shell-prompt/" rel="next" title="定制Shell提示符">
+                <i class="fa fa-chevron-left"></i> 定制Shell提示符
               </a>
             
           </div>
@@ -612,8 +552,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/12/01/ceph/" rel="prev" title="使用cephadm部署ceph">
-                使用cephadm部署ceph <i class="fa fa-chevron-right"></i>
+              <a href="/2022/04/26/linux-ssh-change-port-and-prohibit-password/" rel="prev" title="修改SSH的端口号，并禁止密码登录">
+                修改SSH的端口号，并禁止密码登录 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -725,7 +665,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">540</span>
+                  <span class="site-state-item-count">538</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -844,7 +784,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是RAID"><span class="nav-number">1.</span> <span class="nav-text">什么是RAID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建RAID"><span class="nav-number">2.</span> <span class="nav-text">创建RAID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理RAID"><span class="nav-number">3.</span> <span class="nav-text">管理RAID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看RAID"><span class="nav-number">4.</span> <span class="nav-text">查看RAID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除RAID"><span class="nav-number">5.</span> <span class="nav-text">删除RAID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重新组装RAID"><span class="nav-number">6.</span> <span class="nav-text">重新组装RAID</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#网桥"><span class="nav-number">1.</span> <span class="nav-text">网桥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟网卡"><span class="nav-number">2.</span> <span class="nav-text">虚拟网卡</span></a></li></ol></div>
             
 
           </div>

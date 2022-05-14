@@ -72,21 +72,18 @@
 
 
 
-<meta name="description" content="Filebench是一种文件系统和存储测试工具，可以生成大量的工作负载。">
+<meta name="description" content="fio是一个常用的I/O测试工具，基于不同的测试引擎可以产生多种类型的测试压力。其作者Jens Axboe是Linux内核的维护者之一，主要负责内核中的块设备部分，fio原本是他为了模拟读/写负载能力而开发的。">
 <meta name="keywords" content="file system">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件系统测试工具之Filebench">
-<meta property="og:url" content="https://www.hegongshan.com/2022/03/25/file-system-benchmark-filebench/index.html">
+<meta property="og:title" content="IO测试工具之fio">
+<meta property="og:url" content="https://www.hegongshan.com/2021/12/02/io-benchmark-fio/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="Filebench是一种文件系统和存储测试工具，可以生成大量的工作负载。">
+<meta property="og:description" content="fio是一个常用的I/O测试工具，基于不同的测试引擎可以产生多种类型的测试压力。其作者Jens Axboe是Linux内核的维护者之一，主要负责内核中的块设备部分，fio原本是他为了模拟读/写负载能力而开发的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://www.hegongshan.com/static/images/file-system-benchmark-filebench-workload.png">
-<meta property="og:image" content="https://www.hegongshan.com/static/images/file-system-benchmark-filebench-webserver-result.png">
-<meta property="og:updated_time" content="2022-03-28T15:13:43.622Z">
+<meta property="og:updated_time" content="2022-05-06T15:43:40.160Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文件系统测试工具之Filebench">
-<meta name="twitter:description" content="Filebench是一种文件系统和存储测试工具，可以生成大量的工作负载。">
-<meta name="twitter:image" content="https://www.hegongshan.com/static/images/file-system-benchmark-filebench-workload.png">
+<meta name="twitter:title" content="IO测试工具之fio">
+<meta name="twitter:description" content="fio是一个常用的I/O测试工具，基于不同的测试引擎可以产生多种类型的测试压力。其作者Jens Axboe是Linux内核的维护者之一，主要负责内核中的块设备部分，fio原本是他为了模拟读/写负载能力而开发的。">
 
 
 
@@ -116,13 +113,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hegongshan.com/2022/03/25/file-system-benchmark-filebench/">
+  <link rel="canonical" href="https://www.hegongshan.com/2021/12/02/io-benchmark-fio/">
 
 
 
 
 
-  <title>文件系统测试工具之Filebench | 贺巩山的博客</title>
+  <title>IO测试工具之fio | 贺巩山的博客</title>
   
 
 
@@ -353,7 +350,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2022/03/25/file-system-benchmark-filebench/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2021/12/02/io-benchmark-fio/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -369,7 +366,7 @@
       <header class="post-header">
         
         
-          <h2 class="post-title" itemprop="name headline">文件系统测试工具之Filebench</h2>
+          <h2 class="post-title" itemprop="name headline">IO测试工具之fio</h2>
         
 
         <div class="post-meta">		 
@@ -382,8 +379,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-25T15:42:23+08:00">
-                2022-03-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-12-02T20:26:30+08:00">
+                2021-12-02
               </time>
             
 
@@ -398,8 +395,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-03-28T23:13:43+08:00">
-                2022-03-28
+              <time title="更新于" itemprop="dateModified" datetime="2022-05-06T23:43:40+08:00">
+                2022-05-06
               </time>
             
           </span>
@@ -453,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  818
+                  704
                 </span>
               
 
@@ -478,58 +475,67 @@
       
 
       
-        <p>Filebench是一种文件系统和存储测试工具，可以生成大量的工作负载。</p>
+        <p>fio是一个常用的I/O测试工具，基于不同的测试引擎可以产生多种类型的测试压力。其作者Jens Axboe是Linux内核的维护者之一，主要负责内核中的块设备部分，fio原本是他为了模拟读/写负载能力而开发的。</p>
 <a id="more"></a>
-<h3 id="Filebench介绍"><a href="#Filebench介绍" class="headerlink" title="Filebench介绍"></a>Filebench介绍</h3><p>2002年，SUN公司开发了Filebench，并于2005年公开了源代码。</p>
-<p>在SUN公司停止开发后，石溪大学的文件系统和存储实验室获得了许可，由他们负责继续开发和维护<sup><a href="#ref-1" style="border:none">[1]</a></sup>。</p>
-<p>根据谷歌学术的统计结果，有超过500篇论文使用Filebench作为测试工具<sup><a href="#ref-2" style="border:none">[2]</a></sup>。</p>
-<h3 id="安装Filebench"><a href="#安装Filebench" class="headerlink" title="安装Filebench"></a>安装Filebench</h3><h4 id="直接安装"><a href="#直接安装" class="headerlink" title="直接安装"></a>直接安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y filebench</span><br></pre></td></tr></table></figure>
-<h4 id="手动安装"><a href="#手动安装" class="headerlink" title="手动安装"></a>手动安装</h4><p>1.安装依赖</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y flex bison</span><br></pre></td></tr></table></figure>
-<p>2.从<a href="https://github.com/filebench/filebench/releases" target="_blank" rel="noopener">官网</a>选择需要的版本，最新的版本为<code>v1.5-alpha3</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/filebench/filebench/releases/download/1.5-alpha3/filebench-1.5-alpha3.tar.gz</span><br></pre></td></tr></table></figure>
-<p>3.解压</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxf filebench-1.5-alpha3.tar.gz</span><br><span class="line"><span class="built_in">cd</span> filebench-1.5-alpha3</span><br></pre></td></tr></table></figure>
-<p>4.配置、编译以及安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
-<h3 id="使用Filebench"><a href="#使用Filebench" class="headerlink" title="使用Filebench"></a>使用Filebench</h3><p>Filebench定义了一门用于描述工作负载的语言——WML（Workload Model Language），并预先定义好了一些工作负载。</p>
-<p>默认情况下，这些工作负载配置文件位于：<code>/usr/local/share/filebench/workloads</code>。</p>
-<p><img src="/static/images/file-system-benchmark-filebench-workload.png" alt="工作负载" height="200" width="60%"></p>
-<p>在测试时，官方不建议直接使用这些配置文件。如果需要使用这些工作负载，可以先复制一份，再进行修改：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/<span class="built_in">local</span>/share/filebench/workloads/webserver.f mywebserver.f</span><br></pre></td></tr></table></figure>
-<p>最后，运行工作负载：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filebench -f mywebserver.f</span><br></pre></td></tr></table></figure>
-<p>输出的部分结果如下所示：</p>
-<p><img src="/static/images/file-system-benchmark-filebench-webserver-result.png" alt="工作负载"></p>
-<h3 id="测试结果说明"><a href="#测试结果说明" class="headerlink" title="测试结果说明"></a>测试结果说明</h3><p>Filebench的测试结果在wiki中有较为详细的说明<sup><a href="#ref-3" style="border:none">[3]</a></sup>，对应的代码位于<code>stats.c</code>中。</p>
-<p>1.每个操作的输出代码如下所示：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (flowop) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  (<span class="keyword">void</span>) <span class="built_in">snprintf</span>(line, <span class="keyword">sizeof</span>(line), <span class="string">"%-20s %dops %8.0lfops/s "</span></span><br><span class="line">                  <span class="string">"%5.1lfmb/s %8.3fms/op"</span>,</span><br><span class="line">                  flowop-&gt;fo_name,</span><br><span class="line">                  flowop-&gt;fo_stats.fs_count, </span><br><span class="line">                  flowop-&gt;fo_stats.fs_count / total_time_sec,</span><br><span class="line">                  (flowop-&gt;fo_stats.fs_bytes / MB_FLOAT) / total_time_sec,</span><br><span class="line">                  flowop-&gt;fo_stats.fs_count ?</span><br><span class="line">                  flowop-&gt;fo_stats.fs_total_lat /</span><br><span class="line">                  (flowop-&gt;fo_stats.fs_count * SEC2MS_FLOAT) : <span class="number">0</span>);</span><br><span class="line">  (<span class="keyword">void</span>) <span class="built_in">strcat</span>(str, line);</span><br><span class="line"></span><br><span class="line">  (<span class="keyword">void</span>) <span class="built_in">snprintf</span>(line, <span class="keyword">sizeof</span>(line),<span class="string">" [%.3fms - %5.3fms]"</span>,</span><br><span class="line">                  flowop-&gt;fo_stats.fs_minlat / SEC2MS_FLOAT,</span><br><span class="line">                  flowop-&gt;fo_stats.fs_maxlat / SEC2MS_FLOAT);</span><br><span class="line">  (<span class="keyword">void</span>) <span class="built_in">strcat</span>(str, line);</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// filebench.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>	KB_FLOAT ((double)1024.0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>	MB_FLOAT (KB_FLOAT * KB_FLOAT)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// fbtime.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>	SEC2MS_FLOAT (double)1000000.0</span></span><br></pre></td></tr></table></figure>
-<p>以<code>readfile1</code>操作为例，</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readfile1            <span class="number">9787</span>ops      <span class="number">163</span>ops/s  <span class="number">10.0</span>mb/s      <span class="number">0.0</span>ms/op [<span class="number">0.00</span>ms -  <span class="number">0.88</span>ms]</span><br></pre></td></tr></table></figure>
-<p>上述结果表明：</p>
+<h3 id="安装fio"><a href="#安装fio" class="headerlink" title="安装fio"></a>安装fio</h3><p>1.从<a href="https://github.com/axboe/fio" target="_blank" rel="noopener">GitHub</a>中下载需要的版本，以<code>3.28</code>版本为例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/axboe/fio/archive/refs/tags/fio-3.28.zip</span><br></pre></td></tr></table></figure>
+<p>2.解压缩</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unzip fio-3.28.zip</span><br><span class="line">cd fio-fio-3.28/</span><br></pre></td></tr></table></figure>
+<p>3.执行配置程序</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure>
+<p>4.编译</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j5</span><br></pre></td></tr></table></figure>
+<p>5.安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p>6.查看安装的位置和版本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@hgs fio-fio-3.28]# which fio</span><br><span class="line">/usr/local/bin/fio</span><br><span class="line">[root@hgs fio-fio-3.28]# fio -v</span><br><span class="line">fio-3.28</span><br></pre></td></tr></table></figure>
+<h3 id="使用fio"><a href="#使用fio" class="headerlink" title="使用fio"></a>使用fio</h3><p>fio既可以使用命令行参数执行，也可以通过指定jobfile执行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> fio [options] [jobfile] ...</span></span><br></pre></td></tr></table></figure>
+<h4 id="任务文件的格式"><a href="#任务文件的格式" class="headerlink" title="任务文件的格式"></a>任务文件的格式</h4><p>参考<a href="https://fio.readthedocs.io/en/latest/fio_doc.html#job-file-format" target="_blank" rel="noopener">Job file format</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[job name]</span><br><span class="line">parameters</span><br></pre></td></tr></table></figure>
+<p>常见的任务参数：</p>
 <ul>
-<li>本次测试共执行了9787次读取操作</li>
-<li>每秒执行的平均读取次数为163次</li>
-<li>每秒读取的平均数据10MB</li>
-<li>每次操作的平均延迟为0.0ms，每次操作的最小延迟为0.00ms，最大延迟为0.88ms</li>
+<li>directory：设置目录</li>
+<li>filename：设置需要测试的磁盘名或文件名，多个磁盘或文件名通过冒号<code>:</code>分隔，例如<code>/dev/sda:/dev/sdb</code>；如果路径名中含有<code>:</code>，则需要进行转义，例如路径名为<code>F:\filename</code>，则<code>filename=F\:\filename</code></li>
+<li>ioengine：设置使用的IO引擎</li>
 </ul>
-<p>2.总的统计代码如下所示：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">filebench_log(LOG_INFO,</span><br><span class="line">	    <span class="string">"IO Summary: %5d ops %5.3lf ops/s %0.0lf/%0.0lf rd/wr "</span></span><br><span class="line">	    <span class="string">"%5.1lfmb/s %5.3fms/op"</span>,</span><br><span class="line">	    iostat-&gt;fs_count + aiostat-&gt;fs_count,</span><br><span class="line">	    (iostat-&gt;fs_count + aiostat-&gt;fs_count) / total_time_sec,</span><br><span class="line">	    (iostat-&gt;fs_rcount + aiostat-&gt;fs_rcount) / total_time_sec,</span><br><span class="line">	    (iostat-&gt;fs_wcount + aiostat-&gt;fs_wcount) / total_time_sec,</span><br><span class="line">	    ((iostat-&gt;fs_bytes + aiostat-&gt;fs_bytes) / MB_FLOAT)</span><br><span class="line">						/ total_time_sec,</span><br><span class="line">	    (iostat-&gt;fs_count + aiostat-&gt;fs_count) ?</span><br><span class="line">	    (iostat-&gt;fs_total_lat + aiostat-&gt;fs_total_lat) /</span><br><span class="line">	    ((iostat-&gt;fs_count + aiostat-&gt;fs_count) * SEC2MS_FLOAT) : <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-<p>依旧以上面的测试结果为例：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IO Summary: <span class="number">303389</span> ops <span class="number">5055.849</span> ops/s <span class="number">1631</span>/<span class="number">163</span> rd/wr <span class="number">100.7</span>mb/s   <span class="number">0.0</span>ms/op</span><br></pre></td></tr></table></figure>
-<p>其表明：</p>
+<p>1.libaio：使用Linux中的异步读写接口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y libaio-devel</span><br></pre></td></tr></table></figure>
+<p>安装libaio以后，需要重新执行配置、编译以及安装，否则会出现如下错误：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">libaio: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure>
+<p>2.sync：同步读写</p>
+<p>3.psync：原子同步读写</p>
 <ul>
-<li>本次测试共执行了303389次各类操作</li>
-<li>每秒执行的平均操作次数为5055.849</li>
-<li>每秒执行的平均读操作次数为1631，平均写操作次数为163次</li>
-<li>每秒读写的平均数据为100.7MB</li>
-<li>每次操作的平均延迟为0.0ms</li>
+<li><code>rw</code>和<code>readwrite</code>：设置读写模式</li>
 </ul>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p id="ref-1">[1] Filebench，<a href="https://github.com/filebench/filebench" target="_blank" rel="noopener">https://github.com/filebench/filebench</a></p>
-
-<p id="ref-2">[2] Filebench: A Flexible Framework for File System Benchmarking, ;login: The USENIX Magazine’16, <a href="https://www.usenix.org/system/files/login/articles/login_spring16_02_tarasov.pdf" target="_blank" rel="noopener">https://www.usenix.org/system/files/login/articles/login_spring16_02_tarasov.pdf</a></p>
-
-<p id="ref-3">[3] Collected metrics，<a href="https://github.com/filebench/filebench/wiki/Collected-metrics" target="_blank" rel="noopener">https://github.com/filebench/filebench/wiki/Collected-metrics</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">read: 顺序读</span><br><span class="line">write: 顺序写</span><br><span class="line">rw, readwrite: 混合顺序读写</span><br><span class="line">randread: 随机读</span><br><span class="line">randwrite: 随机写</span><br><span class="line">randrw: 混合随机读写</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>bs</code>和<code>blocksize</code>：设置块大小，默认的单位为字节，大小为4096。</li>
+<li><code>runtime=time</code>：设置运行时间，默认的单位为秒。</li>
+<li><code>ramp_time=time</code>：设置预热时间。</li>
+<li><code>size=int</code>：设置读写的大小</li>
+<li><code>thread</code>：默认情况下，fio使用fork创建任务。如果设置了thread，则使用POSIX中的Thread创建任务。</li>
+<li><code>group_reporting</code>：默认情况下，fio按照任务输出最终的测试结果。如果设置了<code>group_reporting</code>，则会按组输出最终的结果。</li>
+</ul>
+<h4 id="测试实例"><a href="#测试实例" class="headerlink" title="测试实例"></a>测试实例</h4><p>运行fio，<a href="https://fio.readthedocs.io/en/latest/fio_doc.html#running-fio" target="_blank" rel="noopener">https://fio.readthedocs.io/en/latest/fio_doc.html#running-fio</a></p>
+<blockquote>
+<p>For example, for the job file parameter <a href="https://fio.readthedocs.io/en/latest/fio_man.html#cmdoption-arg-iodepth" target="_blank" rel="noopener"><code>iodepth=2</code></a>, the mirror command line option would be <a href="https://fio.readthedocs.io/en/latest/fio_man.html#cmdoption-arg-iodepth" target="_blank" rel="noopener"><code>--iodepth 2</code></a> or <a href="https://fio.readthedocs.io/en/latest/fio_man.html#cmdoption-arg-iodepth" target="_blank" rel="noopener"><code>--iodepth=2</code></a>.</p>
+</blockquote>
+<p>1.创建任务文件test.fio：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">thread</span><br><span class="line">direct=1</span><br><span class="line">exec_prerun=echo 3 &gt; /proc/sys/vm/drop_caches</span><br><span class="line">ioengine=libaio</span><br><span class="line">runtime=5</span><br><span class="line">ramp_time=6</span><br><span class="line">filename=/dev/sda</span><br><span class="line">group_reporting</span><br><span class="line"></span><br><span class="line">[randwrite]</span><br><span class="line">description="Random Write"</span><br><span class="line">rw=randwrite</span><br><span class="line">bs=4K</span><br><span class="line">iodepth=16</span><br><span class="line"></span><br><span class="line">[seqwrite]</span><br><span class="line">description="Sequential Write"</span><br><span class="line">rw=write</span><br><span class="line">bs=4M</span><br><span class="line">iodepth=1</span><br></pre></td></tr></table></figure>
+<p>2.执行测试：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fio test.fio --section=randwrite</span><br></pre></td></tr></table></figure>
+<h3 id="fio绘图"><a href="#fio绘图" class="headerlink" title="fio绘图"></a>fio绘图</h3><p>在执行测试时，添加如下参数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">write_bw_log=带宽日志前缀</span><br><span class="line">write_iops_log=iops日志前缀</span><br><span class="line">write_lat_log=latlat</span><br><span class="line">log_avg_msec=1000</span><br></pre></td></tr></table></figure>
+<p>安装gnuplot绘图库。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y gnuplot</span><br></pre></td></tr></table></figure>
+<p>绘制图形：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fio2gnuplot -b -g</span><br></pre></td></tr></table></figure>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li><a href="https://github.com/axboe/fio" target="_blank" rel="noopener">https://github.com/axboe/fio</a></li>
+<li>fio - Flexible I/O tester，<a href="https://fio.readthedocs.io" target="_blank" rel="noopener">https://fio.readthedocs.io</a></li>
+<li>fio引擎libaio加载失败，<a href="https://support.huaweicloud.com/trouble-kunpengsdss/kunpengsdss_09_0012.html" target="_blank" rel="noopener">https://support.huaweicloud.com/trouble-kunpengsdss/kunpengsdss_09_0012.html</a></li>
+</ol>
 
       
     </div>
@@ -588,7 +594,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hegongshan.com/2022/03/25/file-system-benchmark-filebench/" title="文件系统测试工具之Filebench">https://www.hegongshan.com/2022/03/25/file-system-benchmark-filebench/</a>
+    <a href="https://www.hegongshan.com/2021/12/02/io-benchmark-fio/" title="IO测试工具之fio">https://www.hegongshan.com/2021/12/02/io-benchmark-fio/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -616,8 +622,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/03/19/c-ipc-shared-memory/" rel="next" title="进程间通信之共享内存">
-                <i class="fa fa-chevron-left"></i> 进程间通信之共享内存
+              <a href="/2021/12/01/ceph/" rel="next" title="使用cephadm部署ceph">
+                <i class="fa fa-chevron-left"></i> 使用cephadm部署ceph
               </a>
             
           </div>
@@ -626,8 +632,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2022/04/01/file-system-obfs/" rel="prev" title="论文阅读《OBFS&#58; A File System for Object-based Storage Devices》">
-                论文阅读《OBFS&#58; A File System for Object-based Storage Devices》 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/12/02/storage-system-benchmark-io500/" rel="prev" title="IO测试工具之IO500">
+                IO测试工具之IO500 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -739,7 +745,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">540</span>
+                  <span class="site-state-item-count">538</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -858,7 +864,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Filebench介绍"><span class="nav-number">1.</span> <span class="nav-text">Filebench介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Filebench"><span class="nav-number">2.</span> <span class="nav-text">安装Filebench</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接安装"><span class="nav-number">2.1.</span> <span class="nav-text">直接安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手动安装"><span class="nav-number">2.2.</span> <span class="nav-text">手动安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Filebench"><span class="nav-number">3.</span> <span class="nav-text">使用Filebench</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试结果说明"><span class="nav-number">4.</span> <span class="nav-text">测试结果说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装fio"><span class="nav-number">1.</span> <span class="nav-text">安装fio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用fio"><span class="nav-number">2.</span> <span class="nav-text">使用fio</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#任务文件的格式"><span class="nav-number">2.1.</span> <span class="nav-text">任务文件的格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试实例"><span class="nav-number">2.2.</span> <span class="nav-text">测试实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fio绘图"><span class="nav-number">3.</span> <span class="nav-text">fio绘图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>

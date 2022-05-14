@@ -61,7 +61,7 @@
 
 
 
-  <meta name="keywords" content="file system,">
+  <meta name="keywords" content="linux,">
 
 
 
@@ -72,18 +72,18 @@
 
 
 
-<meta name="description" content="1985年，Sun公司提出了网络文件系统（Network File System，NFS）协议。它采用了客户端-服务器架构，允许多个客户端通过计算机网络共享文件服务器中的文件。">
-<meta name="keywords" content="file system">
+<meta name="description" content="Linux设置防火墙。">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="部署网络文件系统">
-<meta property="og:url" content="https://www.hegongshan.com/2022/02/18/file-system-nfs/index.html">
+<meta property="og:title" content="Linux防火墙">
+<meta property="og:url" content="https://www.hegongshan.com/2022/04/30/linux-firewall/index.html">
 <meta property="og:site_name" content="贺巩山的博客">
-<meta property="og:description" content="1985年，Sun公司提出了网络文件系统（Network File System，NFS）协议。它采用了客户端-服务器架构，允许多个客户端通过计算机网络共享文件服务器中的文件。">
+<meta property="og:description" content="Linux设置防火墙。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2022-02-18T13:34:04.363Z">
+<meta property="og:updated_time" content="2022-04-30T09:59:22.612Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="部署网络文件系统">
-<meta name="twitter:description" content="1985年，Sun公司提出了网络文件系统（Network File System，NFS）协议。它采用了客户端-服务器架构，允许多个客户端通过计算机网络共享文件服务器中的文件。">
+<meta name="twitter:title" content="Linux防火墙">
+<meta name="twitter:description" content="Linux设置防火墙。">
 
 
 
@@ -113,13 +113,13 @@
 
 
 
-  <link rel="canonical" href="https://www.hegongshan.com/2022/02/18/file-system-nfs/">
+  <link rel="canonical" href="https://www.hegongshan.com/2022/04/30/linux-firewall/">
 
 
 
 
 
-  <title>部署网络文件系统 | 贺巩山的博客</title>
+  <title>Linux防火墙 | 贺巩山的博客</title>
   
 
 
@@ -350,7 +350,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2022/02/18/file-system-nfs/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2022/04/30/linux-firewall/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -366,7 +366,7 @@
       <header class="post-header">
         
         
-          <h2 class="post-title" itemprop="name headline">部署网络文件系统</h2>
+          <h2 class="post-title" itemprop="name headline">Linux防火墙</h2>
         
 
         <div class="post-meta">		 
@@ -379,8 +379,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-02-18T11:02:49+08:00">
-                2022-02-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-04-30T09:39:10+08:00">
+                2022-04-30
               </time>
             
 
@@ -395,8 +395,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2022-02-18T21:34:04+08:00">
-                2022-02-18
+              <time title="更新于" itemprop="dateModified" datetime="2022-04-30T17:59:22+08:00">
+                2022-04-30
               </time>
             
           </span>
@@ -414,8 +414,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/file-system/" itemprop="url" rel="index">
-                    <span itemprop="name">file system</span>
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
                   </a>
                 </span>
 
@@ -450,7 +450,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  269
+                  189
                 </span>
               
 
@@ -475,35 +475,52 @@
       
 
       
-        <p>1985年，Sun公司提出了网络文件系统（Network File System，NFS）协议。它采用了客户端-服务器架构，允许多个客户端通过计算机网络共享文件服务器中的文件。</p>
+        <p>Linux设置防火墙。</p>
 <a id="more"></a>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">服务端：192.168.2.10</span><br><span class="line">客户端：192.168.2.11</span><br></pre></td></tr></table></figure>
-<h3 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h3><p>1.安装NFS和RPC工具包</p>
-<blockquote>
-<p>RPC：Remote Procedure Call，远程方法调用</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">yum install -y nfs-utils rpcbind</span><br></pre></td></tr></table></figure>
-<p>2.创建共享目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /data</span><br><span class="line">chown -R nfsnobody:nfsnobody /data</span><br></pre></td></tr></table></figure>
-<p>3.修改配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/exports</span><br></pre></td></tr></table></figure>
-<p>文件格式如下：<code>共享目录 允许访问的主机(权限)</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/data 192.168.2.11(rw,sync)</span><br></pre></td></tr></table></figure>
-<p>权限：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">ro：<span class="built_in">readonly</span></span><br><span class="line"></span><br><span class="line">rw：readwrite</span><br><span class="line"></span><br><span class="line">sync：synchronization</span><br><span class="line"></span><br><span class="line">async：asynchronization</span><br><span class="line"></span><br><span class="line">no_root_squash</span><br><span class="line"></span><br><span class="line">root_squash</span><br><span class="line"></span><br><span class="line">all_squash</span><br><span class="line"></span><br><span class="line">anonuid：anonymous uid</span><br><span class="line"></span><br><span class="line">anongid：anonymous gid</span><br></pre></td></tr></table></figure>
-<p>4.启动NFS和RPC服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">systemctl <span class="built_in">enable</span> nfs rpcbind</span><br><span class="line">systemctl start nfs rpcbind</span><br></pre></td></tr></table></figure>
-<h3 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h3><p>1.安装RPC工具包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">yum install -y rpcbind nfs-utils</span><br></pre></td></tr></table></figure>
-<p>2.启动RPC服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start rpcbind</span><br></pre></td></tr></table></figure>
-<p>3.挂载NFS服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -t nfs 192.168.2.10:/data /mnt/nfs</span><br></pre></td></tr></table></figure>
-<p>4.查看挂载情况</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
-<p>5.设置开机自动挂载</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">'192.168.2.10:/data /mnt/nfs nfs defaults 0 0'</span> &gt;&gt; /etc/fstab</span><br></pre></td></tr></table></figure>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>1.Design and Implementation of the Sun Network Filesystem</p>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>包过滤</p>
+<p>下面介绍两个常用的防火墙软件：firewall-cmd和ufw。</p>
+<h3 id="firewalld"><a href="#firewalld" class="headerlink" title="firewalld"></a>firewalld</h3><p>firewall-cmd是CentOS的默认防火墙。默认禁止所有访问。</p>
+<ul>
+<li>启动防火墙</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld</span><br><span class="line">systemctl <span class="built_in">enable</span> firewalld</span><br></pre></td></tr></table></figure>
+<ul>
+<li>开放某个端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-port=1922/tcp</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重新加载防火墙</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看开放的所有端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --list-ports</span><br></pre></td></tr></table></figure>
+<ul>
+<li>关闭已开放的端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --remove-port=1922/tcp</span><br></pre></td></tr></table></figure>
+<ul>
+<li>关闭防火墙</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld</span><br></pre></td></tr></table></figure>
+<h3 id="ufw"><a href="#ufw" class="headerlink" title="ufw"></a>ufw</h3><p>ufw（Uncomplicated FireWall）是Ubuntu的默认防火墙。</p>
+<ul>
+<li>查看防火墙状态，包括防火墙是否启动、开放和关闭的端口等信息</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw status</span><br></pre></td></tr></table></figure>
+<ul>
+<li>开启/关闭防火墙</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ufw <span class="built_in">enable</span></span><br><span class="line"></span><br><span class="line">ufw <span class="built_in">disable</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>开放端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw allow [port]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>关闭端口</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw deny [port]</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -562,7 +579,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.hegongshan.com/2022/02/18/file-system-nfs/" title="部署网络文件系统">https://www.hegongshan.com/2022/02/18/file-system-nfs/</a>
+    <a href="https://www.hegongshan.com/2022/04/30/linux-firewall/" title="Linux防火墙">https://www.hegongshan.com/2022/04/30/linux-firewall/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -577,7 +594,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/file-system/" rel="tag"><i class="fa fa-tag"></i> file system</a>
+            <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
           
         </div>
       
@@ -590,8 +607,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/02/17/linux-timedatectl/" rel="next" title="在Linux中存活下来之时间管理工具timedatectl">
-                <i class="fa fa-chevron-left"></i> 在Linux中存活下来之时间管理工具timedatectl
+              <a href="/2022/04/26/linux-ssh-change-port-and-prohibit-password/" rel="next" title="修改SSH的端口号，并禁止密码登录">
+                <i class="fa fa-chevron-left"></i> 修改SSH的端口号，并禁止密码登录
               </a>
             
           </div>
@@ -600,8 +617,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2022/02/22/file-system-ceph/" rel="prev" title="论文阅读《Ceph&#58 A Scalable, High-Performance Distributed File System》">
-                论文阅读《Ceph&#58 A Scalable, High-Performance Distributed File System》 <i class="fa fa-chevron-right"></i>
+              <a href="/2022/05/03/linux-cpu-utilization/" rel="prev" title="计算CPU利用率">
+                计算CPU利用率 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -713,7 +730,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">540</span>
+                  <span class="site-state-item-count">538</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -832,7 +849,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端配置"><span class="nav-number">1.</span> <span class="nav-text">服务端配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端配置"><span class="nav-number">2.</span> <span class="nav-text">客户端配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现原理"><span class="nav-number">1.</span> <span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#firewalld"><span class="nav-number">2.</span> <span class="nav-text">firewalld</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ufw"><span class="nav-number">3.</span> <span class="nav-text">ufw</span></a></li></ol></div>
             
 
           </div>
