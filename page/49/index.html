@@ -350,7 +350,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/09/19/sql-drop-delete-and-truncate-table/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/08/17/putty-file-upload-and-download/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -367,9 +367,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2018/09/19/sql-drop-delete-and-truncate-table/" itemprop="url">
+                <a class="post-title-link" href="/2018/08/17/putty-file-upload-and-download/" itemprop="url">
                   
-                   SQL中删除表中数据的几种方法</a></h2>
+                   使用PuTTY实现Windows和Linux的文件传输</a></h2>
         
 
         <div class="post-meta">		 
@@ -382,8 +382,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-19T22:00:09+08:00">
-                2018-09-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-17T14:04:30+08:00">
+                2018-08-17
               </time>
             
 
@@ -417,8 +417,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/sql/" itemprop="url" rel="index">
-                    <span itemprop="name">sql</span>
+                  <a href="/categories/putty/" itemprop="url" rel="index">
+                    <span itemprop="name">putty</span>
                   </a>
                 </span>
 
@@ -448,7 +448,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  215
+                  142
                 </span>
               
 
@@ -474,11 +474,12 @@
 
       
         
-          <p>SQL中删除表数据有以下三种方法：</p>
-<p>1.使用drop table语句；2. 使用delete语句；3. 使用truncate table语句。</p>
+          <p>安装完PuTTY以后，进入命令行界面，就可以使用PuTTY的<strong>pscp命令</strong>进行文件传输。</p>
+<h3 id="pscp"><a href="#pscp" class="headerlink" title="pscp"></a>pscp</h3><p>语法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pscp 源文件路径 目标文件路径</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/09/19/sql-drop-delete-and-truncate-table/#more" rel="contents">
+            <a class="btn" href="/2018/08/17/putty-file-upload-and-download/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -530,7 +531,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/09/19/sql-like/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/08/16/putty-ssh/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -547,9 +548,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2018/09/19/sql-like/" itemprop="url">
+                <a class="post-title-link" href="/2018/08/16/putty-ssh/" itemprop="url">
                   
-                   SQL中的字符匹配（like）</a></h2>
+                   使用PuTTY远程登录Linux服务器</a></h2>
         
 
         <div class="post-meta">		 
@@ -562,8 +563,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-19T20:21:39+08:00">
-                2018-09-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-16T14:55:33+08:00">
+                2018-08-16
               </time>
             
 
@@ -578,8 +579,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-01T21:07:49+08:00">
-                2019-08-01
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-19T15:23:57+08:00">
+                2019-01-19
               </time>
             
           </span>
@@ -597,8 +598,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/sql/" itemprop="url" rel="index">
-                    <span itemprop="name">sql</span>
+                  <a href="/categories/putty/" itemprop="url" rel="index">
+                    <span itemprop="name">putty</span>
                   </a>
                 </span>
 
@@ -628,7 +629,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  401
+                  420
                 </span>
               
 
@@ -654,16 +655,20 @@
 
       
         
-          <p>like可以用于字符串的匹配，其一般语法如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[not] like '&lt;匹配串&gt;' [escape '&lt;换码字符&gt;']</span><br></pre></td></tr></table></figure>
-<p>其含义是查找指定的属性列值与&lt;匹配串&gt;相匹配的元组。&lt;匹配串&gt;可以是一个完整的字符串，也可以含有通配符 % 和 _ 。</p>
+          <p>使用PuTTY已经很长时间了，是时候总结下PuTTY的用法了。</p>
 <ul>
-<li>%：匹配任意长度(长度可以为0)的字符串</li>
-<li>_：匹配任意单个字符(一个汉字占两个字符)</li>
+<li>什么是PuTTY?</li>
 </ul>
+<p>下面是PuTTY官网的介绍</p>
+<p>PuTTY is an SSH and telnet client, developed originally by Simon Tatham for the Windows platform. </p>
+<p>翻译过来就是说，PuTTY是Windows平台下的一个SSH客户端。</p>
+<ul>
+<li>为什么要使用PuTTY？</li>
+</ul>
+<p>与商用的XShell相比，PuTTY是开源免费的&gt;_&lt;。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/09/19/sql-like/#more" rel="contents">
+            <a class="btn" href="/2018/08/16/putty-ssh/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -715,7 +720,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/09/14/sql-join/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/08/02/java-timer/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -732,9 +737,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2018/09/14/sql-join/" itemprop="url">
+                <a class="post-title-link" href="/2018/08/02/java-timer/" itemprop="url">
                   
-                   SQL中的各种join</a></h2>
+                   Java中的定时器Timer</a></h2>
         
 
         <div class="post-meta">		 
@@ -747,187 +752,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-14T14:05:08+08:00">
-                2018-09-14
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-01T21:30:27+08:00">
-                2019-08-01
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/sql/" itemprop="url" rel="index">
-                    <span itemprop="name">sql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.2k
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>SQL中的连接操作很多，这里总结一下。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/14/sql-join/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/09/12/sql-union/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2018/09/12/sql-union/" itemprop="url">
-                  
-                   SQL中的并运算(union)</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T21:59:02+08:00">
-                2018-09-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T21:11:49+08:00">
+                2018-08-02
               </time>
             
 
@@ -961,8 +787,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/sql/" itemprop="url" rel="index">
-                    <span itemprop="name">sql</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -992,7 +818,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  317
+                  544
                 </span>
               
 
@@ -1018,11 +844,13 @@
 
       
         
-          <p>union用于合并两个或多个select语句的结果集。</p>
-<p>需要注意的是，union合并的两个或多个表必须有相同的列数，且相应的列必须取自同一个域（即数据类型相似，如都是数值型），此外，每条select语句中列的顺序必须相同。</p>
+          <p>在Java中，定时任务功能使用的是Timer类，其主要作用是设置计划任务，</p>
+<p>最近课题组的项目用到了Java中的定时器Timer类，这里记录下定时器Timer的相关知识。</p>
+<p>Timer的构造方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Timer</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Timer</span><span class="params">(<span class="keyword">boolean</span> isDaemon)</span></span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Timer</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function">    </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Timer</span><span class="params">(String name, <span class="keyword">boolean</span> isDaemon)</span></span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/09/12/sql-union/#more" rel="contents">
+            <a class="btn" href="/2018/08/02/java-timer/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1074,7 +902,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/09/08/sql-summary/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/08/02/machine-learning-adaboost/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -1091,9 +919,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2018/09/08/sql-summary/" itemprop="url">
+                <a class="post-title-link" href="/2018/08/02/machine-learning-adaboost/" itemprop="url">
                   
-                   SQL简单总结</a></h2>
+                   机器学习之AdaBoost</a></h2>
         
 
         <div class="post-meta">		 
@@ -1106,8 +934,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-08T19:27:36+08:00">
-                2018-09-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T19:21:02+08:00">
+                2018-08-02
               </time>
             
 
@@ -1122,722 +950,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-08-01T21:32:24+08:00">
-                2019-08-01
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/sql/" itemprop="url" rel="index">
-                    <span itemprop="name">sql</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  281
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>结构化查询语言（structured query language, 简称SQL）分为四类：</p>
-<p>数据定义语句（Data Definition Language，简称DDL）、数据查询语句（Data Query Language，简称DQL）、数据更新语句（Data Manipulation Language，简称DML）以及数据控制语句。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/08/sql-summary/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/08/28/matrix-singular-value-decomposition/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2018/08/28/matrix-singular-value-decomposition/" itemprop="url">
-                  
-                   奇异值分解</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-28T21:19:49+08:00">
-                2018-08-28
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-07-06T17:27:18+08:00">
-                2019-07-06
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  974
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>奇异值分解（Singular Value Decomposition，简称SVD），是一种矩阵分解技术，可以用于机器学习中数据集的降维。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/28/matrix-singular-value-decomposition/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/08/27/vector-and-matrix-norm/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2018/08/27/vector-and-matrix-norm/" itemprop="url">
-                  
-                   向量和矩阵的范数</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-27T18:49:12+08:00">
-                2018-08-27
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2020-09-22T22:53:20+08:00">
-                2020-09-22
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/mathematics/" itemprop="url" rel="index">
-                    <span itemprop="name">mathematics</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  781
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>阅读《机器学习》和《机器学习实战》的时候，都碰到过<strong>范数（norm）</strong>这个概念，这里记录一下。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/27/vector-and-matrix-norm/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/08/26/machine-learning-pca/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2018/08/26/machine-learning-pca/" itemprop="url">
-                  
-                   机器学习之PCA算法</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-26T14:08:44+08:00">
-                2018-08-26
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2019-10-04T12:05:30+08:00">
-                2019-10-04
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  132
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>主成分分析（Principal Component Analysis，简称PCA）。</p>
-<p>$$<br>\begin{align}<br>\hline<br>&amp; PCA算法 \\<br>\hline<br>&amp; 输入：样本集D=\{x_1,x_2,\dots,x_m\};低维空间维数d^{‘} \\<br>&amp; 过程： \\<br>&amp; 1. 对所有样本进行中心化：x_i \leftarrow x_i - \frac{1}{m} \sum_{i=1}^{m} x_i;\\<br>&amp; 2.计算样本的协方差矩阵XX^{T}; \\<br>&amp; 3.对协方差矩阵XX^{T}做特征值分解; \\<br>&amp; 4.取最大的d^{‘}个特征值所对应的特征向量w_1,w_2,\dots,w_{d^{‘}}. \\<br>&amp; 输出：投影矩阵W=(w_1,w_2,\dots,w_{d^{‘}})<br>\end{align}<br>$$</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/08/25/machine-learning-pagerank/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Gongshan He">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="贺巩山的博客">
-    </span>
-
-    
-      <header class="post-header">
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2018/08/25/machine-learning-pagerank/" itemprop="url">
-                  
-                   机器学习之PageRank算法</a></h2>
-        
-
-        <div class="post-meta">		 
-		
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-25T13:25:16+08:00">
-                2018-08-25
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-25T13:25:16+08:00">
-                2018-08-25
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-19T15:23:57+08:00">
+                2019-01-19
               </time>
             
           </span>
@@ -1912,13 +1026,556 @@
 
       
         
-          <p>PageRank是一个搜索排名算法，由Sergey Brin和Larry Page在1998年第七届国际万维网大会上提出的。基于这一算法，他们创建了Google搜索引擎。</p>
-<p>在介绍PageRank之前，先来了解一些主要概念。</p>
-<p>页面i的入链（In-links of page i）：从其他网页链接到网页$i$的超链接数，通常不包括来自同一站点内网页的链接。</p>
-<p>网页i的出链（Out-links of page i）：从网页$i$链接到其他网页的超链接数，通常不包括链接到同一站点内网页的超链接。<br>
+          <p>AdaBoost（adaptive boosting）算法是提升（boosting）方法的一个最流行版本，1995年由Freund和Schapire提出。其基本思想是使用多个弱分类器（即分类器的性能并不好，错误率较高）来构建一个强分类器。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/25/machine-learning-pagerank/#more" rel="contents">
+            <a class="btn" href="/2018/08/02/machine-learning-adaboost/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/07/28/machine-learning-svm-smo/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2018/07/28/machine-learning-svm-smo/" itemprop="url">
+                  
+                   序列最小最优化算法SMO</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-28T19:33:13+08:00">
+                2018-07-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-19T15:23:57+08:00">
+                2019-01-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>如何高效地实现支持向量机学习呢？常用的是1998年Platt提出的序列最小最优化算法(Sequential minimal optimization，SMO)算法。</p>
+<p>SMO算法要解的是如下的一个最优化问题：<br>$$<br>\min_{\alpha} \left( \frac{1}{2} \sum_{i=1}^N \sum_{j=1}^N \alpha_i \alpha_j y_i y_j K(x_i,x_j) - \sum_{i=1}^N \alpha_i\right) \tag{1}<br>$$</p>
+<p>$$<br>subject \; to \sum_{i=1}^N \alpha_i y_i = 0, \tag{2}<br>$$</p>
+<p>$$<br>0 \leq \alpha_i \leq C, \forall i \tag{3}<br>$$</p>
+<p>整个SMO算法包括两个部分：求解两个变量二次规划的解析方法和选择变量的启发式方法。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/28/machine-learning-svm-smo/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/07/16/mathjax-tutorial/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2018/07/16/mathjax-tutorial/" itemprop="url">
+                  
+                   MathJax语法</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-16T19:09:32+08:00">
+                2018-07-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-10-31T21:43:20+08:00">
+                2021-10-31
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/mathjax/" itemprop="url" rel="index">
+                    <span itemprop="name">mathjax</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.2k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>如何在网页中便捷地输入数学公式呢？MathJax就是一个不错的选择。</p>
+<p>使用<code>$</code>或者<code>$$</code>来标明需要MathJax解析的公式。<code>$</code>表示行内公式，而<code>$$</code>表示的数学公式会独占一行，如</p>
+<p><code>$y=ax+b$</code>： $y=ax+b$</p>
+<p><code>$$y=ax+b$$</code>：<br>$$<br>y=ax+b<br>$$</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/16/mathjax-tutorial/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/07/16/machine-learning-svm-linearly-separable/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2018/07/16/machine-learning-svm-linearly-separable/" itemprop="url">
+                  
+                   线性可分支持向量机</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-16T19:08:48+08:00">
+                2018-07-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-19T15:23:57+08:00">
+                2019-01-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h3><p>分离超平面<br>$$<br>\mathbf w \cdot \mathbf x +b = 0　\tag {1}<br>$$</p>
+<p>其中，w为分离超平面的法向量，b为截距</p>
+<p>分类决策函数<br>$$<br>f(x) = sign(\mathbf w \cdot \mathbf x +b)<br>$$<br>其中，sign()称为符号函数，<br>$$<br>sign(x) =<br>\begin{cases}<br>-1, &amp; x &lt; 0 \\<br>0, &amp; x = 0 \\<br>1, &amp; x &gt; 0<br>\end{cases}<br>$$<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/16/machine-learning-svm-linearly-separable/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1970,7 +1627,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/08/23/machine-learning-apriori/">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/07/10/machine-learning-logistic-regression/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gongshan He">
@@ -1987,9 +1644,9 @@
         
         
           <h2 class="post-title" itemprop="name headline">
-                <a class="post-title-link" href="/2018/08/23/machine-learning-apriori/" itemprop="url">
+                <a class="post-title-link" href="/2018/07/10/machine-learning-logistic-regression/" itemprop="url">
                   
-                   机器学习之Apriori算法</a></h2>
+                   机器学习之logistic回归</a></h2>
         
 
         <div class="post-meta">		 
@@ -2002,8 +1659,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-23T18:58:22+08:00">
-                2018-08-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-10T12:34:36+08:00">
+                2018-07-10
               </time>
             
 
@@ -2018,8 +1675,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-23T21:38:20+08:00">
-                2018-08-23
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-19T15:23:57+08:00">
+                2019-01-19
               </time>
             
           </span>
@@ -2068,7 +1725,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  706
+                  1.2k
                 </span>
               
 
@@ -2094,213 +1751,388 @@
 
       
         
-          
-            <p>支持度(support)：数据集中包含该项集的记录所占的比例。</p>
-<p>可信度或置信度（confidence）：</p>
-<p>$A \rightarrow B$的置信度为<br>$$<br>confidence（A\rightarrow B） = \frac{support(A , B)}{support(A)}<br>$$<br>Apriori原理：如果一个项集是非频繁的，那么它的所有超集也是非频繁的。</p>
-<blockquote class="blockquote-center"><br>    If an itemset is not frequent, any of its superset is never frequent.<br></blockquote>
+          <p>对于二分类任务，其输出标记为y ∈ {0,1}，因此我们需要一个将自变量z转换为0/1值，最理想的是</p>
+<p>“单位阶跃函数”（unit-step function），亦称Heaviside函数。<br>$$<br>y=<br>\begin{cases}<br>0,  &amp; \text{z &lt; 0} \\<br>0.5, &amp; \text{z = 0} \\<br>1,  &amp; \text{z &gt; 0}<br>\end{cases}<br>$$<br><img src="http://p64uw9x5j.bkt.clouddn.com/image/2018/07/15/heaviside.png" alt=""></p>
+<p>然而，单位阶跃函数的问题在于：该函数是一个不连续的分段函数，它在x=0处从0瞬间跳跃到了1。</p>
+<p>我们希望找到一个近似单位阶跃函数的“替代函数”（surrogate function），并希望它单调可微。对数几率函数正是这样一个替代函数。</p>
+<p>对数几率函数：<br>$$<br>y=\frac{1}{1+e^{-z}}<br>$$<br><img src="http://p64uw9x5j.bkt.clouddn.com/image/2018/07/15/logistic_1.png" alt=""></p>
+<p><img src="http://p64uw9x5j.bkt.clouddn.com/image/2018/07/15/logistic_2.png" alt=""></p>
+<p>对数几率函数是一种Sigmoid函数（形似S的函数），它将z值转化为一个接近0或1的y值。从上面[-5,5]以及[-60,60]两张局部图可以看出，其在[-5,5]这个区间范围内变化很陡，函数值从0快速跳跃到了1。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/10/machine-learning-logistic-regression/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
 
-<p>Apriori算法</p>
-<p>1.从大小为k的频繁项集中生成大小为k+1的候选频繁项集$C_{k+1}$</p>
-<p>2.扫描数据库，计算每一个候选频繁项集的支持度</p>
-<p>3.将满足最小支持度的频繁项集加到$F_{k+1}$中<br>$$<br>\begin{align}<br>\hline<br>&amp; 算法\ Apriori \\<br>\hline \\<br>&amp; F_1 = (大小为1的频繁项集); \\<br>&amp; for(k = 1; F_k \neq \varnothing; k++)\ do\ begin \\<br>&amp; \qquad C_{k+1} = apriori-gen(F_k);//新的候选频繁集 \\<br>&amp; \qquad for\ 所有的交易记录t \in 数据集\ do\ begin \\<br>&amp; \qquad \qquad C_{t}^{‘}= subset(C_{k+1},t);\ //包含在t中的候选集 \\<br>&amp; \qquad \qquad for\ 所有的候选c \in C_{t}^{‘}\ do \\<br>&amp; \qquad \qquad \qquad c.count ++; \\<br>&amp; \qquad \qquad end \\<br>&amp; \qquad \qquad F_{k+1} = \{C \in C_{k+1} |\ c.count \geq 最小的支持度 \} \\<br>&amp; \qquad end \\<br>&amp; end \\<br>&amp; Answer \cup_{k} F_k;<br>\end{align}<br>$$<br>算法第三行中的apriori-gen函数经过下面两步，从$F_k$生成$C_{k+1}$</p>
-<p>1.连接</p>
-<p>通过合并两个大小为k，且前$k-1$项相同的频繁项集$P_k$和$Q_k$，生成大小为k+1的频繁项集$R_{k+1}$<br>$$<br>\begin{align}<br>&amp; R_{k+1} = P_{k} \cup Q_{k} = \{items_{1},\dots ,items_{k-1},items_{k},items_{k^{‘}}\} \\<br>&amp; P_{k} = \{items_{1},\dots ,items_{k-1},items_{k}\} \\<br>&amp; Q_{k} = \{items_{1},\dots ,items_{k-1},items_{k^{‘}}\}<br>\end{align}<br>$$<br>其中，$items_1 &lt; \dots &lt; items_k &lt; items_{k^{‘}}$</p>
-<p>2.剪枝</p>
-<p>检查$R_{k+1}$中的所有大小为的项集中的所有大小为的项集是不是频繁的，删除中的所有大小为的项集中的所有大小为k的项集是不是频繁的，删除$R_{k+1}$中那些非频繁的项集，从而得到中那些非频繁的项集，从而得到$C_{k+1}$。因为$C_{k+1}$中大小为且非频繁的所有子集不是大小为中大小为k且非频繁的所有子集不是大小为k+1的频繁项集的子集。</p>
-<p>示例：</p>
-<p>假设最小支持度为2</p>
-<p>数据库D</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">TID</th>
-<th style="text-align:center">Items</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">100</td>
-<td style="text-align:center">$1 \quad 3 \quad 4$</td>
-</tr>
-<tr>
-<td style="text-align:center">200</td>
-<td style="text-align:center">$2 \quad 3 \quad 5$</td>
-</tr>
-<tr>
-<td style="text-align:center">300</td>
-<td style="text-align:center">$1 \quad 2  \quad  3 \quad  5$</td>
-</tr>
-<tr>
-<td style="text-align:center">400</td>
-<td style="text-align:center">$2 \quad 5$</td>
-</tr>
-</tbody>
-</table>
-<p>$C_1$</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:center"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">{1}</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td style="text-align:center">{2}</td>
-<td style="text-align:center">3</td>
-</tr>
-<tr>
-<td style="text-align:center">{3}</td>
-<td style="text-align:center">3</td>
-</tr>
-<tr>
-<td style="text-align:center">{4}</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:center">{5}</td>
-<td style="text-align:center">3</td>
-</tr>
-</tbody>
-</table>
-<p>$F_1$</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">项集</th>
-<th style="text-align:center">支持度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">{1}</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td style="text-align:center">{2}</td>
-<td style="text-align:center">3</td>
-</tr>
-<tr>
-<td style="text-align:center">{3}</td>
-<td style="text-align:center">3</td>
-</tr>
-<tr>
-<td style="text-align:center">{5}</td>
-<td style="text-align:center">3</td>
-</tr>
-</tbody>
-</table>
-<p>$C_2$</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">项集</th>
-<th style="text-align:center">支持度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">{ 1, 2 }</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:center">{ 1, 3 }</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td style="text-align:center">{ 1, 5 }</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:center">{ 2, 3 }</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td style="text-align:center">{ 2, 5 }</td>
-<td style="text-align:center">3</td>
-</tr>
-<tr>
-<td style="text-align:center">{ 3, 5 }</td>
-<td style="text-align:center">2</td>
-</tr>
-</tbody>
-</table>
-<p>$F_2$</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">项集</th>
-<th style="text-align:center">支持度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">{ 1, 3 }</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td style="text-align:center">{ 2, 3 }</td>
-<td style="text-align:center">2</td>
-</tr>
-<tr>
-<td style="text-align:center">{ 2, 5 }</td>
-<td style="text-align:center">3</td>
-</tr>
-<tr>
-<td style="text-align:center">{ 3, 5 }</td>
-<td style="text-align:center">2</td>
-</tr>
-</tbody>
-</table>
-<p>$C_3$</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">项集</th>
-<th style="text-align:center">支持度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">{ 1 , 2 , 3 }</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:center">{ 1 , 2 , 5 }</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:center">{ 1 , 3 , 5 }</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:center">{ 2 , 3 , 5 }</td>
-<td style="text-align:center">2</td>
-</tr>
-</tbody>
-</table>
-<p>$F_3$</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">项集</th>
-<th style="text-align:center">支持度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">{ 2 , 3 , 5 }</td>
-<td style="text-align:center">2</td>
-</tr>
-</tbody>
-</table>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/07/02/machine-learning-navie-bayes/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2018/07/02/machine-learning-navie-bayes/" itemprop="url">
+                  
+                   机器学习之朴素贝叶斯</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-02T17:11:33+08:00">
+                2018-07-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-19T15:23:57+08:00">
+                2019-01-19
+              </time>
+            
+          </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.7k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在讲朴素贝叶斯之前，我们先来回顾一下大学二年级概率论中的相关知识．</p>
+<p>条件概率公式：</p>
+<p>$$P(A|B) = \frac{P(AB)}{P(B)}$$ </p>
+<p>$$=&gt; P(AB) = P(A|B)P(B)$$</p>
+<p>全概率公式：</p>
+<p>$$P(A)=\sum_{i=1}^{\infty}{P(B_i)P(A|B_i)}$$</p>
+<p>贝叶斯公式：</p>
+<p>$$P(B_i|A)=\frac{P(AB_i)}{P(A)}=\frac{P(A|B_i)P(B_i)}{\sum_{i=1}^{\infty}{P(B_i)P(A|B_i)}}$$</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/02/machine-learning-navie-bayes/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.hegongshan.com/2018/06/27/machine-learning-knn/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Gongshan He">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="贺巩山的博客">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                <a class="post-title-link" href="/2018/06/27/machine-learning-knn/" itemprop="url">
+                  
+                   机器学习之k-近邻算法</a></h2>
+        
+
+        <div class="post-meta">		 
+		
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-27T17:21:04+08:00">
+                2018-06-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-20T22:08:36+08:00">
+                2020-02-20
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.3k
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>k-近邻算法（k-Nearest Neighbor，简称kNN）,工作原理：</p>
+<p>存在一个样本数据集合，也称作训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每一数据与所属分类的对应关系．</p>
+<p>输入没有标签的新数据后，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似的数据（最近邻）的分类标签．一般来说，只选择样本数据集中前k个最相似的数据，这就是k-近邻算法中k的出处，通常k是不大于20的整数．</p>
+<p>最后，选择k个最相似数据中<strong>出现次数最多的分类</strong>，作为新数据的分类．</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/27/machine-learning-knn/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2339,7 +2171,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/48/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><span class="page-number current">49</span><a class="page-number" href="/page/50/">50</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><a class="extend next" rel="next" href="/page/50/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/48/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><span class="page-number current">49</span><a class="page-number" href="/page/50/">50</a><span class="space">&hellip;</span><a class="page-number" href="/page/52/">52</a><a class="extend next" rel="next" href="/page/50/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2387,7 +2219,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">536</span>
+                  <span class="site-state-item-count">519</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2398,7 +2230,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2409,7 +2241,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">101</span>
+                  <span class="site-state-item-count">100</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
