@@ -371,28 +371,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[在Linux中存活下来之网络下载工具wget]]></title>
-    <url>%2F2021%2F12%2F18%2Flinux-wget%2F</url>
-    <content type="text"><![CDATA[wget，全称为World Wide Web get，用于从Web中下载文件。 1wget https://www.hegongshan.com/robots.txt 常用选项： -r：递归下载 -c：继续下载 -q, –quiet: 关闭wget的输出 -O file: 重命名]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[在Linux中存活下来之curl]]></title>
-    <url>%2F2021%2F12%2F18%2Flinux-curl%2F</url>
-    <content type="text"><![CDATA[curl，全称为client URL，官网为https://curl.se。 1curl www.hegongshan.com 设置User-Agent-A, --user-agent &lt;name&gt;，指定HTTP请求头中的用户代理字段：User-Agent。 1curl -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36' www.baidu.com 设置请求头1-H, --header &lt;header&gt; 1curl -H 'User-Agent: php/1.0' 发送HTTP请求设置HTTP请求方式 1-X, --request &lt;command&gt; 发送POST请求数据 1-d, --data &lt;data&gt; 重定向-L, –location 1curl -L www.hegongshan.com]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[文件系统的层次结构]]></title>
     <url>%2F2021%2F12%2F18%2Ffile-hierachy%2F</url>
     <content type="text"><![CDATA[Linux1man file-hierarchy macOS1man hier]]></content>
