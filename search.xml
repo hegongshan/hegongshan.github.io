@@ -223,17 +223,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[APT换源]]></title>
-    <url>%2F2022%2F01%2F17%2Fubuntu-apt-sources%2F</url>
-    <content type="text"><![CDATA[在使用APT服务时，网络延迟比较大，当包较大时，问题尤为明显。此时，可以使用国内的镜像，体验飞一般的速度。 1.安装HTTPS认证包 1apt install -y ca-certificates 2.备份当前的源（后悔药） 1cp /etc/apt/sources.list /etc/apt/sources.list.bak 3.修改软件源配置文件 1vim /etc/apt/sources.list 以清华的镜像为例，将原生的cn.archive.ubuntu.com替换为mirrors.tuna.tsinghua.edu.cn 1:%s/http:\/\/cn.archive.ubuntu.com/https:\/\/mirrors.tuna.tsinghua.edu.cn/g]]></content>
-      <categories>
-        <category>apt</category>
-      </categories>
-      <tags>
-        <tag>apt</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Gekkofs的安装和部署]]></title>
     <url>%2F2022%2F01%2F11%2Fgekkofs-install-and-deploy%2F</url>
     <content type="text"><![CDATA[下载最新的稳定版： 1wget https://storage.bsc.es/gitlab/hpc/gekkofs/-/archive/v0.8.0/gekkofs-v0.8.0.tar.gz 解压： 1tar -zxf gekkofs-v0.8.0.tar.gz 下载依赖： 1.scripts/dl_dep.sh depend/ 编译依赖： 1.scripts/compile_dep.sh depend/ install/ 安装bmi时，可能会报： 1aclocal: not found 解决办法： 12# yum install -y automakeapt install -y automake 安装libfabric时，可能会报： 1231.Libtool library used but 'LIBTOOL' is undefined2.numactl-devel or libnuma-devel not found 解决办法： 12# yum install -y libtool libnuma-develapt install -y libtool libnuma-dev 安装libfabric%experimental时，可能会报： 12configure: verbs provider: disabledconfigure: WARNING: verbs provider was requested, but cannot be compiled 解决办法： 1apt install -y librdmacm-dev 安装mercury时，可能会报： 12Could NOT find PkgConfig (missing: PKG_CONFIG_EXECUTABLE)-- Could NOT find UUID (missing: UUID_INCLUDE_DIR UUID_LIBRARY) 解决办法： 1apt install -y libconfig-dev uuid-dev 不影响编译的报错： 安装syscall_intercept时，可能会会出现如下提示： 1pandoc not found 解决办法： 1apt install -y pandoc 安装agios 1-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 解决办法： 1apt install -y doxygen 编译GekkoFS 配置 1mkdir build &amp;&amp; cd build 1cmake -DCMAKE_PREFIX_PATH=/home/scfs/install -DCMAKE_BUILD_TYPE=Release .. 在cmake执行的过程中，可能会报如下错误： 1Could NOT find ZLIB (missing: ZLIB_LIBRARY ZLIB_INCLUDE_DIR) 解决办法： 1apt install -y zlib1g-dev 编译 12/root/scfs/include/common/rpc/distributor.hpp:38:10: fatal error: boost/icl/interval_map.hpp: No such file or directory 38 | #include &lt;boost/icl/interval_map.hpp&gt; 解决办法： 1apt install -y libboost-dev 安装 1make install]]></content>
@@ -5320,8 +5309,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5332,8 +5321,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5355,8 +5344,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
