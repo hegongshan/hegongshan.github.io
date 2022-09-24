@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>%2F2022%2F09%2F13%2Finstall-python-from-source-code%2F</url>
-    <content type="text"><![CDATA[准备工作1.下载源码，目前的最新版为3.10.7 1wget https://www.python.org/ftp/python/3.10.7/Python-3.10.7.tar.xz 2.解压缩 1tar -Jxf Python-3.10.7.tar.xz 3.进入源码目录 1cd Python-3.10.7 安装OpenSSL查看是否已经安装了OpenSSL： 1openssl version 若已经安装，则卸载旧版本： 1yum remove 1.下载最新的OpenSSL 1wget https://www.openssl.org/source/openssl-3.0.5.tar.gz 2.解压缩 1tar -zxf openssl-3.0.5.tar.gz 3.进入源码目录 1cd openssl-3.0.5 4.配置环境 1./config 可能出现的错误：IPC 解决办法：安装依赖perl-CPAN 1yum install -y perl-CPAN 5.编译与安装 1make -j48 &amp;&amp; make install Python3编译1.配置环境 1/configure --with-openssl=/usr/local 输出的部分结果如下所示： 1234checking for openssl/ssl.h in /usr/local... yeschecking whether compiling and linking against OpenSSL works... yeschecking for --with-openssl-rpath... checking whether OpenSSL provides required APIs... yes 2.编译与安装 1make -j48 &amp;&amp; make install 可能出现的问题： 12The necessary bits to build these optional modules were not found:_lzma 解决办法： 1yum install -y xz-devel]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[学术会议初体验]]></title>
     <url>%2F2022%2F08%2F01%2Fattend-my-first-academic-conference%2F</url>
     <content type="text"><![CDATA[7月29日-7月31日，南京举办了第一届中国计算机学会芯片大会。我有幸参加了这次大会，见证了历史，也见过世面。]]></content>
@@ -16,7 +11,7 @@
   <entry>
     <title><![CDATA[加快GitHub的文件下载速度]]></title>
     <url>%2F2022%2F05%2F31%2Fgithub-speed-up%2F</url>
-    <content type="text"><![CDATA[当需要从Github下载文件时，国内的下载速度实在太慢了，经常会报超时错误。 为了加快下载速度，可以通过下面的方式，使用镜像网站代替直接访问GitHub: 1git config --global url."https://hub.fastgit.xyz".insteadOf https://github.com 其中，https://hub.fastgit.xyz是镜像网站的地址。]]></content>
+    <content type="text"><![CDATA[当需要从Github下载文件时，国内的下载速度实在太慢了，经常会报超时错误。 为了加快下载速度，可以通过下面的方式，使用镜像网站代替直接访问GitHub: 1git config --global url."https://hub.fastgit.org".insteadOf https://github.com 其中，https://hub.fastgit.org是镜像网站的地址。 如果镜像网站无法访问了，只需要执行下面的命令，就可以退回到直接访问GitHub的状态： 1git config --global --unset url."https://hub.fastgit.org".insteadOf]]></content>
       <categories>
         <category>git</category>
       </categories>
@@ -537,6 +532,17 @@
       </categories>
       <tags>
         <tag>gcc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[源码安装Python3]]></title>
+    <url>%2F2021%2F09%2F24%2Finstall-python-from-source-code%2F</url>
+    <content type="text"><![CDATA[准备工作1.下载源码，目前的最新版为3.10.7 1wget https://www.python.org/ftp/python/3.10.7/Python-3.10.7.tar.xz 2.解压缩 1tar -Jxf Python-3.10.7.tar.xz 3.进入源码目录 1cd Python-3.10.7 安装OpenSSL查看是否已经安装了OpenSSL： 1openssl version 若已经安装，则卸载旧版本： 1yum remove openssl 1.下载最新的OpenSSL 1wget https://www.openssl.org/source/openssl-3.0.5.tar.gz 2.解压缩 1tar -zxf openssl-3.0.5.tar.gz 3.进入源码目录 1cd openssl-3.0.5 4.配置环境 1./config 可能出现的错误：IPC 解决办法：安装依赖perl-CPAN 1yum install -y perl-CPAN 5.编译与安装 1make -j48 &amp;&amp; make install Python3编译1.配置环境 1/configure --with-openssl=/usr/local 输出的部分结果如下所示： 1234checking for openssl/ssl.h in /usr/local... yeschecking whether compiling and linking against OpenSSL works... yeschecking for --with-openssl-rpath... checking whether OpenSSL provides required APIs... yes 2.编译与安装 1make -j48 &amp;&amp; make install 可能出现的问题： 12The necessary bits to build these optional modules were not found:_lzma 解决办法： 1yum install -y xz-devel]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -5281,8 +5287,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5293,8 +5299,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -5316,8 +5322,8 @@
         <category>数据结构与算法分析:Java语言描述</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>数据结构</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
